@@ -50,7 +50,7 @@
         "./public/*"
       ],
       "@theme/*": [
-        "./src/styles/themes/*"
+        "./src/styles/*"
       ],
     },
   },
