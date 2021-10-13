@@ -40,6 +40,13 @@ export const Button = styled.div<ButtonProps>`
   vertical-align: middle;
   align-items: center;
   justify-content: center;
+  position: relative;
+`;
+
+export const Selected = styled.div`
+  position: absolute;
+  left: 0;
+  background-color: #ff8300;
 `;
 
 export const IconContainer = styled.div<{ reverse?: boolean }>`

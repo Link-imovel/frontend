@@ -22,6 +22,7 @@ Primary.args = {
   variant: 'primary',
   label: 'Entrar',
   size: 'medium',
+  onClick: () => console.log('clicked'),
 };
 
 export const Secondary = Template.bind({});
@@ -30,6 +31,7 @@ Secondary.args = {
   label: 'Entrar',
   size: 'medium',
   background: 'transparent',
+  onClick: () => console.log('clicked'),
 };
 
 export const Large = Template.bind({});
@@ -37,6 +39,7 @@ Large.args = {
   variant: 'primary',
   label: 'Entrar',
   size: 'large',
+  onClick: () => console.log('clicked'),
 };
 
 export const ButtonWhatsApp = Template.bind({});

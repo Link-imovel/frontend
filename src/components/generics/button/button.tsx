@@ -11,6 +11,7 @@ const Button = ({
   icon,
   iconReverse,
   onClick,
+  selected,
 }: ButtonProps): JSX.Element => {
   const renderIcon = React.useCallback(
     (icon: JSX.Element, iconReverse: boolean) => (
@@ -26,6 +27,7 @@ const Button = ({
       background={background || '#FF8300'}
       onClick={onClick}
     >
+      {selected && <S.Selected />}
       {icon && iconReverse && renderIcon(icon, !!iconReverse)}
       <S.Label>{label}</S.Label>
       {icon && !iconReverse && renderIcon(icon, !!iconReverse)}
