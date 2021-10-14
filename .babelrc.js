@@ -25,7 +25,7 @@ const plugins = [
         "@services": "./src/services",
         "@store": "./src/store",
         "@public": "./public",
-        "@theme": "./src/styles/themes",
+        "@theme": "./src/styles",
       }
     }
   ]
