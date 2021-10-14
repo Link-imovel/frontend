@@ -57,7 +57,8 @@ export const Label = styled.span``;
 
 const styles = {
   primary: css<ButtonProps>`
-    background-color: ${({ background }) => background};
+    background-color: ${({ background, theme }) =>
+      background || theme.colors.orange};
     border: none;
     transition: filter 0.2s;
     &:hover {
@@ -65,7 +66,7 @@ const styles = {
     }
   `,
   secondary: css<ButtonProps>`
-    background-color: ${({ background }) => background};
+    background-color: ${({ background }) => background || 'transparent'};
     border: 1px solid #ffffff;
     transition: color 0.2s, border 0.2s;
     &:hover {
