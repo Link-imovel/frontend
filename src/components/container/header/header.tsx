@@ -5,28 +5,36 @@ import { Logo } from '@components/generics/logo';
 import { Link } from '@components/generics/icons/link';
 
 import * as S from './header.style';
+import { HeaderProps } from './header.type';
 
-const Header = (): JSX.Element => {
+const Header = ({
+  title,
+  subtitle,
+  icon,
+  callbackLogo,
+  callbackLogin,
+  callbackShowImovels,
+  labelSignIn,
+  labelShowImovels,
+}: HeaderProps): JSX.Element => {
   return (
     <S.HeaderContainer>
       <S.HeadWrapper>
-        <Logo icon={<Link />} onClick={() => console.log('redirect')} />
+        <Logo icon={icon} onClick={callbackLogo} />
         <Button
           variant="secondary"
-          label="Entrar"
+          label={labelSignIn || 'Entrar'}
           background="transparent"
-          onClick={() => console.log('redirect')}
+          onClick={callbackLogin}
         />
       </S.HeadWrapper>
       <S.MainWrapper>
-        <S.MainTitle>A SUA FUTURA HOME SE ENCONTRA AQUI.</S.MainTitle>
-        <S.MainSubtitle>
-          Trazendo a maior variadade de imóveis que se adequa ao seu momento.
-        </S.MainSubtitle>
+        <S.MainTitle>{title}</S.MainTitle>
+        <S.MainSubtitle>{subtitle}</S.MainSubtitle>
         <Button
           variant="primary"
-          label="Ver imóveis"
-          onClick={() => console.log('redirect')}
+          label={labelShowImovels}
+          onClick={callbackShowImovels}
         />
       </S.MainWrapper>
     </S.HeaderContainer>
