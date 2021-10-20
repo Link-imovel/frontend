@@ -7,6 +7,7 @@ const colors = {
   lightGreyBlue: '#CBD6DC',
   orange: '#FF8300',
   green: '#32CD30',
+  fadedGrey: '#E5E5E5',
 };
 
 export { colors };
