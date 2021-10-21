@@ -29,12 +29,12 @@ export const MainWrapper = styled.div`
 `;
 
 export const MainTitle = styled.span`
-  color: #fcfcfc;
+  color: ${({ theme: { colors } }) => colors.whiteGrey};
   font-size: 36px;
 `;
 
 export const MainSubtitle = styled.span`
   margin-bottom: 79px;
-  color: #fcfcfc;
-  font-size: 18px;
+  color: ${({ theme: { colors } }) => colors.whiteGrey};
+  font-size: ${({ theme: { text } }) => text.sizes.large};
 `;

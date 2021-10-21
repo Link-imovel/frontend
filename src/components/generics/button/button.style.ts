@@ -29,10 +29,10 @@ const getSize = (size?: 'small' | 'medium' | 'large') => {
 export const Button = styled.div<ButtonProps>`
   ${({ variant }) => styles[variant]}
   ${({ size }) => getSize(size)}
-  line-height: 16px;
-  color: #ffffff;
+  line-height: ${({ theme: { text } }) => text.sizes.medium};
+  color: ${({ color, theme: { colors } }) => color || colors.white};
   border-radius: 8px;
-  font-weight: 500;
+  font-weight: ${({ theme: { text } }) => text.weight.medium};
   outline: none;
   cursor: pointer;
   display: flex;
@@ -46,7 +46,7 @@ export const Button = styled.div<ButtonProps>`
 export const Selected = styled.div`
   position: absolute;
   left: 0;
-  background-color: #ff8300;
+  background-color: ${({ theme: { colors } }) => colors.orange};
 `;
 
 export const IconContainer = styled.div<{ reverse?: boolean }>`
@@ -71,7 +71,7 @@ const styles = {
     transition: color 0.2s, border 0.2s;
     &:hover {
       color: #ff8300;
-      border: 1px solid #ff8300;
+      border: 1px solid ${({ theme: { colors } }) => colors.orange};
     }
   `,
 };

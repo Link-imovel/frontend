@@ -5,6 +5,7 @@ export type ButtonProps = {
   label?: string;
   size?: 'small' | 'medium' | 'large';
   background?: string;
+  color?: string;
   icon?: React.ReactElement;
   iconReverse?: boolean;
   onClick: React.MouseEventHandler<HTMLDivElement> & (() => void);
