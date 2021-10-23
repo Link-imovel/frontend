@@ -2,6 +2,11 @@ import styled, { css } from 'styled-components';
 
 import { ButtonProps } from './button.type';
 
+const transparent = css`
+  background-color: 'transparent';
+  border: none;
+`;
+
 const sizes = {
   small: {
     height: '40px',
@@ -49,7 +54,6 @@ export const Button = styled.div<ButtonProps>`
   line-height: ${({ theme: { text } }) => text.sizes.medium};
   color: ${({ color, theme: { colors } }) => color || colors.white};
   font-weight: ${({ theme: { text } }) => text.weight.medium};
-  outline: none;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -70,7 +74,9 @@ export const IconContainer = styled.div<{
   variant: string;
 }>`
   ${({ reverse, variant }) =>
-    variant.match(/^(?!(primary[-]circle|primary-square|secondary)).*$/g)
+    variant.match(
+      /^(?!(primary[-]circle|primary-square|secondary-square|transparent-m-none)).*$/g
+    )
       ? reverse
         ? 'margin-right: 22px'
         : 'margin-left: 22px'
@@ -122,4 +128,6 @@ const styles = {
       filter: brightness(0.9);
     }
   `,
+  'transparent-m-none': transparent,
+  transparent,
 };

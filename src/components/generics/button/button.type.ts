@@ -6,7 +6,9 @@ export type ButtonProps = {
     | 'secondary'
     | 'primary-circle'
     | 'primary-square'
-    | 'secondary-square';
+    | 'secondary-square'
+    | 'transparent-m-none'
+    | 'transparent';
   label?: string;
   size?: 'small' | 'xsmall' | 'medium' | 'large';
   radius?: 'circle' | 'square' | 'middleSquare';
