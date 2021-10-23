@@ -5,6 +5,8 @@ interface GalleryProps {
   backgroundColor?: string;
 }
 
-interface GalleryContainerProps extends Pick<GalleryProps, 'backgroundColor'> {}
+interface GalleryContainerProps extends Pick<GalleryProps, 'backgroundColor'> {
+  hasContent: boolean;
+}
 
 export type { GalleryProps, GalleryContainerProps };

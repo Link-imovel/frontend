@@ -8,7 +8,9 @@ const Gallery = ({
   backgroundColor,
 }: GalleryProps): React.ReactElement => {
   return (
-    <S.Container backgroundColor={backgroundColor}>{children}</S.Container>
+    <S.Container backgroundColor={backgroundColor} hasContent={!!children}>
+      {children}
+    </S.Container>
   );
 };
 
