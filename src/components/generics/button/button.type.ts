@@ -1,9 +1,15 @@
 import React from 'react';
 
 export type ButtonProps = {
-  variant: 'primary' | 'secondary';
+  variant:
+    | 'primary'
+    | 'secondary'
+    | 'primary-circle'
+    | 'primary-square'
+    | 'secondary-square';
   label?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'xsmall' | 'medium' | 'large';
+  radius?: 'circle' | 'square' | 'middleSquare';
   background?: string;
   color?: string;
   icon?: React.ReactElement;
