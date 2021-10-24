@@ -1,14 +1,20 @@
-interface CallbackProps {
-  logo: () => void;
-  login: () => void;
-  showImovels: () => void;
+interface ButtonsProps {
+  BLogo: {
+    icon: React.ReactElement;
+    callback: () => void;
+  };
+  BLogin: {
+    label?: string;
+    callback: () => void;
+  };
+  BShowImovels: {
+    label: string;
+    callback: () => void;
+  };
 }
 
 export type HeaderProps = {
   title: string;
   subtitle: string;
-  icon: React.ReactElement;
-  callback: CallbackProps;
-  labelSignIn: string;
-  labelShowImovels: string;
+  buttons: ButtonsProps;
 };

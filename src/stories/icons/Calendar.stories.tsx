@@ -1,22 +1,22 @@
 import React, { SVGProps } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { Logo } from '@components/generics/icons/logo';
-import { colors } from '@theme/theme/default';
+import { Calendar } from '@components/generics/icons/calendar';
 
 export default {
-  title: 'Icons/Logo',
-  component: Logo,
-} as Meta<typeof Logo>;
+  title: 'Icons/Calendar',
+  component: Calendar,
+} as Meta<typeof Calendar>;
 
 const Template: Story<SVGProps<SVGSVGElement>> = (
   args: SVGProps<SVGSVGElement>
-): React.ReactElement => <Logo {...args} />;
+): React.ReactElement => <Calendar {...args} />;
 
 export const DefaultSize = Template.bind({});
 DefaultSize.args = {};
 
 export const CustomSize = Template.bind({});
 CustomSize.args = {
-  fill: colors.blackGrey,
+  width: 42,
+  height: 42,
 };

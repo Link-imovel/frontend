@@ -5,27 +5,20 @@ import { Button } from '@components/generics/button';
 import * as S from './header.style';
 import { HeaderProps } from './header.type';
 
-const Header = ({
-  title,
-  subtitle,
-  icon,
-  callback,
-  labelSignIn,
-  labelShowImovels,
-}: HeaderProps): JSX.Element => {
+const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
   return (
     <S.HeaderContainer>
       <S.HeadWrapper>
         <Button
           variant="transparent-m-none"
-          icon={icon}
-          onClick={callback.logo}
+          icon={buttons.BLogo.icon}
+          onClick={buttons.BLogo.callback}
         />
         <Button
           variant="secondary"
-          label={labelSignIn || 'Entrar'}
+          label={buttons.BLogin.label || 'Entrar'}
           background="transparent"
-          onClick={callback.login}
+          onClick={buttons.BLogin.callback}
         />
       </S.HeadWrapper>
       <S.MainWrapper>
@@ -33,8 +26,8 @@ const Header = ({
         <S.MainSubtitle>{subtitle}</S.MainSubtitle>
         <Button
           variant="primary"
-          label={labelShowImovels}
-          onClick={callback.showImovels}
+          label={buttons.BShowImovels.label}
+          onClick={buttons.BShowImovels.callback}
         />
       </S.MainWrapper>
     </S.HeaderContainer>

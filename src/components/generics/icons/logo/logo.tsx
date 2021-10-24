@@ -1,7 +1,8 @@
-import { colors } from '@theme/theme/default';
 import React, { SVGProps } from 'react';
 
-const Link = (props: SVGProps<SVGSVGElement>): JSX.Element => {
+import { colors } from '@theme/theme/default';
+
+const Logo = (props: SVGProps<SVGSVGElement>): JSX.Element => {
   return (
     <svg
       width="82"
@@ -22,4 +23,4 @@ const Link = (props: SVGProps<SVGSVGElement>): JSX.Element => {
   );
 };
 
-export { Link };
+export { Logo };

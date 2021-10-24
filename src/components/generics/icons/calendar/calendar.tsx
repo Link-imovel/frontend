@@ -2,7 +2,7 @@ import React, { SVGProps } from 'react';
 
 import { colors } from '@theme/theme/default';
 
-const Navigation = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
+const Calendar = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,10 +12,10 @@ const Navigation = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
       fill={colors.blackGrey}
       {...props}
     >
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M12 7.27l4.28 10.43-3.47-1.53-.81-.36-.81.36-3.47 1.53L12 7.27M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z" />
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z" />
     </svg>
   );
 };
 
-export { Navigation };
+export { Calendar };

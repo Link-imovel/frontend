@@ -2,11 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { ButtonProps } from './button.type';
 
-const transparent = css`
-  background-color: 'transparent';
-  border: none;
-`;
-
 const sizes = {
   small: {
     height: '40px',
@@ -59,7 +54,7 @@ export const Button = styled.div<ButtonProps>`
   flex-direction: row;
   vertical-align: middle;
   align-items: center;
-  justify-content: center;
+  justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   position: relative;
 `;
 
@@ -75,7 +70,7 @@ export const IconContainer = styled.div<{
 }>`
   ${({ reverse, variant }) =>
     variant.match(
-      /^(?!(primary[-]circle|primary-square|secondary-square|transparent-m-none)).*$/g
+      /^(?!(primary[-]circle|primary-square|secondary-square|transparent)).*$/g
     )
       ? reverse
         ? 'margin-right: 22px'
@@ -128,6 +123,8 @@ const styles = {
       filter: brightness(0.9);
     }
   `,
-  'transparent-m-none': transparent,
-  transparent,
+  transparent: css`
+    background-color: 'transparent';
+    border: none;
+  `,
 };

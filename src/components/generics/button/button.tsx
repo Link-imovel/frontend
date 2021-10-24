@@ -9,6 +9,7 @@ const Button = ({
   size,
   radius,
   background,
+  justifyContent,
   color,
   icon,
   iconReverse,
@@ -30,6 +31,7 @@ const Button = ({
       size={size}
       radius={radius}
       background={background}
+      justifyContent={justifyContent}
       color={color}
       onClick={onClick}
     >
