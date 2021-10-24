@@ -3,10 +3,10 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
-import { colors } from '@theme/theme/default';
 import { TextArea } from '@components/generics/textarea';
 
 import * as S from './contact.styles';
+import { colors } from '@theme/theme/default';
 import { ContactProps } from './contact.type';
 
 const ContactView = ({ title, buttons }: ContactProps): React.ReactElement => {

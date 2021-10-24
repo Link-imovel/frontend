@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
-import { colors } from '@theme/theme/default';
 
 import * as S from './login.style';
 import { LoginProps } from './login.type';
+import { colors } from '@theme/theme/default';
 
 const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
   return (

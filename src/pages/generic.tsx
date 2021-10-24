@@ -1,15 +1,15 @@
 import React from 'react';
 
-import LoginContainer from '@containers/login';
+import GenericContainer from '@containers/generic';
 
-import { ButtonsProps } from '@views/login/login.type';
+import { ButtonsProps } from '@views/generic/generic.type';
 
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 
 import { colors } from '@theme/theme/default';
 
-const Login = (): React.ReactElement => {
+const Generic = (): React.ReactElement => {
   const buttons: ButtonsProps = {
     BLogo: {
       icon: <Logo fill={colors.blackGrey} />,
@@ -19,17 +19,11 @@ const Login = (): React.ReactElement => {
       label: 'Anterior',
     },
     BLogin: {
-      label: 'Entrar',
+      label: 'Criar',
     },
   };
 
-  return (
-    <LoginContainer
-      title="Seja bem-vindo(a)"
-      subtitle="Faça login para continuar"
-      buttons={buttons}
-    />
-  );
+  return <GenericContainer title="Criar um usuário" buttons={buttons} />;
 };
 
-export default Login;
+export default Generic;
