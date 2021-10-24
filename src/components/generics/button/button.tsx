@@ -1,5 +1,4 @@
 import React from 'react';
-import { colors } from '@theme/theme/default';
 
 import * as S from './button.style';
 import { ButtonProps } from './button.type';
@@ -8,6 +7,7 @@ const Button = ({
   variant,
   label,
   size,
+  radius,
   background,
   color,
   icon,
@@ -17,15 +17,18 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   const renderIcon = React.useCallback(
     (icon: JSX.Element, iconReverse: boolean) => (
-      <S.IconContainer reverse={iconReverse}>{icon}</S.IconContainer>
+      <S.IconContainer variant={variant} reverse={iconReverse}>
+        {icon}
+      </S.IconContainer>
     ),
-    []
+    [variant]
   );
 
   return (
     <S.Button
       variant={variant}
       size={size}
+      radius={radius}
       background={background}
       color={color}
       onClick={onClick}

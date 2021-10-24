@@ -2,8 +2,17 @@ import styled, { css } from 'styled-components';
 
 import { ButtonProps } from './button.type';
 
+const transparent = css`
+  background-color: 'transparent';
+  border: none;
+`;
+
 const sizes = {
   small: {
+    height: '40px',
+    width: '40px',
+  },
+  xsmall: {
     height: '49px',
     width: '89px',
   },
@@ -17,7 +26,7 @@ const sizes = {
   },
 };
 
-const getSize = (size?: 'small' | 'medium' | 'large') => {
+const getSize = (size?: 'small' | 'xsmall' | 'medium' | 'large') => {
   const { height, width } = sizes[size || 'medium'];
   return `
       width: ${width};
@@ -26,14 +35,25 @@ const getSize = (size?: 'small' | 'medium' | 'large') => {
     `;
 };
 
+const border = {
+  circle: '50px',
+  square: '8px',
+  middleSquare: '0px 8px 8px 0px',
+};
+
+const getRadius = (radius?: 'circle' | 'square' | 'middleSquare') => {
+  return `
+    border-radius: ${border[radius || 'square']};
+  `;
+};
+
 export const Button = styled.div<ButtonProps>`
   ${({ variant }) => styles[variant]}
   ${({ size }) => getSize(size)}
+  ${({ radius }) => getRadius(radius)}
   line-height: ${({ theme: { text } }) => text.sizes.medium};
   color: ${({ color, theme: { colors } }) => color || colors.white};
-  border-radius: 8px;
   font-weight: ${({ theme: { text } }) => text.weight.medium};
-  outline: none;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -49,17 +69,42 @@ export const Selected = styled.div`
   background-color: ${({ theme: { colors } }) => colors.orange};
 `;
 
-export const IconContainer = styled.div<{ reverse?: boolean }>`
-  ${({ reverse }) => (reverse ? 'margin-right' : 'margin-left')}: 22px;
+export const IconContainer = styled.div<{
+  reverse?: boolean;
+  variant: string;
+}>`
+  ${({ reverse, variant }) =>
+    variant.match(
+      /^(?!(primary[-]circle|primary-square|secondary-square|transparent-m-none)).*$/g
+    )
+      ? reverse
+        ? 'margin-right: 22px'
+        : 'margin-left: 22px'
+      : 'margin: 0'};
 `;
 
 export const Label = styled.span``;
 
 const styles = {
   primary: css<ButtonProps>`
-    background-color: ${({ background, theme }) =>
-      background || theme.colors.orange};
-    border: none;
+    background-color: ${({ background, theme: { colors } }) =>
+      background || colors.orange};
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.9);
+    }
+  `,
+  'primary-circle': css<ButtonProps>`
+    background-color: ${({ background, theme: { colors } }) =>
+      background || colors.green};
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.9);
+    }
+  `,
+  'primary-square': css<ButtonProps>`
+    background-color: ${({ background, theme: { colors } }) =>
+      background || colors.orange};
     transition: filter 0.2s;
     &:hover {
       filter: brightness(0.9);
@@ -67,11 +112,22 @@ const styles = {
   `,
   secondary: css<ButtonProps>`
     background-color: ${({ background }) => background || 'transparent'};
-    border: 1px solid #ffffff;
+    border: 1px solid ${({ theme: { colors } }) => colors.whiteGrey};
     transition: color 0.2s, border 0.2s;
     &:hover {
-      color: #ff8300;
+      color: ${({ theme: { colors } }) => colors.orange};
       border: 1px solid ${({ theme: { colors } }) => colors.orange};
     }
   `,
+  'secondary-square': css<ButtonProps>`
+    background-color: ${({ background }) => background || 'transparent'};
+    border: 1px solid ${({ theme: { colors } }) => colors.whiteGrey};
+    color: ${({ theme: { colors } }) => colors.whiteGrey};
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.9);
+    }
+  `,
+  'transparent-m-none': transparent,
+  transparent,
 };

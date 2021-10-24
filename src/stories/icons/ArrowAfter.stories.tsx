@@ -1,17 +1,16 @@
 import React, { SVGProps } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { WhatsApp } from '@components/generics/icons/whatsapp';
-import { colors } from '@theme/theme/default';
+import { ArrowAfter } from '@components/generics/icons/arrowafter';
 
 export default {
-  title: 'Icons/WhatsApp',
-  component: WhatsApp,
-} as Meta;
+  title: 'Icons/ArrowAfter',
+  component: ArrowAfter,
+} as Meta<typeof ArrowAfter>;
 
 const Template: Story<SVGProps<SVGSVGElement>> = (
   args: SVGProps<SVGSVGElement>
-): React.ReactElement => <WhatsApp {...args} />;
+): React.ReactElement => <ArrowAfter {...args} />;
 
 export const DefaultSize = Template.bind({});
 DefaultSize.args = {};
