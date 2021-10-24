@@ -3,9 +3,10 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Button } from '@components/generics/button';
 import { WhatsApp } from '@components/generics/icons/whatsapp';
+import { colors } from '@theme/theme/default';
 
 export default {
-  title: 'generics/button',
+  title: 'generics/Button',
   component: Button,
   argTypes: {
     variant: {
@@ -47,8 +48,18 @@ ButtonWhatsApp.args = {
   variant: 'primary',
   label: 'Contato por whatsapp',
   size: 'large',
-  background: '#32CD30',
-  icon: <WhatsApp height={17} width={17} fill="#FFFFFF" />,
+  background: colors.green,
+  icon: <WhatsApp height={17} width={17} fill={colors.white} />,
   iconReverse: true,
+  onClick: () => console.log('clicked'),
+};
+
+export const ButtonContact = Template.bind({});
+ButtonContact.args = {
+  variant: 'primary',
+  label: 'Contatar',
+  size: 'medium',
+  background: colors.whiteGrey,
+  color: colors.blackGrey,
   onClick: () => console.log('clicked'),
 };

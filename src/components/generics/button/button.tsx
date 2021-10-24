@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '@theme/theme/default';
 
 import * as S from './button.style';
 import { ButtonProps } from './button.type';
@@ -8,6 +9,7 @@ const Button = ({
   label,
   size,
   background,
+  color,
   icon,
   iconReverse,
   onClick,
@@ -24,7 +26,8 @@ const Button = ({
     <S.Button
       variant={variant}
       size={size}
-      background={background || '#FF8300'}
+      background={background}
+      color={color}
       onClick={onClick}
     >
       {selected && <S.Selected />}

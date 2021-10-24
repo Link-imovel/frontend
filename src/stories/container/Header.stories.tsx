@@ -17,8 +17,10 @@ Default.args = {
   subtitle:
     'Trazendo a maior variadade de imóveis  que se adequa ao seu momento.',
   icon: <Link />,
-  callbackLogo: () => console.log('#1'),
-  callbackLogin: () => console.log('#2'),
-  callbackShowImovels: () => console.log('#3'),
+  callback: {
+    logo: () => console.log('#1'),
+    login: () => console.log('#2'),
+    showImovels: () => console.log('#3'),
+  },
   labelShowImovels: 'Ver imóveis',
 };
