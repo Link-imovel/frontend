@@ -1,13 +1,88 @@
+import { CardProps } from '@components/container/card/card.type';
 import styled from 'styled-components';
 
-export const MainWrapper = styled.div``;
+const sizeMapper = {
+  small: {
+    height: '114px',
+    width: '269px',
+  },
+  normal: {
+    height: '265px',
+    width: '246px',
+  },
+};
 
-export const MainTitle = styled.span`
-  color: #363a42;
-  font-size: 13px;
+const CardBody = styled.div<CardProps>`
+  height: ${({ size }) => size && sizeMapper[size].height};
+  width: ${({ size }) => size && sizeMapper[size].width};
 `;
 
-export const MainSubtitle = styled.span`
+const MainWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 16px 13px 0 13px;
+`;
+
+const CardTitle = styled.span`
+  font-size: 14px;
+  line-height: 16px;
+
   color: #7c98a7;
-  font-size: 13px;
 `;
+
+const CardAddress = styled.span`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+
+  color: #363a42;
+`;
+
+const CardValue = styled.span`
+  padding-top: 6px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #363a42;
+`;
+
+const CardNeighborhood = styled.span`
+  padding-top: 6px;
+  font-size: 13px;
+  line-height: 15px;
+
+  color: #7c98a7;
+`;
+
+const IconWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 16px 13px 0 13px;
+
+  font-size: 13px;
+  line-height: 15px;
+
+  color: #7c98a7;
+`;
+
+const Bed = styled.div``;
+
+const Bathroom = styled.div``;
+
+const Car = styled.div``;
+
+export {
+  CardBody,
+  MainWrapper,
+  CardTitle,
+  CardAddress,
+  CardValue,
+  CardNeighborhood,
+  IconWrapper,
+  Bathroom,
+  Bed,
+  Car,
+};
