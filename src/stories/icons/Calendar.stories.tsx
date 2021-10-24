@@ -1,17 +1,16 @@
 import React, { SVGProps } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { WhatsApp } from '@components/generics/icons/whatsapp';
-import { colors } from '@theme/theme/default';
+import { Calendar } from '@components/generics/icons/calendar';
 
 export default {
-  title: 'Icons/WhatsApp',
-  component: WhatsApp,
-} as Meta;
+  title: 'Icons/Calendar',
+  component: Calendar,
+} as Meta<typeof Calendar>;
 
 const Template: Story<SVGProps<SVGSVGElement>> = (
   args: SVGProps<SVGSVGElement>
-): React.ReactElement => <WhatsApp {...args} />;
+): React.ReactElement => <Calendar {...args} />;
 
 export const DefaultSize = Template.bind({});
 DefaultSize.args = {};

@@ -3,11 +3,7 @@ import React from 'react';
 import { PageProps } from './page.type';
 import * as S from './page.style';
 
-const Page = ({
-  header,
-  children,
-  footer,
-}: PageProps): React.ReactElement | React.ReactElement[] => {
+const Page = ({ header, children, footer }: PageProps): React.ReactElement => {
   return (
     <S.Container>
       {!!header && header}

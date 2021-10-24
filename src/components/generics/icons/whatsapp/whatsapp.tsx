@@ -1,4 +1,6 @@
-import React, { SVGProps } from "react";
+import React, { SVGProps } from 'react';
+
+import { colors } from '@theme/theme/default';
 
 const WhatsApp = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
   return (
@@ -8,7 +10,7 @@ const WhatsApp = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
       height="24px"
       viewBox="0 0 24 24"
       width="24px"
-      fill="#32CD30"
+      fill={colors.green}
       {...props}
     >
       <g>

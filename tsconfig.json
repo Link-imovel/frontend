@@ -52,6 +52,9 @@
       "@theme/*": [
         "./src/styles/*"
       ],
+      "@views/*": [
+        "./src/views/*"
+      ],
     },
   },
   "include": [
