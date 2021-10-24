@@ -27,7 +27,7 @@ const CardTitle = styled.span`
   font-size: 14px;
   line-height: 16px;
 
-  color: #7c98a7;
+  color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
 const CardAddress = styled.span`
@@ -36,7 +36,7 @@ const CardAddress = styled.span`
   font-size: 13px;
   line-height: 15px;
 
-  color: #363a42;
+  color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
 const CardValue = styled.span`
@@ -46,7 +46,7 @@ const CardValue = styled.span`
   font-size: 14px;
   line-height: 16px;
 
-  color: #363a42;
+  color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
 const CardNeighborhood = styled.span`
@@ -54,7 +54,7 @@ const CardNeighborhood = styled.span`
   font-size: 13px;
   line-height: 15px;
 
-  color: #7c98a7;
+  color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
 const IconWrapper = styled.div`
@@ -65,7 +65,7 @@ const IconWrapper = styled.div`
   font-size: 13px;
   line-height: 15px;
 
-  color: #7c98a7;
+  color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
 const Bed = styled.div``;

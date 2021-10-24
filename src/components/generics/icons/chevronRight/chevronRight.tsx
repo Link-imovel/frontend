@@ -8,7 +8,7 @@ const ChevronRight = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
       height="24px"
       viewBox="0 0 24 24"
       width="24px"
-      fill="#ffffff"
+      fill={colors.white}
       {...props}
     >
       <path d="M0 0h24v24H0z" fill="none" />

@@ -8,7 +8,7 @@ const Bathroom = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
       height="24px"
       viewBox="0 0 24 24"
       width="24px"
-      fill="#7C98A7"
+      fill={colors.greyBlue}
     >
       <g>
         <rect fill="none" height="24" width="24" />
