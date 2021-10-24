@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const sizeMapper = {
   small: {
-    height: '114px',
+    height: '124px',
     width: '269px',
   },
   normal: {
