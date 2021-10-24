@@ -1,13 +1,13 @@
 import React from 'react';
 
-import LoginContainer from '@containers/login';
+import ContactContainer from '@containers/contact';
 
-import { ButtonsProps } from '@views/login/login.type';
+import { ButtonsProps } from '@views/contact/contact.type';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { colors } from '@theme/theme/default';
 
-const Login = (): React.ReactElement => {
+const Contact = (): React.ReactElement => {
   const buttons: ButtonsProps = {
     BLogo: {
       icon: <Logo fill={colors.blackGrey} />,
@@ -17,17 +17,11 @@ const Login = (): React.ReactElement => {
       label: 'Anterior',
     },
     BLogin: {
-      label: 'Entrar',
+      label: 'Enviar',
     },
   };
 
-  return (
-    <LoginContainer
-      title="Seja bem-vindo(a)"
-      subtitle="Faça login para continuar"
-      buttons={buttons}
-    />
-  );
+  return <ContactContainer title="Entre contato conosco" buttons={buttons} />;
 };
 
-export default Login;
+export default Contact;

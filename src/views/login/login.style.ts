@@ -53,7 +53,7 @@ export const LinkContainer = styled.span<{ reverse?: boolean }>`
 
 export const ImageContainer = styled.div`
   flex: 1;
-  background-image: url('images/background-image-login.png');
+  background-image: url('images/background-image-generic.png');
   background-repeat: no-repeat;
   background-size: cover;
 `;

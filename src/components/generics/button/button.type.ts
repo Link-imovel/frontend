@@ -16,6 +16,6 @@ export type ButtonProps = {
   color?: string;
   icon?: React.ReactElement;
   iconReverse?: boolean;
-  onClick: React.MouseEventHandler<HTMLDivElement> & (() => void);
+  onClick?: React.MouseEventHandler<HTMLDivElement> & (() => void);
   selected?: boolean;
 };

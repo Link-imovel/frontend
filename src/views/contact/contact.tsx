@@ -1,19 +1,19 @@
 import React from 'react';
-import Link from 'next/link';
 
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
 import { colors } from '@theme/theme/default';
+import { TextArea } from '@components/generics/textarea';
 
-import * as S from './login.style';
-import { LoginProps } from './login.type';
+import * as S from './contact.styles';
+import { ContactProps } from './contact.type';
 
-const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
+const ContactView = ({ title, buttons }: ContactProps): React.ReactElement => {
   return (
     <Page>
-      <S.LoginContainer>
-        <S.LoginWrapper>
+      <S.ContactContainer>
+        <S.ContactWrapper>
           <Button
             variant="transparent"
             size="xsmall"
@@ -21,7 +21,6 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             icon={buttons.BLogo.icon}
             onClick={buttons.BLogo.callback}
           />
-          <S.LoginTitle>{title}</S.LoginTitle>
           <Button
             variant="transparent"
             label={buttons.BArrowBefore.label}
@@ -33,7 +32,7 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             icon={buttons.BArrowBefore.icon}
             onClick={buttons.BArrowBefore.callback}
           />
-          <S.LoginSubtitle>{subtitle}</S.LoginSubtitle>
+          <S.ContactTitle>{title}</S.ContactTitle>
           <S.InputWrapper>
             <Input
               id="email"
@@ -56,25 +55,7 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
                 },
               ]}
             />
-            <S.LinkContainer>
-              <Link href="/">
-                <a>Esqueceu a senha ?</a>
-              </Link>
-            </S.LinkContainer>
-            <Input
-              id="password"
-              label="Senha"
-              type="password"
-              name="password"
-              placeholder="Entre com a sua senha"
-              validateOnChange={false}
-              validators={[
-                {
-                  type: 'Required',
-                  message: 'Campo é requerido',
-                },
-              ]}
-            />
+            <TextArea withBorder={true} placeholder="Digite uma Messagem" />
           </S.InputWrapper>
           <Button
             variant="primary"
@@ -83,18 +64,11 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             radius="square"
             onClick={buttons.BLogin.callback}
           />
-          <S.LinkContainer reverse={true}>
-            <Link href="/">
-              <a>
-                Não tem conta ainda? <span>Entre contato</span>
-              </a>
-            </Link>
-          </S.LinkContainer>
-        </S.LoginWrapper>
-      </S.LoginContainer>
+        </S.ContactWrapper>
+      </S.ContactContainer>
       <S.ImageContainer />
     </Page>
   );
 };
 
-export { LoginView };
+export { ContactView };
