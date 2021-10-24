@@ -1,5 +1,6 @@
-import { colors } from '@theme/theme/default';
 import React, { SVGProps } from 'react';
+
+import { colors } from '@theme/theme/default';
 
 const ArrowBefore = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
   return (

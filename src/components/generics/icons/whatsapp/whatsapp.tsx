@@ -1,4 +1,5 @@
 import React, { SVGProps } from 'react';
+
 import { colors } from '@theme/theme/default';
 
 const WhatsApp = (props: SVGProps<SVGSVGElement>): React.ReactElement => {

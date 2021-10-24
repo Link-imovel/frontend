@@ -4,7 +4,7 @@ export const HeaderContainer = styled.div`
   height: 485px;
   max-width: 100%;
   padding: 0 125px;
-  background-image: url('images/background-image.png');
+  background-image: url('images/background-image-header.png');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

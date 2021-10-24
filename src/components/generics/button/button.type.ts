@@ -7,12 +7,12 @@ export type ButtonProps = {
     | 'primary-circle'
     | 'primary-square'
     | 'secondary-square'
-    | 'transparent-m-none'
     | 'transparent';
   label?: string;
   size?: 'small' | 'xsmall' | 'medium' | 'large';
   radius?: 'circle' | 'square' | 'middleSquare';
   background?: string;
+  justifyContent?: string;
   color?: string;
   icon?: React.ReactElement;
   iconReverse?: boolean;

@@ -6,7 +6,7 @@ import { WhatsApp } from '@components/generics/icons/whatsapp';
 import { colors } from '@theme/theme/default';
 import { Navigation } from '@components/generics/icons/navigation';
 import { Search } from '@components/generics/icons/search';
-import { Link } from '@components/generics/icons/link';
+import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
 
@@ -98,10 +98,10 @@ BSearch.args = {
 
 export const BLogo = Template.bind({});
 BLogo.args = {
-  variant: 'transparent-m-none',
+  variant: 'transparent',
   size: 'xsmall',
   radius: 'square',
-  icon: <Link height={24} width={24} fill={colors.blackGrey} />,
+  icon: <Logo height={24} width={24} fill={colors.blackGrey} />,
   onClick: () => console.log('clicked'),
 };
 
@@ -110,7 +110,8 @@ BArrowBefore.args = {
   variant: 'transparent',
   label: 'Anterior',
   color: colors.blackGrey,
-  size: 'medium',
+  justifyContent: 'space-between',
+  size: 'xsmall',
   radius: 'square',
   iconReverse: true,
   icon: <ArrowBefore height={24} width={24} />,
@@ -122,7 +123,8 @@ BArrowAfter.args = {
   variant: 'transparent',
   label: 'Próximo',
   color: colors.blackGrey,
-  size: 'medium',
+  justifyContent: 'space-between',
+  size: 'xsmall',
   radius: 'square',
   icon: <ArrowAfter height={24} width={24} />,
   onClick: () => console.log('clicked'),
