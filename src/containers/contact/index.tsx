@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { LoginView } from '@views/login';
+import { ContactView } from '@views/contact';
 
-import { LoginProps } from '@views/login/login.type';
+import { ContactProps } from '@views/contact/contact.type';
 
-const LoginContainer = (props: LoginProps) => {
+const ContactContainer = (props: ContactProps): React.ReactElement => {
   const customProps = { ...props };
   const { BLogo, BArrowBefore, BLogin } = customProps.buttons;
 
@@ -20,7 +20,7 @@ const LoginContainer = (props: LoginProps) => {
     console.log('#3');
   }, []);
 
-  return <LoginView {...customProps} />;
+  return <ContactView {...customProps} />;
 };
 
-export default LoginContainer;
+export default ContactContainer;

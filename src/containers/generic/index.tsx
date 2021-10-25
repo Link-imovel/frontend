@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { LoginView } from '@views/login';
+import { Generic } from '@views/generic';
 
-import { LoginProps } from '@views/login/login.type';
+import { GenericProps } from '@views/generic/generic.type';
 
-const LoginContainer = (props: LoginProps) => {
+const GenericContainer = (props: GenericProps): React.ReactElement => {
   const customProps = { ...props };
   const { BLogo, BArrowBefore, BLogin } = customProps.buttons;
 
@@ -20,7 +20,7 @@ const LoginContainer = (props: LoginProps) => {
     console.log('#3');
   }, []);
 
-  return <LoginView {...customProps} />;
+  return <Generic {...customProps} />;
 };
 
-export default LoginContainer;
+export default GenericContainer;

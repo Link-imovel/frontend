@@ -11,9 +11,14 @@ const TextArea = styled.textarea<Pick<TextAreaProps, 'withBorder'>>`
   min-height: 128px;
   box-sizing: border-box;
   color: ${({ theme: { colors } }) => colors.blackGrey};
-  background-color: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.whiteGrey};
   border: ${({ withBorder, theme: { colors } }) =>
     withBorder ? `1px solid ${colors.lightGrey};` : 'none;'};
+  border-radius: 8px;
+
+  &::placeholder {
+    color: ${({ theme: { colors } }) => colors.lightGrey};
+  }
 `;
 
 export { TextArea };
