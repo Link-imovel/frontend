@@ -4,7 +4,7 @@ export const HeaderContainer = styled.div`
   height: 485px;
   max-width: 100%;
   padding: 0 125px;
-  background-image: url('images/background-image.png');
+  background-image: url('images/background-image-header.png');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -29,12 +29,12 @@ export const MainWrapper = styled.div`
 `;
 
 export const MainTitle = styled.span`
-  color: #fcfcfc;
+  color: ${({ theme: { colors } }) => colors.whiteGrey};
   font-size: 36px;
 `;
 
 export const MainSubtitle = styled.span`
   margin-bottom: 79px;
-  color: #fcfcfc;
-  font-size: 18px;
+  color: ${({ theme: { colors } }) => colors.whiteGrey};
+  font-size: ${({ theme: { text } }) => text.sizes.large};
 `;

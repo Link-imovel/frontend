@@ -7,7 +7,10 @@ const Button = ({
   variant,
   label,
   size,
+  radius,
   background,
+  justifyContent,
+  color,
   icon,
   iconReverse,
   onClick,
@@ -15,16 +18,21 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   const renderIcon = React.useCallback(
     (icon: JSX.Element, iconReverse: boolean) => (
-      <S.IconContainer reverse={iconReverse}>{icon}</S.IconContainer>
+      <S.IconContainer variant={variant} reverse={iconReverse}>
+        {icon}
+      </S.IconContainer>
     ),
-    []
+    [variant]
   );
 
   return (
     <S.Button
       variant={variant}
       size={size}
-      background={background || '#FF8300'}
+      radius={radius}
+      background={background}
+      justifyContent={justifyContent}
+      color={color}
       onClick={onClick}
     >
       {selected && <S.Selected />}

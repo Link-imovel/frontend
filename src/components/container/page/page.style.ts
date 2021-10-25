@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  min-width: 100vw;
-  min-height: 100vh;
-  background: ${({ theme: { colors } }) => colors.fadedGrey};
+  width: 100%;
+  height: 100%;
+  background: ${({ theme: { colors } }) => colors.whiteGrey};
 `;
 
 const Body = styled.div`
-  height: auto;
-  width: auto;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
 `;
 
 export { Container, Body };

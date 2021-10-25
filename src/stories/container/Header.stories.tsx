@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Header } from '@components/container/header';
-import { Link } from '@components/generics/icons/link';
+import { Logo } from '@components/generics/icons/logo';
 
 export default {
   title: 'Container/Header',
@@ -16,9 +16,17 @@ Default.args = {
   title: 'A SUA FUTURA HOME SE ENCONTRA AQUI.',
   subtitle:
     'Trazendo a maior variadade de imóveis  que se adequa ao seu momento.',
-  icon: <Link />,
-  callbackLogo: () => console.log('#1'),
-  callbackLogin: () => console.log('#2'),
-  callbackShowImovels: () => console.log('#3'),
-  labelShowImovels: 'Ver imóveis',
+  buttons: {
+    BLogo: {
+      icon: <Logo />,
+      callback: () => console.log('#1'),
+    },
+    BLogin: {
+      callback: () => console.log('#2'),
+    },
+    BShowImovels: {
+      label: 'Ver imóveis',
+      callback: () => console.log('#3'),
+    },
+  },
 };
