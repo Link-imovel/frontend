@@ -3,6 +3,7 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
+import { DatePickerInput } from '@components/generics/datepicker';
 
 import * as S from './generic.styles';
 import { colors } from '@theme/theme/default';
@@ -156,17 +157,37 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                   },
                 ]}
               />
-              <Input
-                id="date"
-                label="Data de Nascimento"
-                type="text"
-                name="date"
+              <DatePickerInput
+                selectedDate={new Date()
+                  .toLocaleDateString('en-US')
+                  .replace(/[/]/g, '-')}
+                label="Data do Aniversario"
+                name="birthday"
                 validators={[
                   {
+                    type: 'NotBlank',
+                    message: 'A data não pode estar em branco.',
+                  },
+                  {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'A data é necessário.',
+                  },
+                  {
+                    type: 'Match',
+                    message: 'Por favor digite uma data de nascimento válida.',
+                    match: (value) => {
+                      return (
+                        !value ||
+                        !!(value as string).match(
+                          /^[0-9]{2}([/]|[-])[0-9]{2}([/]|[-])[0-9]{4}$/
+                        )
+                      );
+                    },
                   },
                 ]}
+                onValidation={(status) =>
+                  console.log('Validation status: ', status)
+                }
               />
             </S.InputsColumnTwo>
           </S.InputWrapper>
