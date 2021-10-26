@@ -19,6 +19,7 @@ Default.args = {
     'https://via.placeholder.com/269x143?text=1',
     'https://via.placeholder.com/269x143?text=2',
     'https://via.placeholder.com/269x143?text=3',
+    'https://imgbr.imovelwebcdn.com/avisos/2/29/59/02/21/80/360x266/2386718743.jpg',
   ],
   title: 'A partir de',
   address: 'SQNW 303 BLOCO',

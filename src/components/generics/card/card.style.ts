@@ -17,16 +17,18 @@ const CardBody = styled.div<CardProps>`
   width: ${({ size }) => size && sizeMapper[size].width};
 `;
 
+const Wrapper = styled.div`
+  padding: 14px;
+`;
+
 const MainWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 16px 13px 0 13px;
 `;
 
 const CardTitle = styled.span`
   font-size: 14px;
   line-height: 16px;
-
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
@@ -35,47 +37,84 @@ const CardAddress = styled.span`
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
-
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
 const CardValue = styled.span`
-  padding-top: 6px;
+  margin-top: 6px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
-
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
 const CardNeighborhood = styled.span`
-  padding-top: 6px;
+  margin-top: 6px;
   font-size: 13px;
   line-height: 15px;
-
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
 const IconWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 16px 13px 0 13px;
-
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   font-size: 13px;
   line-height: 15px;
-
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
-const Bed = styled.div``;
+const Bed = styled.div`
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    margin-right: 13px;
+  }
+`;
 
-const Bathroom = styled.div``;
+const Bathroom = styled.div`
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    margin-right: 13px;
+  }
+`;
 
-const Car = styled.div``;
+const Car = styled.div`
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    margin-right: 13px;
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  margin-top: 33px;
+  display: flex;
+  align-items: center;
+`;
+
+const ButtonWhatsApp = styled.div`
+  margin-right: 22px;
+`;
+
+const ButtonNavigation = styled.div`
+  margin-right: 6px;
+`;
+
+const ButtonContact = styled.div``;
 
 export {
   CardBody,
+  Wrapper,
   MainWrapper,
   CardTitle,
   CardAddress,
@@ -85,4 +124,8 @@ export {
   Bathroom,
   Bed,
   Car,
+  ButtonsWrapper,
+  ButtonWhatsApp,
+  ButtonNavigation,
+  ButtonContact,
 };
