@@ -17,6 +17,8 @@ interface ButtonsProps {
 interface GenericProps {
   title: string;
   buttons: ButtonsProps;
+  type: 'create' | 'get' | 'update';
+  handleData?: (fieldName: string, value: any) => void;
 }
 
 export type { ButtonsProps, GenericProps };

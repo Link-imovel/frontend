@@ -11,5 +11,7 @@ module.exports = {
   devIndicators: {
     autoPrerender: true,
   },
-  env: {},
-}
+  env: {
+    BACKEND_SERVICE: 'http://localhost:3001',
+  },
+};

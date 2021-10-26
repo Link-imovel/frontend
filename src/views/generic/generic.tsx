@@ -8,8 +8,14 @@ import { DatePickerInput } from '@components/generics/datepicker';
 import * as S from './generic.styles';
 import { colors } from '@theme/theme/default';
 import { GenericProps } from './generic.type';
+import { Logo } from '@components/generics/icons/logo';
+import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 
-const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
+const Generic = ({
+  title,
+  buttons,
+  handleData,
+}: Required<GenericProps>): React.ReactElement => {
   return (
     <Page>
       <S.GenericContainer>
@@ -18,7 +24,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
             variant="transparent"
             size="xsmall"
             radius="square"
-            icon={buttons.BLogo.icon}
+            icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
           <Button
@@ -29,7 +35,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
             size="xsmall"
             radius="square"
             iconReverse={true}
-            icon={buttons.BArrowBefore.icon}
+            icon={<ArrowBefore height={20} width={20} />}
             onClick={buttons.BArrowBefore.callback}
           />
           <S.GenericTitle>{title}</S.GenericTitle>
@@ -41,7 +47,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="text"
                 name="firstName"
                 placeholder="Informe o nome"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -55,7 +61,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="text"
                 name="lastName"
                 placeholder="Informe o sobrenome"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -69,6 +75,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="text"
                 name="email"
                 placeholder="Informe o e-mail"
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -91,7 +98,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="password"
                 name="password"
                 placeholder="Informe a senha"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -105,7 +112,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="text"
                 name="phone"
                 placeholder="Informe o telefone residencial"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -121,7 +128,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="text"
                 name="mobile"
                 placeholder="Informe o telefone pessoal"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -135,7 +142,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 type="text"
                 name="creci"
                 placeholder="Informe o CRECI"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -144,12 +151,12 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                 ]}
               />
               <Input
-                id="cpfOrCnpj"
+                id="registry"
                 label="CPF/CNPJ"
                 type="text"
-                name="cpfOrCnpj"
+                name="registry"
                 placeholder="Informe o CPF/CNPJ"
-                validateOnChange={false}
+                onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
@@ -163,6 +170,7 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                   .replace(/[/]/g, '-')}
                 label="Data do Aniversario"
                 name="birthday"
+                handleValue={(value) => handleData('birthday', value)}
                 validators={[
                   {
                     type: 'NotBlank',
@@ -185,19 +193,17 @@ const Generic = ({ title, buttons }: GenericProps): React.ReactElement => {
                     },
                   },
                 ]}
-                onValidation={(status) =>
-                  console.log('Validation status: ', status)
-                }
+                onValidation={(status) => console.log(status)}
               />
             </S.InputsColumnTwo>
+            <Button
+              variant="primary"
+              label={buttons.BLogin.label}
+              size="large"
+              radius="square"
+              onClick={buttons.BLogin.callback}
+            />
           </S.InputWrapper>
-          <Button
-            variant="primary"
-            label={buttons.BLogin.label}
-            size="large"
-            radius="square"
-            onClick={buttons.BLogin.callback}
-          />
         </S.GenericWrapper>
       </S.GenericContainer>
       <S.ImageContainer />

@@ -124,7 +124,7 @@ const styles = {
     }
   `,
   transparent: css`
-    background-color: 'transparent';
+    background-color: transparent;
     border: none;
   `,
 };

@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 export const GenericContainer = styled.div`
-  width: 1420px;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    width: 100%;
+    padding: 5% 0;
+  }
+
+  height: 100%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const GenericWrapper = styled.div`
-  max-width: 730px;
-  height: 620px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+export const GenericWrapper = styled.div``;
 
 export const GenericTitle = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
@@ -22,19 +22,32 @@ export const GenericTitle = styled.span`
 `;
 
 export const InputWrapper = styled.div`
-  min-width: 750px;
-  min-height: 338px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: 'columnA columnB';
-  grid-gap: 45px;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    display: flex;
+    flex-direction: column;
+
+    & > div > * {
+      margin: 5px 0;
+    }
+  }
+
+  @media ${({ theme: { device } }) => device.laptop.min} {
+    min-height: 338px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-areas: 'columnA columnB';
+    grid-gap: 2%;
+  }
 `;
 
 export const InputsColumnOne = styled.div`
   grid-area: columnA;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  & > div {
+    margin: 10px 0;
+  }
 `;
 
 export const InputsColumnTwo = styled.div`
@@ -42,10 +55,17 @@ export const InputsColumnTwo = styled.div`
   grid-area: columnB;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  & > div {
+    margin: 10px 0;
+  }
 `;
 
 export const ImageContainer = styled.div`
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    display: none;
+  }
+
+  width: 40%;
   flex: 1;
   background-image: url('images/background-image-generic.png');
   background-repeat: no-repeat;

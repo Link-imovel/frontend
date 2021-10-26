@@ -7,8 +7,10 @@ const Container = styled.div`
 `;
 
 const Body = styled.div`
-  height: 100vh;
-  width: 100vw;
+  @media ${({ theme: { device } }) => device.tablet.min} {
+    height: inherit;
+    width: inherit;
+  }
   display: flex;
   flex-direction: row;
 `;
