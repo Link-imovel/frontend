@@ -7,10 +7,7 @@ const Container = styled.div`
 `;
 
 const Body = styled.div`
-  @media ${({ theme: { device } }) => device.tablet.min} {
-    height: inherit;
-    width: inherit;
-  }
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
 `;

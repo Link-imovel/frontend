@@ -3,9 +3,8 @@ import styled from 'styled-components';
 export const GenericContainer = styled.div`
   @media ${({ theme: { device } }) => device.laptop.max} {
     width: 100%;
-    padding: 5% 0;
   }
-
+  padding: 5%;
   height: 100%;
   width: 60%;
   display: flex;
