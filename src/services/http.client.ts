@@ -58,3 +58,4 @@ class HttpClient {
 }
 
 export default new HttpClient();
+export { HttpClient };

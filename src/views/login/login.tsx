@@ -8,6 +8,8 @@ import { Input } from '@components/generics/input';
 import * as S from './login.style';
 import { LoginProps } from './login.type';
 import { colors } from '@theme/theme/default';
+import { Logo } from '@components/generics/icons/logo';
+import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 
 const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
   return (
@@ -18,7 +20,7 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             variant="transparent"
             size="xsmall"
             radius="square"
-            icon={buttons.BLogo.icon}
+            icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
           <S.LoginTitle>{title}</S.LoginTitle>
@@ -30,7 +32,7 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             size="xsmall"
             radius="square"
             iconReverse={true}
-            icon={buttons.BArrowBefore.icon}
+            icon={<ArrowBefore height={20} width={20} />}
             onClick={buttons.BArrowBefore.callback}
           />
           <S.LoginSubtitle>{subtitle}</S.LoginSubtitle>

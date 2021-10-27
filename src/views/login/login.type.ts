@@ -1,10 +1,8 @@
 interface ButtonsProps {
   BLogo: {
-    icon: React.ReactElement;
     callback?: () => void;
   };
   BArrowBefore: {
-    icon: React.ReactElement;
     label: string;
     callback?: () => void;
   };

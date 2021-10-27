@@ -8,17 +8,17 @@ const LoginContainer = (props: LoginProps) => {
   const customProps = { ...props };
   const { BLogo, BArrowBefore, BLogin } = customProps.buttons;
 
-  BLogo.callback = React.useCallback(() => {
+  BLogo.callback = () => {
     console.log('#1');
-  }, []);
+  };
 
-  BArrowBefore.callback = React.useCallback(() => {
+  BArrowBefore.callback = () => {
     console.log('#2');
-  }, []);
+  };
 
-  BLogin.callback = React.useCallback(() => {
+  BLogin.callback = () => {
     console.log('#3');
-  }, []);
+  };
 
   return <LoginView {...customProps} />;
 };

@@ -10,7 +10,7 @@ const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
     <S.HeaderContainer>
       <S.HeadWrapper>
         <Button
-          variant="transparent-m-none"
+          variant="transparent"
           icon={buttons.BLogo.icon}
           onClick={buttons.BLogo.callback}
         />
