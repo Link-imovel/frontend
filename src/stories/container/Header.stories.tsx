@@ -18,7 +18,6 @@ Default.args = {
     'Trazendo a maior variadade de imóveis  que se adequa ao seu momento.',
   buttons: {
     BLogo: {
-      icon: <Logo />,
       callback: () => console.log('#1'),
     },
     BLogin: {

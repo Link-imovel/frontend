@@ -39,7 +39,7 @@ const text = {
     small: '14px',
     medium: '16px',
     large: '18px',
-    xlarge: '48px',
+    xlarge: '36px',
   },
   weight: {
     light: 300,
