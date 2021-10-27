@@ -2,8 +2,8 @@ import React from 'react';
 
 import * as S from './carousel.style';
 import { CarouselProps } from './carousel.type';
-import { ChevronLeft } from '../icons/chevronLeft';
-import { ChevronRight } from '../icons/chevronRight';
+import { ChevronLeft } from '../icons/chevronleft';
+import { ChevronRight } from '../icons/chevronright';
 
 const Carousel = ({
   images,

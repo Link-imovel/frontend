@@ -2,8 +2,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Carousel } from '@components/generics/carousel';
-import { ChevronLeft } from '@components/generics/icons/chevronLeft';
-import { ChevronRight } from '@components/generics/icons/chevronRight';
+import { ChevronLeft } from '@components/generics/icons/chevronleft';
+import { ChevronRight } from '@components/generics/icons/chevronright';
 
 export default {
   title: 'generics/Carousel',
