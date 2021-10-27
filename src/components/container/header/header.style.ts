@@ -3,13 +3,16 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.div`
   height: 485px;
   max-width: 100%;
-  padding: 0 125px;
+  padding: 15px 125px;
   background-image: url('images/background-image-header.png');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    padding: 15px;
+  }
 `;
 
 export const HeadWrapper = styled.div`
@@ -30,11 +33,17 @@ export const MainWrapper = styled.div`
 
 export const MainTitle = styled.span`
   color: ${({ theme: { colors } }) => colors.whiteGrey};
-  font-size: 36px;
+  font-size: ${({ theme: { text } }) => text.sizes.xlarge};
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    font-size: ${({ theme: { text } }) => text.sizes.large};
+  }
 `;
 
 export const MainSubtitle = styled.span`
   margin-bottom: 79px;
   color: ${({ theme: { colors } }) => colors.whiteGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    font-size: ${({ theme: { text } }) => text.sizes.small};
+  }
 `;

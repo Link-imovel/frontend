@@ -1,6 +1,5 @@
 interface ButtonsProps {
   BLogo: {
-    icon: React.ReactElement;
     callback: () => void;
   };
   BLogin: {
