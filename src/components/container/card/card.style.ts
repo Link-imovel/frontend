@@ -12,9 +12,16 @@ const sizeMapper = {
   },
 };
 
+const direction = {
+  small: 'column',
+  normal: 'row',
+};
+
 export const CardContainer = styled.div<CardContainerProp>`
+  display: flex;
+  flex-direction: ${({ size }) => size && direction[size]};
   height: ${({ size }) => size && sizeMapper[size].height};
   width: ${({ size }) => size && sizeMapper[size].width};
-  background-color: ${({ theme: { colors }}) => colors.lightGreyBlue};
+  background-color: ${({ theme: { colors } }) => colors.lightGreyBlue};
   border-radius: 10px;
 `;

@@ -1,8 +1,26 @@
 import { CarouselProps } from '@components/generics/carousel/carousel.type';
-import React from 'react';
+import React, { ReactElement } from 'react';
+
+interface ButtonsProps {
+  BCircleWhatsApp: {
+    callback: () => void;
+  };
+  BNavigation: {
+    typeSize: 'small' | 'medium';
+    label?: string;
+    callback: () => void;
+  };
+  BContact: {
+    label: string;
+    background: string;
+    color: string;
+    callback: () => void;
+  };
+}
 
 interface CardProps {
   size?: 'small' | 'normal';
+  sizePending?: 'small' | 'normal';
   title?: string;
   neighborhood?: string;
   value?: number;
@@ -13,6 +31,15 @@ interface CardProps {
   bathroom?: React.ReactElement;
   bed?: React.ReactElement;
   car?: React.ReactElement;
+  visibility?: ReactElement;
+  quantityViews?: number;
+  labelViews?: string;
+  buttons: ButtonsProps;
+  info?: string;
+  permIdentity: React.ReactElement;
+  phoneIphone: React.ReactElement;
+  name: string;
+  phoneNumber: string;
 }
 
 interface CardProps extends Partial<CarouselProps> {}

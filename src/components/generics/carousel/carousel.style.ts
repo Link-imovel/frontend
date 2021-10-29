@@ -12,11 +12,16 @@ const sizeMapper = {
   },
 };
 
+const border = {
+  small: '10px 10px 0 0',
+  normal: '10px 0 0 10px',
+};
+
 const CarouselBody = styled.div<CarouselBodyProp>`
   position: relative;
   height: ${({ size }) => size && sizeMapper[size].height};
   width: ${({ size }) => size && sizeMapper[size].width};
-  border-radius: 10px 10px 0 0;
+  border-radius: ${({ size }) => size && border[size]};
   overflow: hidden;
 `;
 
