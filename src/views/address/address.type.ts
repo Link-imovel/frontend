@@ -1,3 +1,5 @@
+import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
+
 interface ButtonsProps {
   BLogo: {
     callback?: () => void;
@@ -6,17 +8,21 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
-  BLogin: {
+  BArrowAfter: {
+    label: string;
+    callback?: () => void;
+  };
+  BGeneric: {
     label: string;
     callback?: () => void;
   };
 }
 
-interface GenericProps {
+interface AddressProps {
   title: string;
   buttons: ButtonsProps;
-  type: 'create' | 'get' | 'update';
+  breadCrumb: BreadCrumbProps;
   handleData?: (fieldName: string, value: any) => void;
 }
 
-export type { ButtonsProps, GenericProps };
+export type { AddressProps };

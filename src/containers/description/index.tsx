@@ -6,8 +6,6 @@ import { DesciptionProps } from '@views/description/description.type';
 const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
   const { BLogin, BLogo } = props.buttons;
 
-  console.log(props);
-
   BLogo.callback = () => {
     console.log(1);
   };
