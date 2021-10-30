@@ -9,12 +9,10 @@ import { Footer } from '@components/container/footer';
 
 const Home = ({ header, footer }: Required<HomeProps>): React.ReactElement => {
   return (
-    <Page>
-      <S.HomeContainer>
-        <Header {...header} />
-        <S.CardWrapper></S.CardWrapper>
-        <Footer {...footer} />
-      </S.HomeContainer>
+    <Page header={<Header {...header} />} footer={<Footer {...footer} />}>
+      <S.CardWrapper>
+        <h1>Card</h1>
+      </S.CardWrapper>
     </Page>
   );
 };

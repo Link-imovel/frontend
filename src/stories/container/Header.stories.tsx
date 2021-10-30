@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Header } from '@components/container/header';
-import { Logo } from '@components/generics/icons/logo';
 
 export default {
   title: 'Container/Header',

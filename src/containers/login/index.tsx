@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LoginView } from '@views/login';
+import { Login } from '@views/login';
 
 import { LoginProps } from '@views/login/login.type';
 
@@ -20,7 +20,7 @@ const LoginContainer = (props: LoginProps) => {
     console.log('#3');
   }, []);
 
-  return <LoginView {...customProps} />;
+  return <Login {...customProps} />;
 };
 
 export default LoginContainer;

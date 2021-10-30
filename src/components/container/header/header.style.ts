@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.div`
   height: 485px;
   max-width: 100%;
-  padding: 15px 125px;
+  padding: 37px 125px;
   background-image: url('images/background-image-header.png');
   background-repeat: no-repeat;
   background-size: cover;

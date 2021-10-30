@@ -6,8 +6,8 @@ const Container = styled.div`
   background: ${({ theme: { colors } }) => colors.whiteGrey};
 `;
 
-const Body = styled.div`
-  min-height: 100vh;
+const Body = styled.div<{ hasHeight?: boolean }>`
+  ${({ hasHeight }) => (hasHeight ? 'height: auto;' : 'min-height: 100vh;')}
   display: flex;
   flex-direction: row;
 `;

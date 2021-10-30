@@ -7,7 +7,7 @@ const Page = ({ header, children, footer }: PageProps): React.ReactElement => {
   return (
     <S.Container>
       {!!header && header}
-      <S.Body>{children}</S.Body>
+      <S.Body hasHeight={!!header && !!footer}>{children}</S.Body>
       {!!footer && footer}
     </S.Container>
   );

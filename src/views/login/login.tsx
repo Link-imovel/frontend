@@ -9,7 +9,7 @@ import * as S from './login.style';
 import { LoginProps } from './login.type';
 import { colors } from '@theme/theme/default';
 
-const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
+const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
   return (
     <Page>
       <S.LoginContainer>
@@ -97,4 +97,4 @@ const LoginView = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
   );
 };
 
-export { LoginView };
+export { Login };

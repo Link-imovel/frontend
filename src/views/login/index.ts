@@ -1,1 +1,1 @@
-export { LoginView } from './login';
+export { Login } from './login';

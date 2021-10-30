@@ -5,7 +5,7 @@ const FooterContainer = styled.div`
   flex-direction: row;
   width: 100%;
   height: 65px;
-  padding: 15px 125px;
+  padding: 25px 125px;
   background-color: inherit;
   @media ${({ theme: { device } }) => device.laptop.max} {
     padding: 15px;
