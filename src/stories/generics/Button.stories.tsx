@@ -11,7 +11,7 @@ import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
 
 export default {
-  title: 'generics/Button',
+  title: 'Generics/Button',
   component: Button,
   argTypes: {
     variant: {

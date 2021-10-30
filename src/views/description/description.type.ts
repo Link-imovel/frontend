@@ -1,4 +1,4 @@
-import { MapProps } from '@components/container/map/map.type';
+import { MapProps } from '@components/generics/map/map.type';
 
 interface ButtonsProps {
   BLogo: {

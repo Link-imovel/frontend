@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Gallery } from '@components/container/gallery';
-import { Contact } from '@components/container/contact';
+import { Contact } from '@components/generics/contact';
 
 import * as S from './description.style';
 import { Logo } from '@components/generics/icons/logo';
@@ -18,7 +18,7 @@ import { Calendar } from '@components/generics/icons/calendar';
 import { Building } from '@components/generics/icons/building';
 import { Area } from '@components/generics/icons/area';
 
-const Map = dynamic(() => import('@components/container/map'), { ssr: false });
+const Map = dynamic(() => import('@components/generics/map'), { ssr: false });
 
 const Description = ({
   isLogged,
