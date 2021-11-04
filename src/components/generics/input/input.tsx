@@ -9,6 +9,7 @@ const InputRef: React.ForwardRefRenderFunction<
 > = (
   {
     label,
+    radius,
     icon,
     validators,
     onChange,
@@ -138,7 +139,7 @@ const InputRef: React.ForwardRefRenderFunction<
   };
 
   return (
-    <S.Wrapper className={className}>
+    <S.Wrapper className={className} radius={radius}>
       {label && <S.Label htmlFor={props.id}>{label}</S.Label>}
       <input onChange={handleChange} {...props} onBlur={handleBlur} ref={ref} />
       {icon && <S.Icon>{icon}</S.Icon>}

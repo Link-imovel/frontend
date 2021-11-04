@@ -1,35 +1,33 @@
 import styled from 'styled-components';
 
-export const AddressContainer = styled.div`
-  width: 1080px;
-  padding: 9%;
-  margin: auto;
+export const HomeDetailContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   @media ${({ theme: { device } }) => device.laptop.max} {
-    height: 100%;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
-export const AddressWrapper = styled.div`
-  height: 480px;
+export const HomeDetailWrapper = styled.div`
+  width: 1080px;
+  height: 1020px;
+  padding: 9%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${({ theme: { device } }) => device.laptop.max} {
-    height: 100%;
-    width: 100%;
-    & > div:last-child {
-      width: 100%;
-    }
+  & > div:last-child {
+    align-self: flex-end;
   }
 `;
 
-export const AddressNavigationWrapper = styled.div`
+export const HomeDetailNavigationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const AddressTitle = styled.span`
+export const HomeDetailTitle = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
   line-height: 21px;
@@ -37,7 +35,7 @@ export const AddressTitle = styled.span`
 
 export const InputWrapper = styled.div`
   margin: 15px 0;
-  height: 250px;
+  height: 460px;
   display: flex;
   flex-direction: row;
   gap: 5%;
@@ -53,6 +51,7 @@ export const InputWrapper = styled.div`
 
 export const InputsColumnOne = styled.div`
   flex: 1;
+  height: 83%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -65,12 +64,15 @@ export const InputsColumnTwo = styled.div`
   justify-content: space-between;
 `;
 
-export const ImageContainer = styled.div`
+export const HomeDetailContainerImages = styled.div`
   flex: 1;
-  background-image: url('images/background-image-generic.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  @media ${({ theme: { device } }) => device.laptop.max} {
-    display: none;
-  }
+  border-left: 1px solid #000;
+  padding: 9%;
+`;
+
+export const HomeDetailImagesTitle = styled.div`
+  margin-top: 124px;
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+  font-size: ${({ theme: { text } }) => text.sizes.large};
+  line-height: 21px;
 `;

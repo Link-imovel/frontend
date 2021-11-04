@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const LoginContainer = styled.div`
   width: 1020px;
+  padding: 9%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +10,7 @@ export const LoginContainer = styled.div`
 
 export const LoginWrapper = styled.div`
   max-width: 500px;
-  height: 460px;
+  height: 405px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,6 +29,7 @@ export const LoginSubtitle = styled.span`
 `;
 
 export const InputWrapper = styled.div`
+  margin: 15px 0;
   min-height: 140px;
   display: flex;
   flex-direction: column;

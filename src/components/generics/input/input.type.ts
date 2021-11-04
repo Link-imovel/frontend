@@ -31,6 +31,7 @@ interface ValidationInputProps
     HTMLInputElement
   > {
   label?: string;
+  radius?: 'none' | 'square';
   className?: string;
   validators?: Array<ValidatorProps>;
   icon?: JSX.Element;

@@ -12,16 +12,19 @@ const DropdownContainer = styled.div<OpenStatusProps>`
   background-color: ${({ theme: { colors } }) => colors.whiteGrey};
   color: ${({ theme: { colors } }) => colors.blackGrey};
   display: flex;
-  justify-content: space-between;
-  padding-bottom: 0.5rem;
-  padding-left: 0.8rem;
-  padding-right: 1rem;
-  padding-top: 1.8rem;
+  justify-content: flex-start;
+  padding-left: 14px;
+  padding-right: 16px;
+  padding-top: 5px;
   position: relative;
   cursor: pointer;
-  outline: 0 solid ${({ theme: { colors } }) => colors.whiteGrey};
+  border: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
   transition: outline-color 0.2s, outline-width 0.1s;
-  outline: 0.125rem solid ${({ theme: { colors } }) => colors.blackGrey};
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 49px;
+  box-sizing: border-box;
 
   ${({ disabled }) => disabled && { pointerEvents: 'none', opacity: '0.6' }};
 `;
@@ -82,15 +85,14 @@ const DropdownListItem = styled.li<DropdownListItemProps>`
 
 const StyledArrowDown = styled(ExpandMore)`
   right: 1rem;
-  top: 45%;
+  bottom: 15%;
+  position: absolute;
 `;
 
 const Label = styled.label`
   color: #575757;
   font-size: 0.875rem;
-  top: 0.5rem;
-  left: 0.8rem;
-  position: absolute;
+  margin-bottom: 1.2px;
 `;
 
 export {
