@@ -22,13 +22,24 @@ const Icon = styled.span`
   position: absolute;
 `;
 
-const Wrapper = styled.div`
+const border = {
+  none: '0px',
+  square: '8px',
+};
+
+const getRadius = (radius?: 'none' | 'square') => {
+  return `
+    border-radius: ${border[radius || 'square']};
+  `;
+};
+
+const Wrapper = styled.div<{ radius?: 'none' | 'square' }>`
   position: relative;
 
   input {
     width: 100%;
     border: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
-    border-radius: 8px;
+    ${({ radius }) => getRadius(radius)}
     height: 3.063rem;
     outline: unset;
     font-size: 1rem;
@@ -37,6 +48,7 @@ const Wrapper = styled.div`
     padding-top: 1.8rem;
     padding-left: 0.8rem;
     padding-bottom: 0.5rem;
+    border-radius: none;
     background-color: ${({ theme: { colors } }) => colors.whiteGrey};
 
     &::placeholder {

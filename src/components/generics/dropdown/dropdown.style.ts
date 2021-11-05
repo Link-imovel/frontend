@@ -24,6 +24,7 @@ const DropdownContainer = styled.div<OpenStatusProps>`
   align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  box-sizing: border-box;
 
   ${({ disabled }) => disabled && { pointerEvents: 'none', opacity: '0.6' }};
 `;
@@ -84,13 +85,14 @@ const DropdownListItem = styled.li<DropdownListItemProps>`
 
 const StyledArrowDown = styled(ExpandMore)`
   right: 1rem;
-  top: 45%;
+  bottom: 15%;
+  position: absolute;
 `;
 
 const Label = styled.label`
   color: #575757;
   font-size: 0.875rem;
-  margin-bottom: 2px;
+  margin-bottom: 1.2px;
 `;
 
 export {

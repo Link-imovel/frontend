@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AddressContainer = styled.div`
+export const ClientContainer = styled.div`
   width: 1080px;
   padding: 9%;
   margin: auto;
@@ -10,8 +10,8 @@ export const AddressContainer = styled.div`
   }
 `;
 
-export const AddressWrapper = styled.div`
-  height: 480px;
+export const ClientWrapper = styled.div`
+  height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,12 +24,7 @@ export const AddressWrapper = styled.div`
   }
 `;
 
-export const AddressNavigationWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const AddressTitle = styled.span`
+export const ClientTitle = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
   line-height: 21px;
@@ -37,7 +32,7 @@ export const AddressTitle = styled.span`
 
 export const InputWrapper = styled.div`
   margin: 15px 0;
-  height: 250px;
+  height: 320px;
   display: flex;
   flex-direction: row;
   gap: 5%;

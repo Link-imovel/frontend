@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Address } from '@views/address';
-import { AddressProps } from '@views/address/address.type';
+import { HomeDetail } from '@views/homedetail';
+import { HomeDetailProps } from '@views/homedetail/homedetail.type';
 
-const AddressContainer = (props: AddressProps): React.ReactElement => {
+const HomeDetailContainer = (props: HomeDetailProps): React.ReactElement => {
   const { BArrowAfter, BArrowBefore, BLogo, BGeneric } = props.buttons;
 
   BLogo.callback = () => {
@@ -28,7 +28,7 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
     setData({ ...data, [fieldName]: value });
   };
 
-  return <Address handleData={handleData} {...props} />;
+  return <HomeDetail handleData={handleData} {...props} />;
 };
 
-export default AddressContainer;
+export default HomeDetailContainer;
