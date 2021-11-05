@@ -9,6 +9,8 @@ import { Search } from '@components/generics/icons/search';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
+import { Edit } from '@components/generics/icons/edit';
+import { Delete } from '@components/generics/icons/delete';
 
 export default {
   title: 'generics/Button',
@@ -127,5 +129,23 @@ BArrowAfter.args = {
   size: 'xsmall',
   radius: 'square',
   icon: <ArrowAfter height={24} width={24} />,
+  onClick: () => console.log('clicked'),
+};
+
+export const BEdit = Template.bind({});
+BEdit.args = {
+  variant: 'transparent',
+  size: 'small',
+  radius: 'square',
+  icon: <Edit height={20} width={20} fill={colors.whiteGrey} />,
+  onClick: () => console.log('clicked'),
+};
+
+export const BDelete = Template.bind({});
+BDelete.args = {
+  variant: 'transparent',
+  size: 'small',
+  radius: 'square',
+  icon: <Delete height={20} width={20} fill={colors.whiteGrey} />,
   onClick: () => console.log('clicked'),
 };

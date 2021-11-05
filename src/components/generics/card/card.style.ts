@@ -12,6 +12,18 @@ const sizeMapper = {
   },
 };
 
+const margin = {
+  primary: '19px',
+  secondary: '113px',
+  tertiary: '18px',
+};
+
+const getMargin = (variant: 'primary' | 'secondary' | 'tertiary') => {
+  return `
+    margin-right: ${margin[variant || 'primary']};
+  `;
+};
+
 const CardBody = styled.div<CardProps>`
   height: ${({ size }) => size && sizeMapper[size].height};
   width: ${({ size }) => size && sizeMapper[size].width};
@@ -163,16 +175,9 @@ const CardInfo = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
-const PermIdentity = styled.span<{
-  sizeWidth?: string;
-  sizePadding?: string;
-}>`
-  ${({ sizeWidth }) =>
-    sizeWidth?.match(/^(?!(small)).*$/g) ? 'width:150px' : 'width:0px'};
-  ${({ sizePadding }) =>
-    sizePadding?.match(/^(?!(small)).*$/g)
-      ? 'padding-top:12px'
-      : 'padding-top:0px'};
+const PermIdentity = styled.span`
+  width: 150px;
+  padding-top: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -182,16 +187,9 @@ const PermIdentity = styled.span<{
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
-const PhoneIphone = styled.span<{
-  sizeWidth?: string;
-  sizePadding?: string;
-}>`
-  ${({ sizeWidth }) =>
-    sizeWidth?.match(/^(?!(small)).*$/g) ? 'width:150px' : 'width:0px'};
-  ${({ sizePadding }) =>
-    sizePadding?.match(/^(?!(small)).*$/g)
-      ? 'padding-top:12px'
-      : 'padding-top:0px'};
+const PhoneIphone = styled.span`
+  width: 150px;
+  padding-top: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -207,16 +205,21 @@ const ButtonsWrapper = styled.div`
 `;
 
 const ButtonWhatsApp = styled.div<{
-  sizeMargin?: string;
+  margin: 'primary' | 'secondary' | 'tertiary';
 }>`
-  ${({ sizeMargin }) =>
-    sizeMargin?.match(/^(?!(small)).*$/g)
-      ? 'Margin-right:113px'
-      : 'Margin-right:19px'};
+  ${({ margin }) => getMargin(margin)};
+`;
+
+const ButtonEdit = styled.div`
+  margin-right: 1px;
+`;
+
+const ButtonDelete = styled.div`
+  margin-right: 17px;
 `;
 
 const ButtonNavigation = styled.div`
-  margin-right: 6px;
+  margin-right: 9px;
 `;
 
 const ButtonContact = styled.div``;
@@ -240,6 +243,8 @@ export {
   PhoneIphone,
   ButtonsWrapper,
   ButtonWhatsApp,
+  ButtonEdit,
+  ButtonDelete,
   ButtonNavigation,
   ButtonContact,
 };

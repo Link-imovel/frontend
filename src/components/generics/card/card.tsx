@@ -12,13 +12,19 @@ import { Bed } from '../icons/bed';
 import { Car } from '../icons/car';
 import { WhatsApp } from '../icons/whatsapp';
 import { Navigation } from '../icons/navigation';
+import { Edit } from '../icons/edit';
+import { Delete } from '../icons/delete';
 import { colors } from '@theme/theme/default/colors';
 
 const Card = ({
+  variant,
   images,
   size,
   title,
   address,
+  visibility,
+  quantityViews,
+  labelViews,
   value,
   neighborhood,
   quantityRoom,
@@ -27,9 +33,6 @@ const Card = ({
   bathroom,
   bed,
   car,
-  visibility,
-  quantityViews,
-  labelViews,
   info,
   permIdentity,
   phoneIphone,
@@ -66,17 +69,19 @@ const Card = ({
               {car || Car} {quantityGarage} vaga(s)
             </S.Car>
           </S.IconWrapper>
-          <S.InfoWrapper>
-            <S.CardInfo>{info}</S.CardInfo>
-            <S.PermIdentity sizeWidth={size} sizePadding={size}>
-              {permIdentity} {name}
-            </S.PermIdentity>
-            <S.PhoneIphone sizeWidth={size} sizePadding={size}>
-              {phoneIphone} {phoneNumber}
-            </S.PhoneIphone>
-          </S.InfoWrapper>
+          {size === 'normal' && (
+            <S.InfoWrapper>
+              <S.CardInfo>{info}</S.CardInfo>
+              <S.PermIdentity>
+                {permIdentity} {name}
+              </S.PermIdentity>
+              <S.PhoneIphone>
+                {phoneIphone} {phoneNumber}
+              </S.PhoneIphone>
+            </S.InfoWrapper>
+          )}
           <S.ButtonsWrapper>
-            <S.ButtonWhatsApp sizeMargin={size}>
+            <S.ButtonWhatsApp margin={variant}>
               <Button
                 variant="primary-circle"
                 size="small"
@@ -87,6 +92,30 @@ const Card = ({
                 onClick={buttons.BCircleWhatsApp.callback}
               />
             </S.ButtonWhatsApp>
+            {variant === 'tertiary' && (
+              <S.ButtonEdit>
+                <Button
+                  variant="transparent"
+                  size="small"
+                  radius="square"
+                  icon={<Edit height={20} width={20} fill={colors.whiteGrey} />}
+                  onClick={buttons.BEdit?.callback}
+                />
+              </S.ButtonEdit>
+            )}
+            {variant === 'tertiary' && (
+              <S.ButtonDelete>
+                <Button
+                  variant="transparent"
+                  size="small"
+                  radius="square"
+                  icon={
+                    <Delete height={20} width={20} fill={colors.whiteGrey} />
+                  }
+                  onClick={buttons.BDelete?.callback}
+                />
+              </S.ButtonDelete>
+            )}
             <S.ButtonNavigation>
               <Button
                 variant="secondary-square"

@@ -16,9 +16,16 @@ interface ButtonsProps {
     color: string;
     callback: () => void;
   };
+  BEdit?: {
+    callback: () => void;
+  };
+  BDelete?: {
+    callback: () => void;
+  };
 }
 
 interface CardProps {
+  variant: 'primary' | 'secondary' | 'tertiary';
   size?: 'small' | 'normal';
   sizePending?: 'small' | 'normal';
   title?: string;
