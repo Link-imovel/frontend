@@ -7,6 +7,8 @@ interface UserProps {
   type: string;
 }
 
-export type TableProps = {
+interface TableProps {
   users: UserProps[];
-};
+}
+
+export type { TableProps, UserProps };

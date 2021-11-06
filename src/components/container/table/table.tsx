@@ -36,6 +36,7 @@ const Table = ({ users }: Required<TableProps>): React.ReactElement => {
                 label="Editar"
                 size="small"
                 radius="square"
+                color={colors.greyBlue}
               />
             </S.Td>
             <S.Td>

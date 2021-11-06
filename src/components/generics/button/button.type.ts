@@ -9,7 +9,7 @@ export type ButtonProps = {
     | 'secondary-square'
     | 'transparent';
   label?: string;
-  size?: 'small' | 'xsmall' | 'medium' | 'large';
+  size?: 'small' | 'xsmall' | 'medium' | 'large' | 'default';
   radius?: 'circle' | 'square' | 'middleSquare';
   background?: string;
   justifyContent?: string;

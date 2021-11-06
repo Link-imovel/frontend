@@ -19,9 +19,15 @@ const sizes = {
     height: '49px',
     width: '350px',
   },
+  default: {
+    height: '49px',
+    width: '100%',
+  },
 };
 
-const getSize = (size?: 'small' | 'xsmall' | 'medium' | 'large') => {
+const getSize = (
+  size?: 'small' | 'xsmall' | 'medium' | 'large' | 'default'
+) => {
   const { height, width } = sizes[size || 'medium'];
   return `
       width: ${width};
