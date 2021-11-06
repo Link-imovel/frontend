@@ -8,6 +8,7 @@ const ContainerWrapper = styled.div`
 
 const DropdownContainer = styled.div<OpenStatusProps>`
   border-radius: 8px;
+  height: 49px;
   align-items: center;
   background-color: ${({ theme: { colors } }) => colors.whiteGrey};
   color: ${({ theme: { colors } }) => colors.blackGrey};
@@ -23,7 +24,6 @@ const DropdownContainer = styled.div<OpenStatusProps>`
   align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 49px;
   box-sizing: border-box;
 
   ${({ disabled }) => disabled && { pointerEvents: 'none', opacity: '0.6' }};
