@@ -11,6 +11,7 @@ const Description = (props: DesciptionProps): React.ReactElement => (
 export const getStaticProps: GetStaticProps = () => {
   return {
     props: {
+      user: 'John',
       title: 'Apartamento 2 E 3 Quartos no Noroeste - Vivant',
       subtitle: 'SQNW 303, Bloco A, Noroeste, Brasilia',
       value: 'R$ 1.020,132',
@@ -37,6 +38,7 @@ export const getStaticProps: GetStaticProps = () => {
         typeImovel: 'Apartamento',
         areaImovel: '113 a 229m',
       },
+      isLogged: true,
     },
   };
 };

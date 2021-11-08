@@ -23,6 +23,7 @@ interface OverviewProps {
 }
 
 export type DesciptionProps = {
+  user: string;
   isLogged: boolean;
   buttons: ButtonsProps;
   title: string;

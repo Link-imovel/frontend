@@ -6,7 +6,6 @@ import { Logo } from '@components/generics/icons/logo';
 
 import * as S from './listuser.styles';
 import { colors } from '@theme/theme/default';
-import { User } from '@components/generics/icons/user';
 import { Menu } from '@components/generics/icons/menu';
 import { Article } from '@components/generics/icons/article';
 import { PersonAdd } from '@components/generics/icons/personadd';

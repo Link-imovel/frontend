@@ -1,0 +1,1 @@
+export { ListAnuncement } from './listanuncement';

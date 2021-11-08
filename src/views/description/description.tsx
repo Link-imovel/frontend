@@ -17,10 +17,12 @@ import { DryCleaning } from '@components/generics/icons/drycleaning';
 import { Calendar } from '@components/generics/icons/calendar';
 import { Building } from '@components/generics/icons/building';
 import { Area } from '@components/generics/icons/area';
+import { UserView } from '@components/generics/userview';
 
 const Map = dynamic(() => import('@components/generics/map'), { ssr: false });
 
 const Description = ({
+  user,
   isLogged,
   buttons,
   title,
@@ -43,13 +45,7 @@ const Description = ({
             onClick={buttons.BLogo.callback}
           />
           {isLogged ? (
-            <Button
-              variant="secondary"
-              label="Olá, John"
-              color={colors.blackGrey}
-              iconReverse={true}
-              icon={<User width={20} height={20} />}
-            />
+            <UserView user={user} />
           ) : (
             <Button
               variant="primary"

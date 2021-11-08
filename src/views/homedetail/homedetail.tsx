@@ -75,50 +75,8 @@ const HomeDetail = ({
                 ]}
               />
               <Dropdown label="Quarto" />
-              {/* <Input
-                id="bedroom"
-                label="Quant. Quarto"
-                type="text"
-                name="bedroom"
-                placeholder="Informe a quantidade"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
-                validators={[
-                  {
-                    type: 'Required',
-                    message: 'Campo é requerido',
-                  },
-                ]}
-              /> */}
               <Dropdown label="Banheiro" />
-              {/* <Input
-                id="bathroom"
-                label="Quant. Banheiro"
-                type="text"
-                name="bathroom"
-                placeholder="Informe a quantidade"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
-                validators={[
-                  {
-                    type: 'Required',
-                    message: 'Campo é requerido',
-                  },
-                ]}
-              /> */}
               <Dropdown label="Area de serviço" />
-              {/* <Input
-                id="serviceArea"
-                label="Quant. Area de serviço"
-                type="text"
-                name="serviceArea"
-                placeholder="Informe a quantidade"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
-                validators={[
-                  {
-                    type: 'Required',
-                    message: 'Campo é requerido',
-                  },
-                ]}
-              /> */}
               <DatePickerInput
                 selectedDate={new Date()
                   .toLocaleDateString('en-US')
