@@ -47,6 +47,7 @@ interface CardProps {
   phoneIphone: React.ReactElement;
   name: string;
   phoneNumber: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement> & (() => void);
 }
 
 interface CardProps extends Partial<CarouselProps> {}

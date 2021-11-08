@@ -53,6 +53,7 @@ Primary.args = {
       callback: () => console.log('#3'),
     },
   },
+  onClick: () => console.log('clicked'),
 };
 
 export const Secondary = Template.bind({});
@@ -98,6 +99,7 @@ Secondary.args = {
       callback: () => console.log('#3'),
     },
   },
+  onClick: () => console.log('clicked'),
 };
 
 export const Tertiary = Template.bind({});
@@ -149,4 +151,5 @@ Tertiary.args = {
       callback: () => console.log('#5'),
     },
   },
+  onClick: () => console.log('clicked'),
 };

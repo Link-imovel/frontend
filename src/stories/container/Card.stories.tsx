@@ -12,4 +12,6 @@ export default {
 const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  onClick: () => console.log('clicked'),
+};

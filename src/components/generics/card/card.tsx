@@ -39,9 +39,10 @@ const Card = ({
   name,
   phoneNumber,
   buttons,
+  onClick,
 }: CardProps): JSX.Element => {
   return (
-    <CardContainer size={size || 'small'}>
+    <CardContainer size={size || 'small'} onClick={onClick}>
       <Carousel images={images || ''} size={size || 'small'} />
       <S.CardBody size={size || 'small'}>
         <S.Wrapper sizePadding={size}>
