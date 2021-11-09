@@ -5,17 +5,21 @@ import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
 import { DatePickerInput } from '@components/generics/datepicker';
 
-import * as S from './generic.styles';
-import { colors } from '@theme/theme/default';
-import { GenericProps } from './generic.type';
+import { GenericViewProps } from './generic.type';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
+
+import * as S from './generic.styles';
+import { colors } from '@theme/theme/default';
+
+import { Formatters } from '@helpers/formatters';
 
 const Generic = ({
   title,
   buttons,
   handleData,
-}: Required<GenericProps>): React.ReactElement => {
+  store,
+}: GenericViewProps): React.ReactElement => {
   return (
     <Page>
       <S.GenericContainer>
@@ -48,10 +52,15 @@ const Generic = ({
                 name="firstName"
                 placeholder="Informe o nome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                value={store.user?.firstName}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
                   },
                 ]}
               />
@@ -60,12 +69,17 @@ const Generic = ({
                 label="Sobrenome"
                 type="text"
                 name="lastName"
+                value={store.user?.lastName}
                 placeholder="Informe o sobrenome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
                   },
                 ]}
               />
@@ -74,6 +88,7 @@ const Generic = ({
                 label="E-mail"
                 type="text"
                 name="email"
+                value={store.user?.email}
                 placeholder="Informe o e-mail"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
@@ -82,12 +97,20 @@ const Generic = ({
                     message: 'Campo é requerido',
                   },
                   {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
                     type: 'Match',
                     message:
                       'Por favor, provenha um endereço de e-mail valido.',
                     match: (value) => {
-                      const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                      return !value || !!regex.test(value as string);
+                      return (
+                        !value ||
+                        !!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                          value as string
+                        )
+                      );
                     },
                   },
                 ]}
@@ -97,12 +120,17 @@ const Generic = ({
                 label="Senha"
                 type="password"
                 name="password"
+                value={store.user?.password}
                 placeholder="Informe a senha"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
                   },
                 ]}
               />
@@ -111,12 +139,29 @@ const Generic = ({
                 label="Telefone Residencial"
                 type="text"
                 name="phone"
+                value={store.user?.phone}
                 placeholder="Informe o telefone residencial"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'Match',
+                    message: 'Por favor, provenha um telefone valido.',
+                    match: (value) => {
+                      return (
+                        !value ||
+                        !!/^(?:(?:\+|00)?(55)\s?)?(?:(?:\(?[1-9][0-9]\)?)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/.test(
+                          value as string
+                        )
+                      );
+                    },
                   },
                 ]}
               />
@@ -127,12 +172,29 @@ const Generic = ({
                 label="Mobile"
                 type="text"
                 name="mobile"
+                value={store.user?.mobile}
                 placeholder="Informe o telefone pessoal"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'Match',
+                    message: 'Por favor, provenha um telefone valido.',
+                    match: (value) => {
+                      return (
+                        !value ||
+                        !!/^(?:(?:\+|00)?(55)\s?)?(?:(?:\(?[1-9][0-9]\)?)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/.test(
+                          value as string
+                        )
+                      );
+                    },
                   },
                 ]}
               />
@@ -141,12 +203,21 @@ const Generic = ({
                 label="CRECI"
                 type="text"
                 name="creci"
+                value={store.user?.creci}
                 placeholder="Informe o CRECI"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyNumbers',
+                    message: 'Favor inserir somente números',
                   },
                 ]}
               />
@@ -155,12 +226,34 @@ const Generic = ({
                 label="CPF/CNPJ"
                 type="text"
                 name="registry"
+                value={store.user?.registry}
                 placeholder="Informe o CPF/CNPJ"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatRegistry(el.target.value)
+                  )
+                }
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'Match',
+                    message: 'Por favor provenha um CNPJ/CPF valido.',
+                    match: (value) => {
+                      return (
+                        !value ||
+                        !!/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/.test(
+                          value as string
+                        )
+                      );
+                    },
                   },
                 ]}
               />

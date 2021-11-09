@@ -38,7 +38,7 @@ interface ListAnuncementProps {
   user: string;
   buttons: ButtonsProps;
   handleData?: (fieldName: string, value: any) => void;
-  typePermition: 'adm' | 'user' | 'anonymous';
+  typePermition: 'adm' | 'user' | '';
   isLogged: boolean;
   cards?: CardProps[];
 }

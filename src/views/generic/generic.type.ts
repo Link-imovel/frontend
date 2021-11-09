@@ -1,3 +1,5 @@
+import { Store } from '@store/models/store/store.interface';
+
 interface ButtonsProps {
   BLogo: {
     callback?: () => void;
@@ -19,4 +21,8 @@ interface GenericProps {
   handleData?: (fieldName: string, value: any) => void;
 }
 
-export type { ButtonsProps, GenericProps };
+interface GenericViewProps extends Required<GenericProps> {
+  store: Store;
+}
+
+export type { ButtonsProps, GenericProps, GenericViewProps };

@@ -25,7 +25,7 @@ export const ListAnuncementDescription = styled.p`
 `;
 
 export const ListAnuncementMenuWrapper = styled.div<{
-  typePermission: 'adm' | 'user' | 'anonymous';
+  typePermission: 'adm' | 'user' | '';
 }>`
   ${({ typePermission }) => styles[typePermission]}
   display: flex;
@@ -65,7 +65,7 @@ const styles = {
   user: css`
     height: 720px;
   `,
-  anonymous: css`
+  '': css`
     height: 520px;
   `,
 };

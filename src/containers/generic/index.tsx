@@ -6,10 +6,13 @@ import { Generic } from '@views/generic';
 import { GenericProps } from '@views/generic/generic.type';
 import { Dispatch, RootState } from '@store/index';
 import { User } from '@store/models/user/user.interface';
+import { UserFields } from '@store/models/store/store.interface';
 
 const GenericContainer = (props: GenericProps): React.ReactElement => {
   const { BLogo, BArrowBefore, BLogin } = props.buttons;
-  const store = useSelector((state: RootState) => state.user);
+  const userStore = useSelector((state: RootState) => state.user);
+  const store = useSelector((state: RootState) => state.store);
+
   const dispatch = useDispatch<Dispatch>();
 
   BLogo.callback = () => {
@@ -23,8 +26,11 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
   BLogin.callback = async () => {
     switch (props.type) {
       case 'update':
-        if (store.user.id)
-          await dispatch.user.update({ id: store.user.id, data: data as User });
+        if (userStore.user.id)
+          await dispatch.user.update({
+            id: userStore.user.id,
+            data: data as User,
+          });
         break;
       case 'create':
         await dispatch.user.create(data as User);
@@ -38,9 +44,12 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
+    dispatch.store.update({
+      user: { ...data, [fieldName]: value } as UserFields,
+    });
   };
 
-  return <Generic handleData={handleData} {...props} />;
+  return <Generic handleData={handleData} store={store} {...props} />;
 };
 
 export default GenericContainer;

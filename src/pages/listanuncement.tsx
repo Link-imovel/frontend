@@ -34,8 +34,8 @@ export const getStaticProps: GetStaticProps = () => {
           label: 'Atualizar Perfil',
         },
       },
-      typePermition: 'adm',
-      isLogged: true,
+      typePermition: '',
+      isLogged: false,
       cards: [
         {
           images: [
