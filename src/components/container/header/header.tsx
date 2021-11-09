@@ -4,6 +4,7 @@ import { Button } from '@components/generics/button';
 
 import * as S from './header.style';
 import { HeaderProps } from './header.type';
+import { Logo } from '@components/generics/icons/logo';
 
 const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
   return (
@@ -11,7 +12,7 @@ const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
       <S.HeadWrapper>
         <Button
           variant="transparent"
-          icon={buttons.BLogo.icon}
+          icon={<Logo />}
           onClick={buttons.BLogo.callback}
         />
         <Button

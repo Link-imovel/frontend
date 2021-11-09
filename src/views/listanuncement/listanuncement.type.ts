@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { CardProps } from '@components/generics/card/card.type';
 
 interface ButtonsProps {
   BLogo: {
@@ -40,6 +40,7 @@ interface ListAnuncementProps {
   handleData?: (fieldName: string, value: any) => void;
   typePermition: 'adm' | 'user' | 'anonymous';
   isLogged: boolean;
+  cards?: CardProps[];
 }
 
 export type { ListAnuncementProps };

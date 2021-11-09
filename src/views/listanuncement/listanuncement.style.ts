@@ -39,12 +39,23 @@ export const ListAnuncementWrapper = styled.div`
   background-color: ${({ theme: { colors } }) => colors.whiteGrey};
   border-radius: 8px;
   padding: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const ListAnuncementQuantity = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
   line-height: 21px;
+`;
+
+export const CardWrapper = styled.div`
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const styles = {

@@ -3,9 +3,9 @@ import React from 'react';
 import { Button } from '@components/generics/button';
 
 import * as S from './table.style';
-import { Navigation } from '@components/generics/icons/navigation';
 import { colors } from '@theme/theme/default';
 import { TableProps } from './table.type';
+import { Delete } from '@components/generics/icons/delete';
 
 const Table = ({ users }: Required<TableProps>): React.ReactElement => {
   return (
@@ -45,9 +45,7 @@ const Table = ({ users }: Required<TableProps>): React.ReactElement => {
                 variant="transparent"
                 size="small"
                 radius="square"
-                icon={
-                  <Navigation height={20} width={20} fill={colors.orange} />
-                }
+                icon={<Delete height={20} width={20} fill={colors.orange} />}
               />
             </S.Td>
           </S.Tr>

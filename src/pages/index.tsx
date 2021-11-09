@@ -32,6 +32,108 @@ export const getStaticProps: GetStaticProps = () => {
           { url: '#4', label: '· Informações da empresa' },
         ],
       },
+      cards: [
+        {
+          images: [
+            'https://via.placeholder.com/269x143?text=1',
+            'https://via.placeholder.com/269x143?text=2',
+            'https://via.placeholder.com/269x143?text=3',
+          ],
+          variant: 'primary',
+          size: 'small',
+          title: 'A partir de',
+          address: 'SQNW 303 BLOCO',
+          value: 5000,
+          neighborhood: 'Noroeste, Brasilia',
+          quantityRoom: 5,
+          quantityGarage: 1,
+          quantityBathroom: 1,
+          buttons: {
+            BCircleWhatsApp: {},
+            BNavigation: {
+              typeSize: 'small',
+            },
+            BContact: {
+              label: 'Contatar',
+            },
+          },
+        },
+        {
+          images: [
+            'https://via.placeholder.com/269x143?text=1',
+            'https://via.placeholder.com/269x143?text=2',
+            'https://via.placeholder.com/269x143?text=3',
+          ],
+          variant: 'primary',
+          size: 'small',
+          title: 'A partir de',
+          address: 'SQNW 303 BLOCO',
+          value: 5000,
+          neighborhood: 'Noroeste, Brasilia',
+          quantityRoom: 5,
+          quantityGarage: 1,
+          quantityBathroom: 1,
+          buttons: {
+            BCircleWhatsApp: {},
+            BNavigation: {
+              typeSize: 'small',
+            },
+            BContact: {
+              label: 'Contatar',
+            },
+          },
+        },
+        {
+          images: [
+            'https://via.placeholder.com/269x143?text=1',
+            'https://via.placeholder.com/269x143?text=2',
+            'https://via.placeholder.com/269x143?text=3',
+          ],
+          variant: 'primary',
+          size: 'small',
+          title: 'A partir de',
+          address: 'SQNW 303 BLOCO',
+          value: 5000,
+          neighborhood: 'Noroeste, Brasilia',
+          quantityRoom: 5,
+          quantityGarage: 1,
+          quantityBathroom: 1,
+          buttons: {
+            BCircleWhatsApp: {},
+            BNavigation: {
+              typeSize: 'small',
+            },
+            BContact: {
+              label: 'Contatar',
+            },
+          },
+        },
+        {
+          images: [
+            'https://via.placeholder.com/269x143?text=1',
+            'https://via.placeholder.com/269x143?text=2',
+            'https://via.placeholder.com/269x143?text=3',
+          ],
+          variant: 'primary',
+          size: 'small',
+          title: 'A partir de',
+          address: 'SQNW 303 BLOCO',
+          value: 5000,
+          neighborhood: 'Noroeste, Brasilia',
+          quantityRoom: 5,
+          quantityGarage: 1,
+          quantityBathroom: 1,
+          buttons: {
+            BCircleWhatsApp: {},
+            BNavigation: {
+              typeSize: 'small',
+            },
+            BContact: {
+              label: 'Contatar',
+            },
+          },
+        },
+      ],
     },
   };
 };

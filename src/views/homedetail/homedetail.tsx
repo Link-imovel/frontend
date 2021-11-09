@@ -14,6 +14,7 @@ import { colors } from '@theme/theme/default';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
+import { ImageDnD } from '@components/generics/imagednd';
 
 const HomeDetail = ({
   title,
@@ -156,6 +157,7 @@ const HomeDetail = ({
           <S.HomeDetailImagesTitle>
             Adicionar imagens do imóvel
           </S.HomeDetailImagesTitle>
+          <ImageDnD />
         </S.HomeDetailContainerImages>
       </S.HomeDetailContainer>
     </Page>

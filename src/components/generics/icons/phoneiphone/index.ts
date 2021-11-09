@@ -1,0 +1,1 @@
+export { PhoneIphone } from './phoneiphone';

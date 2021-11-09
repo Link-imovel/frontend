@@ -12,13 +12,14 @@ export const HomeDetailContainer = styled.div`
 
 export const HomeDetailWrapper = styled.div`
   width: 1080px;
-  height: 1020px;
+  height: 100%;
   padding: 9%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   & > div:last-child {
     align-self: flex-end;
+    height: 100%;
   }
 `;
 
@@ -35,7 +36,7 @@ export const HomeDetailTitle = styled.span`
 
 export const InputWrapper = styled.div`
   margin: 15px 0;
-  height: 460px;
+  height: 100%;
   display: flex;
   flex-direction: row;
   gap: 5%;
@@ -51,7 +52,7 @@ export const InputWrapper = styled.div`
 
 export const InputsColumnOne = styled.div`
   flex: 1;
-  height: 83%;
+  height: 82%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,12 +67,11 @@ export const InputsColumnTwo = styled.div`
 
 export const HomeDetailContainerImages = styled.div`
   flex: 1;
-  border-left: 1px solid #000;
   padding: 9%;
 `;
 
 export const HomeDetailImagesTitle = styled.div`
-  margin-top: 124px;
+  margin: 24px 0;
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
   line-height: 21px;

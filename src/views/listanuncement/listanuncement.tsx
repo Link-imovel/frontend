@@ -2,7 +2,10 @@ import React from 'react';
 
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
+import { Card } from '@components/generics/card';
 import { Dropdown } from '@components/generics/dropdown';
+import { UserView } from '@components/generics/userview';
+import { Input } from '@components/generics/input';
 
 import * as S from './listanuncement.style';
 import { colors } from '@theme/theme/default';
@@ -14,8 +17,6 @@ import { People } from '@components/generics/icons/people';
 import { Logout } from '@components/generics/icons/logout';
 import { Settings } from '@components/generics/icons/settings';
 import { ListAnuncementProps } from './listanuncement.type';
-import { UserView } from '@components/generics/userview';
-import { Input } from '@components/generics/input';
 
 const ListAnuncement = ({
   user,
@@ -23,6 +24,7 @@ const ListAnuncement = ({
   typePermition,
   handleData,
   isLogged,
+  cards,
 }: Required<ListAnuncementProps>): React.ReactElement => {
   console.log(isLogged);
 
@@ -142,6 +144,11 @@ const ListAnuncement = ({
           <S.ListAnuncementQuantity>
             300 imóveis mostrados
           </S.ListAnuncementQuantity>
+          <S.CardWrapper>
+            {cards.map((props, index) => (
+              <Card key={index} {...props} />
+            ))}
+          </S.CardWrapper>
         </S.ListAnuncementWrapper>
       </S.ListAnuncementContainer>
     </Page>
