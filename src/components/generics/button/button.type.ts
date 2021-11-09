@@ -18,4 +18,5 @@ export type ButtonProps = {
   iconReverse?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement> & (() => void);
   selected?: boolean;
+  disabled?: boolean;
 };

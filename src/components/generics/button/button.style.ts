@@ -55,13 +55,14 @@ export const Button = styled.div<ButtonProps>`
   line-height: ${({ theme: { text } }) => text.sizes.medium};
   color: ${({ color, theme: { colors } }) => color || colors.white};
   font-weight: ${({ theme: { text } }) => text.weight.medium};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   flex-direction: row;
   vertical-align: middle;
   align-items: center;
   justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   position: relative;
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : '')};
 `;
 
 export const Selected = styled.div`

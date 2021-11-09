@@ -30,6 +30,7 @@ Primary.args = {
   variant: 'primary',
   label: 'Entrar',
   size: 'medium',
+  disabled: true,
   onClick: () => console.log('clicked'),
 };
 
