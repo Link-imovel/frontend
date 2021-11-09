@@ -63,6 +63,7 @@ export const Button = styled.div<ButtonProps>`
   justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   position: relative;
   pointer-events: ${({ disabled }) => (disabled ? 'none' : '')};
+  opacity: ${({ disabled }) => (disabled ? '0.7' : 'none')};
 `;
 
 export const Selected = styled.div`
