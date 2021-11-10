@@ -1,3 +1,6 @@
+type KeysType<T, J> = {
+  [P in keyof T]: J;
+};
 interface UserFields {
   firstName: string;
   lastName: string;
@@ -10,8 +13,13 @@ interface UserFields {
   birthday: string;
 }
 
-interface Store {
-  user?: UserFields;
+interface CreateUser {
+  user: UserFields;
+  valid: KeysType<UserFields, boolean>;
 }
 
-export type { Store, UserFields };
+interface Store {
+  createUser: CreateUser;
+}
+
+export type { Store, UserFields, CreateUser };

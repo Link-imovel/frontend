@@ -51,4 +51,5 @@ export type ListProps = {
     cards: boolean;
   };
   quantity: number;
+  dropdown?: boolean;
 };

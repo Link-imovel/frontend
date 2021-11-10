@@ -51,11 +51,11 @@ const getRadius = (radius?: 'circle' | 'square' | 'middleSquare') => {
 export const Button = styled.div<ButtonProps>`
   ${({ variant }) => styles[variant]}
   ${({ size }) => getSize(size)}
-  ${({ radius }) => getRadius(radius)}
-  line-height: ${({ theme: { text } }) => text.sizes.medium};
+${({ radius }) => getRadius(radius)}
+line-height: ${({ theme: { text } }) => text.sizes.medium};
   color: ${({ color, theme: { colors } }) => color || colors.white};
   font-weight: ${({ theme: { text } }) => text.weight.medium};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   vertical-align: middle;
@@ -63,7 +63,12 @@ export const Button = styled.div<ButtonProps>`
   justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   position: relative;
   pointer-events: ${({ disabled }) => (disabled ? 'none' : '')};
-  opacity: ${({ disabled }) => (disabled ? '0.7' : 'none')};
+  ${({ disabled, theme: { colors } }) =>
+    disabled &&
+    css`
+      background-color: ${colors.blackGrey};
+    `};
+  opacity: ${({ disabled }) => (disabled ? '0.4' : 'none')};
 `;
 
 export const Selected = styled.div`

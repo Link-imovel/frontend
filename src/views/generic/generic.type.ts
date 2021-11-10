@@ -1,4 +1,4 @@
-import { Store } from '@store/models/store/store.interface';
+import { UserFields } from '@store/models/store/store.interface';
 
 interface ButtonsProps {
   BLogo: {
@@ -19,10 +19,12 @@ interface GenericProps {
   buttons: ButtonsProps;
   type: 'create' | 'get' | 'update';
   handleData?: (fieldName: string, value: any) => void;
+  handleValidation?: (fieldName: string, value: any) => void;
 }
 
 interface GenericViewProps extends Required<GenericProps> {
-  store: Store;
+  data: UserFields;
+  valid: boolean;
 }
 
 export type { ButtonsProps, GenericProps, GenericViewProps };

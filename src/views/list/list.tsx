@@ -5,6 +5,7 @@ import { Button } from '@components/generics/button';
 import { UserView } from '@components/generics/userview';
 import { Card } from '@components/generics/card';
 import { Table } from '@components/generics/table';
+import { Dropdown } from '@components/generics/dropdown';
 
 import { Logo } from '@components/generics/icons/logo';
 import { Article } from '@components/generics/icons/article';
@@ -28,6 +29,7 @@ const List = ({
   cards,
   content,
   quantity,
+  dropdown,
 }: Required<ListProps>): React.ReactElement => {
   const renderButtons = React.useCallback((): JSX.Element | null => {
     if (render.admin) {
@@ -63,7 +65,7 @@ const List = ({
     render.admin,
   ]);
 
-  const RenderContent = React.useCallback(():
+  const renderContent = React.useCallback(():
     | JSX.Element[]
     | JSX.Element
     | null => {
@@ -88,10 +90,24 @@ const List = ({
     return null;
   }, [cards, content.cards, content.table, users]);
 
+  const renderDropDown = React.useCallback((): JSX.Element | null => {
+    if (dropdown) {
+      return (
+        <>
+          <Dropdown label="Quarto" />
+          <Dropdown label="Banheiro" />
+          <Dropdown label="Vagas" />
+          <Dropdown label="Area de serviço" />
+        </>
+      );
+    }
+    return null;
+  }, [dropdown]);
+
   return (
     <Page>
       <S.Container>
-        <S.FieldsWrapper>
+        <S.MenuContainer>
           <Button
             variant="transparent"
             size="xsmall"
@@ -108,8 +124,8 @@ const List = ({
               onClick={buttons.BLogin.callback}
             />
           )}
+          {renderDropDown()}
           <S.Description>{description}</S.Description>
-          <S.Line />
           <S.Title>Menu</S.Title>
           <Button
             variant="primary"
@@ -148,10 +164,10 @@ const List = ({
             icon={<Logout width={20} height={20} fill={colors.white} />}
             onClick={buttons.BLogout.callback}
           />
-        </S.FieldsWrapper>
+        </S.MenuContainer>
         <S.Content>
           <S.Quantity>{quantity} Resultados</S.Quantity>
-          {RenderContent()}
+          {renderContent()}
         </S.Content>
       </S.Container>
     </Page>

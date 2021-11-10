@@ -18,12 +18,14 @@ const Generic = ({
   title,
   buttons,
   handleData,
-  store,
+  handleValidation,
+  data,
+  valid,
 }: GenericViewProps): React.ReactElement => {
   return (
     <Page>
-      <S.GenericContainer>
-        <S.GenericWrapper>
+      <S.Container>
+        <S.FormContent>
           <Button
             variant="transparent"
             size="xsmall"
@@ -42,9 +44,9 @@ const Generic = ({
             icon={<ArrowBefore height={20} width={20} />}
             onClick={buttons.BArrowBefore.callback}
           />
-          <S.GenericTitle>{title}</S.GenericTitle>
-          <S.InputWrapper>
-            <S.InputsColumnOne>
+          <S.Title>{title}</S.Title>
+          <S.InputContent>
+            <S.Wrapper column="A">
               <Input
                 id="firstName"
                 label="Nome"
@@ -52,15 +54,22 @@ const Generic = ({
                 name="firstName"
                 placeholder="Informe o nome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
-                value={store.user?.firstName}
+                onValidation={({ valid }) =>
+                  handleValidation('firstName', valid)
+                }
+                value={data.firstName}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
                     message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -69,17 +78,24 @@ const Generic = ({
                 label="Sobrenome"
                 type="text"
                 name="lastName"
-                value={store.user?.lastName}
+                value={data.lastName}
                 placeholder="Informe o sobrenome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) =>
+                  handleValidation('lastName', valid)
+                }
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
                     message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -88,13 +104,14 @@ const Generic = ({
                 label="E-mail"
                 type="text"
                 name="email"
-                value={store.user?.email}
+                value={data.email}
                 placeholder="Informe o e-mail"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('email', valid)}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
@@ -120,13 +137,16 @@ const Generic = ({
                 label="Senha"
                 type="password"
                 name="password"
-                value={store.user?.password}
+                value={data.password}
                 placeholder="Informe a senha"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) =>
+                  handleValidation('password', valid)
+                }
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
@@ -139,13 +159,20 @@ const Generic = ({
                 label="Telefone Residencial"
                 type="text"
                 name="phone"
-                value={store.user?.phone}
+                maxLength={14}
+                value={data.phone}
                 placeholder="Informe o telefone residencial"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatPhone(el.target.value)
+                  )
+                }
+                onValidation={({ valid }) => handleValidation('phone', valid)}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
@@ -165,20 +192,27 @@ const Generic = ({
                   },
                 ]}
               />
-            </S.InputsColumnOne>
-            <S.InputsColumnTwo>
+            </S.Wrapper>
+            <S.Wrapper column="B">
               <Input
                 id="mobile"
                 label="Mobile"
                 type="text"
                 name="mobile"
-                value={store.user?.mobile}
+                value={data.mobile}
                 placeholder="Informe o telefone pessoal"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                maxLength={15}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatPhone(el.target.value)
+                  )
+                }
+                onValidation={({ valid }) => handleValidation('mobile', valid)}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
@@ -203,13 +237,14 @@ const Generic = ({
                 label="CRECI"
                 type="text"
                 name="creci"
-                value={store.user?.creci}
+                value={data.creci}
                 placeholder="Informe o CRECI"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('creci', valid)}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
@@ -226,7 +261,7 @@ const Generic = ({
                 label="CPF/CNPJ"
                 type="text"
                 name="registry"
-                value={store.user?.registry}
+                value={data.registry}
                 placeholder="Informe o CPF/CNPJ"
                 onChange={(el) =>
                   handleData(
@@ -234,10 +269,14 @@ const Generic = ({
                     Formatters.formatRegistry(el.target.value)
                   )
                 }
+                onValidation={({ valid }) =>
+                  handleValidation('registry', valid)
+                }
+                maxLength={18}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
                   {
                     type: 'NotBlank',
@@ -286,20 +325,23 @@ const Generic = ({
                     },
                   },
                 ]}
-                onValidation={(status) => console.log(status)}
+                onValidation={({ valid }) =>
+                  handleValidation('birthday', valid)
+                }
               />
-            </S.InputsColumnTwo>
+            </S.Wrapper>
             <Button
               variant="primary"
               label={buttons.BLogin.label}
               size="large"
               radius="square"
               onClick={buttons.BLogin.callback}
+              disabled={!valid}
             />
-          </S.InputWrapper>
-        </S.GenericWrapper>
-      </S.GenericContainer>
-      <S.ImageContainer />
+          </S.InputContent>
+        </S.FormContent>
+        <S.ImageContent />
+      </S.Container>
     </Page>
   );
 };

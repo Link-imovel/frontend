@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div``;
 
-export const FieldsWrapper = styled.div``;
+export const MenuContainer = styled.div``;
 
 export const Content = styled.div``;
 
