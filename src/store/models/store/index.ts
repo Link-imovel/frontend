@@ -1,13 +1,38 @@
 import { createModel } from '@rematch/core';
 
-import { Store } from './store.interface';
+import { CreateUser, Store } from './store.interface';
 import { RootModel } from '@store/models';
 
 const store = createModel<RootModel>()({
-  state: {} as Store,
+  state: {
+    createUser: {
+      user: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phone: '',
+        mobile: '',
+        registry: '',
+        creci: '',
+        birthday: '',
+      },
+      valid: {
+        firstName: false,
+        lastName: false,
+        email: false,
+        password: false,
+        phone: false,
+        mobile: false,
+        registry: false,
+        creci: false,
+        birthday: false,
+      },
+    },
+  },
   reducers: {
-    update: (state: Store, data: Partial<Store>): Store => {
-      return { ...state, ...data };
+    createUser: (state: Store, data: Partial<CreateUser>): Store => {
+      return { ...state, createUser: { ...state.createUser, ...data } };
     },
     clear: (): Store => {
       return {} as Store;

@@ -34,7 +34,7 @@ export const InputWrapper = styled.div`
     min-height: 338px;
     margin-bottom: 15px;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 'columnA columnB';
     grid-gap: 2%;
   }

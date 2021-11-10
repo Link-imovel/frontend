@@ -10,12 +10,18 @@ const BreadCrumb = ({ paths }: BreadCrumbProps): React.ReactElement => {
   const renderLinks = React.useCallback((): React.ReactElement[] => {
     return paths.map(({ title, url }, index) => {
       if (index === 0 || index === paths.length) {
-        return <S.Anchor href={url}>{title}</S.Anchor>;
+        return (
+          <S.Anchor key={title} href={url}>
+            {title}
+          </S.Anchor>
+        );
       }
       return (
         <>
           <ChevronRight fill={colors.blackGrey} width={20} height={20} />
-          <S.Anchor href={url}>{title}</S.Anchor>
+          <S.Anchor key={title} href={url}>
+            {title}
+          </S.Anchor>
         </>
       );
     });
