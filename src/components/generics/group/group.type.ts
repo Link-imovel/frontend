@@ -1,5 +1,3 @@
-import { TableProps, UserProps } from '@components/generics/table/table.type';
-
 interface ButtonsProps {
   BLogo: {
     callback?: () => void;
@@ -24,16 +22,18 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
-  BSettings: {
+  BUpdatePerfil: {
     label: string;
     callback?: () => void;
   };
 }
 
-interface ListUserProps {
+export type GroupProps = {
   user: string;
+  description: string;
   buttons: ButtonsProps;
-  users: UserProps[];
-}
-
-export type { ListUserProps };
+  render: {
+    admin: boolean;
+    user: boolean;
+  };
+};

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Table } from '@components/container/table';
+import { Table } from '@components/generics/table';
 
 export default {
-  title: 'Container/Table',
+  title: 'Generics/Table',
   component: Table,
 } as ComponentMeta<typeof Table>;
 

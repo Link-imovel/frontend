@@ -14,7 +14,7 @@ import { Logout } from '@components/generics/icons/logout';
 import { Settings } from '@components/generics/icons/settings';
 import { ListUserProps } from './listuser.type';
 import { UserView } from '@components/generics/userview';
-import { Table } from '@components/container/table';
+import { Table } from '@components/generics/table';
 
 const ListUser = ({
   user,

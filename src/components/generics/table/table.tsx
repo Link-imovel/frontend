@@ -2,10 +2,11 @@ import React from 'react';
 
 import { Button } from '@components/generics/button';
 
+import { Delete } from '@components/generics/icons/delete';
+
 import * as S from './table.style';
 import { colors } from '@theme/theme/default';
 import { TableProps } from './table.type';
-import { Delete } from '@components/generics/icons/delete';
 
 const Table = ({ users }: Required<TableProps>): React.ReactElement => {
   return (
