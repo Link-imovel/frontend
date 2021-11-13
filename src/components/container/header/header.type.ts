@@ -1,14 +1,14 @@
 interface ButtonsProps {
   BLogo: {
-    callback: () => void;
+    callback?: () => void;
   };
   BLogin: {
     label?: string;
-    callback: () => void;
+    callback?: () => void;
   };
   BShowImovels: {
     label: string;
-    callback: () => void;
+    callback?: () => void;
   };
 }
 

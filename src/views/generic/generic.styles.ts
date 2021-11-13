@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const FormContent = styled.div`
-  width: 1020px;
+  width: 1025px;
   padding: 8%;
   margin: auto;
   display: flex;
@@ -22,18 +22,20 @@ export const Title = styled.span`
   margin-bottom: 20px;
 `;
 
-export const InputContent = styled.div`
+export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas: 'columnA columnB';
   & > div:last-child {
     width: 100%;
   }
-  grid-gap: 20px;
+  column-gap: 20px;
   @media ${({ theme: { device } }) => device.laptop.max} {
     display: flex;
     flex-direction: column;
-    grid-gap: 0;
+  }
+  & > div:last-child {
+    margin-top: 20px;
   }
 `;
 
@@ -44,6 +46,9 @@ export const Wrapper = styled.div<{ column: 'A' | 'B' }>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    & > div > * {
+      margin: 5px 0;
+    }
   }
 `;
 

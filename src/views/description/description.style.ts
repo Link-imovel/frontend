@@ -21,12 +21,12 @@ export const Line = styled.div`
 `;
 
 export const DescriptionContainer = styled.div`
-  padding: 55px 75px;
+  padding: 2% 8%;
   width: 100%;
   height: 100%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
 `;
 
 export const HeaderWrapper = styled.div`

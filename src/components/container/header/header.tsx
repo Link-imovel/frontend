@@ -2,14 +2,15 @@ import React from 'react';
 
 import { Button } from '@components/generics/button';
 
+import { Logo } from '@components/generics/icons/logo';
+
 import * as S from './header.style';
 import { HeaderProps } from './header.type';
-import { Logo } from '@components/generics/icons/logo';
 
 const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
   return (
-    <S.HeaderContainer>
-      <S.HeadWrapper>
+    <S.Container>
+      <S.HeadContent>
         <Button
           variant="transparent"
           icon={<Logo />}
@@ -21,17 +22,17 @@ const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
           background="transparent"
           onClick={buttons.BLogin.callback}
         />
-      </S.HeadWrapper>
-      <S.MainWrapper>
-        <S.MainTitle>{title}</S.MainTitle>
-        <S.MainSubtitle>{subtitle}</S.MainSubtitle>
+      </S.HeadContent>
+      <S.MainContent>
+        <S.Title>{title}</S.Title>
+        <S.Subtitle>{subtitle}</S.Subtitle>
         <Button
           variant="primary"
           label={buttons.BShowImovels.label}
           onClick={buttons.BShowImovels.callback}
         />
-      </S.MainWrapper>
-    </S.HeaderContainer>
+      </S.MainContent>
+    </S.Container>
   );
 };
 

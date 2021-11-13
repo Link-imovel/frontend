@@ -9,7 +9,7 @@ interface ButtonsProps {
     label?: string;
     callback?: () => void;
   };
-  BAnuncement: {
+  BAnuncements: {
     label: string;
     callback?: () => void;
   };
@@ -35,21 +35,26 @@ interface ButtonsProps {
   };
 }
 
-export type ListProps = {
-  userLogged: string;
-  users: UserProps[];
+interface ListProps {
   description: string;
   buttons: ButtonsProps;
+  content: {
+    table: boolean;
+    cards: boolean;
+  };
+  dropdown: boolean;
+}
+
+interface ListViewProps extends ListProps {
+  userName: string;
+  users: UserProps[];
   render: {
     admin: boolean;
     user: boolean;
   };
   isLogged: boolean;
-  cards?: CardProps[];
-  content: {
-    table: boolean;
-    cards: boolean;
-  };
+  cards: CardProps[];
   quantity: number;
-  dropdown?: boolean;
-};
+}
+
+export type { ListViewProps, ListProps };

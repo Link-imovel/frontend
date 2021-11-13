@@ -1,39 +1,25 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import AddressContainer from '@containers/address';
 import { AddressProps } from '@views/address/address.type';
+import strapiClient from '@services/strapi.client';
 
 const Address = (props: AddressProps): React.ReactElement => (
   <AddressContainer {...props} />
 );
 
-export const getStaticProps: GetStaticProps = () => {
-  return {
-    props: {
-      title: 'Endereço do imóvel',
-      buttons: {
-        BLogo: {},
-        BArrowBefore: {
-          label: 'Anterior',
-        },
-        BArrowAfter: {
-          label: 'Próximo',
-        },
-        BGeneric: {
-          label: 'Continuar',
-        },
-      },
-      breadCrumb: {
-        paths: [
-          {
-            title: 'Endereço do imóvel',
-            url: '/address-imovel',
-          },
-        ],
-      },
-    },
-  };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { slug, locale } = strapiClient.getLocalizedParams(
+    context.resolvedUrl,
+    context.locale || context.defaultLocale
+  );
+
+  try {
+    return await strapiClient.getData(slug, locale);
+  } catch (error) {
+    return { props: {} };
+  }
 };
 
 export default Address;

@@ -16,11 +16,11 @@ import { PersonAdd } from '@components/generics/icons/personadd';
 import { Settings } from '@components/generics/icons/settings';
 
 import * as S from './list.style';
-import { ListProps } from './list.type';
+import { ListViewProps } from './list.type';
 import { colors } from '@theme/theme/default';
 
 const List = ({
-  userLogged,
+  userName,
   users,
   description,
   buttons,
@@ -30,9 +30,9 @@ const List = ({
   content,
   quantity,
   dropdown,
-}: Required<ListProps>): React.ReactElement => {
+}: ListViewProps): React.ReactElement => {
   const renderButtons = React.useCallback((): JSX.Element | null => {
-    if (render.admin) {
+    if (render?.admin) {
       return (
         <>
           <Button
@@ -62,7 +62,7 @@ const List = ({
     buttons.BCreateUser.label,
     buttons.BListUsers.callback,
     buttons.BListUsers.label,
-    render.admin,
+    render?.admin,
   ]);
 
   const renderContent = React.useCallback(():
@@ -107,7 +107,7 @@ const List = ({
   return (
     <Page>
       <S.Container>
-        <S.MenuContainer>
+        <S.MenuContainer {...content} {...render}>
           <Button
             variant="transparent"
             size="xsmall"
@@ -116,7 +116,7 @@ const List = ({
             onClick={buttons.BLogo.callback}
           />
           {isLogged ? (
-            <UserView user={userLogged} />
+            <UserView user={userName} />
           ) : (
             <Button
               variant="primary"
@@ -124,17 +124,17 @@ const List = ({
               onClick={buttons.BLogin.callback}
             />
           )}
-          {renderDropDown()}
           <S.Description>{description}</S.Description>
+          {renderDropDown()}
           <S.Title>Menu</S.Title>
           <Button
             variant="primary"
-            label={buttons.BAnuncement.label || 'Anuncios'}
+            label={buttons.BAnuncements.label || 'Anuncios'}
             size="default"
             color={colors.white}
             iconReverse={true}
             icon={<Menu width={20} height={20} fill={colors.white} />}
-            onClick={buttons.BAnuncement.callback}
+            onClick={buttons.BAnuncements.callback}
           />
           <Button
             variant="primary"
@@ -166,7 +166,7 @@ const List = ({
           />
         </S.MenuContainer>
         <S.Content>
-          <S.Quantity>{quantity} Resultados</S.Quantity>
+          <S.Quantity>{quantity} resultados retornado</S.Quantity>
           {renderContent()}
         </S.Content>
       </S.Container>

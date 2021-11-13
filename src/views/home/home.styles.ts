@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 15px 142px;
@@ -8,13 +8,13 @@ export const CardContainer = styled.div`
   flex-direction: column;
 `;
 
-export const CardWrapperTitle = styled.div`
+export const Title = styled.div`
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
   line-height: 21px;
 `;
 
-export const CardWrapper = styled.div`
+export const Wrapper = styled.div`
   margin-top: 14px;
   width: inherit;
   display: flex;

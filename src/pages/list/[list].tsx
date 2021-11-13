@@ -2,12 +2,11 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import strapiClient from '@services/strapi.client';
 
-import ContactContainer from '@containers/contact';
+import { ListProps } from '@views/list/list.type';
+import ListContainer from '@containers/list';
 
-import { ContactProps } from '@views/contact/contact.type';
-
-const Contact = (props: ContactProps): React.ReactElement => {
-  return <ContactContainer {...props} />;
+const List = (props: ListProps): React.ReactElement => {
+  return <ListContainer {...props} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -23,4 +22,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-export default Contact;
+export default List;

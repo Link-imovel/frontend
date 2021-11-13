@@ -1,78 +1,91 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const HomeDetailContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
+  padding: 0 8%;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
   @media ${({ theme: { device } }) => device.laptop.max} {
-    display: flex;
     flex-direction: column;
   }
 `;
 
-export const HomeDetailWrapper = styled.div`
-  width: 1080px;
-  height: 100%;
-  padding: 9%;
+export const FormContent = styled.div`
+  flex: 1;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   & > div:last-child {
+    width: calc(100% - 413px);
     align-self: flex-end;
-    height: 100%;
+    @media ${({ theme: { device } }) => device.laptop.max} {
+      width: 100%;
+    }
   }
 `;
 
-export const HomeDetailNavigationWrapper = styled.div`
+export const NavigationWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 `;
 
-export const HomeDetailTitle = styled.span`
+export const Title = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.large};
   line-height: 21px;
 `;
 
-export const InputWrapper = styled.div`
-  margin: 15px 0;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 5%;
+export const Content = styled.div`
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: 'columnA columnB';
+  column-gap: 20px;
   @media ${({ theme: { device } }) => device.laptop.max} {
     display: flex;
     flex-direction: column;
+  }
+`;
+
+export const Wrapper = styled.div<{ column: 'A' | 'B' }>`
+  ${({ column }) => styles[column]};
+  @media ${({ theme: { device } }) => device.laptop.max} {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     & > div > * {
       margin: 5px 0;
     }
   }
 `;
 
-export const InputsColumnOne = styled.div`
+export const ImageDndContent = styled.div`
   flex: 1;
-  height: 82%;
+  height: 700px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
 `;
 
-export const InputsColumnTwo = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-export const HomeDetailContainerImages = styled.div`
-  flex: 1;
-  padding: 9%;
-`;
-
-export const HomeDetailImagesTitle = styled.div`
-  margin: 24px 0;
-  color: ${({ theme: { colors } }) => colors.blackGrey};
-  font-size: ${({ theme: { text } }) => text.sizes.large};
-  line-height: 21px;
-`;
+const styles = {
+  A: css`
+    grid-area: columnA;
+    height: calc(100% - 98px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+  B: css`
+    grid-area: columnB;
+    height: 470px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+};

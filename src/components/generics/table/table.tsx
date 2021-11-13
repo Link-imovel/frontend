@@ -15,7 +15,7 @@ const Table = ({ users }: Required<TableProps>): React.ReactElement => {
         <S.Tr>
           <S.Th>Nome</S.Th>
           <S.Th>E-mail</S.Th>
-          <S.Th>CRESCI</S.Th>
+          <S.Th>CRECI</S.Th>
           <S.Th>Telefone</S.Th>
           <S.Th>Tipo</S.Th>
           <S.Th></S.Th>

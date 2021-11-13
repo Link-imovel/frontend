@@ -1,19 +1,86 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div``;
+const getMenuContainer = (
+  cards: boolean,
+  table: boolean,
+  admin: boolean,
+  user: boolean
+) => {
+  if (table) {
+    return styles['menu-table'];
+  }
+  if (cards && admin) {
+    return styles['menu-cards-admin'];
+  }
+  if (cards && user) {
+    return styles['menu-cards-user'];
+  }
+};
 
-export const MenuContainer = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+  padding: 2% 8%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+`;
 
-export const Content = styled.div``;
+export const MenuContainer = styled.div<{
+  cards: boolean;
+  table: boolean;
+  admin: boolean;
+  user: boolean;
+}>`
+  ${({ cards, table, admin, user }) =>
+    getMenuContainer(cards, table, admin, user)}
+`;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin-top: 20px;
+`;
 
-export const Description = styled.p``;
-
-export const Title = styled.span``;
-
-export const Quantity = styled.span``;
+export const Description = styled.p`
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+`;
 
 export const Line = styled.div``;
 
-const styles = {};
+export const Title = styled.span`
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+`;
+
+export const Quantity = styled.span`
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+`;
+
+export const Content = styled.div`
+  flex: 1;
+  box-shadow: 0px 5px 20px 8px rgba(0, 0, 0, 0.05);
+  background-color: ${({ theme: { colors } }) => colors.whiteGrey};
+  border-radius: 8px;
+  padding: 60px;
+`;
+
+const styles = {
+  'menu-table': css`
+    width: 290px;
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+  'menu-cards-user': css`
+    width: 290px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+  'menu-cards-admin': css`
+    width: 290px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+};

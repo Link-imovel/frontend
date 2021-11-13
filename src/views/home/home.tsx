@@ -15,16 +15,14 @@ const Home = ({
 }: Required<HomeProps>): React.ReactElement => {
   return (
     <Page header={<Header {...header} />} footer={<Footer {...footer} />}>
-      <S.CardContainer>
-        <S.CardWrapperTitle>
-          Imóveis próximo a sua localidade
-        </S.CardWrapperTitle>
-        <S.CardWrapper>
+      <S.Container>
+        <S.Title>Imóveis próximo a sua localidade</S.Title>
+        <S.Wrapper>
           {cards.map((props, index) => (
             <Card key={index} {...props} />
           ))}
-        </S.CardWrapper>
-      </S.CardContainer>
+        </S.Wrapper>
+      </S.Container>
     </Page>
   );
 };

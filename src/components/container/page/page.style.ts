@@ -8,7 +8,6 @@ const Container = styled.div`
 
 const Body = styled.div<{ hasHeight?: boolean }>`
   ${({ hasHeight }) => (hasHeight ? 'height: auto;' : 'min-height: 100vh;')}
-  width: inherit;
   display: flex;
   flex-direction: row;
 `;

@@ -13,13 +13,68 @@ interface UserFields {
   birthday: string;
 }
 
+interface AddressFields {
+  street: string;
+  street2: string;
+  number: string;
+  neighbourhood: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  ibge: string;
+}
+
+interface ClientFields {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  mobile: string;
+  registry: string;
+}
+
+interface HomeDetailFields {
+  totalArea: string;
+  constructionYear: string;
+  ref: string;
+  value: string;
+}
+
 interface CreateUser {
   user: UserFields;
   valid: KeysType<UserFields, boolean>;
 }
 
-interface Store {
-  createUser: CreateUser;
+interface CreateAddress {
+  address: AddressFields;
+  valid: KeysType<AddressFields, boolean>;
 }
 
-export type { Store, UserFields, CreateUser };
+interface CreateClient {
+  client: ClientFields;
+  valid: KeysType<ClientFields, boolean>;
+}
+
+interface CreateHomeDetail {
+  homedetail: HomeDetailFields;
+  valid: KeysType<HomeDetailFields, boolean>;
+}
+
+interface Store {
+  createUser: CreateUser;
+  createAddress: CreateAddress;
+  createClient: CreateClient;
+  createHomeDetail: CreateHomeDetail;
+}
+
+export type {
+  Store,
+  UserFields,
+  CreateUser,
+  AddressFields,
+  CreateAddress,
+  ClientFields,
+  CreateClient,
+  HomeDetailFields,
+  CreateHomeDetail,
+};

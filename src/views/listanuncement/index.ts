@@ -1,1 +1,0 @@
-export { ListAnuncement } from './listanuncement';

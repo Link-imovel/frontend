@@ -45,7 +45,7 @@ const Generic = ({
             onClick={buttons.BArrowBefore.callback}
           />
           <S.Title>{title}</S.Title>
-          <S.InputContent>
+          <S.Content>
             <S.Wrapper column="A">
               <Input
                 id="firstName"
@@ -338,7 +338,7 @@ const Generic = ({
               onClick={buttons.BLogin.callback}
               disabled={!valid}
             />
-          </S.InputContent>
+          </S.Content>
         </S.FormContent>
         <S.ImageContent />
       </S.Container>

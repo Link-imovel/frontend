@@ -5,24 +5,29 @@ import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
 import { BreadCrumb } from '@components/generics/breadcrumb';
 import { Dropdown } from '@components/generics/dropdown';
-import { DatePickerInput } from '@components/generics/datepicker';
+
+import { ArrowBefore } from '@components/generics/icons/arrowbefore';
+import { Logo } from '@components/generics/icons/logo';
 
 import * as S from './client.style';
-import { ClientProps } from './client.type';
-import { Logo } from '@components/generics/icons/logo';
 import { colors } from '@theme/theme/default';
-import { ArrowBefore } from '@components/generics/icons/arrowbefore';
+import { ClientViewProps } from '@views/client/client.type';
+import { Formatters } from '@helpers/formatters';
 
 const Client = ({
   title,
   buttons,
-  breadCrumb,
+  // breadCrumb,
   handleData,
-}: Required<ClientProps>): React.ReactElement => {
+  handleValidation,
+  valid,
+  data,
+  options,
+}: ClientViewProps): React.ReactElement => {
   return (
     <Page>
-      <S.ClientContainer>
-        <S.ClientWrapper>
+      <S.Container>
+        <S.FormContent>
           <Button
             variant="transparent"
             size="xsmall"
@@ -30,7 +35,7 @@ const Client = ({
             icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
-          <BreadCrumb paths={breadCrumb.paths} />
+          {/* <BreadCrumb paths={breadCrumb.paths} /> */}
           <Button
             variant="transparent"
             label={buttons.BArrowBefore.label}
@@ -42,10 +47,14 @@ const Client = ({
             icon={<ArrowBefore height={20} width={20} />}
             onClick={buttons.BArrowBefore.callback}
           />
-          <S.ClientTitle>{title}</S.ClientTitle>
-          <S.InputWrapper>
-            <S.InputsColumnOne>
-              <Dropdown label="Escolha um cliente" />
+          <S.Title>{title}</S.Title>
+          <S.Content>
+            <S.Wrapper column="A">
+              <Dropdown
+                label="Cliente"
+                placeholder="Escolha um cliente"
+                options={options}
+              />
               <Input
                 id="firstName"
                 label="Nome"
@@ -53,10 +62,22 @@ const Client = ({
                 name="firstName"
                 placeholder="Informe o nome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) =>
+                  handleValidation('firstName', valid)
+                }
+                value={data.firstName}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -67,10 +88,22 @@ const Client = ({
                 name="lastName"
                 placeholder="Informe o sobrenome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) =>
+                  handleValidation('lastName', valid)
+                }
+                value={data.lastName}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -81,49 +114,69 @@ const Client = ({
                 name="email"
                 placeholder="Informe o e-mail"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('email', valid)}
+                value={data.email}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
                   },
                   {
                     type: 'Match',
                     message:
                       'Por favor, provenha um endereço de e-mail valido.',
                     match: (value) => {
-                      const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                      return !value || !!regex.test(value as string);
+                      return (
+                        !value ||
+                        !!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                          value as string
+                        )
+                      );
                     },
                   },
                 ]}
               />
-              <Input
-                id="password"
-                label="Senha"
-                type="password"
-                name="password"
-                placeholder="Informe a senha"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
-                validators={[
-                  {
-                    type: 'Required',
-                    message: 'Campo é requerido',
-                  },
-                ]}
-              />
-            </S.InputsColumnOne>
-            <S.InputsColumnTwo>
+            </S.Wrapper>
+            <S.Wrapper column="B">
               <Input
                 id="phone"
                 label="Telefone Residencial"
                 type="text"
                 name="phone"
+                maxLength={14}
+                value={data.phone}
                 placeholder="Informe o telefone residencial"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatPhone(el.target.value)
+                  )
+                }
+                onValidation={({ valid }) => handleValidation('phone', valid)}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'Match',
+                    message: 'Por favor, provenha um telefone valido.',
+                    match: (value) => {
+                      return (
+                        !value ||
+                        !!/^(?:(?:\+|00)?(55)\s?)?(?:(?:\(?[1-9][0-9]\)?)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/.test(
+                          value as string
+                        )
+                      );
+                    },
                   },
                 ]}
               />
@@ -132,26 +185,36 @@ const Client = ({
                 label="Mobile"
                 type="text"
                 name="mobile"
+                value={data.mobile}
                 placeholder="Informe o telefone pessoal"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                maxLength={15}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatPhone(el.target.value)
+                  )
+                }
+                onValidation={({ valid }) => handleValidation('mobile', valid)}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
-                ]}
-              />
-              <Input
-                id="creci"
-                label="CRECI"
-                type="text"
-                name="creci"
-                placeholder="Informe o CRECI"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
-                validators={[
                   {
-                    type: 'Required',
-                    message: 'Campo é requerido',
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'Match',
+                    message: 'Por favor, provenha um telefone valido.',
+                    match: (value) => {
+                      return (
+                        !value ||
+                        !!/^(?:(?:\+|00)?(55)\s?)?(?:(?:\(?[1-9][0-9]\)?)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/.test(
+                          value as string
+                        )
+                      );
+                    },
                   },
                 ]}
               />
@@ -160,58 +223,54 @@ const Client = ({
                 label="CPF/CNPJ"
                 type="text"
                 name="registry"
+                value={data.registry}
                 placeholder="Informe o CPF/CNPJ"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatRegistry(el.target.value)
+                  )
+                }
+                onValidation={({ valid }) =>
+                  handleValidation('registry', valid)
+                }
+                maxLength={18}
                 validators={[
                   {
                     type: 'Required',
-                    message: 'Campo é requerido',
+                    message: 'O campo é requerido',
                   },
-                ]}
-              />
-              <DatePickerInput
-                selectedDate={new Date()
-                  .toLocaleDateString('en-US')
-                  .replace(/[/]/g, '-')}
-                label="Data do Aniversario"
-                name="birthday"
-                handleValue={(value) => handleData('birthday', value)}
-                validators={[
                   {
                     type: 'NotBlank',
-                    message: 'A data não pode estar em branco.',
-                  },
-                  {
-                    type: 'Required',
-                    message: 'A data é necessário.',
+                    message: 'O campo não pode estar em branco.',
                   },
                   {
                     type: 'Match',
-                    message: 'Por favor digite uma data de nascimento válida.',
+                    message: 'Por favor provenha um CNPJ/CPF valido.',
                     match: (value) => {
                       return (
                         !value ||
-                        !!(value as string).match(
-                          /^[0-9]{2}([/]|[-])[0-9]{2}([/]|[-])[0-9]{4}$/
+                        !!/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/.test(
+                          value as string
                         )
                       );
                     },
                   },
                 ]}
-                onValidation={(status) => console.log(status)}
               />
-            </S.InputsColumnTwo>
-          </S.InputWrapper>
-          <Button
-            variant="primary"
-            label={buttons.BGeneric.label}
-            size="large"
-            radius="square"
-            onClick={buttons.BGeneric.callback}
-          />
-        </S.ClientWrapper>
-      </S.ClientContainer>
-      <S.ImageContainer />
+            </S.Wrapper>
+            <Button
+              variant="primary"
+              label={buttons.BCreate.label}
+              size="large"
+              radius="square"
+              onClick={buttons.BCreate.callback}
+              disabled={!valid}
+            />
+          </S.Content>
+        </S.FormContent>
+        <S.ImageContent />
+      </S.Container>
     </Page>
   );
 };

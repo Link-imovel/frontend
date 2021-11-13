@@ -5,17 +5,18 @@ import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
 
+import { Logo } from '@components/generics/icons/logo';
+import { ArrowBefore } from '@components/generics/icons/arrowbefore';
+
 import * as S from './login.style';
 import { LoginProps } from './login.type';
 import { colors } from '@theme/theme/default';
-import { Logo } from '@components/generics/icons/logo';
-import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 
 const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
   return (
     <Page>
-      <S.LoginContainer>
-        <S.LoginWrapper>
+      <S.Container>
+        <S.LoginContent>
           <Button
             variant="transparent"
             size="xsmall"
@@ -23,7 +24,7 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
-          <S.LoginTitle>{title}</S.LoginTitle>
+          <S.Title>{title}</S.Title>
           <Button
             variant="transparent"
             label={buttons.BArrowBefore.label}
@@ -35,8 +36,8 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
             icon={<ArrowBefore height={20} width={20} />}
             onClick={buttons.BArrowBefore.callback}
           />
-          <S.LoginSubtitle>{subtitle}</S.LoginSubtitle>
-          <S.InputWrapper>
+          <S.Subtitle>{subtitle}</S.Subtitle>
+          <S.Wrapper>
             <Input
               id="email"
               label="E-mail"
@@ -58,11 +59,11 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
                 },
               ]}
             />
-            <S.LinkContainer>
+            <S.LinkWrapper>
               <Link href="/">
                 <a>Esqueceu a senha ?</a>
               </Link>
-            </S.LinkContainer>
+            </S.LinkWrapper>
             <Input
               id="password"
               label="Senha"
@@ -77,24 +78,24 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
                 },
               ]}
             />
-          </S.InputWrapper>
-          <Button
-            variant="primary"
-            label={buttons.BLogin.label}
-            size="large"
-            radius="square"
-            onClick={buttons.BLogin.callback}
-          />
-          <S.LinkContainer reverse={true}>
+            <Button
+              variant="primary"
+              label={buttons.BLogin.label}
+              size="large"
+              radius="square"
+              onClick={buttons.BLogin.callback}
+            />
+          </S.Wrapper>
+          <S.LinkWrapper reverse={true}>
             <Link href="/">
               <a>
                 Não tem conta ainda? <span>Entre contato</span>
               </a>
             </Link>
-          </S.LinkContainer>
-        </S.LoginWrapper>
-      </S.LoginContainer>
-      <S.ImageContainer />
+          </S.LinkWrapper>
+        </S.LoginContent>
+        <S.ImageContent />
+      </S.Container>
     </Page>
   );
 };

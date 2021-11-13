@@ -5,23 +5,28 @@ import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
 import { BreadCrumb } from '@components/generics/breadcrumb';
 
-import * as S from './address.style';
-import { AddressProps } from './address.type';
-import { colors } from '@theme/theme/default';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
 
+import * as S from './address.style';
+import { AddressViewProps } from './address.type';
+import { colors } from '@theme/theme/default';
+import { Formatters } from '@helpers/formatters';
+
 const Address = ({
   title,
   buttons,
-  breadCrumb,
+  // breadCrumb,
   handleData,
-}: Required<AddressProps>): React.ReactElement => {
+  handleValidation,
+  valid,
+  data,
+}: AddressViewProps): React.ReactElement => {
   return (
     <Page>
-      <S.AddressContainer>
-        <S.AddressWrapper>
+      <S.Container>
+        <S.FormContent>
           <Button
             variant="transparent"
             size="xsmall"
@@ -29,8 +34,8 @@ const Address = ({
             icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
-          <BreadCrumb paths={breadCrumb.paths} />
-          <S.AddressNavigationWrapper>
+          {/* <BreadCrumb paths={breadCrumb.paths} /> */}
+          <S.NavigationWrapper>
             <Button
               variant="transparent"
               label={buttons.BArrowBefore.label}
@@ -52,10 +57,10 @@ const Address = ({
               icon={<ArrowAfter height={20} width={20} />}
               onClick={buttons.BArrowBefore.callback}
             />
-          </S.AddressNavigationWrapper>
-          <S.AddressTitle>{title}</S.AddressTitle>
-          <S.InputWrapper>
-            <S.InputsColumnOne>
+          </S.NavigationWrapper>
+          <S.Title>{title}</S.Title>
+          <S.Content>
+            <S.Wrapper column="A">
               <Input
                 id="street"
                 label="Endereço"
@@ -63,10 +68,20 @@ const Address = ({
                 name="street"
                 placeholder="Informe o endereço"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('street', valid)}
+                value={data.street}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -77,6 +92,22 @@ const Address = ({
                 name="street2"
                 placeholder="Informe o endereço 2"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('street2', valid)}
+                value={data.street2}
+                validators={[
+                  {
+                    type: 'Required',
+                    message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
+                  },
+                ]}
               />
               <Input
                 id="number"
@@ -85,10 +116,20 @@ const Address = ({
                 name="number"
                 placeholder="Informe o numero"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('number', valid)}
+                value={data.number}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyNumbers',
+                    message: 'Favor inserir somente números',
                   },
                 ]}
               />
@@ -99,15 +140,27 @@ const Address = ({
                 name="neighbourhood"
                 placeholder="Informe a aproximidade"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) =>
+                  handleValidation('neighbourhood', valid)
+                }
+                value={data.neighbourhood}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
                   },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyNumbers',
+                    message: 'Favor inserir somente números',
+                  },
                 ]}
               />
-            </S.InputsColumnOne>
-            <S.InputsColumnTwo>
+            </S.Wrapper>
+            <S.Wrapper column="B">
               <Input
                 id="city"
                 label="Cidade"
@@ -115,10 +168,20 @@ const Address = ({
                 name="city"
                 placeholder="Informe a Cidade"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('city', valid)}
+                value={data.city}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -129,10 +192,20 @@ const Address = ({
                 name="state"
                 placeholder="Informe o Estado"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('state', valid)}
+                value={data.state}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyLetters',
+                    message: 'Digite somente letras.',
                   },
                 ]}
               />
@@ -142,11 +215,23 @@ const Address = ({
                 type="text"
                 name="zipcode"
                 placeholder="Informe o CEP"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
+                maxLength={9}
+                onChange={(el) =>
+                  handleData(
+                    el.target.id,
+                    Formatters.formatZipCode(el.target.value)
+                  )
+                }
+                onValidation={({ valid }) => handleValidation('zipcode', valid)}
+                value={data.zipcode}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
                   },
                 ]}
               />
@@ -157,25 +242,36 @@ const Address = ({
                 name="ibge"
                 placeholder="Informe o IBGE"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('ibge', valid)}
+                value={data.ibge}
                 validators={[
                   {
                     type: 'Required',
                     message: 'Campo é requerido',
                   },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                  {
+                    type: 'OnlyNumbers',
+                    message: 'Favor inserir somente números',
+                  },
                 ]}
               />
-            </S.InputsColumnTwo>
-          </S.InputWrapper>
-          <Button
-            variant="primary"
-            label={buttons.BGeneric.label}
-            size="large"
-            radius="square"
-            onClick={buttons.BGeneric.callback}
-          />
-        </S.AddressWrapper>
-      </S.AddressContainer>
-      <S.ImageContainer />
+            </S.Wrapper>
+            <Button
+              variant="primary"
+              label={buttons.BNext.label}
+              size="large"
+              radius="square"
+              onClick={buttons.BNext.callback}
+              disabled={!valid}
+            />
+          </S.Content>
+        </S.FormContent>
+        <S.ImageContent />
+      </S.Container>
     </Page>
   );
 };
