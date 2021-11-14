@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface PathProps {
   title: string;
   url?: string;
@@ -6,7 +8,11 @@ interface PathProps {
 interface BreadCrumbContextData {
   paths: PathProps[];
   next: (props: PathProps) => void;
-  previus: () => void;
+  previous: () => void;
 }
 
-export type { BreadCrumbContextData, PathProps };
+interface BreadCrumbProps {
+  children?: React.ReactElement | React.ReactElement[] | string;
+}
+
+export type { BreadCrumbContextData, BreadCrumbProps, PathProps };

@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { BreadCrumbContextData, PathProps } from './breadcrumb.type';
+import {
+  BreadCrumbContextData,
+  BreadCrumbProps,
+  PathProps,
+} from './breadcrumb.type';
 
 const BreadCrumbContext = React.createContext<BreadCrumbContextData>(
   {} as BreadCrumbContextData
 );
 
-const BreadCrumbProvider = (children: React.ReactNode): React.ReactElement => {
+const BreadCrumbProvider = ({
+  children,
+}: BreadCrumbProps): React.ReactElement => {
   const [paths, setPaths] = React.useState<PathProps[]>([]);
 
   const next = React.useCallback(
@@ -16,14 +22,14 @@ const BreadCrumbProvider = (children: React.ReactNode): React.ReactElement => {
     [paths]
   );
 
-  const previus = React.useCallback(() => {
+  const previous = React.useCallback(() => {
     const currentPaths = paths;
     currentPaths.pop();
     setPaths([...currentPaths]);
   }, [paths]);
 
   return (
-    <BreadCrumbContext.Provider value={{ paths, next, previus }}>
+    <BreadCrumbContext.Provider value={{ paths, next, previous }}>
       {children}
     </BreadCrumbContext.Provider>
   );

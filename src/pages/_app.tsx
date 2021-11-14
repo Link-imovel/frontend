@@ -8,14 +8,18 @@ import getTheme from '@theme/theme';
 import { store } from '@store/index';
 import { Provider } from 'react-redux';
 
+import { BreadCrumbProvider } from '@hooks/breadcrumb';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={getTheme()}>
-      <GlobalStyle theme={getTheme()} />
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={getTheme()}>
+        <GlobalStyle theme={getTheme()} />
+        <BreadCrumbProvider>
+          <Component {...pageProps} />
+        </BreadCrumbProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 export default MyApp;
