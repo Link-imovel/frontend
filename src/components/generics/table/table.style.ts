@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Table = styled.table`
   border-radius: 8px;
-  /* box-shadow: 0px 5px 20px 8px rgba(0, 0, 0, 0.05); */
   border-collapse: collapse;
   font-size: 0.85rem;
   overflow: hidden;

@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { BreadCrumbContext } from '..';
+import { BreadCrumbContext, BreadCrumbProvider } from './breadcrumb';
 import { BreadCrumbContextData } from './breadcrumb.type';
-
-export { BreadCrumbContext, BreadCrumbProvider } from './breadcrumb';
 
 const useBreadcrumb = (): BreadCrumbContextData => {
   const context = React.useContext(BreadCrumbContext);
@@ -13,4 +11,4 @@ const useBreadcrumb = (): BreadCrumbContextData => {
   return context;
 };
 
-export { useBreadcrumb };
+export { useBreadcrumb, BreadCrumbProvider };

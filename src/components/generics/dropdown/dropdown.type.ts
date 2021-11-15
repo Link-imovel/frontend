@@ -17,7 +17,7 @@ interface DropdownListItemProps {
 }
 
 interface DropdownProps {
-  label: string;
+  label?: string;
   placeholder?: string;
   options?: Array<DropdownOption>;
   listStyle?: React.CSSProperties;
