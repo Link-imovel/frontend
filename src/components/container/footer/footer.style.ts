@@ -3,14 +3,10 @@ import styled from 'styled-components';
 const FooterContainer = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 2% 8%;
   width: 100%;
-  height: 65px;
-  padding: 25px 125px;
+  height: 90px;
   background-color: inherit;
-  @media ${({ theme: { device } }) => device.laptop.max} {
-    padding: 15px;
-    height: 100px;
-  }
 `;
 
 const FooterWrapper = styled.div`
@@ -18,9 +14,6 @@ const FooterWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   color: ${({ theme }) => theme.colors.blackGrey};
-  @media ${({ theme: { device } }) => device.laptop.max} {
-    flex-wrap: wrap;
-  }
 `;
 
 const FooterLabel = styled.label`

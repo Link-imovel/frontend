@@ -16,4 +16,5 @@ export type HeaderProps = {
   title: string;
   subtitle: string;
   buttons: ButtonsProps;
+  handleData?: (fieldName: string, value: any) => void;
 };

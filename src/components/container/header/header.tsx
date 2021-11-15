@@ -1,13 +1,19 @@
 import React from 'react';
 
 import { Button } from '@components/generics/button';
+import { SearchBar } from '@components/generics/searchbar';
 
 import { Logo } from '@components/generics/icons/logo';
 
 import * as S from './header.style';
 import { HeaderProps } from './header.type';
 
-const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
+const Header = ({
+  title,
+  subtitle,
+  buttons,
+  handleData,
+}: HeaderProps): JSX.Element => {
   return (
     <S.Container>
       <S.HeadContent>
@@ -24,6 +30,7 @@ const Header = ({ title, subtitle, buttons }: HeaderProps): JSX.Element => {
         />
       </S.HeadContent>
       <S.MainContent>
+        <SearchBar handleData={handleData} />
         <S.Title>{title}</S.Title>
         <S.Subtitle>{subtitle}</S.Subtitle>
         <Button

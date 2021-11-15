@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   background: ${({ theme: { colors } }) => colors.whiteGrey};
 `;
 

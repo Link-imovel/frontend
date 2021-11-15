@@ -6,15 +6,19 @@ import { Footer } from '@components/container/footer';
 import { Card } from '@components/generics/card';
 
 import * as S from './home.styles';
-import { HomeProps } from './home.type';
+import { HomeViewProps } from './home.type';
 
 const Home = ({
   header,
   footer,
   cards,
-}: Required<HomeProps>): React.ReactElement => {
+  handleData,
+}: HomeViewProps): React.ReactElement => {
   return (
-    <Page header={<Header {...header} />} footer={<Footer {...footer} />}>
+    <Page
+      header={<Header {...header} handleData={handleData} />}
+      footer={<Footer {...footer} />}
+    >
       <S.Container>
         <S.Title>Imóveis próximo a sua localidade</S.Title>
         <S.Wrapper>
