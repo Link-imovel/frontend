@@ -17,6 +17,7 @@ import { Settings } from '@components/generics/icons/settings';
 
 import * as S from './list.style';
 import { ListViewProps } from './list.type';
+import { options } from '@components/generics/dropdown/dropdown.options';
 import { colors } from '@theme/theme/default';
 
 const List = ({
@@ -94,10 +95,26 @@ const List = ({
     if (dropdown) {
       return (
         <>
-          <Dropdown label="Quarto" />
-          <Dropdown label="Banheiro" />
-          <Dropdown label="Vagas" />
-          <Dropdown label="Area de serviço" />
+          <Dropdown
+            label="Quarto"
+            placeholder="Informe a quantidade"
+            options={options.bedroom}
+          />
+          <Dropdown
+            label="Banheiro"
+            placeholder="Informe a quantidade"
+            options={options.bathroom}
+          />
+          <Dropdown
+            label="Vagas"
+            placeholder="Informe a quantidade"
+            options={options.garage}
+          />
+          <Dropdown
+            label="Area de serviço"
+            placeholder="Informe a quantidade"
+            options={options.laudry}
+          />
         </>
       );
     }

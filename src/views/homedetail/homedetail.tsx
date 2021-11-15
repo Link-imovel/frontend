@@ -12,6 +12,7 @@ import { ImageDnD } from '@components/generics/imagednd';
 import * as S from './homedetail.style';
 import { HomeDetailViewProps } from './homedetail.type';
 import { colors } from '@theme/theme/default';
+import { options } from '@components/generics/dropdown/dropdown.options';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
@@ -64,7 +65,11 @@ const HomeDetail = ({
           <S.Title>{title}</S.Title>
           <S.Content>
             <S.Wrapper column="A">
-              <Dropdown label="Tipo do anuncio" />
+              <Dropdown
+                label="Tipo do anuncio"
+                placeholder="Escolha um"
+                options={options.type}
+              />
               <Input
                 id="totalArea"
                 label="Area total do imóvel"
@@ -91,11 +96,20 @@ const HomeDetail = ({
                   },
                 ]}
               />
-              <Dropdown label="Quarto" placeholder="Quantidade de Quarto" />
-              <Dropdown label="Banheiro" placeholder="Quantidade de Banheiro" />
+              <Dropdown
+                label="Quarto"
+                placeholder="Quantidade de Quarto"
+                options={options.bedroom}
+              />
+              <Dropdown
+                label="Banheiro"
+                placeholder="Quantidade de Banheiro"
+                options={options.bathroom}
+              />
               <Dropdown
                 label="Area de serviço"
                 placeholder="Quantidade de Area de serviço"
+                options={options.laudry}
               />
               <DatePickerInput
                 selectedDate={new Date()
@@ -181,9 +195,21 @@ const HomeDetail = ({
                   },
                 ]}
               />
-              <Dropdown label="Sala" placeholder="Quantidade de Sala" />
-              <Dropdown label="Cozinha" placeholder="Quantidade de Cozinha" />
-              <Dropdown label="Garage" placeholder="Quantidade de Garage" />
+              <Dropdown
+                label="Sala"
+                placeholder="Quantidade de Sala"
+                options={options.livingroom}
+              />
+              <Dropdown
+                label="Cozinha"
+                placeholder="Quantidade de Cozinha"
+                options={options.kitchen}
+              />
+              <Dropdown
+                label="Garage"
+                placeholder="Quantidade de Garage"
+                options={options.garage}
+              />
               <TextArea withBorder={true} placeholder="Descrição" />
             </S.Wrapper>
           </S.Content>

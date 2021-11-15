@@ -7,7 +7,7 @@ interface DropdownOption {
 }
 
 interface OpenStatusProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   disabled?: boolean;
   hasContent?: boolean;
 }
@@ -16,9 +16,10 @@ interface DropdownListItemProps {
   isSelected: boolean;
 }
 
-interface DropdownProps {
+interface DropdownProps extends OpenStatusProps {
   label?: string;
   placeholder?: string;
+  radius?: 'none' | 'square' | 'middleSquare';
   options?: Array<DropdownOption>;
   listStyle?: React.CSSProperties;
   containerStyle?: React.CSSProperties;

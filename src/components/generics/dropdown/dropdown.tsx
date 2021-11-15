@@ -5,6 +5,7 @@ import { DropdownOption, DropdownProps } from './dropdown.type';
 
 const Dropdown = ({
   label,
+  radius,
   onSelect,
   containerStyle,
   listStyle,
@@ -72,6 +73,7 @@ const Dropdown = ({
         onClick={() => !disabled && setIsOpen(!isOpen)}
         style={containerStyle}
         className={className}
+        radius={radius}
       >
         {label ? <S.Label>{label}</S.Label> : undefined}
         <S.DropdownInput isOpen={!!isOpen}>

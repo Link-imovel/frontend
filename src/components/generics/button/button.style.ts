@@ -51,8 +51,8 @@ const getRadius = (radius?: 'circle' | 'square' | 'middleSquare') => {
 export const Button = styled.div<ButtonProps>`
   ${({ variant }) => styles[variant]}
   ${({ size }) => getSize(size)}
-${({ radius }) => getRadius(radius)}
-line-height: ${({ theme: { text } }) => text.sizes.medium};
+  ${({ radius }) => getRadius(radius)}
+  line-height: ${({ theme: { text } }) => text.sizes.medium};
   color: ${({ color, theme: { colors } }) => color || colors.white};
   font-weight: ${({ theme: { text } }) => text.weight.medium};
   cursor: pointer;

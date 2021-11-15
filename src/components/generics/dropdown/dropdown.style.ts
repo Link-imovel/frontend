@@ -1,13 +1,29 @@
 import styled, { css } from 'styled-components';
 import { ExpandMore } from '../icons/expandmore';
-import { DropdownListItemProps, OpenStatusProps } from './dropdown.type';
+import {
+  DropdownListItemProps,
+  OpenStatusProps,
+  DropdownProps,
+} from './dropdown.type';
+
+const border = {
+  none: '0px',
+  square: '8px',
+  middleSquare: '8px 0px 0px 8px',
+};
+
+const getRadius = (radius?: 'none' | 'square' | 'middleSquare') => {
+  return `
+    border-radius: ${border[radius || 'square']};
+  `;
+};
 
 const ContainerWrapper = styled.div`
   height: auto;
 `;
 
-const DropdownContainer = styled.div<OpenStatusProps>`
-  border-radius: 8px;
+const DropdownContainer = styled.div<DropdownProps>`
+  ${({ radius }) => getRadius(radius)}
   height: 49px;
   align-items: center;
   background-color: ${({ theme: { colors } }) => colors.whiteGrey};
