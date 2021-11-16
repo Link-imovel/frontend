@@ -1,10 +1,12 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import HttpClient from '@services/http.client';
 
 import { ListProps } from '@views/list/list.type';
 import { List } from '@views/list';
 
 import { UserProps } from '@components/generics/table/table.type';
-import { CardProps } from '@components/generics/card/card.type';
+import { CardsViewsProps } from '@views/list/list.type';
 
 const ListContainer = (props: ListProps): React.ReactElement => {
   const {
@@ -19,7 +21,24 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   } = props.buttons;
 
   const [contenUsers, setContentUsers] = React.useState<UserProps[]>([]);
-  const [contenCards, setContentCards] = React.useState<CardProps[]>([]);
+  const [contenCards, setContentCards] = React.useState<CardsViewsProps[]>([]);
+
+  const router = useRouter();
+
+  React.useEffect(() => {
+    setContentCards([]);
+  }, []);
+
+  const getPublications = async (): Promise<void> => {
+    const reponse = await HttpClient.setPath(
+      'https://mocki.io/v1/87254046-9d87-4bf2-b2d1-192d0e72ae90'
+    )
+      .setMethod('GET')
+      .send();
+    console.log(reponse);
+  };
+
+  getPublications();
 
   BLogin.callback = () => {
     console.log(1);
@@ -30,7 +49,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BCreateAnuncement.callback = () => {
-    console.log(3);
+    router.push('/address');
   };
 
   BCreateUser.callback = () => {

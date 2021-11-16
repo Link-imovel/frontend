@@ -3,7 +3,7 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
-import { BreadCrumb } from '@components/generics/breadcrumb';
+// import { BreadCrumb } from '@components/generics/breadcrumb';
 
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
@@ -55,7 +55,7 @@ const Address = ({
               size="xsmall"
               radius="square"
               icon={<ArrowAfter height={20} width={20} />}
-              onClick={buttons.BArrowBefore.callback}
+              onClick={buttons.BArrowAfter.callback}
             />
           </S.NavigationWrapper>
           <S.Title>{title}</S.Title>

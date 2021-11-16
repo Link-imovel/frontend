@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
@@ -16,14 +17,16 @@ const ClientContainer = (props: ClientProps): React.ReactElement => {
     Object.values(dataValid).every((item) => item)
   );
 
+  const router = useRouter();
+
   const dispatch = useDispatch<Dispatch>();
 
   BLogo.callback = () => {
-    console.log(1);
+    router.push('/');
   };
 
   BArrowBefore.callback = () => {
-    console.log(2);
+    router.push('/homedetail');
   };
 
   BCreate.callback = () => {

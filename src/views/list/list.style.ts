@@ -15,6 +15,9 @@ const getMenuContainer = (
   if (cards && user) {
     return styles['menu-cards-user'];
   }
+  if (cards && (!admin || !user)) {
+    return styles['menu-cards-client'];
+  }
 };
 
 export const Container = styled.div`
@@ -79,6 +82,13 @@ const styles = {
   'menu-cards-admin': css`
     width: 290px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `,
+  'menu-cards-client': css`
+    width: 290px;
+    height: 440px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

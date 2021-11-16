@@ -7,12 +7,16 @@ import { Logo } from '@components/generics/icons/logo';
 
 import * as S from './header.style';
 import { HeaderProps } from './header.type';
+import { UserView } from '@components/generics/userview';
+import { colors } from '@theme/theme/default';
 
 const Header = ({
   title,
   subtitle,
   buttons,
   handleData,
+  isLogged,
+  userName,
 }: HeaderProps): JSX.Element => {
   return (
     <S.Container>
@@ -22,12 +26,16 @@ const Header = ({
           icon={<Logo />}
           onClick={buttons.BLogo.callback}
         />
-        <Button
-          variant="secondary"
-          label={buttons.BLogin.label || 'Entrar'}
-          background="transparent"
-          onClick={buttons.BLogin.callback}
-        />
+        {isLogged ? (
+          <UserView user={userName} color={colors.whiteGrey} />
+        ) : (
+          <Button
+            variant="secondary"
+            label={buttons.BLogin.label || 'Entrar'}
+            background="transparent"
+            onClick={buttons.BLogin.callback}
+          />
+        )}
       </S.HeadContent>
       <S.MainContent>
         <SearchBar handleData={handleData} />

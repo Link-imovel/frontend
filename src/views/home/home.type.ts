@@ -9,6 +9,8 @@ interface HomeProps {
 }
 
 interface HomeViewProps extends Required<HomeProps> {
+  userName: string;
+  isLogged: boolean;
   cards: CardProps[];
 }
 

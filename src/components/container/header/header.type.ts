@@ -13,8 +13,10 @@ interface ButtonsProps {
 }
 
 export type HeaderProps = {
+  userName: string;
   title: string;
   subtitle: string;
   buttons: ButtonsProps;
+  isLogged: boolean;
   handleData?: (fieldName: string, value: any) => void;
 };

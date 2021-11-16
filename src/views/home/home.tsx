@@ -13,10 +13,19 @@ const Home = ({
   footer,
   cards,
   handleData,
+  isLogged,
+  userName,
 }: HomeViewProps): React.ReactElement => {
   return (
     <Page
-      header={<Header {...header} handleData={handleData} />}
+      header={
+        <Header
+          userName={userName}
+          {...header}
+          handleData={handleData}
+          isLogged={isLogged}
+        />
+      }
       footer={<Footer {...footer} />}
     >
       <S.Container>

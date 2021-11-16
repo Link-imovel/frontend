@@ -143,44 +143,50 @@ const List = ({
           )}
           <S.Description>{description}</S.Description>
           {renderDropDown()}
-          <S.Title>Menu</S.Title>
-          <Button
-            variant="primary"
-            label={buttons.BAnuncements.label || 'Anuncios'}
-            size="default"
-            color={colors.white}
-            iconReverse={true}
-            icon={<Menu width={20} height={20} fill={colors.white} />}
-            onClick={buttons.BAnuncements.callback}
-          />
-          <Button
-            variant="primary"
-            label={buttons.BCreateAnuncement.label || 'Criar anuncio'}
-            size="default"
-            color={colors.white}
-            iconReverse={true}
-            icon={<Article width={20} height={20} fill={colors.white} />}
-            onClick={buttons.BCreateAnuncement.callback}
-          />
-          {renderButtons()}
-          <Button
-            variant="primary"
-            label={buttons.BUpdatePerfil.label || 'Atualizar Perfil'}
-            size="default"
-            color={colors.white}
-            iconReverse={true}
-            icon={<Settings width={20} height={20} fill={colors.white} />}
-            onClick={buttons.BUpdatePerfil.callback}
-          />
-          <Button
-            variant="primary"
-            label={buttons.BLogout.label || 'Sair'}
-            size="default"
-            color={colors.white}
-            iconReverse={true}
-            icon={<Logout width={20} height={20} fill={colors.white} />}
-            onClick={buttons.BLogout.callback}
-          />
+          {isLogged ? (
+            <>
+              <S.Title>Menu</S.Title>
+              <Button
+                variant="primary"
+                label={buttons.BAnuncements.label || 'Anuncios'}
+                size="default"
+                color={colors.white}
+                iconReverse={true}
+                icon={<Menu width={20} height={20} fill={colors.white} />}
+                onClick={buttons.BAnuncements.callback}
+              />
+              <Button
+                variant="primary"
+                label={buttons.BCreateAnuncement.label || 'Criar anuncio'}
+                size="default"
+                color={colors.white}
+                iconReverse={true}
+                icon={<Article width={20} height={20} fill={colors.white} />}
+                onClick={buttons.BCreateAnuncement.callback}
+              />
+              {renderButtons()}
+              <Button
+                variant="primary"
+                label={buttons.BUpdatePerfil.label || 'Atualizar Perfil'}
+                size="default"
+                color={colors.white}
+                iconReverse={true}
+                icon={<Settings width={20} height={20} fill={colors.white} />}
+                onClick={buttons.BUpdatePerfil.callback}
+              />
+              <Button
+                variant="primary"
+                label={buttons.BLogout.label || 'Sair'}
+                size="default"
+                color={colors.white}
+                iconReverse={true}
+                icon={<Logout width={20} height={20} fill={colors.white} />}
+                onClick={buttons.BLogout.callback}
+              />
+            </>
+          ) : (
+            <></>
+          )}
         </S.MenuContainer>
         <S.Content>
           <S.Quantity>{quantity} resultados retornado</S.Quantity>

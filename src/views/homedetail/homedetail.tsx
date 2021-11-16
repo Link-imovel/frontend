@@ -59,7 +59,7 @@ const HomeDetail = ({
               size="xsmall"
               radius="square"
               icon={<ArrowAfter height={20} width={20} />}
-              onClick={buttons.BArrowBefore.callback}
+              onClick={buttons.BArrowAfter.callback}
             />
           </S.NavigationWrapper>
           <S.Title>{title}</S.Title>

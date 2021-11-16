@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { Home } from '@views/home';
 import { HomeProps } from '@views/home/home.type';
@@ -9,6 +10,8 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   const [cards, setCards] = React.useState<CardProps[]>([]);
   const [data, setData] = React.useState({});
+
+  const router = useRouter();
 
   React.useEffect(() => {
     setCards([
@@ -53,14 +56,22 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   BShowImovels.callback = () => {
-    console.log(3);
+    router.push('/list/anuncements');
   };
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
   };
 
-  return <Home {...props} cards={cards} handleData={handleData} />;
+  return (
+    <Home
+      userName="John"
+      {...props}
+      cards={cards}
+      handleData={handleData}
+      isLogged={true}
+    />
+  );
 };
 
 export default HomeContainer;
