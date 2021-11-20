@@ -96,6 +96,10 @@ interface ListProps {
     cards: boolean;
   };
   dropdown: boolean;
+  routes?: {
+    previous: string;
+    next: string;
+  };
 }
 
 interface ListViewProps extends ListProps {

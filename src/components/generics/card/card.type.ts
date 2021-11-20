@@ -1,4 +1,3 @@
-import { CarouselProps } from '@components/generics/carousel/carousel.type';
 import React from 'react';
 
 interface ButtonsProps {
@@ -22,26 +21,54 @@ interface ButtonsProps {
   };
 }
 
-interface CardProps {
-  variant: 'primary' | 'secondary' | 'tertiary';
-  size?: 'small' | 'normal';
-  sizePending?: 'small' | 'normal';
-  title?: string;
-  neighborhood?: string;
-  value?: number;
-  address?: string;
-  quantityRoom?: number;
-  quantityBathroom?: number;
-  quantityGarage?: number;
-  quantityViews?: number;
-  labelViews?: string;
-  buttons: ButtonsProps;
-  info?: string;
-  name: string;
-  phoneNumber: string;
-  onClick?: React.MouseEventHandler<HTMLDivElement> & (() => void);
+interface AddressProps {
+  id: string;
+  street: string;
+  street2: string;
+  number: number;
+  neighborhood: string;
+  city: string;
+  state: string;
+  zip: string;
+  ibge: string;
 }
 
-interface CardProps extends Partial<CarouselProps> {}
+interface HomeProps {
+  id: string;
+  type: string;
+  ref: string;
+  totalArea: number;
+  value: number;
+  room: number;
+  bedroom: number;
+  bathroom: number;
+  kitchen: number;
+  garage: number;
+  serviceArea: number;
+  buildAt: Date;
+  description: string;
+  images: string[];
+  address: AddressProps;
+}
+
+interface PublicationProps {
+  id?: string;
+  userId: string;
+  homeId: string;
+  phone: string;
+  reserved: boolean;
+  views: number;
+  virtualTour: string;
+  rented: boolean;
+  home: HomeProps;
+}
+
+interface CardProps {
+  variant: 'primary' | 'secondary' | 'ternary';
+  size?: 'small' | 'normal';
+  publication: PublicationProps;
+  buttons: ButtonsProps;
+  onClick?: React.MouseEventHandler<HTMLDivElement> & (() => void);
+}
 
 export type { CardProps };

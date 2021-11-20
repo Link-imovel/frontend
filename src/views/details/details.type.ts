@@ -1,6 +1,6 @@
 import { HomeDetailFields } from '@store/models/store/store.interface';
 
-// import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
+import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
 
 interface ButtonsProps {
   BLogo: {
@@ -20,17 +20,17 @@ interface ButtonsProps {
   };
 }
 
-interface HomeDetailProps {
+interface DetailsProps {
   title: string;
   buttons: ButtonsProps;
-  // breadCrumb: BreadCrumbProps;
+  breadCrumb: BreadCrumbProps;
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;
 }
 
-interface HomeDetailViewProps extends Required<HomeDetailProps> {
+interface DetailsViewProps extends Required<DetailsProps> {
   data: HomeDetailFields;
   valid: boolean;
 }
 
-export type { HomeDetailProps, HomeDetailViewProps };
+export type { DetailsProps, DetailsViewProps };

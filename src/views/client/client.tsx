@@ -17,7 +17,7 @@ import { Formatters } from '@helpers/formatters';
 const Client = ({
   title,
   buttons,
-  // breadCrumb,
+  breadCrumb,
   handleData,
   handleValidation,
   valid,
@@ -35,7 +35,7 @@ const Client = ({
             icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
-          {/* <BreadCrumb paths={breadCrumb.paths} /> */}
+          <BreadCrumb paths={breadCrumb.paths} />
           <Button
             variant="transparent"
             label={buttons.BArrowBefore.label}

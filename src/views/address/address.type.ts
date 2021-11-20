@@ -1,6 +1,6 @@
 import { AddressFields } from '@store/models/store/store.interface';
 
-// import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
+import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
 
 interface ButtonsProps {
   BLogo: {
@@ -23,7 +23,7 @@ interface ButtonsProps {
 interface AddressProps {
   title: string;
   buttons: ButtonsProps;
-  // breadCrumb?: BreadCrumbProps;
+  breadCrumb?: BreadCrumbProps;
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;
 }

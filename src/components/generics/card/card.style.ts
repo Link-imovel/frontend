@@ -1,5 +1,6 @@
+import styled, { css } from 'styled-components';
+
 import { CardProps } from '@components/container/card/card.type';
-import styled from 'styled-components';
 
 const sizeMapper = {
   small: {
@@ -15,21 +16,24 @@ const sizeMapper = {
 const margin = {
   primary: '19px',
   secondary: '113px',
-  tertiary: '18px',
+  ternary: '18px',
 };
 
-const getMargin = (variant: 'primary' | 'secondary' | 'tertiary') => {
+const getMargin = (
+  variant: 'primary' | 'secondary' | 'ternary' | undefined
+) => {
+  if (variant === undefined) return null;
   return `
     margin-right: ${margin[variant || 'primary']};
   `;
 };
 
-const CardBody = styled.div<CardProps>`
+export const Body = styled.div<CardProps>`
   height: ${({ size }) => size && sizeMapper[size].height};
   width: ${({ size }) => size && sizeMapper[size].width};
 `;
 
-const Wrapper = styled.div<{
+export const Wrapper = styled.div<{
   sizePadding?: string;
 }>`
   height: inherit;
@@ -41,13 +45,13 @@ const Wrapper = styled.div<{
   box-sizing: border-box;
 `;
 
-const MainWrapper = styled.div`
+export const MainContent = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 `;
 
-const CardTitle = styled.span<{
+export const Title = styled.span<{
   sizeWidth?: string;
 }>`
   ${({ sizeWidth }) =>
@@ -57,7 +61,7 @@ const CardTitle = styled.span<{
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
-const CardAddress = styled.span<{
+export const Address = styled.span<{
   sizeWidth?: string;
 }>`
   ${({ sizeWidth }) =>
@@ -69,7 +73,7 @@ const CardAddress = styled.span<{
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
-const CardVisibility = styled.span<{
+export const Content = styled.span<{
   sizeWidth?: string;
 }>`
   ${({ sizeWidth }) =>
@@ -88,7 +92,7 @@ const CardVisibility = styled.span<{
   }
 `;
 
-const CardValue = styled.span<{
+export const Value = styled.span<{
   sizeWidth?: string;
 }>`
   ${({ sizeWidth }) =>
@@ -101,7 +105,7 @@ const CardValue = styled.span<{
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
-const CardNeighborhood = styled.span<{
+export const Location = styled.span<{
   sizeWidth?: string;
 }>`
   ${({ sizeWidth }) =>
@@ -112,8 +116,7 @@ const CardNeighborhood = styled.span<{
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
-const IconWrapper = styled.div`
-  margin-top: 12px;
+export const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -122,129 +125,67 @@ const IconWrapper = styled.div`
   color: ${({ theme: { colors } }) => colors.greyBlue};
 `;
 
-const Bed = styled.div<{
+export const IconContent = styled.div<{
   sizeWidth?: string;
+  variant: 'primary' | 'secondary';
 }>`
   ${({ sizeWidth }) =>
     sizeWidth?.match(/^(?!(small)).*$/g) ? 'width:132px' : 'width:120px'};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  svg {
-    margin-right: 13px;
-  }
+  ${({ variant }) => styles[variant]};
 `;
 
-const Bathroom = styled.div<{
-  sizeWidth?: string;
-}>`
-  ${({ sizeWidth }) =>
-    sizeWidth?.match(/^(?!(small)).*$/g) ? 'width:132px' : 'width:120px'};
+export const InfoContent = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  svg {
-    margin-right: 13px;
-  }
-`;
-
-const Car = styled.div<{
-  sizeWidth?: string;
-}>`
-  ${({ sizeWidth }) =>
-    sizeWidth?.match(/^(?!(small)).*$/g) ? 'width:132px' : 'width:120px'};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  svg {
-    margin-right: 13px;
-  }
-`;
-
-const InfoWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  font-style: normal;
-  font-weight: normal;
+  flex-direction: column;
   font-size: 13px;
   line-height: 15px;
 `;
 
-const CardInfo = styled.span`
+export const Info = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
 
-const Identity = styled.span`
-  width: 150px;
-  padding-top: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  svg {
-    margin-right: 13px;
-  }
-  color: ${({ theme: { colors } }) => colors.greyBlue};
-`;
-
-const Phone = styled.span`
-  width: 150px;
-  padding-top: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  svg {
-    margin-right: 13px;
-  }
-  color: ${({ theme: { colors } }) => colors.greyBlue};
-`;
-
-const ButtonsWrapper = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const ButtonWhatsApp = styled.div<{
-  margin: 'primary' | 'secondary' | 'tertiary';
+export const ButtonContent = styled.div<{
+  type: 'edit' | 'delete' | 'navigation' | 'default';
+  margin?: 'primary' | 'secondary' | 'ternary';
 }>`
+  ${({ type }) => styles[type]};
   ${({ margin }) => getMargin(margin)};
 `;
 
-const ButtonEdit = styled.div`
-  margin-right: 1px;
-`;
-
-const ButtonDelete = styled.div`
-  margin-right: 17px;
-`;
-
-const ButtonNavigation = styled.div`
-  margin-right: 9px;
-`;
-
-const ButtonContact = styled.div``;
-
-export {
-  CardBody,
-  Wrapper,
-  MainWrapper,
-  CardTitle,
-  CardAddress,
-  CardVisibility,
-  CardValue,
-  CardNeighborhood,
-  IconWrapper,
-  Bathroom,
-  Bed,
-  Car,
-  InfoWrapper,
-  CardInfo,
-  Identity,
-  Phone,
-  ButtonsWrapper,
-  ButtonWhatsApp,
-  ButtonEdit,
-  ButtonDelete,
-  ButtonNavigation,
-  ButtonContact,
+const styles = {
+  primary: css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+      margin-right: 13px;
+    }
+  `,
+  secondary: css`
+    width: 150px;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    svg {
+      margin-right: 13px;
+    }
+    color: ${({ theme: { colors } }) => colors.greyBlue};
+  `,
+  edit: css`
+    margin-right: 1px;
+  `,
+  delete: css`
+    margin-right: 17px;
+  `,
+  navigation: css`
+    margin-right: 9px;
+  `,
+  default: css``,
 };

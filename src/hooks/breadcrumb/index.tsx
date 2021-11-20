@@ -5,7 +5,7 @@ import { BreadCrumbContextData } from './breadcrumb.type';
 
 const useBreadcrumb = (): BreadCrumbContextData => {
   const context = React.useContext(BreadCrumbContext);
-  if (!!context) {
+  if (typeof context === 'undefined') {
     throw new Error('useBreadcrumb must be used within a BreadcrumbProvider');
   }
   return context;

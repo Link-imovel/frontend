@@ -6,6 +6,7 @@ import { Dispatch, RootState } from '@store/index';
 
 import { Client } from '@views/client';
 import { ClientProps } from '@views/client/client.type';
+import { useBreadcrumb } from '@hooks/breadcrumb';
 
 const ClientContainer = (props: ClientProps): React.ReactElement => {
   const { BArrowBefore, BLogo, BCreate } = props.buttons;
@@ -19,13 +20,21 @@ const ClientContainer = (props: ClientProps): React.ReactElement => {
 
   const router = useRouter();
 
+  const { paths, next, previous } = useBreadcrumb();
+
   const dispatch = useDispatch<Dispatch>();
+
+  React.useEffect(() => {
+    next({ title: props.title, url: router.asPath });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.title, router]);
 
   BLogo.callback = () => {
     router.push('/');
   };
 
   BArrowBefore.callback = () => {
+    previous();
     router.push('/homedetail');
   };
 
@@ -60,6 +69,7 @@ const ClientContainer = (props: ClientProps): React.ReactElement => {
       data={data}
       options={[]}
       {...props}
+      breadCrumb={{ paths }}
     />
   );
 };

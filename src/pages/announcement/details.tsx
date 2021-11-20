@@ -2,11 +2,11 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import strapiClient from '@services/strapi.client';
 
-import HomeDetailContainer from '@containers/homedetail';
-import { HomeDetailProps } from '@views/homedetail/homedetail.type';
+import DetailsContainer from '@containers/details';
+import { DetailsProps } from '@views/details/details.type';
 
-const HomeDetail = (props: HomeDetailProps): React.ReactElement => (
-  <HomeDetailContainer {...props} />
+const Details = (props: DetailsProps): React.ReactElement => (
+  <DetailsContainer {...props} />
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -22,4 +22,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-export default HomeDetail;
+export default Details;
