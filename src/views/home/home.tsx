@@ -20,8 +20,8 @@ const Home = ({
     <Page
       header={
         <Header
-          userName={userName}
           {...header}
+          userName={userName}
           handleData={handleData}
           isLogged={isLogged}
         />

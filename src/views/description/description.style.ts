@@ -1,5 +1,115 @@
 import styled, { css } from 'styled-components';
 
+export const Container = styled.div`
+  padding: 2% 8%;
+  width: 100%;
+  height: 100%;
+`;
+
+export const HeaderContent = styled.div`
+  margin-bottom: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Title = styled.span<{ variant: 'primary' | 'secondary' }>`
+  ${({ variant }) => styles[variant]};
+`;
+
+export const Subtitle = styled.span`
+  font-size: ${({ theme: { text } }) => text.sizes.small};
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    margin-top: 14px;
+  }
+`;
+
+export const Value = styled.span`
+  font-size: ${({ theme: { text } }) => text.sizes.large};
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    margin: 14px 0 20px 0;
+  }
+`;
+
+export const Content = styled.div<{ variant: 'flex' | 'grid' }>`
+  ${({ variant }) => styles[variant]}
+`;
+
+export const OverviewContent = styled.div`
+  grid-area: columnA;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const IconContent = styled.div`
+  margin-top: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 165px;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    display: flex;
+    margin-right: 0;
+  }
+`;
+
+export const DescriptionContent = styled.div`
+  grid-area: columnA;
+`;
+
+export const Text = styled.p`
+  margin-top: 22px;
+  max-width: 571px;
+  font-size: ${({ theme: { text } }) => text.sizes.small};
+  color: ${({ theme: { colors } }) => colors.blackGrey};
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    margin-top: 14px;
+  }
+`;
+
+export const ContactContainer = styled.div`
+  grid-area: columnB;
+`;
+
+export const LocateContent = styled.div`
+  width: 100%;
+  height: 545px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const MapContainer = styled.div`
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+`;
+
+export const Line = styled.div`
+  margin: 45px 0;
+  border: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
+`;
+
 export const Wrapper = styled.div<{ hasIcon?: boolean }>`
   display: flex;
   ${({ hasIcon }) =>
@@ -15,120 +125,17 @@ export const Wrapper = styled.div<{ hasIcon?: boolean }>`
       : 'flex-direction: column;'}
 `;
 
-export const Line = styled.div`
-  margin: 45px 0;
-  border: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
-`;
-
-export const DescriptionContainer = styled.div`
-  padding: 2% 8%;
-  width: 100%;
-  height: 100%;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-`;
-
-export const HeaderWrapper = styled.div`
-  margin-bottom: 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const DescriptionWrapper = styled.div<{ variant: 'flex' | 'grid' }>`
-  ${({ variant }) => styles[variant]}
-`;
-
-export const DescriptionTitle = styled.span`
-  font-size: ${({ theme: { text } }) => text.sizes.large};
-  font-weight: ${({ theme: { text } }) => text.weight.medium};
-  color: ${({ theme: { colors } }) => colors.blackGrey};
-`;
-
-export const DescriptionSubtitle = styled.span`
-  font-size: ${({ theme: { text } }) => text.sizes.small};
-  color: ${({ theme: { colors } }) => colors.blackGrey};
-`;
-
-export const DescriptionValue = styled.span`
-  font-size: ${({ theme: { text } }) => text.sizes.large};
-  color: ${({ theme: { colors } }) => colors.blackGrey};
-`;
-
-export const DescriptionOverviewWrapper = styled.div`
-  grid-area: columnA;
-  height: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-`;
-
-export const DescriptionOverviewTitle = styled.span`
-  font-size: ${({ theme: { text } }) => text.sizes.medium};
-  color: ${({ theme: { colors } }) => colors.greyBlue};
-`;
-
-export const DescriptionIconContainer = styled.div`
-  margin-top: 22px;
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-`;
-
-export const DescriptionIconWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-right: 165px;
-`;
-
-export const DescriptionTextWrapper = styled.div`
-  grid-area: columnA;
-`;
-
-export const DescriptionTextTitle = styled.span`
-  font-size: ${({ theme: { text } }) => text.sizes.medium};
-  color: ${({ theme: { colors } }) => colors.greyBlue};
-`;
-
-export const DescriptionText = styled.p`
-  margin-top: 22px;
-  max-width: 571px;
-  font-size: ${({ theme: { text } }) => text.sizes.small};
-  color: ${({ theme: { colors } }) => colors.blackGrey};
-`;
-
-export const DescriptionContactWrapper = styled.div`
-  grid-area: columnB;
-`;
-
-export const DescriptionLocateWrapper = styled.div`
-  width: 100%;
-  height: 545px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-export const DescriptionLocateTitle = styled.span`
-  font-size: ${({ theme: { text } }) => text.sizes.medium};
-  color: ${({ theme: { colors } }) => colors.greyBlue};
-`;
-
-export const DescriptionMapWrapper = styled.div`
-  width: 100%;
-  height: 500px;
-  border-radius: 8px;
-  overflow: hidden;
-`;
-
 const styles = {
   flex: css`
     margin-bottom: 45px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media ${({ theme: { device } }) => device.laptop.max} {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+    }
   `,
   grid: css`
     margin-bottom: 45px;
@@ -136,5 +143,21 @@ const styles = {
     grid-template-columns: 1fr 350px;
     grid-template-areas: 'columnA columnB';
     gap: 50px;
+    @media ${({ theme: { device } }) => device.laptop.max} {
+      display: flex;
+      flex-direction: column;
+    }
+  `,
+  primary: css`
+    font-size: ${({ theme: { text } }) => text.sizes.large};
+    font-weight: ${({ theme: { text } }) => text.weight.medium};
+    color: ${({ theme: { colors } }) => colors.blackGrey};
+  `,
+  secondary: css`
+    font-size: ${({ theme: { text } }) => text.sizes.medium};
+    color: ${({ theme: { colors } }) => colors.greyBlue};
+    @media ${({ theme: { device } }) => device.laptop.max} {
+      margin-bottom: 14px;
+    }
   `,
 };

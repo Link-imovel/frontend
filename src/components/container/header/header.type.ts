@@ -18,5 +18,5 @@ export type HeaderProps = {
   subtitle: string;
   buttons: ButtonsProps;
   isLogged: boolean;
-  handleData?: (fieldName: string, value: any) => void;
+  handleData: (fieldName: string, value: any) => void;
 };

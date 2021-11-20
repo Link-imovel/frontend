@@ -24,6 +24,12 @@ export const MainContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    align-items: unset;
+    & > div:last-child {
+      align-self: center;
+    }
+  }
 `;
 
 export const Title = styled.span`

@@ -10,27 +10,40 @@ interface ButtonsProps {
   };
 }
 
-interface OverviewProps {
-  bathroom: number;
+interface AddressProps {
+  id: string;
+  street: string;
+  street2: string;
+  city: string;
+  state: string;
+  ibge: string;
+  neighborhood: string;
+  number: number;
+  zip: string;
+}
+
+interface CreateHome {
+  type: string;
+  ref: string;
+  totalArea: number;
+  value: number;
+  room: number;
   bedroom: number;
-  garage: number;
-  livingroom: number;
+  bathroom: number;
   kitchen: number;
-  laundry: number;
-  constructionYear: string;
-  typeImovel: string;
-  areaImovel: string;
+  garage: number;
+  serviceArea: number;
+  description: string;
+  buildAt: string;
+  address: AddressProps;
+  images?: Array<[]>;
 }
 
 export type DesciptionProps = {
   user: string;
   isLogged: boolean;
   buttons: ButtonsProps;
-  title: string;
-  subtitle: string;
-  text: string;
-  value: string;
-  handleData?: (fieldName: string, value: any) => void;
+  home: CreateHome;
+  handleData: (fieldName: string, value: any) => void;
   place: MapProps;
-  overview: OverviewProps;
 };

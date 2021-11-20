@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: center;
   box-sizing: border-box;
   @media ${({ theme: { device } }) => device.laptop.max} {
+    display: flex;
     flex-direction: column;
   }
 `;
@@ -70,6 +71,8 @@ export const ImageDndContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+  }
 `;
 
 const styles = {

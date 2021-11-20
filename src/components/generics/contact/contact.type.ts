@@ -1,3 +1,3 @@
 export type ContactProps = {
-  handleData?: (fieldName: string, value: any) => void;
+  handleData: (fieldName: string, value: any) => void;
 };

@@ -2,7 +2,7 @@ interface UserProps {
   id: string;
   name: string;
   email: string;
-  cresci: string;
+  creci: string;
   telephone: string;
   type: string;
 }

@@ -20,7 +20,7 @@ const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
     setData({ ...data, [fieldName]: value });
   };
 
-  return <Description handleData={handleData} {...props} />;
+  return <Description {...props} handleData={handleData} />;
 };
 
 export default DescriptionContainer;

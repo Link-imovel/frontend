@@ -32,7 +32,6 @@ const getSize = (
   return `
       width: ${width};
       height: ${height};
-      max-height: ${height};
     `;
 };
 

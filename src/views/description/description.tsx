@@ -5,19 +5,23 @@ import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Gallery } from '@components/container/gallery';
 import { Contact } from '@components/generics/contact';
+import { UserView } from '@components/generics/userview';
 
-import * as S from './description.style';
 import { Logo } from '@components/generics/icons/logo';
-import { User } from '@components/generics/icons/user';
 import { Chair } from '@components/generics/icons/chair';
 import { FlatWare } from '@components/generics/icons/flatware';
-import { DesciptionProps } from './description.type';
-import { colors } from '@theme/theme/default';
 import { DryCleaning } from '@components/generics/icons/drycleaning';
 import { Calendar } from '@components/generics/icons/calendar';
 import { Building } from '@components/generics/icons/building';
+import { Bathroom } from '@components/generics/icons/bathroom';
+import { Bed } from '@components/generics/icons/bed';
+import { Car } from '@components/generics/icons/car';
 import { Area } from '@components/generics/icons/area';
-import { UserView } from '@components/generics/userview';
+
+import * as S from './description.style';
+import { DesciptionProps } from './description.type';
+import { colors } from '@theme/theme/default';
+import { Formatters } from '@helpers/formatters';
 
 const Map = dynamic(() => import('@components/generics/map'), { ssr: false });
 
@@ -25,18 +29,14 @@ const Description = ({
   user,
   isLogged,
   buttons,
-  title,
-  subtitle,
-  text,
-  value,
+  home,
   handleData,
   place,
-  overview,
-}: Required<DesciptionProps>): React.ReactElement => {
+}: DesciptionProps): React.ReactElement => {
   return (
     <Page>
-      <S.DescriptionContainer>
-        <S.HeaderWrapper>
+      <S.Container>
+        <S.HeaderContent>
           <Button
             variant="transparent"
             size="xsmall"
@@ -53,84 +53,89 @@ const Description = ({
               onClick={buttons.BLogin.callback}
             />
           )}
-        </S.HeaderWrapper>
-        <S.DescriptionWrapper variant="flex">
+        </S.HeaderContent>
+        <S.Content variant="flex">
           <S.Wrapper>
-            <S.DescriptionTitle>{title}</S.DescriptionTitle>
-            <S.DescriptionSubtitle>{subtitle}</S.DescriptionSubtitle>
+            <S.Title variant="primary">
+              {home.type} - {home.address.neighborhood}
+            </S.Title>
+            <S.Subtitle>
+              {home.address.number}, {home.address.street}, {home.address.state}
+              , {home.address.city}
+            </S.Subtitle>
           </S.Wrapper>
-          <S.DescriptionValue>{value}</S.DescriptionValue>
-        </S.DescriptionWrapper>
+          <S.Value>{Formatters.formatPrice(String(home.value))}</S.Value>
+        </S.Content>
         <Gallery backgroundColor={colors.blackGrey} />
         <S.Line />
-        <S.DescriptionWrapper variant="grid">
+        <S.Content variant="grid">
           <S.Wrapper>
-            <S.DescriptionOverviewWrapper>
-              <S.DescriptionOverviewTitle>
-                Overview do Proprietario
-              </S.DescriptionOverviewTitle>
-              <S.DescriptionIconContainer>
-                <S.DescriptionIconWrapper>
+            <S.OverviewContent>
+              <S.Title variant="secondary">Overview do Proprietario</S.Title>
+              <S.IconContent>
+                <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
-                    <User width={20} height={20} />{' '}
-                    <span>{overview.bathroom} Banheiro</span>
+                    <Bathroom width={20} height={20} />{' '}
+                    <span>{home.bathroom} Banheiro</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
-                    <User width={20} height={20} />{' '}
-                    <span>{overview.bedroom} Quartos</span>
+                    <Bed width={20} height={20} />{' '}
+                    <span>{home.bedroom} Quartos</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
-                    <User width={20} height={20} />{' '}
-                    <span>{overview.garage} Vagas</span>
+                    <Car width={20} height={20} />{' '}
+                    <span>{home.garage} Vagas</span>
                   </S.Wrapper>
-                </S.DescriptionIconWrapper>
-                <S.DescriptionIconWrapper>
+                </S.IconContainer>
+                <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Chair width={20} height={20} />{' '}
-                    <span>{overview.livingroom} Salas</span>
+                    <span>{home.room} Salas</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <FlatWare width={20} height={20} />{' '}
-                    <span>{overview.kitchen} Cozinha</span>
+                    <span>{home.kitchen} Cozinha</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <DryCleaning width={20} height={20} />{' '}
-                    <span>{overview.laundry} Area de serviço</span>
+                    <span>{home.serviceArea} Area de serviço</span>
                   </S.Wrapper>
-                </S.DescriptionIconWrapper>
-                <S.DescriptionIconWrapper>
+                </S.IconContainer>
+                <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Calendar width={20} height={20} />{' '}
-                    <span>Ano da construção: {overview.constructionYear}</span>
+                    <span>Ano da construção: {home.buildAt}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Building width={20} height={20} />{' '}
-                    <span>Tipo do Imovel: {overview.typeImovel}</span>
+                    <span>Tipo do Imovel: {home.type}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Area width={20} height={20} />{' '}
-                    <span>Area total do imóvel : {overview.areaImovel}</span>
+                    <span>
+                      Area total do imóvel : {home.totalArea}m<sup>2</sup>
+                    </span>
                   </S.Wrapper>
-                </S.DescriptionIconWrapper>
-              </S.DescriptionIconContainer>
-            </S.DescriptionOverviewWrapper>
+                </S.IconContainer>
+              </S.IconContent>
+            </S.OverviewContent>
             <S.Line />
-            <S.DescriptionTextWrapper>
-              <S.DescriptionTextTitle>Descrição</S.DescriptionTextTitle>
-              <S.DescriptionText>{text}</S.DescriptionText>
-            </S.DescriptionTextWrapper>
+            <S.DescriptionContent>
+              <S.Title variant="secondary">Descrição</S.Title>
+              <S.Text>{home.description}</S.Text>
+            </S.DescriptionContent>
           </S.Wrapper>
-          <S.DescriptionContactWrapper>
+          <S.ContactContainer>
             <Contact handleData={handleData} />
-          </S.DescriptionContactWrapper>
-        </S.DescriptionWrapper>
-        <S.DescriptionLocateWrapper>
-          <S.DescriptionLocateTitle>Localização</S.DescriptionLocateTitle>
-          <S.DescriptionMapWrapper>
+          </S.ContactContainer>
+        </S.Content>
+        <S.LocateContent>
+          <S.Title variant="secondary">Localização</S.Title>
+          <S.MapContainer>
             <Map location={place.location} />
-          </S.DescriptionMapWrapper>
-        </S.DescriptionLocateWrapper>
-      </S.DescriptionContainer>
+          </S.MapContainer>
+        </S.LocateContent>
+      </S.Container>
     </Page>
   );
 };

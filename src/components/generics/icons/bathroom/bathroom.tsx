@@ -1,5 +1,6 @@
-import { colors } from '@theme/theme/default';
 import React, { SVGProps } from 'react';
+
+import { colors } from '@theme/theme/default';
 
 const Bathroom = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
   return (
@@ -8,7 +9,8 @@ const Bathroom = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
       height="20px"
       viewBox="0 0 24 24"
       width="20px"
-      fill={colors.greyBlue}
+      fill={colors.blackGrey}
+      {...props}
     >
       <g>
         <rect fill="none" height="24" width="24" />

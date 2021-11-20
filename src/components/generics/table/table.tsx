@@ -27,7 +27,7 @@ const Table = ({ users }: Required<TableProps>): React.ReactElement => {
           <S.Tr key={user.id}>
             <S.Td>{user.name}</S.Td>
             <S.Td>{user.email}</S.Td>
-            <S.Td>{user.cresci}</S.Td>
+            <S.Td>{user.creci}</S.Td>
             <S.Td>{user.telephone}</S.Td>
             <S.Td>{user.type}</S.Td>
             <S.Td>

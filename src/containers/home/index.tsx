@@ -11,11 +11,8 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   const [cards, setCards] = React.useState<CardProps[]>([]);
   const [data, setData] = React.useState({});
 
-  const router = useRouter();
-
   React.useEffect(() => {
     setCards([
-      ...cards,
       {
         images: [
           'https://via.placeholder.com/269x143?text=1',
@@ -44,8 +41,9 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
         phoneNumber: '(41) 99119-9642',
       },
     ]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const router = useRouter();
 
   BLogo.callback = () => {
     console.log(1);
@@ -66,10 +64,10 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   return (
     <Home
       userName="John"
-      {...props}
       cards={cards}
+      isLogged={false}
+      {...props}
       handleData={handleData}
-      isLogged={true}
     />
   );
 };

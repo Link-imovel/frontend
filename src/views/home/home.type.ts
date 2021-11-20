@@ -5,7 +5,7 @@ import { CardProps } from '@components/generics/card/card.type';
 interface HomeProps {
   header: HeaderProps;
   footer: FooterProps;
-  handleData?: (fieldName: string, value: any) => void;
+  handleData: (fieldName: string, value: any) => void;
 }
 
 interface HomeViewProps extends Required<HomeProps> {

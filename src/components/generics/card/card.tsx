@@ -58,13 +58,13 @@ const Card = ({
           </S.MainWrapper>
           <S.IconWrapper>
             <S.Bed sizeWidth={size}>
-              <Bed /> {quantityRoom} quarto(s)
+              <Bed fill={colors.greyBlue} /> {quantityRoom} quarto(s)
             </S.Bed>
             <S.Bathroom sizeWidth={size}>
-              <Bathroom /> {quantityBathroom} banheiro(s)
+              <Bathroom fill={colors.greyBlue} /> {quantityBathroom} banheiro(s)
             </S.Bathroom>
             <S.Car sizeWidth={size}>
-              <Car /> {quantityGarage} vaga(s)
+              <Car fill={colors.greyBlue} /> {quantityGarage} vaga(s)
             </S.Car>
           </S.IconWrapper>
           {size === 'normal' && (
