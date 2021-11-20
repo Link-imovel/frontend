@@ -1,19 +1,21 @@
 import HttpClient from '@services/http.client';
 import { createModel } from '@rematch/core';
 
-import { User, UserState } from './user.interface';
+import { User, UserAuth, UserState } from './user.interface';
 import { RootModel } from '@store/models';
 
 const user = createModel<RootModel>()({
   state: {
     user: {},
+    access_token: '',
     users: [{}],
   } as UserState,
   reducers: {
-    SET_USER: (state: UserState, user: User) => {
+    SET_USER: <T extends UserAuth>(state: UserState, user: T) => {
       return {
         ...state,
-        user,
+        access_token: user?.access_token || state.access_token,
+        user: user?.user || user,
       };
     },
     SET_USERS: (state: UserState, users: User[]) => {
@@ -25,6 +27,7 @@ const user = createModel<RootModel>()({
     clear: (): UserState => {
       return {
         user: {},
+        access_token: '',
         users: [{}],
       } as UserState;
     },
@@ -43,6 +46,22 @@ const user = createModel<RootModel>()({
       async getAll(): Promise<void> {
         user.SET_USERS({
           ...(await HttpClient.setPath('/user').setMethod('GET').send()),
+        });
+      },
+      async login(data: User): Promise<void> {
+        user.SET_USER({
+          ...(await HttpClient.setPath('/user')
+            .setMethod('POST')
+            .setData(data)
+            .send()),
+        });
+      },
+      async refreshLogin(oldToken: string): Promise<void> {
+        user.SET_USER({
+          ...(await HttpClient.setPath('/token/refresh')
+            .setMethod('PUT')
+            .setData({ oldToken })
+            .send()),
         });
       },
       async create(data: User): Promise<void> {
