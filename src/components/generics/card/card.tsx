@@ -1,9 +1,6 @@
 import React from 'react';
 
-import * as S from './card.style';
-import { CardProps } from './card.type';
-
-import { Card as CardContainer } from '@components/container/card';
+import { Card as Container } from '@components/container/card';
 import { Button } from '@components/generics/button';
 import { Carousel } from '@components/generics/carousel';
 
@@ -14,72 +11,118 @@ import { WhatsApp } from '../icons/whatsapp';
 import { Navigation } from '../icons/navigation';
 import { Edit } from '../icons/edit';
 import { Delete } from '../icons/delete';
-import { colors } from '@theme/theme/default/colors';
 import { Visibility } from '../icons/visibility';
 import { PermIdentity } from '../icons/permidentity';
 import { PhoneIphone } from '../icons/phoneiphone';
 
+import * as S from './card.style';
+import { CardProps } from './card.type';
+import { colors } from '@theme/theme/default/colors';
+import { Formatters } from '@helpers/formatters';
+
 const Card = ({
   variant,
-  images,
   size,
-  title,
-  address,
-  quantityViews,
-  labelViews,
-  value,
-  neighborhood,
-  quantityRoom,
-  quantityBathroom,
-  quantityGarage,
-  info,
-  name,
-  phoneNumber,
+  publication,
   buttons,
   onClick,
-}: CardProps): JSX.Element => {
+}: CardProps): React.ReactElement => {
+  const renderInfo = React.useCallback((): JSX.Element | null => {
+    if (size === 'normal') {
+      return (
+        <>
+          <S.InfoContent>
+            <S.Info>Apartamento 2 E 3 Quartos no Noroeste - Vivant</S.Info>
+            <S.IconContainer>
+              <S.IconContent variant="secondary">
+                <PermIdentity fill={colors.greyBlue} /> <span>John Field</span>
+              </S.IconContent>
+              <S.IconContent variant="secondary">
+                <PhoneIphone fill={colors.greyBlue} />{' '}
+                <span>{publication.phone}</span>
+              </S.IconContent>
+            </S.IconContainer>
+          </S.InfoContent>
+        </>
+      );
+    }
+    return null;
+  }, [publication.phone, size]);
+
+  const renderFunctions = React.useCallback((): JSX.Element | null => {
+    if (variant === 'ternary') {
+      return (
+        <>
+          <S.ButtonContent type="edit">
+            <Button
+              variant="transparent"
+              size="small"
+              radius="square"
+              icon={<Edit height={20} width={20} fill={colors.whiteGrey} />}
+              onClick={buttons.BEdit?.callback}
+            />
+          </S.ButtonContent>
+          <S.ButtonContent type="delete">
+            <Button
+              variant="transparent"
+              size="small"
+              radius="square"
+              icon={<Delete height={20} width={20} fill={colors.whiteGrey} />}
+              onClick={buttons.BDelete?.callback}
+            />
+          </S.ButtonContent>
+        </>
+      );
+    }
+    return null;
+  }, [buttons.BDelete?.callback, buttons.BEdit?.callback, variant]);
+
+  const renderViews = React.useCallback((): JSX.Element | null => {
+    if (variant === 'secondary' || variant === 'ternary') {
+      return (
+        <>
+          <S.Content sizeWidth={size}>
+            <Visibility /> <span>{publication.views} views</span>
+          </S.Content>
+        </>
+      );
+    }
+    return null;
+  }, [publication.views, size, variant]);
+
   return (
-    <CardContainer size={size || 'small'} onClick={onClick}>
-      <Carousel images={images || ''} size={size || 'small'} />
-      <S.CardBody size={size || 'small'}>
+    <Container size={size || 'small'} onClick={onClick}>
+      <Carousel images={publication.home.images || ''} size={size || 'small'} />
+      <S.Body size={size || 'small'}>
         <S.Wrapper sizePadding={size}>
-          <S.MainWrapper>
-            <S.CardTitle sizeWidth={size}>{title}</S.CardTitle>
-            <S.CardAddress sizeWidth={size}>{address}</S.CardAddress>
-            <S.CardVisibility sizeWidth={size}>
-              <Visibility />
-              {quantityViews}
-              {labelViews}
-            </S.CardVisibility>
-            <S.CardValue sizeWidth={size}>{value} </S.CardValue>
-            <S.CardNeighborhood sizeWidth={size}>
-              {neighborhood}
-            </S.CardNeighborhood>
-          </S.MainWrapper>
-          <S.IconWrapper>
-            <S.Bed sizeWidth={size}>
-              <Bed fill={colors.greyBlue} /> {quantityRoom} quarto(s)
-            </S.Bed>
-            <S.Bathroom sizeWidth={size}>
-              <Bathroom fill={colors.greyBlue} /> {quantityBathroom} banheiro(s)
-            </S.Bathroom>
-            <S.Car sizeWidth={size}>
-              <Car fill={colors.greyBlue} /> {quantityGarage} vaga(s)
-            </S.Car>
-          </S.IconWrapper>
-          {size === 'normal' && (
-            <S.InfoWrapper>
-              <S.CardInfo>{info}</S.CardInfo>
-              <S.Identity>
-                <PermIdentity /> {name}
-              </S.Identity>
-              <S.Phone>
-                <PhoneIphone /> {phoneNumber}
-              </S.Phone>
-            </S.InfoWrapper>
-          )}
-          <S.ButtonsWrapper>
-            <S.ButtonWhatsApp margin={variant}>
+          <S.MainContent>
+            <S.Title sizeWidth={size}>A partir de</S.Title>
+            <S.Address sizeWidth={size}>{publication.home.ref}</S.Address>
+            {renderViews()}
+            <S.Value sizeWidth={size}>
+              {Formatters.formatPrice(String(publication.home.value))}
+            </S.Value>
+            <S.Location sizeWidth={size}>
+              {publication.home.address.state}, {publication.home.address.city}
+            </S.Location>
+          </S.MainContent>
+          <S.IconContainer>
+            <S.IconContent sizeWidth={size} variant="primary">
+              <Bed fill={colors.greyBlue} />{' '}
+              <span>{publication.home.bedroom} quarto(s)</span>
+            </S.IconContent>
+            <S.IconContent sizeWidth={size} variant="primary">
+              <Bathroom fill={colors.greyBlue} />{' '}
+              <span>{publication.home.bathroom} banheiro(s)</span>
+            </S.IconContent>
+            <S.IconContent sizeWidth={size} variant="primary">
+              <Car fill={colors.greyBlue} />{' '}
+              <span>{publication.home.garage} vaga(s)</span>
+            </S.IconContent>
+          </S.IconContainer>
+          {renderInfo()}
+          <S.ButtonContainer>
+            <S.ButtonContent margin={variant} type="default">
               <Button
                 variant="primary-circle"
                 size="small"
@@ -89,32 +132,9 @@ const Card = ({
                 }
                 onClick={buttons.BCircleWhatsApp.callback}
               />
-            </S.ButtonWhatsApp>
-            {variant === 'tertiary' && (
-              <S.ButtonEdit>
-                <Button
-                  variant="transparent"
-                  size="small"
-                  radius="square"
-                  icon={<Edit height={20} width={20} fill={colors.whiteGrey} />}
-                  onClick={buttons.BEdit?.callback}
-                />
-              </S.ButtonEdit>
-            )}
-            {variant === 'tertiary' && (
-              <S.ButtonDelete>
-                <Button
-                  variant="transparent"
-                  size="small"
-                  radius="square"
-                  icon={
-                    <Delete height={20} width={20} fill={colors.whiteGrey} />
-                  }
-                  onClick={buttons.BDelete?.callback}
-                />
-              </S.ButtonDelete>
-            )}
-            <S.ButtonNavigation>
+            </S.ButtonContent>
+            {renderFunctions()}
+            <S.ButtonContent type="navigation">
               <Button
                 variant="secondary-square"
                 size={buttons.BNavigation.typeSize}
@@ -126,8 +146,8 @@ const Card = ({
                 iconReverse={true}
                 onClick={buttons.BNavigation.callback}
               />
-            </S.ButtonNavigation>
-            <S.ButtonContact>
+            </S.ButtonContent>
+            <S.ButtonContent type="default">
               <Button
                 variant="primary"
                 label={buttons.BContact.label}
@@ -136,11 +156,11 @@ const Card = ({
                 color={colors.blackGrey}
                 onClick={buttons.BContact.callback}
               />
-            </S.ButtonContact>
-          </S.ButtonsWrapper>
+            </S.ButtonContent>
+          </S.ButtonContainer>
         </S.Wrapper>
-      </S.CardBody>
-    </CardContainer>
+      </S.Body>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
 import { ClientFields } from '@store/models/store/store.interface';
 
-// import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
+import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
 import { DropdownOption } from '@components/generics/dropdown/dropdown.type';
 
 interface ButtonsProps {
@@ -24,7 +24,7 @@ interface ButtonsProps {
 interface ClientProps {
   title: string;
   buttons: ButtonsProps;
-  // breadCrumb: BreadCrumbProps;
+  breadCrumb: BreadCrumbProps;
   options?: Array<DropdownOption>;
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;

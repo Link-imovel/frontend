@@ -6,6 +6,7 @@ import { Dispatch, RootState } from '@store/index';
 
 import { Address } from '@views/address';
 import { AddressProps } from '@views/address/address.type';
+import { useBreadcrumb } from '@hooks/breadcrumb';
 
 const AddressContainer = (props: AddressProps): React.ReactElement => {
   const { BArrowAfter, BArrowBefore, BLogo, BNext } = props.buttons;
@@ -19,18 +20,25 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
 
   const router = useRouter();
 
+  const { paths, next } = useBreadcrumb();
+
   const dispatch = useDispatch<Dispatch>();
+
+  React.useEffect(() => {
+    next({ title: props.title, url: router.asPath });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.title, router]);
 
   BLogo.callback = () => {
     router.push('/');
   };
 
   BArrowBefore.callback = () => {
-    router.push('/list/anuncements');
+    router.push('/list/announcements');
   };
 
   BArrowAfter.callback = () => {
-    router.push('/homedetail');
+    router.push('/announcement/details ');
   };
 
   BNext.callback = () => {
@@ -58,6 +66,7 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
 
   return (
     <Address
+      breadCrumb={{ paths }}
       valid={formValid}
       handleData={handleData}
       handleValidation={handleValidation}

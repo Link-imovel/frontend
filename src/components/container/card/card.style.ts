@@ -24,4 +24,5 @@ export const CardContainer = styled.div<CardContainerProp>`
   width: ${({ size }) => size && sizeMapper[size].width};
   background-color: ${({ theme: { colors } }) => colors.lightGreyBlue};
   border-radius: 10px;
+  cursor: pointer;
 `;

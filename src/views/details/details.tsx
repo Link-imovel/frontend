@@ -2,15 +2,15 @@ import React from 'react';
 
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
-// import { BreadCrumb } from '@components/generics/breadcrumb';
+import { BreadCrumb } from '@components/generics/breadcrumb';
 import { Dropdown } from '@components/generics/dropdown';
 import { Input } from '@components/generics/input';
 import { DatePickerInput } from '@components/generics/datepicker';
 import { TextArea } from '@components/generics/textarea';
 import { ImageDnD } from '@components/generics/imagednd';
 
-import * as S from './homedetail.style';
-import { HomeDetailViewProps } from './homedetail.type';
+import * as S from './details.style';
+import { DetailsViewProps } from './details.type';
 import { colors } from '@theme/theme/default';
 import { options } from '@components/generics/dropdown/dropdown.options';
 import { Logo } from '@components/generics/icons/logo';
@@ -18,15 +18,15 @@ import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
 import { Formatters } from '@helpers/formatters';
 
-const HomeDetail = ({
+const Details = ({
   title,
   buttons,
-  // breadCrumb,
+  breadCrumb,
   handleData,
   handleValidation,
   data,
   valid,
-}: HomeDetailViewProps): React.ReactElement => {
+}: DetailsViewProps): React.ReactElement => {
   return (
     <Page>
       <S.Container>
@@ -38,7 +38,7 @@ const HomeDetail = ({
             icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
-          {/* <BreadCrumb paths={breadCrumb.paths} /> */}
+          <BreadCrumb paths={breadCrumb.paths} />
           <S.NavigationWrapper>
             <Button
               variant="transparent"
@@ -231,4 +231,4 @@ const HomeDetail = ({
   );
 };
 
-export { HomeDetail };
+export { Details };

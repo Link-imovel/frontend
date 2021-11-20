@@ -3,7 +3,7 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
-// import { BreadCrumb } from '@components/generics/breadcrumb';
+import { BreadCrumb } from '@components/generics/breadcrumb';
 
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
@@ -17,7 +17,7 @@ import { Formatters } from '@helpers/formatters';
 const Address = ({
   title,
   buttons,
-  // breadCrumb,
+  breadCrumb,
   handleData,
   handleValidation,
   valid,
@@ -34,7 +34,7 @@ const Address = ({
             icon={<Logo fill={colors.blackGrey} />}
             onClick={buttons.BLogo.callback}
           />
-          {/* <BreadCrumb paths={breadCrumb.paths} /> */}
+          <BreadCrumb paths={breadCrumb.paths} />
           <S.NavigationWrapper>
             <Button
               variant="transparent"

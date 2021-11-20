@@ -4,10 +4,11 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
 
-import { HomeDetail } from '@views/homedetail';
-import { HomeDetailProps } from '@views/homedetail/homedetail.type';
+import { Details } from '@views/details';
+import { DetailsProps } from '@views/details/details.type';
+import { useBreadcrumb } from '@hooks/breadcrumb';
 
-const HomeDetailContainer = (props: HomeDetailProps): React.ReactElement => {
+const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   const { BArrowAfter, BArrowBefore, BLogo, BNext } = props.buttons;
   const store = useSelector((state: RootState) => state.store.createHomeDetail);
 
@@ -19,13 +20,21 @@ const HomeDetailContainer = (props: HomeDetailProps): React.ReactElement => {
 
   const router = useRouter();
 
+  const { next, previous, paths } = useBreadcrumb();
+
   const dispatch = useDispatch<Dispatch>();
+
+  React.useEffect(() => {
+    next({ title: props.title, url: router.asPath });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.title, router]);
 
   BLogo.callback = () => {
     router.push('/');
   };
 
   BArrowBefore.callback = () => {
+    previous();
     router.push('/address');
   };
 
@@ -57,14 +66,15 @@ const HomeDetailContainer = (props: HomeDetailProps): React.ReactElement => {
   };
 
   return (
-    <HomeDetail
+    <Details
       valid={formValid}
       handleValidation={handleValidation}
       handleData={handleData}
       data={data}
       {...props}
+      breadCrumb={{ paths }}
     />
   );
 };
 
-export default HomeDetailContainer;
+export default DetailsContainer;

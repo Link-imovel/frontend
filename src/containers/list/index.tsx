@@ -35,7 +35,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     )
       .setMethod('GET')
       .send();
-    console.log(reponse);
+    // console.log(reponse);
   };
 
   getPublications();
@@ -49,7 +49,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BCreateAnuncement.callback = () => {
-    router.push('/address');
+    router.push(props.routes?.next || '/address');
   };
 
   BCreateUser.callback = () => {

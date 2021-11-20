@@ -14,31 +14,61 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   React.useEffect(() => {
     setCards([
       {
-        images: [
-          'https://via.placeholder.com/269x143?text=1',
-          'https://via.placeholder.com/269x143?text=2',
-          'https://via.placeholder.com/269x143?text=3',
-        ],
         variant: 'primary',
         size: 'small',
-        title: 'A partir de',
-        address: 'SQNW 303 BLOCO',
-        value: 5000,
-        neighborhood: 'Noroeste, Brasilia',
-        quantityRoom: 5,
-        quantityGarage: 1,
-        quantityBathroom: 1,
+        publication: {
+          userId: '1',
+          homeId: '1',
+          phone: '(41) 99119-9642',
+          reserved: false,
+          views: 3,
+          virtualTour: 'https://google.com',
+          rented: true,
+          home: {
+            id: '1',
+            type: 'Casa',
+            ref: '234120',
+            totalArea: 145,
+            value: 1267.2,
+            room: 1,
+            bedroom: 3,
+            bathroom: 2,
+            kitchen: 1,
+            garage: 1,
+            serviceArea: 1,
+            buildAt: new Date('1990-12-12T00:00:00.000Z'),
+            description: 'Maravilhosa casa localizada perto do parque.',
+            images: [
+              'https://via.placeholder.com/269x143?text=1',
+              'https://via.placeholder.com/269x143?text=2',
+              'https://via.placeholder.com/269x143?text=3',
+            ],
+            address: {
+              id: '1',
+              street: 'Rua General Luiz Carlos Pereira Tourinho',
+              street2: '',
+              number: 509,
+              neighborhood: 'Campo de Santana',
+              city: 'Curitiba',
+              state: 'Paraná',
+              zip: '81490-516',
+              ibge: '2384920',
+            },
+          },
+        },
         buttons: {
-          BCircleWhatsApp: {},
+          BCircleWhatsApp: {
+            callback: () => console.log(1),
+          },
           BNavigation: {
             typeSize: 'small',
+            callback: () => console.log(2),
           },
           BContact: {
             label: 'Contatar',
+            callback: () => console.log(3),
           },
         },
-        name: 'John',
-        phoneNumber: '(41) 99119-9642',
       },
     ]);
   }, []);
@@ -54,7 +84,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   BShowImovels.callback = () => {
-    router.push('/list/anuncements');
+    router.push('list/anuncements');
   };
 
   const handleData = (fieldName: string, value: any) => {

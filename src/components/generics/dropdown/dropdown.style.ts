@@ -45,7 +45,9 @@ const DropdownContainer = styled.div<DropdownProps>`
   ${({ disabled }) => disabled && { pointerEvents: 'none', opacity: '0.6' }};
 `;
 
-const DropdownInputLabel = styled.span``;
+const DropdownInputLabel = styled.span`
+  color: ${({ theme: { colors } }) => colors.lightGrey};
+`;
 
 const DropdownInput = styled.div<OpenStatusProps>`
   display: flex;

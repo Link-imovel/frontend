@@ -17,6 +17,9 @@ const BreadCrumbProvider = ({
 
   const next = React.useCallback(
     (props: PathProps) => {
+      if (paths.find(({ url }) => url === props.url)) {
+        return;
+      }
       setPaths([...paths, { ...props }]);
     },
     [paths]
