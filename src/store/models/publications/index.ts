@@ -4,7 +4,6 @@ import { createModel } from '@rematch/core';
 import {
   PublicationStore,
   Publication,
-  ImageBase64,
   CreatePublication,
   UpdatePublication,
 } from './publications.interface';
@@ -19,7 +18,7 @@ const publication = createModel<RootModel>()({
   reducers: {
     SET_PUBLICATION: (
       state: PublicationStore,
-      publication: Publication<ImageBase64>
+      publication: Publication<string[]>
     ) => {
       return {
         ...state,
@@ -28,7 +27,7 @@ const publication = createModel<RootModel>()({
     },
     SET_PUBLICATIONS: (
       state: PublicationStore,
-      publications: Publication<ImageBase64>[]
+      publications: Publication<string[]>[]
     ) => {
       return {
         ...state,
@@ -53,50 +52,48 @@ const publication = createModel<RootModel>()({
     return {
       async get(id: string): Promise<void> {
         publication.SET_PUBLICATION(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath(`/publication/${id}`)
+          PublicationHelper.getImages<Publication<string[]>>(
+            await HttpClient.setPath(`/publication/${id}`)
               .setMethod('GET')
-              .send()),
-          })
+              .send()
+          )
         );
       },
       async getAll(): Promise<void> {
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath('/publication')
-              .setMethod('GET')
-              .send()),
-          })
+          PublicationHelper.getImages(
+            await HttpClient.setPath('/publication').setMethod('GET').send()
+          )
         );
       },
       async getAllByPage(page: number): Promise<void> {
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath('/publication')
+          PublicationHelper.getImages(
+            await HttpClient.setPath('/publication')
               .setParams({ page })
               .setMethod('GET')
-              .send()),
-          })
+              .send()
+          )
         );
       },
       async getAllBySearchWord(searchText: string): Promise<void> {
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath('/publication')
+          PublicationHelper.getImages(
+            await HttpClient.setPath('/publication')
               .setParams({ searchText })
               .setMethod('GET')
-              .send()),
-          })
+              .send()
+          )
         );
       },
       async create(payload: CreatePublication): Promise<void> {
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath(`/publication`)
+          PublicationHelper.getImages(
+            await HttpClient.setPath(`/publication`)
               .setMethod('POST')
               .setData(payload)
-              .send()),
-          })
+              .send()
+          )
         );
       },
       async update(payload: {
@@ -104,21 +101,21 @@ const publication = createModel<RootModel>()({
         data: UpdatePublication;
       }): Promise<void> {
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath(`/publication/${payload.id}`)
+          PublicationHelper.getImages(
+            await HttpClient.setPath(`/publication/${payload.id}`)
               .setMethod('PATCH')
               .setData(payload.data)
-              .send()),
-          })
+              .send()
+          )
         );
       },
       async activate(id: string): Promise<void> {
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath(`/publication/${id}/activate`)
+          PublicationHelper.getImages(
+            await HttpClient.setPath(`/publication/${id}/activate`)
               .setMethod('POST')
-              .send()),
-          })
+              .send()
+          )
         );
       },
       async deactivate(id: string): Promise<void> {
@@ -127,11 +124,9 @@ const publication = createModel<RootModel>()({
           .send();
 
         publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages({
-            ...(await HttpClient.setPath('/publication')
-              .setMethod('GET')
-              .send()),
-          })
+          PublicationHelper.getImages(
+            await HttpClient.setPath('/publication').setMethod('GET').send()
+          )
         );
       },
     };

@@ -29,7 +29,7 @@ interface Login {
 
 interface UserState {
   access_token?: string;
-  user: UserAuth;
+  user: User;
   users: User[];
 }
 

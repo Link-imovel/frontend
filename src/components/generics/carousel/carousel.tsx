@@ -4,6 +4,7 @@ import * as S from './carousel.style';
 import { CarouselProps } from './carousel.type';
 import { ChevronLeft } from '../icons/chevronleft';
 import { ChevronRight } from '../icons/chevronright';
+import { useRouter } from 'next/router';
 
 const Carousel = ({
   images,
@@ -53,15 +54,21 @@ const Carousel = ({
 
   return (
     <S.CarouselBody size={size || 'small'}>
-      <S.CarouselArrowL onClick={() => handleImage(selected)}>
-        {chevronLeft || <ChevronLeft />}
-      </S.CarouselArrowL>
+      {images.length > 1 && (
+        <S.CarouselArrowL onClick={() => handleImage(selected)}>
+          {chevronLeft || <ChevronLeft />}
+        </S.CarouselArrowL>
+      )}
       <S.CarouselSlider selectedTab={selected}>
-        {images && renderImages(images)}
+        {images.length > 0
+          ? renderImages(images)
+          : renderImages('/images/no-photo.png')}
       </S.CarouselSlider>
-      <S.CarouselArrowR onClick={() => handleImage(selected, true)}>
-        {chevronRight || <ChevronRight />}
-      </S.CarouselArrowR>
+      {images.length > 1 && (
+        <S.CarouselArrowR onClick={() => handleImage(selected, true)}>
+          {chevronRight || <ChevronRight />}
+        </S.CarouselArrowR>
+      )}
     </S.CarouselBody>
   );
 };
