@@ -55,6 +55,14 @@ class HttpClient {
     this.AxiosConfig.method = method;
     return this;
   }
+
+  public setBearer(token: string): HttpClient {
+    this.AxiosConfig.headers = {
+      ...this.AxiosConfig.headers,
+      Authorization: `Bearer ${token}`,
+    };
+    return this;
+  }
 }
 
 export default new HttpClient();

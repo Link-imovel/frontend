@@ -45,8 +45,9 @@ const DropdownContainer = styled.div<DropdownProps>`
   ${({ disabled }) => disabled && { pointerEvents: 'none', opacity: '0.6' }};
 `;
 
-const DropdownInputLabel = styled.span`
-  color: ${({ theme: { colors } }) => colors.lightGrey};
+const DropdownInputLabel = styled.span<{ isPlaceholder: boolean }>`
+  color: ${({ isPlaceholder, theme: { colors } }) =>
+    isPlaceholder ? colors.lightGrey : colors.blackGrey};
 `;
 
 const DropdownInput = styled.div<OpenStatusProps>`

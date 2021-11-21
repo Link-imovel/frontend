@@ -31,20 +31,6 @@ const SearchBar = ({ handleData }: SearchBarProps): React.ReactElement => {
           name="locale"
           placeholder="Digite a cidade ou bairro"
           onChange={(el) => handleData(el.target.id, el.target.value)}
-          validators={[
-            {
-              type: 'Required',
-              message: 'O campo é requerido',
-            },
-            {
-              type: 'NotBlank',
-              message: 'O campo não pode estar em branco.',
-            },
-            {
-              type: 'OnlyLetters',
-              message: 'Digite somente letras.',
-            },
-          ]}
         />
       </S.Wrapper>
       <Button

@@ -12,7 +12,7 @@ module.exports = {
     autoPrerender: true,
   },
   i18n: {
-    locales: ['en-US', 'pt-BR', 'pt', 'en'],
+    locales: ['pt-BR'],
     defaultLocale: 'pt-BR',
   },
   env: {

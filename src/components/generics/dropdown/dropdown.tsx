@@ -21,12 +21,6 @@ const Dropdown = ({
   );
 
   React.useEffect(() => {
-    if (!isOpen) return;
-
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [isOpen]);
-
-  React.useEffect(() => {
     document.addEventListener('mousedown', toggle);
     if (!options.length) {
       return () => {
@@ -77,7 +71,9 @@ const Dropdown = ({
       >
         {label ? <S.Label>{label}</S.Label> : undefined}
         <S.DropdownInput isOpen={!!isOpen}>
-          <S.DropdownInputLabel>
+          <S.DropdownInputLabel
+            isPlaceholder={selectedOption.label ? false : true}
+          >
             {!!placeholder && Object.keys(selectedOption).length === 0
               ? placeholder
               : selectedOption.label}

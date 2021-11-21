@@ -4,12 +4,6 @@ interface ImageByteA {
   image: Uint8Array;
 }
 
-interface ImageBase64 {
-  id: string;
-  homeId: string;
-  image: string;
-}
-
 interface Address {
   id: string;
   street: string;
@@ -22,7 +16,7 @@ interface Address {
   ibge: string;
 }
 
-interface Home<T = ImageByteA> {
+interface Home<T = ImageByteA[]> {
   id: string;
   type: string;
   ref: string;
@@ -36,11 +30,11 @@ interface Home<T = ImageByteA> {
   serviceArea: number;
   buildAt: Date;
   description: string;
-  images?: T[];
+  images?: T;
   address: Address;
 }
 
-interface Publication<T = ImageByteA> {
+interface Publication<T = ImageByteA[]> {
   id?: string;
   userId: string;
   homeId: string;
@@ -101,8 +95,8 @@ interface UpdatePublication {
 }
 
 interface PublicationStore {
-  publication: Publication<ImageBase64>;
-  publications: Publication<ImageBase64>[];
+  publication: Publication<string[]>;
+  publications: Publication<string[]>[];
 }
 
 export type {
@@ -115,5 +109,4 @@ export type {
   UpdatePublication,
   ImageHome,
   ImageByteA,
-  ImageBase64,
 };
