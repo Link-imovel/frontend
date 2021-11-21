@@ -4,7 +4,6 @@ import * as S from './carousel.style';
 import { CarouselProps } from './carousel.type';
 import { ChevronLeft } from '../icons/chevronleft';
 import { ChevronRight } from '../icons/chevronright';
-import { useRouter } from 'next/router';
 
 const Carousel = ({
   images,
