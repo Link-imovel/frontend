@@ -1,12 +1,19 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 import { Page } from '@components/container/page';
 import { Header } from '@components/container/header';
 import { Footer } from '@components/container/footer';
-import { Card } from '@components/generics/card';
 
 import * as S from './home.styles';
 import { HomeViewProps } from './home.type';
+
+const GeolocationCard = dynamic(
+  () => import('@components/generics/geolocationcard'),
+  {
+    ssr: false,
+  }
+);
 
 const Home = ({
   header,
@@ -30,11 +37,7 @@ const Home = ({
     >
       <S.Container>
         <S.Title>Imóveis próximo a sua localidade</S.Title>
-        <S.Wrapper>
-          {cards.map((props, index) => (
-            <Card key={index} {...props} />
-          ))}
-        </S.Wrapper>
+        <GeolocationCard cards={cards} />
       </S.Container>
     </Page>
   );
