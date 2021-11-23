@@ -101,7 +101,7 @@ const List = ({
         <S.Wrapper>
           {cards.length
             ? cards.map((props, index) => <Card key={index} {...props} />)
-            : [...Array(10)].map((_, i) => (
+            : [...Array(2)].map((_, i) => (
                 <CardContainer
                   size={isMobile ? 'small' : 'normal'}
                   key={i}
