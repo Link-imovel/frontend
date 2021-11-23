@@ -7,6 +7,8 @@ import { options } from '../dropdown/dropdown.options';
 import * as S from './pagination.style';
 
 const Pagination = (): React.ReactElement => {
+  const getPagesQuantity = React.useCallback(() => {}, []);
+
   return (
     <S.Container>
       <S.Label>Página:</S.Label>
