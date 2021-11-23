@@ -54,6 +54,7 @@ export const MenuContainer = styled.div<{
     width: 100%;
     grid-gap: 10px;
     inset: 0;
+    z-index: 1;
     background-color: ${({ theme: { colors } }) => colors.whiteGrey};
     transform: ${({ show }) => (show ? 'translateX(0)' : 'translateX(-100%)')};
     transition: transform 0.5s ease-in;
@@ -97,7 +98,11 @@ export const Title = styled.span`
 `;
 
 export const Quantity = styled.span`
+  margin-top: 20px;
   color: ${({ theme: { colors } }) => colors.blackGrey};
+  & {
+    align-self: center;
+  }
 `;
 
 export const Content = styled.div`
@@ -109,6 +114,9 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   & > div:last-child {
+    align-self: center;
+  }
+  & > div:first-child {
     align-self: center;
   }
 `;

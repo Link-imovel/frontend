@@ -22,6 +22,7 @@ import { ListViewProps } from './list.type';
 import { options } from '@components/generics/dropdown/dropdown.options';
 import { colors } from '@theme/theme/default';
 import { Pagination } from '@components/generics/pagination';
+import { SearchBar } from '@components/generics/searchbar';
 
 const List = ({
   userName,
@@ -35,6 +36,9 @@ const List = ({
   quantity,
   dropdown,
   isMobile,
+  data,
+  handleValidation,
+  handleData,
 }: ListViewProps): React.ReactElement => {
   const [show, setShow] = React.useState(false);
 
@@ -119,27 +123,55 @@ const List = ({
             label="Quarto"
             placeholder="Informe a quantidade"
             options={options.bedroom}
+            onSelect={(opt) => {
+              handleData('bedroom', opt.label);
+              handleValidation('bedroom', !!opt.label);
+            }}
+            selectedValue={data?.bedroom}
           />
           <Dropdown
             label="Banheiro"
             placeholder="Informe a quantidade"
             options={options.bathroom}
+            onSelect={(opt) => {
+              handleData('bathroom', opt.label);
+              handleValidation('bathroom', !!opt.label);
+            }}
+            selectedValue={data?.bathroom}
           />
           <Dropdown
-            label="Vagas"
+            label="Garagem"
             placeholder="Informe a quantidade"
             options={options.garage}
+            onSelect={(opt) => {
+              handleData('garage', opt.label);
+              handleValidation('garage', !!opt.label);
+            }}
+            selectedValue={data?.garage}
           />
           <Dropdown
             label="Area de serviço"
             placeholder="Informe a quantidade"
-            options={options.laudry}
+            options={options.serviceArea}
+            onSelect={(opt) => {
+              handleData('serviceArea', opt.label);
+              handleValidation('serviceArea', !!opt.label);
+            }}
+            selectedValue={data?.serviceArea}
           />
         </>
       );
     }
     return null;
-  }, [dropdown]);
+  }, [
+    data?.bathroom,
+    data?.bedroom,
+    data?.garage,
+    data?.serviceArea,
+    dropdown,
+    handleData,
+    handleValidation,
+  ]);
 
   return (
     <Page>
@@ -227,6 +259,7 @@ const List = ({
           )}
         </S.MenuContainer>
         <S.Content>
+          {content.cards && <SearchBar handleData={handleData} />}
           <S.Quantity>{quantity} resultados retornado</S.Quantity>
           {renderContent()}
           <Pagination />
