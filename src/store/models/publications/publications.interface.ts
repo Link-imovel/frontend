@@ -28,7 +28,7 @@ interface Home<T = ImageByteA[]> {
   kitchen: number;
   garage: number;
   serviceArea: number;
-  buildAt: Date;
+  buildAt: string;
   description: string;
   images?: T;
   address: Address;
@@ -40,7 +40,8 @@ interface Publication<T = ImageByteA[]> {
   homeId: string;
   phone: string;
   reserved: boolean;
-  views: number;
+  views: string;
+  title: string;
   virtualTour: string;
   rented: boolean;
   createdAt: Date;
@@ -55,7 +56,7 @@ interface AddressHome {
   state: string;
   ibge?: string;
   neighborhood: string;
-  number: number;
+  number: string;
   zip: string;
 }
 
@@ -66,15 +67,15 @@ interface ImageHome {
 interface HomeDetails<T = AddressHome, J = ImageHome[]> {
   type: string;
   ref: string;
-  totalArea: number;
-  value: number;
-  room: number;
-  bedroom: number;
-  bathroom: number;
-  kitchen: number;
-  garage: number;
-  serviceArea: number;
-  buildAt: Date;
+  totalArea: string;
+  value: string;
+  room: string;
+  bedroom: string;
+  bathroom: string;
+  kitchen: string;
+  garage: string;
+  serviceArea: string;
+  buildAt: string;
   description: string;
   address: T;
   images?: J;
@@ -83,6 +84,7 @@ interface HomeDetails<T = AddressHome, J = ImageHome[]> {
 interface CreatePublication {
   virtualTour?: string;
   phone?: string;
+  title: string;
   home: HomeDetails;
 }
 

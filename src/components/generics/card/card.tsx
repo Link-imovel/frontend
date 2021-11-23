@@ -40,7 +40,7 @@ const Card = ({
       return (
         <>
           <S.InfoContent>
-            <S.Info>Apartamento 2 E 3 Quartos no Noroeste - Vivant</S.Info>
+            <S.Info>{publication?.title}</S.Info>
             <S.IconContainer>
               <S.IconContent variant="secondary">
                 <PermIdentity fill={colors.greyBlue} /> <span>John Field</span>
@@ -55,7 +55,7 @@ const Card = ({
       );
     }
     return null;
-  }, [publication?.phone, size]);
+  }, [publication?.phone, publication?.title, size]);
 
   const renderFunctions = React.useCallback((): JSX.Element | null => {
     if (functionalities) {

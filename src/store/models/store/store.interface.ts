@@ -18,7 +18,7 @@ interface AddressFields {
   street: string;
   street2: string;
   number: string;
-  neighbourhood: string;
+  neighborhood: string;
   city: string;
   state: string;
   zip: string;

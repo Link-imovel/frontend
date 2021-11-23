@@ -52,7 +52,7 @@ const Details = ({
               icon={<ArrowBefore height={20} width={20} />}
               onClick={buttons.BArrowBefore.callback}
             />
-            <Button
+            {/* <Button
               variant="transparent"
               label={buttons.BArrowAfter.label}
               justifyContent="space-between"
@@ -61,15 +61,40 @@ const Details = ({
               radius="square"
               icon={<ArrowAfter height={20} width={20} />}
               onClick={buttons.BArrowAfter.callback}
-            />
+            /> */}
           </S.NavigationWrapper>
           <S.Title>{title}</S.Title>
           <S.Content>
             <S.Wrapper column="A">
+              <Input
+                id="title"
+                label="Titulo do anuncio"
+                type="text"
+                name="title"
+                placeholder="Informe o titulo do anuncio"
+                onChange={(el) => handleData(el.target.id, el.target.value)}
+                onValidation={({ valid }) => handleValidation('title', valid)}
+                value={data.title}
+                validators={[
+                  {
+                    type: 'Required',
+                    message: 'Campo é requerido',
+                  },
+                  {
+                    type: 'NotBlank',
+                    message: 'O campo não pode estar em branco.',
+                  },
+                ]}
+              />
               <Dropdown
                 label="Tipo do anuncio"
                 placeholder="Escolha um"
                 options={options.type}
+                onSelect={(opt) => {
+                  handleData('type', opt.label);
+                  handleValidation('type', !!opt.label);
+                }}
+                selectedValue={data?.type}
               />
               <Input
                 id="totalArea"
@@ -146,7 +171,7 @@ const Details = ({
                   },
                   {
                     type: 'Match',
-                    message: 'Por favor digite uma data de nascimento válida.',
+                    message: 'Por favor digite uma data de construção válida.',
                     match: (value) => {
                       return (
                         !value ||
@@ -235,7 +260,14 @@ const Details = ({
                 }}
                 selectedValue={data?.garage}
               />
-              <TextArea withBorder={true} placeholder="Descrição" />
+              <TextArea
+                withBorder={true}
+                placeholder="Descrição"
+                onChange={(evt) =>
+                  handleValidation('description', !!evt.target.value)
+                }
+                value={data.description}
+              />
             </S.Wrapper>
           </S.Content>
           <Button
