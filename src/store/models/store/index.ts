@@ -4,6 +4,7 @@ import {
   CreateAddress,
   CreateClient,
   CreateHomeDetail,
+  CreateSetPassword,
   CreateUser,
   Store,
   Login,
@@ -114,6 +115,16 @@ const store = createModel<RootModel>()({
         images: true,
       },
     },
+    createSetPassword: {
+      setpassword: {
+        newPassword: '',
+        samePassword: '',
+      },
+      valid: {
+        newPassword: false,
+        samePassword: false,
+      },
+    },
     login: {
       user: {
         email: '',
@@ -142,6 +153,15 @@ const store = createModel<RootModel>()({
       return {
         ...state,
         createHomeDetail: { ...state.createHomeDetail, ...data },
+      };
+    },
+    createSetPassword: (
+      state: Store,
+      data: Partial<CreateSetPassword>
+    ): Store => {
+      return {
+        ...state,
+        createSetPassword: { ...state.createSetPassword, ...data },
       };
     },
     login: (state: Store, data: Partial<Login>): Store => {

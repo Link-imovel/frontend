@@ -102,7 +102,7 @@ const Login = ({
             />
           </S.Wrapper>
           <S.LinkWrapper reverse={true}>
-            <Link href="/">
+            <Link href="/contact">
               <a>
                 Não tem conta ainda? <span>Entre contato</span>
               </a>

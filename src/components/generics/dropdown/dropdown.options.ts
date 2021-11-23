@@ -55,6 +55,7 @@ const options = {
   livingroom: [...values],
   kitchen: [...values],
   garage: [...values],
+  pagination: [...values],
   type: [
     {
       id: 'tpAppartament',

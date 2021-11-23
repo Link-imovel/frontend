@@ -1,21 +1,25 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { ContactView } from '@views/contact';
+
 import { ContactProps } from '@views/contact/contact.type';
 
 const ContactContainer = (props: ContactProps): React.ReactElement => {
   const { BLogo, BArrowBefore, BSend } = props.buttons;
 
+  const router = useRouter();
+
   BLogo.callback = () => {
-    console.log('#1');
+    router.push('/');
   };
 
   BArrowBefore.callback = () => {
-    console.log('#2');
+    router.push('/login');
   };
 
   BSend.callback = () => {
-    console.log('#3');
+    router.push('/');
   };
 
   return <ContactView {...props} />;

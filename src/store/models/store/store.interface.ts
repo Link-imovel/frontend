@@ -55,6 +55,11 @@ interface HomeDetailFields {
   images: HomeDetailImageField[];
 }
 
+interface SetPasswordFields {
+  newPassword: string;
+  samePassword: string;
+}
+
 interface CreateUser {
   user: UserFields;
   valid: KeysType<UserFields, boolean>;
@@ -75,6 +80,11 @@ interface CreateHomeDetail {
   valid: KeysType<HomeDetailFields, boolean>;
 }
 
+interface CreateSetPassword {
+  setpassword: SetPasswordFields;
+  valid: KeysType<SetPasswordFields, boolean>;
+}
+
 interface LoginFields {
   email: string;
   password: string;
@@ -89,6 +99,7 @@ interface Store {
   createAddress: CreateAddress;
   createClient: CreateClient;
   createHomeDetail: CreateHomeDetail;
+  createSetPassword: CreateSetPassword;
   login: Login;
 }
 
@@ -103,6 +114,8 @@ export type {
   HomeDetailImageField,
   HomeDetailFields,
   CreateHomeDetail,
+  SetPasswordFields,
+  CreateSetPassword,
   LoginFields,
   Login,
 };

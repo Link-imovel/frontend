@@ -31,12 +31,13 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
   const [users, setUsers] = React.useState<UserProps[]>([]);
   const [cards, setCards] = React.useState<CardProps[]>([]);
+  const [page, setPage] = React.useState(1);
 
   const router = useRouter();
 
   React.useEffect(() => {
     (async () => {
-      await dispatch.publication.getAll();
+      await dispatch.publication.getAllByPage(page);
       // Need to adjust card component
       setCards(
         pubsStore.publications.map((publication) => ({
