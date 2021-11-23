@@ -92,22 +92,7 @@ const Address = ({
                 name="street2"
                 placeholder="Informe o endereço 2"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
-                onValidation={({ valid }) => handleValidation('street2', valid)}
                 value={data.street2}
-                validators={[
-                  {
-                    type: 'Required',
-                    message: 'Campo é requerido',
-                  },
-                  {
-                    type: 'NotBlank',
-                    message: 'O campo não pode estar em branco.',
-                  },
-                  {
-                    type: 'OnlyLetters',
-                    message: 'Digite somente letras.',
-                  },
-                ]}
               />
               <Input
                 id="number"
@@ -135,7 +120,7 @@ const Address = ({
               />
               <Input
                 id="neighbourhood"
-                label="Próximo"
+                label="Bairro"
                 type="text"
                 name="neighbourhood"
                 placeholder="Informe a aproximidade"
@@ -152,10 +137,6 @@ const Address = ({
                   {
                     type: 'NotBlank',
                     message: 'O campo não pode estar em branco.',
-                  },
-                  {
-                    type: 'OnlyNumbers',
-                    message: 'Favor inserir somente números',
                   },
                 ]}
               />
@@ -232,30 +213,6 @@ const Address = ({
                   {
                     type: 'NotBlank',
                     message: 'O campo não pode estar em branco.',
-                  },
-                ]}
-              />
-              <Input
-                id="ibge"
-                label="IBGE"
-                type="text"
-                name="ibge"
-                placeholder="Informe o IBGE"
-                onChange={(el) => handleData(el.target.id, el.target.value)}
-                onValidation={({ valid }) => handleValidation('ibge', valid)}
-                value={data.ibge}
-                validators={[
-                  {
-                    type: 'Required',
-                    message: 'Campo é requerido',
-                  },
-                  {
-                    type: 'NotBlank',
-                    message: 'O campo não pode estar em branco.',
-                  },
-                  {
-                    type: 'OnlyNumbers',
-                    message: 'Favor inserir somente números',
                   },
                 ]}
               />
