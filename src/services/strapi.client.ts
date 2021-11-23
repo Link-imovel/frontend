@@ -22,9 +22,10 @@ class StrapiService extends HttpClient {
     };
   };
 
-  getData = async <T extends Record<string, unknown>>(
+  getData = async <T extends Record<string, any>>(
     slug: string,
-    locale: string
+    locale: string,
+    additionalData?: Record<string, unknown>
   ): Promise<GetServerSidePropsResult<T>> => {
     const baseURL = this.getStrapiURL(`/pages?slug=${slug}&_locale=${locale}`);
 
@@ -32,7 +33,9 @@ class StrapiService extends HttpClient {
 
     if (!data.length) return this.redirectToHomepage();
 
-    return { props: (await this.getDataDependencies(delve(data, '0'))) as T };
+    const props = (await this.getDataDependencies(delve(data, '0'))) as T;
+
+    return { props: ({ ...props, ...additionalData } as unknown) as T };
   };
 
   getDataDependencies = async (
@@ -49,6 +52,7 @@ class StrapiService extends HttpClient {
   };
 
   getLocalizedParams(path?: string, locale?: string) {
+    if (path?.includes('?')) path = path.split('?')[0];
     if (path?.match('/')) path = path.replace('/', '');
     return { slug: path || '', locale: locale || 'en' };
   }

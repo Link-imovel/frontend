@@ -1,7 +1,13 @@
 import HttpClient from '@services/http.client';
 import { createModel } from '@rematch/core';
 
-import { User, UserAuth, UserState, Login } from './user.interface';
+import {
+  User,
+  UserAuth,
+  UserState,
+  Login,
+  SetPassword,
+} from './user.interface';
 import { RootModel } from '@store/models';
 
 const user = createModel<RootModel>()({
@@ -83,6 +89,14 @@ const user = createModel<RootModel>()({
           ...(await HttpClient.setPath('/user')
             .setMethod('POST')
             .setBearer(accessToken)
+            .setData(data)
+            .send()),
+        });
+      },
+      async setPassword(data: SetPassword): Promise<void> {
+        user.SET_USER({
+          ...(await HttpClient.setPath('/user/password/' + data.token)
+            .setMethod('PATCH')
             .setData(data)
             .send()),
         });

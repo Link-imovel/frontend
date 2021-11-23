@@ -28,7 +28,7 @@ const getProps = (url?: string) => {
   };
 
   if (url && url.match(/update/g)) {
-    props.title = 'Atualizar dados de um usuário';
+    props.title = 'Atualizar dados do usuário';
     props.buttons.BLogin.label = 'Atualizar';
     props.type = 'update';
   }

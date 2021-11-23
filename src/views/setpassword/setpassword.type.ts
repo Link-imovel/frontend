@@ -16,6 +16,7 @@ interface ButtonsProps {
 
 interface SetPasswordProps {
   title: string;
+  token: string;
   buttons: ButtonsProps;
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;

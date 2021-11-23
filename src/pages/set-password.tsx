@@ -16,7 +16,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
 
   try {
-    return await strapiClient.getData(slug, locale);
+    return await strapiClient.getData(slug, locale, {
+      token: context.query['token'],
+    });
   } catch (error) {
     return { props: {} };
   }

@@ -9,9 +9,12 @@ import { SetPasswordProps } from '@views/setpassword/setpassword.type';
 
 const SetPasswordContainer = (props: SetPasswordProps): React.ReactElement => {
   const { BArrowBefore, BLogo, BConfirm } = props.buttons;
+  const userStore = useSelector((state: RootState) => state.user);
   const store = useSelector(
     (state: RootState) => state.store.createSetPassword
   );
+
+  const router = useRouter();
 
   const [data, setData] = React.useState(store.setpassword);
   const [dataValid, setDataValid] = React.useState(store.valid);
@@ -21,7 +24,9 @@ const SetPasswordContainer = (props: SetPasswordProps): React.ReactElement => {
 
   const dispatch = useDispatch<Dispatch>();
 
-  const router = useRouter();
+  React.useEffect(() => {
+    if (userStore.user?.id) router.push('/login');
+  }, [router, userStore.user?.id]);
 
   BArrowBefore.callback = () => {
     router.push('/login');
@@ -32,7 +37,11 @@ const SetPasswordContainer = (props: SetPasswordProps): React.ReactElement => {
   };
 
   BConfirm.callback = () => {
-    console.log(1);
+    dispatch.user.setPassword({
+      token: props.token,
+      password: data.newPassword,
+      confirmPassword: data.samePassword,
+    });
   };
 
   const handleData = (fieldName: string, value: any) => {

@@ -34,6 +34,7 @@ const List = ({
   content,
   quantity,
   dropdown,
+  isMobile,
 }: ListViewProps): React.ReactElement => {
   const [show, setShow] = React.useState(false);
 
@@ -83,7 +84,6 @@ const List = ({
     | JSX.Element[]
     | JSX.Element
     | null => {
-    console.log(content);
     if (content.table) {
       return (
         <S.Wrapper>
@@ -98,14 +98,18 @@ const List = ({
           {cards.length
             ? cards.map((props, index) => <Card key={index} {...props} />)
             : [...Array(10)].map((_, i) => (
-                <CardContainer size="normal" key={i} onClick={() => {}} />
+                <CardContainer
+                  size={isMobile ? 'small' : 'normal'}
+                  key={i}
+                  onClick={() => {}}
+                />
               ))}
         </S.Wrapper>
       );
     }
 
     return null;
-  }, [cards, content, users]);
+  }, [cards, content.cards, content.table, isMobile, users]);
 
   const renderDropDown = React.useCallback((): JSX.Element | null => {
     if (dropdown) {

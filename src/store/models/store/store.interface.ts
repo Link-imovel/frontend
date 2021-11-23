@@ -1,6 +1,7 @@
 type KeysType<T, J> = {
   [P in keyof T]: J;
 };
+
 interface UserFields {
   firstName: string;
   lastName: string;
@@ -20,7 +21,7 @@ interface AddressFields {
   neighbourhood: string;
   city: string;
   state: string;
-  zipcode: string;
+  zip: string;
   ibge: string;
 }
 
@@ -33,11 +34,25 @@ interface ClientFields {
   registry: string;
 }
 
+interface HomeDetailImageField {
+  image: string;
+}
+
 interface HomeDetailFields {
+  title: string;
   totalArea: string;
-  constructionYear: string;
+  buildAt: string;
   ref: string;
   value: string;
+  room: string;
+  bedroom: string;
+  bathroom: string;
+  kitchen: string;
+  garage: string;
+  serviceArea: string;
+  description: string;
+  type: string;
+  images: HomeDetailImageField[];
 }
 
 interface SetPasswordFields {
@@ -96,6 +111,7 @@ export type {
   CreateAddress,
   ClientFields,
   CreateClient,
+  HomeDetailImageField,
   HomeDetailFields,
   CreateHomeDetail,
   SetPasswordFields,
