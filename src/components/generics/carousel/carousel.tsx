@@ -4,7 +4,6 @@ import * as S from './carousel.style';
 import { CarouselProps } from './carousel.type';
 import { ChevronLeft } from '../icons/chevronleft';
 import { ChevronRight } from '../icons/chevronright';
-import { useRouter } from 'next/router';
 
 const Carousel = ({
   images,
@@ -14,7 +13,6 @@ const Carousel = ({
 }: CarouselProps): React.ReactElement => {
   const [quantity, setQuantity] = React.useState(0);
   const [selected, setSelected] = React.useState(0);
-  const router = useRouter();
 
   React.useEffect(() => {
     if (Array.isArray(images)) {
