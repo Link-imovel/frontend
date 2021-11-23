@@ -9,11 +9,11 @@ interface ButtonsProps {
     label?: string;
     callback?: () => void;
   };
-  BAnuncements: {
+  BAnnouncements: {
     label: string;
     callback?: () => void;
   };
-  BCreateAnuncement: {
+  BCreateAnnouncement: {
     label: string;
     callback?: () => void;
   };
@@ -35,59 +35,6 @@ interface ButtonsProps {
   };
 }
 
-interface AddressProps {
-  id: string;
-  street: string;
-  street2: string;
-  number: number;
-  neighborhood: string;
-  city: string;
-  state: string;
-  zip: string;
-  ibge: string;
-}
-
-interface HomeProps {
-  id: string;
-  type: string;
-  ref: string;
-  totalArea: number;
-  value: number;
-  room: number;
-  bedroom: number;
-  kitchen: number;
-  garage: number;
-  serviceArea: number;
-  buildAt: Date;
-  description: string;
-  images: Array<[]>;
-  address: AddressProps;
-}
-
-interface PublicationProps {
-  id?: string;
-  userId: string;
-  homeId: string;
-  phone: string;
-  reserved: boolean;
-  views: number;
-  virtualTour: string;
-  rented: boolean;
-  home: HomeProps;
-}
-
-interface CardsViewsProps extends Required<CardProps> {
-  id?: string;
-  userId: string;
-  homeId: string;
-  phone: string;
-  reserved: boolean;
-  views: number;
-  virtualTour: string;
-  rented: boolean;
-  home: HomeProps;
-}
-
 interface ListProps {
   description: string;
   buttons: ButtonsProps;
@@ -96,10 +43,6 @@ interface ListProps {
     cards: boolean;
   };
   dropdown: boolean;
-  routes?: {
-    previous: string;
-    next: string;
-  };
 }
 
 interface ListViewProps extends ListProps {
@@ -110,8 +53,8 @@ interface ListViewProps extends ListProps {
     user: boolean;
   };
   isLogged: boolean;
-  cards: PublicationProps[];
+  cards: CardProps[];
   quantity: number;
 }
 
-export type { CardsViewsProps, ListViewProps, ListProps, PublicationProps };
+export type { ListViewProps, ListProps };

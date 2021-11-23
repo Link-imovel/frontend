@@ -15,12 +15,18 @@ const styles = {
     width: 160px;
     @media ${({ theme: { device } }) => device.laptop.max} {
       width: 100%;
+      & {
+        display: none;
+      }
     }
   `,
   input: css`
     width: 400px;
     @media ${({ theme: { device } }) => device.laptop.max} {
       width: 100%;
+      & > div > * {
+        border-radius: 8px 0px 0px 8px;
+      }
     }
   `,
 };

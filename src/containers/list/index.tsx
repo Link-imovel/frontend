@@ -1,18 +1,20 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import HttpClient from '@services/http.client';
 
-import { ListProps } from '@views/list/list.type';
 import { List } from '@views/list';
 
+import { ListProps } from '@views/list/list.type';
 import { UserProps } from '@components/generics/table/table.type';
-import { CardsViewsProps } from '@views/list/list.type';
+import { CardProps } from '@components/generics/card/card.type';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch, RootState } from '@store/index';
 
 const ListContainer = (props: ListProps): React.ReactElement => {
   const {
     BLogin,
-    BAnuncements,
-    BCreateAnuncement,
+    BAnnouncements,
+    BCreateAnnouncement,
     BCreateUser,
     BListUsers,
     BLogo,
@@ -20,36 +22,51 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     BUpdatePerfil,
   } = props.buttons;
 
-  const [contenUsers, setContentUsers] = React.useState<UserProps[]>([]);
-  const [contenCards, setContentCards] = React.useState<CardsViewsProps[]>([]);
+  const pubsStore = useSelector((state: RootState) => state.publication);
+  const dispatch = useDispatch<Dispatch>();
+
+  const [users, setUsers] = React.useState<UserProps[]>([]);
+  const [cards, setCards] = React.useState<CardProps[]>([]);
 
   const router = useRouter();
 
   React.useEffect(() => {
-    setContentCards([]);
+    (async () => {
+      await dispatch.publication.getAll();
+      // Need to adjust card component
+      setCards(
+        pubsStore.publications.map((publication) => ({
+          variant: 'secondary',
+          size: 'normal',
+          views: true,
+          functionalities: false,
+          buttons: {
+            googleMap: {
+              label: 'Google Map',
+              size: 'medium',
+            },
+            visualize: {
+              size: 'medium',
+            },
+          },
+          publication,
+        }))
+      );
+    })();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getPublications = async (): Promise<void> => {
-    const reponse = await HttpClient.setPath(
-      'https://mocki.io/v1/87254046-9d87-4bf2-b2d1-192d0e72ae90'
-    )
-      .setMethod('GET')
-      .send();
-    // console.log(reponse);
-  };
-
-  getPublications();
-
   BLogin.callback = () => {
-    console.log(1);
+    router.push('/login');
   };
 
-  BAnuncements.callback = () => {
-    console.log(2);
+  BAnnouncements.callback = () => {
+    router.push('/list/announcements');
   };
 
-  BCreateAnuncement.callback = () => {
-    router.push(props.routes?.next || '/address');
+  BCreateAnnouncement.callback = () => {
+    router.push('/address');
   };
 
   BCreateUser.callback = () => {
@@ -57,11 +74,11 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BListUsers.callback = () => {
-    console.log(5);
+    router.push('/list/users');
   };
 
   BLogo.callback = () => {
-    console.log(6);
+    router.push('/');
   };
 
   BLogout.callback = () => {
@@ -77,9 +94,9 @@ const ListContainer = (props: ListProps): React.ReactElement => {
       userName="John"
       isLogged={true}
       render={{ admin: true, user: false }}
-      users={contenUsers}
-      cards={contenCards}
-      quantity={30}
+      users={users}
+      cards={cards}
+      quantity={cards.length || users.length}
       {...props}
     />
   );

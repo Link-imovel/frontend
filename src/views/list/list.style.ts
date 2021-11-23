@@ -25,7 +25,17 @@ export const Container = styled.div`
   padding: 2% 8%;
   display: flex;
   flex-direction: row;
-  column-gap: 30px;
+  grid-gap: 30px;
+  & > div:first-child {
+    display: none;
+  }
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    grid-gap: 0px;
+    padding: 2% 4%;
+    & > div:first-child {
+      display: block;
+    }
+  }
 `;
 
 export const MenuContainer = styled.div<{
@@ -33,9 +43,25 @@ export const MenuContainer = styled.div<{
   table: boolean;
   admin: boolean;
   user: boolean;
+  show: boolean;
 }>`
   ${({ cards, table, admin, user }) =>
     getMenuContainer(cards, table, admin, user)}
+  grid-gap: 15px;
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    position: absolute;
+    padding: 25px;
+    width: 100%;
+    grid-gap: 10px;
+    left: 0;
+    top: 60px;
+    background-color: ${({ theme: { colors } }) => colors.whiteGrey};
+    transform: ${({ show }) => (show ? 'translateX(0)' : 'translateX(-100%)')};
+    transition: transform 0.5s ease-in;
+    & {
+      overflow-x: hidden;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -70,27 +96,23 @@ const styles = {
     height: 580px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   `,
   'menu-cards-user': css`
     width: 290px;
     height: 720px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   `,
   'menu-cards-admin': css`
     width: 290px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   `,
   'menu-cards-client': css`
     width: 290px;
     height: 440px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   `,
 };

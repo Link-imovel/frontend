@@ -32,6 +32,16 @@ const List = ({
   quantity,
   dropdown,
 }: ListViewProps): React.ReactElement => {
+  const [show, setShow] = React.useState(false);
+
+  const toogleMenu = React.useCallback(() => {
+    if (!show) {
+      setShow(true);
+      return;
+    }
+    setShow(false);
+  }, [show]);
+
   const renderButtons = React.useCallback((): JSX.Element | null => {
     if (render?.admin) {
       return (
@@ -124,7 +134,15 @@ const List = ({
   return (
     <Page>
       <S.Container>
-        <S.MenuContainer {...content} {...render}>
+        <Button
+          variant="transparent"
+          size="small"
+          justifyContent="space-between"
+          radius="square"
+          icon={<Menu width={20} height={20} fill={colors.blackGrey} />}
+          onClick={toogleMenu}
+        />
+        <S.MenuContainer {...content} {...render} show={show}>
           <Button
             variant="transparent"
             size="xsmall"
@@ -148,21 +166,21 @@ const List = ({
               <S.Title>Menu</S.Title>
               <Button
                 variant="primary"
-                label={buttons.BAnuncements.label || 'Anuncios'}
+                label={buttons.BAnnouncements.label || 'Anuncios'}
                 size="default"
                 color={colors.white}
                 iconReverse={true}
                 icon={<Menu width={20} height={20} fill={colors.white} />}
-                onClick={buttons.BAnuncements.callback}
+                onClick={buttons.BAnnouncements.callback}
               />
               <Button
                 variant="primary"
-                label={buttons.BCreateAnuncement.label || 'Criar anuncio'}
+                label={buttons.BCreateAnnouncement.label || 'Criar anuncio'}
                 size="default"
                 color={colors.white}
                 iconReverse={true}
                 icon={<Article width={20} height={20} fill={colors.white} />}
-                onClick={buttons.BCreateAnuncement.callback}
+                onClick={buttons.BCreateAnnouncement.callback}
               />
               {renderButtons()}
               <Button

@@ -25,20 +25,17 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
         pubsStore.publications.map((publication) => ({
           variant: 'primary',
           size: 'small',
-          publication,
+          views: false,
+          functionalities: false,
           buttons: {
-            BCircleWhatsApp: {
-              callback: () => console.log(1),
+            googleMap: {
+              size: 'small',
             },
-            BNavigation: {
-              typeSize: 'small',
-              callback: () => console.log(2),
-            },
-            BContact: {
-              label: 'Contatar',
-              callback: () => console.log(3),
+            visualize: {
+              size: 'medium',
             },
           },
+          publication,
         }))
       );
     })();
@@ -49,15 +46,15 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   const router = useRouter();
 
   BLogo.callback = () => {
-    console.log(1);
+    router.push('/');
   };
 
   BLogin.callback = () => {
-    console.log(2);
+    router.push('/login');
   };
 
   BShowImovels.callback = () => {
-    router.push('list/anuncements');
+    router.push('list/announcements');
   };
 
   const handleData = (fieldName: string, value: any) => {

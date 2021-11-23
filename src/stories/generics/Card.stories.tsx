@@ -14,6 +14,16 @@ export const Primary = Template.bind({});
 Primary.args = {
   variant: 'primary',
   size: 'small',
+  views: false,
+  functionalities: false,
+  buttons: {
+    googleMap: {
+      size: 'small',
+    },
+    visualize: {
+      size: 'medium',
+    },
+  },
   publication: {
     userId: '1',
     homeId: '1',
@@ -22,6 +32,8 @@ Primary.args = {
     views: 3,
     virtualTour: 'https://google.com',
     rented: true,
+    createdAt: new Date('1990-12-12T00:00:00.000Z'),
+    updatedAt: new Date('1990-12-12T00:00:00.000Z'),
     home: {
       id: '1',
       type: 'Casa',
@@ -52,19 +64,6 @@ Primary.args = {
         zip: '81490-516',
         ibge: '2384920',
       },
-    },
-  },
-  buttons: {
-    BCircleWhatsApp: {
-      callback: () => console.log(1),
-    },
-    BNavigation: {
-      typeSize: 'small',
-      callback: () => console.log(2),
-    },
-    BContact: {
-      label: 'Contatar',
-      callback: () => console.log(3),
     },
   },
   onClick: () => console.log('clicked'),
@@ -74,6 +73,17 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   variant: 'secondary',
   size: 'normal',
+  views: true,
+  functionalities: false,
+  buttons: {
+    googleMap: {
+      label: 'Google Map',
+      size: 'medium',
+    },
+    visualize: {
+      size: 'medium',
+    },
+  },
   publication: {
     userId: '1',
     homeId: '1',
@@ -82,6 +92,8 @@ Secondary.args = {
     views: 3,
     virtualTour: 'https://google.com',
     rented: true,
+    createdAt: new Date('1990-12-12T00:00:00.000Z'),
+    updatedAt: new Date('1990-12-12T00:00:00.000Z'),
     home: {
       id: '1',
       type: 'Casa',
@@ -112,20 +124,6 @@ Secondary.args = {
         zip: '81490-516',
         ibge: '2384920',
       },
-    },
-  },
-  buttons: {
-    BCircleWhatsApp: {
-      callback: () => console.log(1),
-    },
-    BNavigation: {
-      typeSize: 'medium',
-      label: 'Google Map',
-      callback: () => console.log(2),
-    },
-    BContact: {
-      label: 'Contatar',
-      callback: () => console.log(3),
     },
   },
   onClick: () => console.log('clicked'),
@@ -135,6 +133,17 @@ export const Ternary = Template.bind({});
 Ternary.args = {
   variant: 'ternary',
   size: 'normal',
+  views: true,
+  functionalities: true,
+  buttons: {
+    googleMap: {
+      label: 'Google Map',
+      size: 'medium',
+    },
+    visualize: {
+      size: 'medium',
+    },
+  },
   publication: {
     userId: '1',
     homeId: '1',
@@ -143,6 +152,8 @@ Ternary.args = {
     views: 3,
     virtualTour: 'https://google.com',
     rented: true,
+    createdAt: new Date('1990-12-12T00:00:00.000Z'),
+    updatedAt: new Date('1990-12-12T00:00:00.000Z'),
     home: {
       id: '1',
       type: 'Casa',
@@ -173,26 +184,6 @@ Ternary.args = {
         zip: '81490-516',
         ibge: '2384920',
       },
-    },
-  },
-  buttons: {
-    BCircleWhatsApp: {
-      callback: () => console.log(1),
-    },
-    BNavigation: {
-      typeSize: 'medium',
-      label: 'Google Map',
-      callback: () => console.log(2),
-    },
-    BContact: {
-      label: 'Contatar',
-      callback: () => console.log(3),
-    },
-    BEdit: {
-      callback: () => console.log(4),
-    },
-    BDelete: {
-      callback: () => console.log(5),
     },
   },
   onClick: () => console.log('clicked'),

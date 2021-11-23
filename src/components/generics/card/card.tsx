@@ -24,9 +24,17 @@ const Card = ({
   variant,
   size,
   publication,
+  views,
+  functionalities,
   buttons,
   onClick,
 }: CardProps): React.ReactElement => {
+  const sendMessageWhatsapp = React.useCallback(() => {}, []);
+  const visualize = React.useCallback(() => {}, []);
+  const openGoogleMap = React.useCallback(() => {}, []);
+  const deleteAnnuocement = React.useCallback(() => {}, []);
+  const updateAnnuocement = React.useCallback(() => {}, []);
+
   const renderInfo = React.useCallback((): JSX.Element | null => {
     if (size === 'normal') {
       return (
@@ -50,7 +58,7 @@ const Card = ({
   }, [publication.phone, size]);
 
   const renderFunctions = React.useCallback((): JSX.Element | null => {
-    if (variant === 'ternary') {
+    if (functionalities) {
       return (
         <>
           <S.ButtonContent type="edit">
@@ -59,7 +67,7 @@ const Card = ({
               size="small"
               radius="square"
               icon={<Edit height={20} width={20} fill={colors.whiteGrey} />}
-              onClick={buttons.BEdit?.callback}
+              onClick={updateAnnuocement}
             />
           </S.ButtonContent>
           <S.ButtonContent type="delete">
@@ -68,27 +76,28 @@ const Card = ({
               size="small"
               radius="square"
               icon={<Delete height={20} width={20} fill={colors.whiteGrey} />}
-              onClick={buttons.BDelete?.callback}
+              onClick={deleteAnnuocement}
             />
           </S.ButtonContent>
         </>
       );
     }
     return null;
-  }, [buttons.BDelete?.callback, buttons.BEdit?.callback, variant]);
+  }, [deleteAnnuocement, functionalities, updateAnnuocement]);
 
   const renderViews = React.useCallback((): JSX.Element | null => {
-    if (variant === 'secondary' || variant === 'ternary') {
+    if (views) {
       return (
         <>
           <S.Content sizeWidth={size}>
-            <Visibility /> <span>{publication.views} views</span>
+            <Visibility fill={colors.greyBlue} />{' '}
+            <span>{publication.views} views</span>
           </S.Content>
         </>
       );
     }
     return null;
-  }, [publication.views, size, variant]);
+  }, [publication.views, size, views]);
 
   return (
     <Container size={size || 'small'} onClick={onClick}>
@@ -130,31 +139,31 @@ const Card = ({
                 icon={
                   <WhatsApp height={20} width={20} fill={colors.whiteGrey} />
                 }
-                onClick={buttons.BCircleWhatsApp.callback}
+                onClick={sendMessageWhatsapp}
               />
             </S.ButtonContent>
             {renderFunctions()}
             <S.ButtonContent type="navigation">
               <Button
                 variant="secondary-square"
-                size={buttons.BNavigation.typeSize}
-                label={buttons.BNavigation.label}
+                size={buttons?.googleMap.size}
+                label={buttons?.googleMap.label || ''}
                 radius="square"
                 icon={
                   <Navigation height={20} width={20} fill={colors.whiteGrey} />
                 }
                 iconReverse={true}
-                onClick={buttons.BNavigation.callback}
+                onClick={openGoogleMap}
               />
             </S.ButtonContent>
             <S.ButtonContent type="default">
               <Button
                 variant="primary"
-                label={buttons.BContact.label}
-                size="medium"
+                label={buttons?.visualize.label || 'Visualizar'}
+                size={buttons?.visualize.size}
                 background={colors.whiteGrey}
                 color={colors.blackGrey}
-                onClick={buttons.BContact.callback}
+                onClick={visualize}
               />
             </S.ButtonContent>
           </S.ButtonContainer>
