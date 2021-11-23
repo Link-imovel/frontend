@@ -30,7 +30,7 @@ export const Container = styled.div`
     display: none;
   }
   @media ${({ theme: { device } }) => device.laptop.max} {
-    grid-gap: 0px;
+    grid-gap: 5px;
     padding: 2% 4%;
     & > div:first-child {
       display: block;
@@ -79,8 +79,13 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin: 20px 0;
-  height: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > div {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Description = styled.p`

@@ -34,15 +34,15 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
   };
 
   BArrowBefore.callback = () => {
-    router.push('/list/announcements');
+    window.location.replace('/list/announcements');
   };
 
   BArrowAfter.callback = () => {
-    router.push('/announcement/details');
+    if (formValid) router.push('/announcement/details');
   };
 
   BNext.callback = () => {
-    console.log(4);
+    if (formValid) router.push('/announcement/details');
   };
 
   const handleData = (fieldName: string, value: any) => {

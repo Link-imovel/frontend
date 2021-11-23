@@ -24,6 +24,7 @@ const Details = ({
   breadCrumb,
   handleData,
   handleValidation,
+  handleFiles,
   data,
   valid,
 }: DetailsViewProps): React.ReactElement => {
@@ -224,7 +225,7 @@ const Details = ({
         </S.FormContent>
         <S.ImageDndContent>
           <S.Title>Adicionar imagens do imóvel</S.Title>
-          <ImageDnD />
+          <ImageDnD getFiles={handleFiles} />
         </S.ImageDndContent>
       </S.Container>
     </Page>

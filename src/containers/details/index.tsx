@@ -13,6 +13,7 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   const store = useSelector((state: RootState) => state.store.createHomeDetail);
 
   const [data, setData] = React.useState(store.homedetail);
+  const [files, setFiles] = React.useState<File[]>([]);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
@@ -39,11 +40,15 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   };
 
   BArrowAfter.callback = () => {
-    router.push('/client');
+    if (formValid) router.push('/announcement/client');
   };
 
   BNext.callback = () => {
-    console.log(4);
+    if (formValid) router.push('/announcement/client');
+  };
+
+  const handleFiles = (file?: File[]) => {
+    if (file) setFiles(file);
   };
 
   const handleData = (fieldName: string, value: any) => {
@@ -70,6 +75,7 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
       valid={formValid}
       handleValidation={handleValidation}
       handleData={handleData}
+      handleFiles={handleFiles}
       data={data}
       {...props}
       breadCrumb={{ paths }}
