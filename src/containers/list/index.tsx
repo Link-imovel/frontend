@@ -123,7 +123,9 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
   return (
     <List
+      valid={formValid}
       handleData={handleData}
+      handleValidation={handleValidation}
       data={data}
       userName={userStore?.user?.firstName}
       isLogged={!!userStore?.user?.id}

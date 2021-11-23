@@ -45,12 +45,12 @@ interface ListProps {
   };
   dropdown: boolean;
   handleData?: (fieldName: string, value: any) => void;
-  // handleValidation?: (fieldName: string, value: any) => void;
+  handleValidation?: (fieldName: string, value: any) => void;
 }
 
 interface ListViewProps extends Required<ListProps> {
   data: ListAnnouncementFields;
-  // valid: boolean;
+  valid: boolean;
   userName: string;
   users: UserProps[];
   render: {

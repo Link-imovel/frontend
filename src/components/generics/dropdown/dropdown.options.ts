@@ -51,7 +51,7 @@ const values: DropdownOption[] = [
 const options = {
   bedroom: [...values],
   bathroom: [...values],
-  laudry: [...values],
+  serviceArea: [...values],
   livingroom: [...values],
   kitchen: [...values],
   garage: [...values],

@@ -120,7 +120,7 @@ const Details = ({
               <Dropdown
                 label="Area de serviço"
                 placeholder="Quantidade de Area de serviço"
-                options={options.laudry}
+                options={options.serviceArea}
                 onSelect={(opt) => {
                   handleData('serviceArea', opt.label);
                   handleValidation('serviceArea', !!opt.label);
