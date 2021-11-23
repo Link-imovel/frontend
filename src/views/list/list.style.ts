@@ -79,7 +79,7 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 20px;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,8 +91,6 @@ export const Wrapper = styled.div`
 export const Description = styled.p`
   color: ${({ theme: { colors } }) => colors.blackGrey};
 `;
-
-export const Line = styled.div``;
 
 export const Title = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
@@ -110,7 +108,6 @@ export const Content = styled.div`
   padding: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   & > div:last-child {
     align-self: center;
   }
