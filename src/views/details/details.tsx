@@ -117,11 +117,9 @@ const Details = ({
                   .toLocaleDateString('en-US')
                   .replace(/[/]/g, '-')}
                 label="Ano da construção"
-                name="constructionYear"
-                handleValue={(value) => handleData('constructionYear', value)}
-                onValidation={({ valid }) =>
-                  handleValidation('constructionYear', valid)
-                }
+                name="buildAt"
+                handleValue={(value) => handleData('buildAt', value)}
+                onValidation={({ valid }) => handleValidation('buildAt', valid)}
                 validators={[
                   {
                     type: 'NotBlank',

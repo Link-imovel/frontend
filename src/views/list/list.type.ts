@@ -55,6 +55,7 @@ interface ListViewProps extends ListProps {
   isLogged: boolean;
   cards: CardProps[];
   quantity: number;
+  isMobile: boolean;
 }
 
 export type { ListViewProps, ListProps };

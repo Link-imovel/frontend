@@ -28,7 +28,7 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
   };
 
   BArrowBefore.callback = () => {
-    router.back();
+    window.location.replace('/list/announcements');
   };
 
   BLogin.callback = async () => {

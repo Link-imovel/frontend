@@ -210,10 +210,10 @@ const Address = ({
                 ]}
               />
               <Input
-                id="zipcode"
+                id="zip"
                 label="CEP"
                 type="text"
-                name="zipcode"
+                name="zip"
                 placeholder="Informe o CEP"
                 maxLength={9}
                 onChange={(el) =>
@@ -222,8 +222,8 @@ const Address = ({
                     Formatters.formatZipCode(el.target.value)
                   )
                 }
-                onValidation={({ valid }) => handleValidation('zipcode', valid)}
-                value={data.zipcode}
+                onValidation={({ valid }) => handleValidation('zip', valid)}
+                value={data.zip}
                 validators={[
                   {
                     type: 'Required',

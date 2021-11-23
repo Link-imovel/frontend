@@ -9,6 +9,7 @@ import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
+import { useMobile } from '@hooks/mobile';
 
 const ListContainer = (props: ListProps): React.ReactElement => {
   const {
@@ -21,6 +22,8 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     BLogout,
     BUpdatePerfil,
   } = props.buttons;
+
+  const { isMobile } = useMobile();
 
   const pubsStore = useSelector((state: RootState) => state.publication);
   const userStore = useSelector((state: RootState) => state.user);
@@ -38,7 +41,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
       setCards(
         pubsStore.publications.map((publication) => ({
           variant: 'secondary',
-          size: 'normal',
+          size: isMobile() ? 'small' : 'normal',
           views: true,
           functionalities: false,
           buttons: {
@@ -98,6 +101,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
       users={users}
       cards={cards}
       quantity={cards.length || users.length}
+      isMobile={isMobile()}
       {...props}
     />
   );
