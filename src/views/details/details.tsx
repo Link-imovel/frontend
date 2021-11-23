@@ -178,10 +178,6 @@ const Details = ({
                     type: 'NotBlank',
                     message: 'O campo não pode estar em branco.',
                   },
-                  {
-                    type: 'OnlyLetters',
-                    message: 'Digite somente letras.',
-                  },
                 ]}
               />
               <Input

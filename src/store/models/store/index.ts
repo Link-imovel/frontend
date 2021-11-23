@@ -50,13 +50,13 @@ const store = createModel<RootModel>()({
       },
       valid: {
         street: false,
-        street2: false,
+        street2: true,
         number: false,
         neighbourhood: false,
         city: false,
         state: false,
         zip: false,
-        ibge: false,
+        ibge: true,
       },
     },
     createClient: {

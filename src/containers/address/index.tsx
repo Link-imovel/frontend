@@ -25,6 +25,7 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
   const dispatch = useDispatch<Dispatch>();
 
   React.useEffect(() => {
+    console.log(formValid, dataValid);
     next({ title: props.title, url: router.asPath });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.title, router]);

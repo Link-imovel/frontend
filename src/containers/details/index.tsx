@@ -13,7 +13,9 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   const store = useSelector((state: RootState) => state.store.createHomeDetail);
 
   const [data, setData] = React.useState(store.homedetail);
-  const [files, setFiles] = React.useState<File[]>([]);
+  const [files, setFiles] = React.useState<{ image: string }[]>([
+    { image: '' },
+  ]);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
@@ -47,8 +49,32 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
     if (formValid) router.push('/announcement/client');
   };
 
-  const handleFiles = (file?: File[]) => {
-    if (file) setFiles(file);
+  const handleFiles = async (file?: File[]) => {
+    if (file) {
+      const images = await Promise.all(
+        file.map(async (file) => {
+          const image: string = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+              let encoded = reader?.result
+                ?.toString()
+                .replace(/^data:(.*,)?/, '');
+              if (encoded) {
+                if (encoded?.length % 4 > 0) {
+                  encoded += '='.repeat(4 - (encoded?.length % 4));
+                }
+                resolve(encoded);
+              }
+            };
+            reader.onerror = (error) => reject(error);
+          });
+          return { image };
+        })
+      );
+      setFiles(images);
+      setData({ ...data, images });
+    }
   };
 
   const handleData = (fieldName: string, value: any) => {
