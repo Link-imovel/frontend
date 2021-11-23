@@ -1,26 +1,28 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { Login } from '@views/login';
 
 import { LoginProps } from '@views/login/login.type';
 
 const LoginContainer = (props: LoginProps) => {
-  const customProps = { ...props };
-  const { BLogo, BArrowBefore, BLogin } = customProps.buttons;
+  const { BLogo, BArrowBefore, BLogin } = props.buttons;
+
+  const router = useRouter();
 
   BLogo.callback = () => {
-    console.log('#1');
+    router.push('/');
   };
 
   BArrowBefore.callback = () => {
-    console.log('#2');
+    router.push('/');
   };
 
   BLogin.callback = () => {
-    console.log('#3');
+    router.push('/list/announcements');
   };
 
-  return <Login {...customProps} />;
+  return <Login {...props} />;
 };
 
 export default LoginContainer;

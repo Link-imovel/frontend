@@ -14,6 +14,7 @@ import { Menu } from '@components/generics/icons/menu';
 import { People } from '@components/generics/icons/people';
 import { PersonAdd } from '@components/generics/icons/personadd';
 import { Settings } from '@components/generics/icons/settings';
+import { Close } from '@components/generics/icons/close';
 
 import * as S from './list.style';
 import { ListViewProps } from './list.type';
@@ -143,13 +144,23 @@ const List = ({
           onClick={toogleMenu}
         />
         <S.MenuContainer {...content} {...render} show={show}>
-          <Button
-            variant="transparent"
-            size="xsmall"
-            radius="square"
-            icon={<Logo fill={colors.blackGrey} />}
-            onClick={buttons.BLogo.callback}
-          />
+          <S.Header>
+            <Button
+              variant="transparent"
+              size="xsmall"
+              radius="square"
+              icon={<Logo fill={colors.blackGrey} />}
+              onClick={buttons.BLogo.callback}
+            />
+            <Button
+              variant="transparent"
+              size="small"
+              justifyContent="space-between"
+              radius="square"
+              icon={<Close width={20} height={20} fill={colors.blackGrey} />}
+              onClick={toogleMenu}
+            />
+          </S.Header>
           {isLogged ? (
             <UserView user={userName} />
           ) : (

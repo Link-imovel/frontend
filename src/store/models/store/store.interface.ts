@@ -40,6 +40,11 @@ interface HomeDetailFields {
   value: string;
 }
 
+interface SetPasswordFields {
+  newPassword: string;
+  samePassword: string;
+}
+
 interface CreateUser {
   user: UserFields;
   valid: KeysType<UserFields, boolean>;
@@ -60,11 +65,17 @@ interface CreateHomeDetail {
   valid: KeysType<HomeDetailFields, boolean>;
 }
 
+interface CreateSetPassword {
+  setpassword: SetPasswordFields;
+  valid: KeysType<SetPasswordFields, boolean>;
+}
+
 interface Store {
   createUser: CreateUser;
   createAddress: CreateAddress;
   createClient: CreateClient;
   createHomeDetail: CreateHomeDetail;
+  createSetPassword: CreateSetPassword;
 }
 
 export type {
@@ -77,4 +88,6 @@ export type {
   CreateClient,
   HomeDetailFields,
   CreateHomeDetail,
+  SetPasswordFields,
+  CreateSetPassword,
 };

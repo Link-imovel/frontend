@@ -53,13 +53,27 @@ export const MenuContainer = styled.div<{
     padding: 25px;
     width: 100%;
     grid-gap: 10px;
-    left: 0;
-    top: 60px;
+    inset: 0;
     background-color: ${({ theme: { colors } }) => colors.whiteGrey};
     transform: ${({ show }) => (show ? 'translateX(0)' : 'translateX(-100%)')};
     transition: transform 0.5s ease-in;
     & {
       overflow-x: hidden;
+    }
+  }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  & > div:last-child {
+    display: none;
+  }
+  @media ${({ theme: { device } }) => device.laptop.max} {
+    & > div:last-child {
+      display: block;
     }
   }
 `;
