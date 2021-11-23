@@ -60,6 +60,13 @@ interface SetPasswordFields {
   samePassword: string;
 }
 
+interface ListAnnouncementFields {
+  garage: string;
+  serviceArea: string;
+  bedroom: string;
+  bathroom: string;
+}
+
 interface CreateUser {
   user: UserFields;
   valid: KeysType<UserFields, boolean>;
@@ -85,10 +92,16 @@ interface CreateSetPassword {
   valid: KeysType<SetPasswordFields, boolean>;
 }
 
+interface ListAnnouncement {
+  listannouncement: ListAnnouncementFields;
+  valid: KeysType<ListAnnouncementFields, boolean>;
+}
+
 interface LoginFields {
   email: string;
   password: string;
 }
+
 interface Login {
   user: LoginFields;
   valid: KeysType<LoginFields, boolean>;
@@ -101,6 +114,7 @@ interface Store {
   createHomeDetail: CreateHomeDetail;
   createSetPassword: CreateSetPassword;
   login: Login;
+  listannouncement: ListAnnouncement;
 }
 
 export type {
@@ -118,4 +132,6 @@ export type {
   CreateSetPassword,
   LoginFields,
   Login,
+  ListAnnouncementFields,
+  ListAnnouncement,
 };

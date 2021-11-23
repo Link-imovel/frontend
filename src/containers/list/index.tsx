@@ -29,6 +29,14 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   const userStore = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<Dispatch>();
 
+  const store = useSelector((state: RootState) => state.store.listannouncement);
+
+  const [data, setData] = React.useState(store.listannouncement);
+  const [dataValid, setDataValid] = React.useState(store.valid);
+  const [formValid, setFormValid] = React.useState(
+    Object.values(dataValid).every((item) => item)
+  );
+
   const [users, setUsers] = React.useState<UserProps[]>([]);
   const [cards, setCards] = React.useState<CardProps[]>([]);
   const [page, setPage] = React.useState(1);
@@ -94,8 +102,29 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     router.push('/update-user');
   };
 
+  const handleData = (fieldName: string, value: any) => {
+    setData({ ...data, [fieldName]: value });
+    dispatch.store.listannouncement({
+      listannouncement: {
+        ...data,
+        [fieldName]: value,
+      },
+    });
+  };
+
+  const handleValidation = (fieldName: string, value: boolean) => {
+    const valid = { ...dataValid, [fieldName]: value };
+    setDataValid(valid);
+    dispatch.store.listannouncement({
+      valid,
+    });
+    setFormValid(Object.values(valid).every((item) => item));
+  };
+
   return (
     <List
+      handleData={handleData}
+      data={data}
       userName={userStore?.user?.firstName}
       isLogged={!!userStore?.user?.id}
       render={{ admin: true, user: false }}

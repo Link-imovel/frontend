@@ -1,5 +1,6 @@
 import { CardProps } from '@components/generics/card/card.type';
 import { UserProps } from '@components/generics/table/table.type';
+import { ListAnnouncementFields } from '@store/models/store/store.interface';
 
 interface ButtonsProps {
   BLogo: {
@@ -43,9 +44,13 @@ interface ListProps {
     cards: boolean;
   };
   dropdown: boolean;
+  handleData?: (fieldName: string, value: any) => void;
+  // handleValidation?: (fieldName: string, value: any) => void;
 }
 
-interface ListViewProps extends ListProps {
+interface ListViewProps extends Required<ListProps> {
+  data: ListAnnouncementFields;
+  // valid: boolean;
   userName: string;
   users: UserProps[];
   render: {

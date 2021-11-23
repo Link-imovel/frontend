@@ -35,6 +35,7 @@ const List = ({
   quantity,
   dropdown,
   isMobile,
+  data,
 }: ListViewProps): React.ReactElement => {
   const [show, setShow] = React.useState(false);
 

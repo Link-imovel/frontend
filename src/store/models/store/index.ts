@@ -8,6 +8,7 @@ import {
   CreateUser,
   Store,
   Login,
+  ListAnnouncement,
 } from './store.interface';
 import { RootModel } from '@store/models';
 
@@ -135,6 +136,20 @@ const store = createModel<RootModel>()({
         password: false,
       },
     },
+    listannouncement: {
+      listannouncement: {
+        garage: '',
+        serviceArea: '',
+        bedroom: '',
+        bathroom: '',
+      },
+      valid: {
+        garage: false,
+        serviceArea: false,
+        bedroom: false,
+        bathroom: false,
+      },
+    },
   },
   reducers: {
     createUser: (state: Store, data: Partial<CreateUser>): Store => {
@@ -168,6 +183,15 @@ const store = createModel<RootModel>()({
       return {
         ...state,
         login: { ...state.login, ...data },
+      };
+    },
+    listannouncement: (
+      state: Store,
+      data: Partial<ListAnnouncement>
+    ): Store => {
+      return {
+        ...state,
+        listannouncement: { ...state.listannouncement, ...data },
       };
     },
     clear: (): Store => {
