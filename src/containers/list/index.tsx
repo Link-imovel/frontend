@@ -23,6 +23,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   } = props.buttons;
 
   const pubsStore = useSelector((state: RootState) => state.publication);
+  const userStore = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<Dispatch>();
 
   const [users, setUsers] = React.useState<UserProps[]>([]);
@@ -55,7 +56,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pubsStore.publications.length]);
 
   BLogin.callback = () => {
     router.push('/login');
@@ -91,8 +92,8 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
   return (
     <List
-      userName="John"
-      isLogged={true}
+      userName={userStore?.user?.firstName}
+      isLogged={!!userStore?.user?.id}
       render={{ admin: true, user: false }}
       users={users}
       cards={cards}

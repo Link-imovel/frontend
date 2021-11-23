@@ -12,6 +12,7 @@ const Dropdown = ({
   options = [],
   placeholder,
   className,
+  selectedValue,
   disabled,
 }: DropdownProps): React.ReactElement => {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -48,7 +49,7 @@ const Dropdown = ({
       id={opt.id}
       key={opt.id}
       style={containerStyle}
-      isSelected={opt.id === selectedOption.id}
+      isSelected={opt.id === selectedOption.id || opt.label === selectedValue}
       onClick={() => {
         setSelectedOption(options[idx]);
         onSelect && onSelect(options[idx]);
