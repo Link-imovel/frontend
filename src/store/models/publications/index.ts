@@ -94,7 +94,7 @@ const publication = createModel<RootModel>()({
       async create(payload: CreatePublication): Promise<void> {
         publication.SET_PUBLICATIONS(
           PublicationHelper.getImages(
-            await HttpClient.setPath(`/publication`)
+            await HttpClient.setPath('/publication')
               .setMethod('POST')
               .setBearer(accessToken)
               .setData(payload)

@@ -11,6 +11,10 @@ import { useBreadcrumb } from '@hooks/breadcrumb';
 const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   const { BArrowAfter, BArrowBefore, BLogo, BNext } = props.buttons;
   const store = useSelector((state: RootState) => state.store.createHomeDetail);
+  const userStore = useSelector((state: RootState) => state.user);
+  const addressStore = useSelector(
+    (state: RootState) => state.store.createAddress
+  );
 
   const [data, setData] = React.useState(store.homedetail);
   const [files, setFiles] = React.useState<{ image: string }[]>([
@@ -46,7 +50,16 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   };
 
   BNext.callback = () => {
-    if (formValid) router.push('/announcement/client');
+    dispatch.publication.create({
+      phone: userStore.user.mobile,
+      title: store.homedetail.title,
+      home: {
+        ...store.homedetail,
+        value: store.homedetail.value?.replace(/[^0-9]+/g, ''),
+        address: { ...addressStore.address },
+      },
+    });
+    // window.location.replace('/list/announcements');
   };
 
   const handleFiles = async (file?: File[]) => {

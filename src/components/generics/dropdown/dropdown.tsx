@@ -30,13 +30,16 @@ const Dropdown = ({
     }
 
     if (typeof placeholder === 'undefined') {
-      setSelectedOption(options.filter((o) => o.selected)[0] || options[0]);
+      setSelectedOption(
+        options.filter((o) => o.selected || o.label === selectedValue)[0] ||
+          options[0]
+      );
     }
 
     return () => {
       document.removeEventListener('mousedown', toggle);
     };
-  }, [options, placeholder]);
+  }, [options, placeholder, selectedValue]);
 
   const toggle = (e: MouseEvent): void => {
     if (ref.current && !ref.current.contains(e.target as Node)) {

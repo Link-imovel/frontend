@@ -119,16 +119,16 @@ const Address = ({
                 ]}
               />
               <Input
-                id="neighbourhood"
+                id="neighborhood"
                 label="Bairro"
                 type="text"
-                name="neighbourhood"
+                name="neighborhood"
                 placeholder="Informe a aproximidade"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) =>
-                  handleValidation('neighbourhood', valid)
+                  handleValidation('neighborhood', valid)
                 }
-                value={data.neighbourhood}
+                value={data.neighborhood}
                 validators={[
                   {
                     type: 'Required',

@@ -23,7 +23,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
       await dispatch.publication.getAll();
       // Need to adjust card component
       setCards(
-        pubsStore.publications.slice(0, 4).map((publication) => ({
+        pubsStore.publications.map((publication) => ({
           variant: 'primary',
           size: 'small',
           views: false,
