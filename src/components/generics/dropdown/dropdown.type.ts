@@ -25,6 +25,7 @@ interface DropdownProps extends OpenStatusProps {
   containerStyle?: React.CSSProperties;
   className?: string;
   disabled?: boolean;
+  selectedValue?: string;
   onSelect?: (opt: DropdownOption) => void;
 }
 
