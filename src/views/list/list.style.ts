@@ -79,7 +79,8 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 20px;
+  margin: 20px 0;
+  height: 100%;
 `;
 
 export const Description = styled.p`
@@ -102,6 +103,12 @@ export const Content = styled.div`
   background-color: ${({ theme: { colors } }) => colors.whiteGrey};
   border-radius: 8px;
   padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  & > div:last-child {
+    align-self: center;
+  }
 `;
 
 const styles = {

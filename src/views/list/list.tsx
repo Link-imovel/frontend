@@ -20,6 +20,7 @@ import * as S from './list.style';
 import { ListViewProps } from './list.type';
 import { options } from '@components/generics/dropdown/dropdown.options';
 import { colors } from '@theme/theme/default';
+import { Pagination } from '@components/generics/pagination';
 
 const List = ({
   userName,
@@ -220,6 +221,7 @@ const List = ({
         <S.Content>
           <S.Quantity>{quantity} resultados retornado</S.Quantity>
           {renderContent()}
+          <Pagination />
         </S.Content>
       </S.Container>
     </Page>
