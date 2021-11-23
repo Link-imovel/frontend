@@ -38,7 +38,7 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
   };
 
   BArrowAfter.callback = () => {
-    router.push('/announcement/details ');
+    router.push('/announcement/details');
   };
 
   BNext.callback = () => {

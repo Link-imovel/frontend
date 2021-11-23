@@ -70,12 +70,22 @@ interface CreateSetPassword {
   valid: KeysType<SetPasswordFields, boolean>;
 }
 
+interface LoginFields {
+  email: string;
+  password: string;
+}
+interface Login {
+  user: LoginFields;
+  valid: KeysType<LoginFields, boolean>;
+}
+
 interface Store {
   createUser: CreateUser;
   createAddress: CreateAddress;
   createClient: CreateClient;
   createHomeDetail: CreateHomeDetail;
   createSetPassword: CreateSetPassword;
+  login: Login;
 }
 
 export type {
@@ -90,4 +100,6 @@ export type {
   CreateHomeDetail,
   SetPasswordFields,
   CreateSetPassword,
+  LoginFields,
+  Login,
 };

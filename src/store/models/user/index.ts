@@ -1,7 +1,7 @@
 import HttpClient from '@services/http.client';
 import { createModel } from '@rematch/core';
 
-import { User, UserAuth, UserState } from './user.interface';
+import { User, UserAuth, UserState, Login } from './user.interface';
 import { RootModel } from '@store/models';
 
 const user = createModel<RootModel>()({
@@ -12,6 +12,10 @@ const user = createModel<RootModel>()({
   } as UserState,
   reducers: {
     SET_USER: <T extends UserAuth>(state: UserState, user: T) => {
+      if (user.access_token) {
+        window.sessionStorage.setItem('access_token', user.access_token);
+      }
+
       return {
         ...state,
         access_token: user?.access_token || state.access_token,
@@ -37,20 +41,30 @@ const user = createModel<RootModel>()({
   },
   effects: (dispatch) => {
     const { user } = dispatch;
+    let accessToken = '';
+    if (typeof window !== 'undefined') {
+      accessToken = window.sessionStorage.getItem('access_token') || '';
+    }
     return {
       async get(id: string): Promise<void> {
         user.SET_USER({
-          ...(await HttpClient.setPath(`/user/${id}`).setMethod('GET').send()),
+          ...(await HttpClient.setPath(`/user/${id}`)
+            .setMethod('GET')
+            .setBearer(accessToken)
+            .send()),
         });
       },
       async getAll(): Promise<void> {
         user.SET_USERS({
-          ...(await HttpClient.setPath('/user').setMethod('GET').send()),
+          ...(await HttpClient.setPath('/user')
+            .setMethod('GET')
+            .setBearer(accessToken)
+            .send()),
         });
       },
-      async login(data: User): Promise<void> {
+      async login(data: Login): Promise<void> {
         user.SET_USER({
-          ...(await HttpClient.setPath('/user')
+          ...(await HttpClient.setPath('/user/login')
             .setMethod('POST')
             .setData(data)
             .send()),
@@ -68,6 +82,7 @@ const user = createModel<RootModel>()({
         user.SET_USER({
           ...(await HttpClient.setPath('/user')
             .setMethod('POST')
+            .setBearer(accessToken)
             .setData(data)
             .send()),
         });
@@ -77,6 +92,7 @@ const user = createModel<RootModel>()({
           ...(await HttpClient.setPath(`/user/${payload.id}`)
             .setMethod('PATCH')
             .setData(payload.data)
+            .setBearer(accessToken)
             .send()),
         });
       },
@@ -84,6 +100,7 @@ const user = createModel<RootModel>()({
         user.SET_USER({
           ...(await HttpClient.setPath(`/user/${id}`)
             .setMethod('DELETE')
+            .setBearer(accessToken)
             .send()),
         });
       },

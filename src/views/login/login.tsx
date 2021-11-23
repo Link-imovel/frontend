@@ -9,10 +9,18 @@ import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 
 import * as S from './login.style';
-import { LoginProps } from './login.type';
+import { ViewLoginProps } from './login.type';
 import { colors } from '@theme/theme/default';
 
-const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
+const Login = ({
+  title,
+  subtitle,
+  buttons,
+  handleData,
+  handleValidation,
+  data,
+  valid,
+}: ViewLoginProps): JSX.Element => {
   return (
     <Page>
       <S.Container>
@@ -44,6 +52,9 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
               type="text"
               name="email"
               placeholder="Entre com o seu e-mail"
+              onChange={(el) => handleData(el.target.id, el.target.value)}
+              onValidation={({ valid }) => handleValidation('email', valid)}
+              value={data.email}
               validators={[
                 {
                   type: 'Required',
@@ -71,6 +82,9 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
               name="password"
               placeholder="Entre com a sua senha"
               validateOnChange={false}
+              onChange={(el) => handleData(el.target.id, el.target.value)}
+              onValidation={({ valid }) => handleValidation('password', valid)}
+              value={data.password}
               validators={[
                 {
                   type: 'Required',
@@ -84,6 +98,7 @@ const Login = ({ title, subtitle, buttons }: LoginProps): JSX.Element => {
               size="large"
               radius="square"
               onClick={buttons.BLogin.callback}
+              disabled={!valid}
             />
           </S.Wrapper>
           <S.LinkWrapper reverse={true}>

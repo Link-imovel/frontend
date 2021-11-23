@@ -1,3 +1,5 @@
+import { LoginFields } from '@store/models/store/store.interface';
+
 interface ButtonsProps {
   BLogo: {
     callback?: () => void;
@@ -18,4 +20,14 @@ interface LoginProps {
   buttons: ButtonsProps;
 }
 
-export type { ButtonsProps, LoginProps };
+interface ViewLoginProps {
+  title: string;
+  subtitle: string;
+  buttons: ButtonsProps;
+  handleData: (fieldName: string, value: any) => void;
+  handleValidation: (fieldName: string, value: any) => void;
+  data: LoginFields;
+  valid: boolean;
+}
+
+export type { ButtonsProps, ViewLoginProps, LoginProps };

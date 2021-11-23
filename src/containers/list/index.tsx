@@ -66,7 +66,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BCreateAnnouncement.callback = () => {
-    router.push('/address');
+    router.push('/announcement/address');
   };
 
   BCreateUser.callback = () => {

@@ -7,9 +7,11 @@ import { Generic } from '@views/generic';
 import { GenericProps } from '@views/generic/generic.type';
 
 import { User } from '@store/models/user/user.interface';
+import { useRouter } from 'next/router';
 
 const GenericContainer = (props: GenericProps): React.ReactElement => {
   const { BLogo, BArrowBefore, BLogin } = props.buttons;
+  const router = useRouter();
   const userStore = useSelector((state: RootState) => state.user);
   const store = useSelector((state: RootState) => state.store.createUser);
 
@@ -22,11 +24,11 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
   const dispatch = useDispatch<Dispatch>();
 
   BLogo.callback = () => {
-    console.log(1);
+    router.push('/');
   };
 
   BArrowBefore.callback = () => {
-    console.log(2);
+    router.back();
   };
 
   BLogin.callback = async () => {

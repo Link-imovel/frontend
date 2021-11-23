@@ -7,6 +7,7 @@ import {
   CreateSetPassword,
   CreateUser,
   Store,
+  Login,
 } from './store.interface';
 import { RootModel } from '@store/models';
 
@@ -100,6 +101,16 @@ const store = createModel<RootModel>()({
         samePassword: false,
       },
     },
+    login: {
+      user: {
+        email: '',
+        password: '',
+      },
+      valid: {
+        email: false,
+        password: false,
+      },
+    },
   },
   reducers: {
     createUser: (state: Store, data: Partial<CreateUser>): Store => {
@@ -127,6 +138,12 @@ const store = createModel<RootModel>()({
       return {
         ...state,
         createSetPassword: { ...state.createSetPassword, ...data },
+      };
+    },
+    login: (state: Store, data: Partial<Login>): Store => {
+      return {
+        ...state,
+        login: { ...state.login, ...data },
       };
     },
     clear: (): Store => {
