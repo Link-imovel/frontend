@@ -49,6 +49,7 @@ const SetPassword = ({
             name="newPassword"
             placeholder="Informe a nova senha"
             validateOnChange={false}
+            onChange={(el) => handleData(el.target.id, el.target.value)}
             onValidation={({ valid }) => handleValidation('newPassword', valid)}
             value={data.newPassword}
             validators={[
@@ -69,6 +70,7 @@ const SetPassword = ({
             name="samePassword"
             placeholder="Informe novamente a senha"
             validateOnChange={false}
+            onChange={(el) => handleData(el.target.id, el.target.value)}
             onValidation={({ valid }) =>
               handleValidation('samePassword', valid)
             }
