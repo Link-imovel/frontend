@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Card } from '@components/generics/card';
+import { Card as CardContainer } from '@components/container/card';
 
 import * as S from './geolocationcard.styles';
 import { CoordinateProps, GeolocationProps } from './geolocationcard.type';
@@ -19,9 +20,11 @@ const GeolocationCard = ({ cards }: GeolocationProps): React.ReactElement => {
   return (
     <S.Container>
       {getLocation()}
-      {cards.map((props, index) => (
-        <Card key={index} {...props} />
-      ))}
+      {cards.length
+        ? cards.map((props, index) => <Card key={index} {...props} />)
+        : [...Array(4)].map((_, i) => (
+            <CardContainer size="small" key={i} onClick={() => {}} />
+          ))}
     </S.Container>
   );
 };

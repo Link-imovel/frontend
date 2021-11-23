@@ -35,7 +35,7 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
 
   BArrowBefore.callback = () => {
     previous();
-    router.push('/address');
+    router.push('/announcement/address');
   };
 
   BArrowAfter.callback = () => {

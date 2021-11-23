@@ -7,10 +7,11 @@ import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
+import { user } from '@store/models/user';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
   const { BLogin, BLogo, BShowImovels } = props.header.buttons;
-  // const userStore = useSelector((state: RootState) => state.user);
+  const userStore = useSelector((state: RootState) => state.user);
   const pubsStore = useSelector((state: RootState) => state.publication);
   const dispatch = useDispatch<Dispatch>();
 
@@ -63,9 +64,9 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   return (
     <Home
-      userName="John"
+      userName={userStore?.user?.firstName}
       cards={cards}
-      isLogged={false}
+      isLogged={!!userStore?.user?.id}
       {...props}
       handleData={handleData}
     />

@@ -66,11 +66,11 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BCreateAnnouncement.callback = () => {
-    router.push('/address');
+    router.push('/announcement/address');
   };
 
   BCreateUser.callback = () => {
-    console.log(4);
+    router.push('/create-user');
   };
 
   BListUsers.callback = () => {
@@ -82,11 +82,11 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BLogout.callback = () => {
-    console.log(7);
+    dispatch.user.clear();
   };
 
   BUpdatePerfil.callback = () => {
-    console.log(8);
+    router.push('/update-user');
   };
 
   return (
