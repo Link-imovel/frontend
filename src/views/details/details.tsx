@@ -101,16 +101,31 @@ const Details = ({
                 label="Quarto"
                 placeholder="Quantidade de Quarto"
                 options={options.bedroom}
+                onSelect={(opt) => {
+                  handleData('bedroom', opt.label);
+                  handleValidation('bedroom', !!opt.label);
+                }}
+                selectedValue={data?.bedroom}
               />
               <Dropdown
                 label="Banheiro"
                 placeholder="Quantidade de Banheiro"
                 options={options.bathroom}
+                onSelect={(opt) => {
+                  handleData('bathroom', opt.label);
+                  handleValidation('bathroom', !!opt.label);
+                }}
+                selectedValue={data?.bathroom}
               />
               <Dropdown
                 label="Area de serviço"
                 placeholder="Quantidade de Area de serviço"
                 options={options.laudry}
+                onSelect={(opt) => {
+                  handleData('serviceArea', opt.label);
+                  handleValidation('serviceArea', !!opt.label);
+                }}
+                selectedValue={data?.serviceArea}
               />
               <DatePickerInput
                 selectedDate={new Date()
@@ -198,16 +213,31 @@ const Details = ({
                 label="Sala"
                 placeholder="Quantidade de Sala"
                 options={options.livingroom}
+                onSelect={(opt) => {
+                  handleData('room', opt.label);
+                  handleValidation('room', !!opt.label);
+                }}
+                selectedValue={data?.room}
               />
               <Dropdown
                 label="Cozinha"
                 placeholder="Quantidade de Cozinha"
                 options={options.kitchen}
+                onSelect={(opt) => {
+                  handleData('kitchen', opt.label);
+                  handleValidation('kitchen', !!opt.label);
+                }}
+                selectedValue={data?.kitchen}
               />
               <Dropdown
                 label="Garage"
                 placeholder="Quantidade de Garage"
                 options={options.garage}
+                onSelect={(opt) => {
+                  handleData('garage', opt.label);
+                  handleValidation('garage', !!opt.label);
+                }}
+                selectedValue={data?.garage}
               />
               <TextArea withBorder={true} placeholder="Descrição" />
             </S.Wrapper>

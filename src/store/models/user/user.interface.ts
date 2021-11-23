@@ -27,10 +27,16 @@ interface Login {
   password: string;
 }
 
+interface SetPassword {
+  password: string;
+  confirmPassword: string;
+  token: string;
+}
+
 interface UserState {
   access_token?: string;
   user: User;
   users: User[];
 }
 
-export type { User, UserAuth, UserState, Login };
+export type { User, UserAuth, UserState, Login, SetPassword };
