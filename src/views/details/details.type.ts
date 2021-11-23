@@ -31,6 +31,7 @@ interface DetailsProps {
 interface DetailsViewProps extends Required<DetailsProps> {
   data: HomeDetailFields;
   valid: boolean;
+  handleFiles: (files?: File[]) => void;
 }
 
 export type { DetailsProps, DetailsViewProps };

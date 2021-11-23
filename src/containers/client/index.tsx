@@ -35,11 +35,11 @@ const ClientContainer = (props: ClientProps): React.ReactElement => {
 
   BArrowBefore.callback = () => {
     previous();
-    router.push('/homedetail');
+    router.push('/announcement/details');
   };
 
   BCreate.callback = () => {
-    console.log(4);
+    window.location.replace('/list/announcements');
   };
 
   const handleData = (fieldName: string, value: any) => {

@@ -66,6 +66,10 @@ export const MenuContainer = styled.div<{
 
 export const Wrapper = styled.div`
   margin-top: 20px;
+
+  & > div {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Description = styled.p`

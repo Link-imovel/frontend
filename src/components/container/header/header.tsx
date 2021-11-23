@@ -26,7 +26,7 @@ const Header = ({
           icon={<Logo />}
           onClick={buttons.BLogo.callback}
         />
-        {!!isLogged ? (
+        {isLogged ? (
           <UserView user={userName} color={colors.whiteGrey} />
         ) : (
           <Button

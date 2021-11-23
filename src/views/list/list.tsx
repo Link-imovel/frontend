@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Page } from '@components/container/page';
+import { Card as CardContainer } from '@components/container/card';
 import { Button } from '@components/generics/button';
 import { UserView } from '@components/generics/userview';
 import { Card } from '@components/generics/card';
@@ -80,6 +81,7 @@ const List = ({
     | JSX.Element[]
     | JSX.Element
     | null => {
+    console.log(content);
     if (content.table) {
       return (
         <S.Wrapper>
@@ -91,15 +93,17 @@ const List = ({
     if (content.cards) {
       return (
         <S.Wrapper>
-          {cards.map((props, index) => (
-            <Card key={index} {...props} />
-          ))}
+          {cards.length
+            ? cards.map((props, index) => <Card key={index} {...props} />)
+            : [...Array(10)].map((_, i) => (
+                <CardContainer size="normal" key={i} onClick={() => {}} />
+              ))}
         </S.Wrapper>
       );
     }
 
     return null;
-  }, [cards, content.cards, content.table, users]);
+  }, [cards, content, users]);
 
   const renderDropDown = React.useCallback((): JSX.Element | null => {
     if (dropdown) {
