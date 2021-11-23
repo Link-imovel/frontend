@@ -49,6 +49,11 @@ const publication = createModel<RootModel>()({
   },
   effects: (dispatch) => {
     const { publication } = dispatch;
+    let accessToken = '';
+    if (typeof window !== 'undefined') {
+      accessToken = window.sessionStorage.getItem('access_token') || '';
+    }
+
     return {
       async get(id: string): Promise<void> {
         publication.SET_PUBLICATION(
@@ -91,6 +96,7 @@ const publication = createModel<RootModel>()({
           PublicationHelper.getImages(
             await HttpClient.setPath(`/publication`)
               .setMethod('POST')
+              .setBearer(accessToken)
               .setData(payload)
               .send()
           )
@@ -104,6 +110,7 @@ const publication = createModel<RootModel>()({
           PublicationHelper.getImages(
             await HttpClient.setPath(`/publication/${payload.id}`)
               .setMethod('PATCH')
+              .setBearer(accessToken)
               .setData(payload.data)
               .send()
           )
@@ -114,6 +121,7 @@ const publication = createModel<RootModel>()({
           PublicationHelper.getImages(
             await HttpClient.setPath(`/publication/${id}/activate`)
               .setMethod('POST')
+              .setBearer(accessToken)
               .send()
           )
         );
@@ -121,6 +129,7 @@ const publication = createModel<RootModel>()({
       async deactivate(id: string): Promise<void> {
         await HttpClient.setPath(`/publication/${id}`)
           .setMethod('DELETE')
+          .setBearer(accessToken)
           .send();
 
         publication.SET_PUBLICATIONS(

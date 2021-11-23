@@ -8,7 +8,6 @@ import { CoordinateProps, GeolocationProps } from './geolocationcard.type';
 const GeolocationCard = ({ cards }: GeolocationProps): React.ReactElement => {
   const getLocation = React.useCallback((): CoordinateProps | null => {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
-      console.log({ coords });
       return {
         latitude: coords.latitude,
         longitude: coords.longitude,

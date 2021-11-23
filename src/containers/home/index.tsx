@@ -54,7 +54,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   BShowImovels.callback = () => {
-    router.push('list/announcements');
+    window.location.replace('/list/announcements');
   };
 
   const handleData = (fieldName: string, value: any) => {

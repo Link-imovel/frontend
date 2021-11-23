@@ -47,7 +47,7 @@ const Card = ({
               </S.IconContent>
               <S.IconContent variant="secondary">
                 <PhoneIphone fill={colors.greyBlue} />{' '}
-                <span>{publication.phone}</span>
+                <span>{publication?.phone}</span>
               </S.IconContent>
             </S.IconContainer>
           </S.InfoContent>
@@ -55,7 +55,7 @@ const Card = ({
       );
     }
     return null;
-  }, [publication.phone, size]);
+  }, [publication?.phone, size]);
 
   const renderFunctions = React.useCallback((): JSX.Element | null => {
     if (functionalities) {
@@ -91,42 +91,46 @@ const Card = ({
         <>
           <S.Content sizeWidth={size}>
             <Visibility fill={colors.greyBlue} />{' '}
-            <span>{publication.views} views</span>
+            <span>{publication?.views} views</span>
           </S.Content>
         </>
       );
     }
     return null;
-  }, [publication.views, size, views]);
+  }, [publication?.views, size, views]);
 
   return (
     <Container size={size || 'small'} onClick={onClick}>
-      <Carousel images={publication.home.images || ''} size={size || 'small'} />
+      <Carousel
+        images={publication?.home?.images || ''}
+        size={size || 'small'}
+      />
       <S.Body size={size || 'small'}>
         <S.Wrapper sizePadding={size}>
           <S.MainContent>
             <S.Title sizeWidth={size}>A partir de</S.Title>
-            <S.Address sizeWidth={size}>{publication.home.ref}</S.Address>
+            <S.Address sizeWidth={size}>{publication?.home?.ref}</S.Address>
             {renderViews()}
             <S.Value sizeWidth={size}>
-              {Formatters.formatPrice(String(publication.home.value))}
+              {Formatters.formatPrice(String(publication?.home?.value))}
             </S.Value>
             <S.Location sizeWidth={size}>
-              {publication.home.address.state}, {publication.home.address.city}
+              {publication?.home?.address?.state},{' '}
+              {publication?.home?.address?.city}
             </S.Location>
           </S.MainContent>
           <S.IconContainer>
             <S.IconContent sizeWidth={size} variant="primary">
               <Bed fill={colors.greyBlue} />{' '}
-              <span>{publication.home.bedroom} quarto(s)</span>
+              <span>{publication?.home?.bedroom} quarto(s)</span>
             </S.IconContent>
             <S.IconContent sizeWidth={size} variant="primary">
               <Bathroom fill={colors.greyBlue} />{' '}
-              <span>{publication.home.bathroom} banheiro(s)</span>
+              <span>{publication?.home?.bathroom} banheiro(s)</span>
             </S.IconContent>
             <S.IconContent sizeWidth={size} variant="primary">
               <Car fill={colors.greyBlue} />{' '}
-              <span>{publication.home.garage} vaga(s)</span>
+              <span>{publication?.home?.garage} vaga(s)</span>
             </S.IconContent>
           </S.IconContainer>
           {renderInfo()}
@@ -146,8 +150,8 @@ const Card = ({
             <S.ButtonContent type="navigation">
               <Button
                 variant="secondary-square"
-                size={buttons?.googleMap.size}
-                label={buttons?.googleMap.label || ''}
+                size={buttons?.googleMap?.size}
+                label={buttons?.googleMap?.label || ''}
                 radius="square"
                 icon={
                   <Navigation height={20} width={20} fill={colors.whiteGrey} />
@@ -159,8 +163,8 @@ const Card = ({
             <S.ButtonContent type="default">
               <Button
                 variant="primary"
-                label={buttons?.visualize.label || 'Visualizar'}
-                size={buttons?.visualize.size}
+                label={buttons?.visualize?.label || 'Visualizar'}
+                size={buttons?.visualize?.size}
                 background={colors.whiteGrey}
                 color={colors.blackGrey}
                 onClick={visualize}

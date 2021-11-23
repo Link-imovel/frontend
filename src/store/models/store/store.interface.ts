@@ -60,11 +60,21 @@ interface CreateHomeDetail {
   valid: KeysType<HomeDetailFields, boolean>;
 }
 
+interface LoginFields {
+  email: string;
+  password: string;
+}
+interface Login {
+  user: LoginFields;
+  valid: KeysType<LoginFields, boolean>;
+}
+
 interface Store {
   createUser: CreateUser;
   createAddress: CreateAddress;
   createClient: CreateClient;
   createHomeDetail: CreateHomeDetail;
+  login: Login;
 }
 
 export type {
@@ -77,4 +87,6 @@ export type {
   CreateClient,
   HomeDetailFields,
   CreateHomeDetail,
+  LoginFields,
+  Login,
 };
