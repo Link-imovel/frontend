@@ -10,6 +10,9 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
+  BLogout: {
+    callback?: () => void;
+  };
 }
 
 export type HeaderProps = {

@@ -9,6 +9,7 @@ import * as S from './header.style';
 import { HeaderProps } from './header.type';
 import { UserView } from '@components/generics/userview';
 import { colors } from '@theme/theme/default';
+import { Logout } from '@components/generics/icons/logout';
 
 const Header = ({
   title,
@@ -27,7 +28,18 @@ const Header = ({
           onClick={buttons.BLogo.callback}
         />
         {isLogged ? (
-          <UserView user={userName} color={colors.whiteGrey} />
+          <S.Wrapper>
+            <UserView user={userName} color={colors.whiteGrey} />
+            <S.Line />
+            <Button
+              variant="transparent"
+              size="small"
+              justifyContent="space-between"
+              radius="square"
+              icon={<Logout fill={colors.whiteGrey} />}
+              onClick={buttons.BLogout.callback}
+            />
+          </S.Wrapper>
         ) : (
           <Button
             variant="secondary"

@@ -7,10 +7,9 @@ import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
-import { user } from '@store/models/user';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
-  const { BLogin, BLogo, BShowImovels } = props.header.buttons;
+  const { BLogin, BLogo, BShowImovels, BLogout } = props.header.buttons;
   const userStore = useSelector((state: RootState) => state.user);
   const pubsStore = useSelector((state: RootState) => state.publication);
   const dispatch = useDispatch<Dispatch>();
@@ -52,6 +51,10 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   BLogin.callback = () => {
     router.push('/login');
+  };
+
+  BLogout.callback = () => {
+    dispatch.user.clear();
   };
 
   BShowImovels.callback = () => {
