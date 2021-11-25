@@ -16,6 +16,9 @@ const Header = ({
   subtitle,
   buttons,
   handleData,
+  handleValidation,
+  data,
+  valid,
   isLogged,
   userName,
 }: HeaderProps): JSX.Element => {
@@ -50,7 +53,12 @@ const Header = ({
         )}
       </S.HeadContent>
       <S.MainContent>
-        <SearchBar handleData={handleData} />
+        <SearchBar
+          handleData={handleData}
+          handleValidation={handleValidation}
+          data={data}
+          valid={valid}
+        />
         <S.Title>{title}</S.Title>
         <S.Subtitle>{subtitle}</S.Subtitle>
         <Button

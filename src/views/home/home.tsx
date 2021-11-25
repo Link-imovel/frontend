@@ -20,6 +20,9 @@ const Home = ({
   footer,
   cards,
   handleData,
+  handleValidation,
+  data,
+  valid,
   isLogged,
   userName,
 }: HomeViewProps): React.ReactElement => {
@@ -30,6 +33,9 @@ const Home = ({
           {...header}
           userName={userName}
           handleData={handleData}
+          handleValidation={handleValidation}
+          data={data}
+          valid={valid}
           isLogged={isLogged}
         />
       }

@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
 import { Button } from '../button';
 import { Dropdown } from '../dropdown';
@@ -11,7 +12,21 @@ import { colors } from '@theme/theme/default';
 import { options } from '../dropdown/dropdown.options';
 import { SearchBarProps } from './searchbar.type';
 
-const SearchBar = ({ handleData }: SearchBarProps): React.ReactElement => {
+const SearchBar = ({
+  data,
+  handleData,
+  handleValidation,
+  valid,
+}: SearchBarProps): React.ReactElement => {
+  const search = React.useCallback(() => {
+    if (!valid) {
+      toast.error(
+        'Precisa informa um bairro ou cidade, para que ocorra a pesquisa.'
+      );
+      return;
+    }
+  }, [valid]);
+
   return (
     <S.Container>
       <S.Wrapper type="dropdown">
@@ -20,6 +35,11 @@ const SearchBar = ({ handleData }: SearchBarProps): React.ReactElement => {
           label="Tipo do Imovel"
           placeholder="Escolha um"
           options={options.type}
+          onSelect={(opt) => {
+            handleData('type', opt.label);
+            handleValidation('type', !!opt.label);
+          }}
+          selectedValue={data?.type}
         />
       </S.Wrapper>
       <S.Wrapper type="input">
@@ -29,8 +49,10 @@ const SearchBar = ({ handleData }: SearchBarProps): React.ReactElement => {
           radius="none"
           type="text"
           name="locale"
+          value={data?.locale}
           placeholder="Digite a cidade ou bairro"
           onChange={(el) => handleData(el.target.id, el.target.value)}
+          onValidation={({ valid }) => handleValidation('locale', valid)}
         />
       </S.Wrapper>
       <Button
@@ -38,6 +60,7 @@ const SearchBar = ({ handleData }: SearchBarProps): React.ReactElement => {
         size="xsmall"
         radius="middleSquare"
         icon={<Search height={24} width={24} fill={colors.whiteGrey} />}
+        onClick={search}
       />
     </S.Container>
   );

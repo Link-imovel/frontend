@@ -12,10 +12,18 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   const { BLogin, BLogo, BShowImovels, BLogout } = props.header.buttons;
   const userStore = useSelector((state: RootState) => state.user);
   const pubsStore = useSelector((state: RootState) => state.publication);
+
+  const store = useSelector((state: RootState) => state.store.createSearch);
+
   const dispatch = useDispatch<Dispatch>();
 
   const [cards, setCards] = React.useState<CardProps[]>([]);
-  const [data, setData] = React.useState({});
+  const [data, setData] = React.useState(store.searchbar);
+
+  const [dataValid, setDataValid] = React.useState(store.valid);
+  const [formValid, setFormValid] = React.useState(
+    Object.values(dataValid).every((item) => item)
+  );
 
   React.useEffect(() => {
     (async () => {
@@ -63,15 +71,35 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
+    dispatch.store.createSearch({
+      searchbar: {
+        ...data,
+        [fieldName]: value,
+      },
+    });
+  };
+
+  const handleValidation = (fieldName: string, value: boolean) => {
+    const valid = { ...dataValid, [fieldName]: value };
+    setDataValid(valid);
+    dispatch.store.createSearch({
+      valid,
+    });
+    setFormValid(Object.values(valid).every((item) => item));
   };
 
   return (
     <Home
-      userName={userStore?.user?.firstName}
+      // userName={userStore?.user?.firstName}
+      userName="Josue"
       cards={cards}
-      isLogged={!!userStore?.user?.id}
+      // isLogged={!!userStore?.user?.id}
+      isLogged={true}
       {...props}
+      valid={formValid}
       handleData={handleData}
+      handleValidation={handleValidation}
+      data={data}
     />
   );
 };

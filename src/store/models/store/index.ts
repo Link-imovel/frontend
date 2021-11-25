@@ -9,6 +9,7 @@ import {
   Store,
   Login,
   ListAnnouncement,
+  CreateSearch,
 } from './store.interface';
 import { RootModel } from '@store/models';
 
@@ -150,6 +151,16 @@ const store = createModel<RootModel>()({
         bathroom: false,
       },
     },
+    createSearch: {
+      searchbar: {
+        locale: '',
+        type: '',
+      },
+      valid: {
+        locale: false,
+        type: false,
+      },
+    },
   },
   reducers: {
     createUser: (state: Store, data: Partial<CreateUser>): Store => {
@@ -192,6 +203,12 @@ const store = createModel<RootModel>()({
       return {
         ...state,
         listannouncement: { ...state.listannouncement, ...data },
+      };
+    },
+    createSearch: (state: Store, data: Partial<CreateSearch>): Store => {
+      return {
+        ...state,
+        createSearch: { ...state.createSearch, ...data },
       };
     },
     clear: (): Store => {

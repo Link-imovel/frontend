@@ -14,6 +14,11 @@ interface UserFields {
   birthday: string;
 }
 
+interface CreateUser {
+  user: UserFields;
+  valid: KeysType<UserFields, boolean>;
+}
+
 interface AddressFields {
   street: string;
   street2: string;
@@ -25,6 +30,11 @@ interface AddressFields {
   ibge: string;
 }
 
+interface CreateAddress {
+  address: AddressFields;
+  valid: KeysType<AddressFields, boolean>;
+}
+
 interface ClientFields {
   firstName: string;
   lastName: string;
@@ -32,6 +42,11 @@ interface ClientFields {
   phone: string;
   mobile: string;
   registry: string;
+}
+
+interface CreateClient {
+  client: ClientFields;
+  valid: KeysType<ClientFields, boolean>;
 }
 
 interface HomeDetailImageField {
@@ -55,46 +70,19 @@ interface HomeDetailFields {
   images: HomeDetailImageField[];
 }
 
-interface SetPasswordFields {
-  newPassword: string;
-  samePassword: string;
-}
-
-interface ListAnnouncementFields {
-  garage: string;
-  serviceArea: string;
-  bedroom: string;
-  bathroom: string;
-}
-
-interface CreateUser {
-  user: UserFields;
-  valid: KeysType<UserFields, boolean>;
-}
-
-interface CreateAddress {
-  address: AddressFields;
-  valid: KeysType<AddressFields, boolean>;
-}
-
-interface CreateClient {
-  client: ClientFields;
-  valid: KeysType<ClientFields, boolean>;
-}
-
 interface CreateHomeDetail {
   homedetail: HomeDetailFields;
   valid: KeysType<HomeDetailFields, boolean>;
 }
 
+interface SetPasswordFields {
+  newPassword: string;
+  samePassword: string;
+}
+
 interface CreateSetPassword {
   setpassword: SetPasswordFields;
   valid: KeysType<SetPasswordFields, boolean>;
-}
-
-interface ListAnnouncement {
-  listannouncement: ListAnnouncementFields;
-  valid: KeysType<ListAnnouncementFields, boolean>;
 }
 
 interface LoginFields {
@@ -107,6 +95,28 @@ interface Login {
   valid: KeysType<LoginFields, boolean>;
 }
 
+interface ListAnnouncementFields {
+  garage: string;
+  serviceArea: string;
+  bedroom: string;
+  bathroom: string;
+}
+
+interface ListAnnouncement {
+  listannouncement: ListAnnouncementFields;
+  valid: KeysType<ListAnnouncementFields, boolean>;
+}
+
+interface SearchBarFields {
+  locale: string;
+  type: string;
+}
+
+interface CreateSearch {
+  searchbar: SearchBarFields;
+  valid: KeysType<SearchBarFields, boolean>;
+}
+
 interface Store {
   createUser: CreateUser;
   createAddress: CreateAddress;
@@ -115,6 +125,7 @@ interface Store {
   createSetPassword: CreateSetPassword;
   login: Login;
   listannouncement: ListAnnouncement;
+  createSearch: CreateSearch;
 }
 
 export type {
@@ -134,4 +145,6 @@ export type {
   Login,
   ListAnnouncementFields,
   ListAnnouncement,
+  SearchBarFields,
+  CreateSearch,
 };
