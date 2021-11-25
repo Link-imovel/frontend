@@ -1,4 +1,4 @@
-import { Publication } from '@store/models/publications/publications.interface';
+import { Publication } from '@store/ducks/publications/publications.interface';
 import React from 'react';
 
 interface ButtonsProps {

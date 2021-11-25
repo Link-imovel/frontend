@@ -1,4 +1,4 @@
-import { SetPasswordFields } from '@store/models/store/store.interface';
+import { SetPasswordFields } from '@store/ducks/store/store.interface';
 
 interface ButtonsProps {
   BLogo: {

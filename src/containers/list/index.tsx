@@ -44,9 +44,11 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   const router = useRouter();
 
   React.useEffect(() => {
-    (async () => {
-      await dispatch.publication.getAllByPage(page);
-      // Need to adjust card component
+    dispatch.publication.getAllByPage(page);
+  }, [dispatch.publication, page]);
+
+  React.useEffect(() => {
+    if (pubsStore?.publications?.length)
       setCards(
         pubsStore.publications.map((publication) => ({
           variant: 'secondary',
@@ -65,10 +67,8 @@ const ListContainer = (props: ListProps): React.ReactElement => {
           publication,
         }))
       );
-    })();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pubsStore.publications.length]);
+  }, [pubsStore.publications]);
 
   BLogin.callback = () => {
     router.push('/login');

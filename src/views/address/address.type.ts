@@ -1,4 +1,4 @@
-import { AddressFields } from '@store/models/store/store.interface';
+import { AddressFields } from '@store/ducks/store/store.interface';
 
 import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
 

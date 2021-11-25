@@ -1,4 +1,4 @@
-import { ClientFields } from '@store/models/store/store.interface';
+import { ClientFields } from '@store/ducks/store/store.interface';
 
 import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
 import { DropdownOption } from '@components/generics/dropdown/dropdown.type';

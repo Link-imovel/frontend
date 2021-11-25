@@ -1,5 +1,4 @@
 import HttpClient from '@services/http.client';
-import { createModel } from '@rematch/core';
 
 import {
   PublicationStore,
@@ -7,14 +6,14 @@ import {
   CreatePublication,
   UpdatePublication,
 } from './publications.interface';
-import { RootModel } from '@store/models';
 import PublicationHelper from './helpers';
 
-const publication = createModel<RootModel>()({
-  state: {
-    publication: {},
-    publications: [{}],
-  } as PublicationStore,
+const INITIAL_STATE = {
+  publication: {},
+  publications: [{}],
+};
+
+const publication = (state = INITIAL_STATE, payload) => {
   reducers: {
     SET_PUBLICATION: (
       state: PublicationStore,
@@ -51,7 +50,7 @@ const publication = createModel<RootModel>()({
     const { publication } = dispatch;
     let accessToken = '';
     if (typeof window !== 'undefined') {
-      accessToken = window.sessionStorage.getItem('access_token') || '';
+      accessToken = window.localStorage.getItem('access_token') || '';
     }
 
     return {
@@ -140,6 +139,6 @@ const publication = createModel<RootModel>()({
       },
     };
   },
-});
+};
 
 export { publication };
