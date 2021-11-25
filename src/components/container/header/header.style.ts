@@ -18,6 +18,18 @@ export const HeadContent = styled.div`
   align-items: center;
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Line = styled.hr`
+  margin-left: 20px;
+  height: 40px;
+  color: ${({ theme: { colors } }) => colors.whiteGrey};
+`;
+
 export const MainContent = styled.div`
   flex: 1;
   display: flex;
