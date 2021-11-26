@@ -143,6 +143,35 @@ WithEmptyPlaceholder.args = {
   ],
 };
 
+export const WithDefaultValue = Template.bind({});
+WithDefaultValue.args = {
+  label: 'Title',
+  selectedValue: 'MASTER',
+  disabled: false,
+  options: [
+    {
+      id: 'mr',
+      label: 'MR',
+    },
+    {
+      id: 'mrs',
+      label: 'MRS',
+    },
+    {
+      id: 'ms',
+      label: 'MS',
+    },
+    {
+      id: 'master',
+      label: 'MASTER',
+    },
+    {
+      id: 'miss',
+      label: 'MISS',
+    },
+  ],
+};
+
 export const NoOptions = Template.bind({});
 NoOptions.args = {
   label: 'Title',

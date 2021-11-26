@@ -86,6 +86,7 @@ const DropdownList = styled.ul<OpenStatusProps>`
     isOpen &&
     hasContent && {
       height: 'fit-content',
+      maxHeight: '160px',
       overflow: 'auto',
       overflowX: 'hidden',
       boxShadow: `2px 5px 8px 1px ${colors.blackGrey}`,
