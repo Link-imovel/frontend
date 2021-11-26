@@ -7,7 +7,7 @@ import { Logo } from '@components/generics/icons/logo';
 
 import * as S from './header.style';
 import { HeaderProps } from './header.type';
-import { UserView } from '@components/generics/userview';
+import { DropdownHeader } from '@components/generics/dropdownheader';
 import { colors } from '@theme/theme/default';
 import { Logout } from '@components/generics/icons/logout';
 
@@ -21,6 +21,7 @@ const Header = ({
   valid,
   isLogged,
   userName,
+  render,
 }: HeaderProps): JSX.Element => {
   return (
     <S.Container>
@@ -32,7 +33,11 @@ const Header = ({
         />
         {isLogged ? (
           <S.Wrapper>
-            <UserView user={userName} color={colors.whiteGrey} />
+            <DropdownHeader
+              user={userName}
+              color={colors.whiteGrey}
+              render={render}
+            />
             <S.Line />
             <Button
               variant="transparent"

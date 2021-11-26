@@ -1,7 +1,6 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Toaster } from 'react-hot-toast';
 
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@theme/global';
@@ -38,7 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                 }}
               />
             </Head>
-            <Toaster />
             <Component {...pageProps} />
           </BreadCrumbProvider>
         </ThemeProvider>

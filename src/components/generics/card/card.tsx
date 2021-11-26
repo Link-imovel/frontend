@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { Card as Container } from '@components/container/card';
 import { Button } from '@components/generics/button';
@@ -29,8 +30,13 @@ const Card = ({
   buttons,
   onClick,
 }: CardProps): React.ReactElement => {
+  const router = useRouter();
+
   const sendMessageWhatsapp = React.useCallback(() => {}, []);
-  const visualize = React.useCallback(() => {}, []);
+  const visualize = React.useCallback(() => {
+    router.push('/description');
+  }, [router]);
+
   const openGoogleMap = React.useCallback(() => {}, []);
   const deleteAnnuocement = React.useCallback(() => {}, []);
   const updateAnnuocement = React.useCallback(() => {}, []);

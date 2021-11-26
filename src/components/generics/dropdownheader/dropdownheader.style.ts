@@ -1,4 +1,3 @@
-import { colors } from '@theme/theme/default';
 import styled from 'styled-components';
 
 export const Container = styled.div<{ show: boolean }>`
@@ -15,13 +14,23 @@ export const MenuContent = styled.div`
   margin-top: 10px;
   padding: 20px;
   width: 250px;
-  background-color: ${({ color }) => color || colors.whiteGrey};
+  background-color: ${({ theme: { colors } }) => colors.whiteGrey};
   box-shadow: 0px 5px 20px 8px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   border-radius: 8px;
   position: absolute;
   right: 140px;
   z-index: 1;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 110px;
+    width: 20px;
+    height: 20px;
+    background-color: ${({ theme: { colors } }) => colors.whiteGrey};
+    transform: rotate(45deg);
+  }
   @media ${({ theme: { device } }) => device.laptop.max} {
     right: 20px;
   }
@@ -29,14 +38,10 @@ export const MenuContent = styled.div`
 
 export const Wrapper = styled.div`
   max-width: 200px;
-  height: 220px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: auto;
-  & + & {
-    margin-top: 10px;
-  }
+  grid-gap: 10px;
 `;
 
 export const ItemContent = styled.div``;

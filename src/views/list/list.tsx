@@ -3,7 +3,7 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Card as CardContainer } from '@components/container/card';
 import { Button } from '@components/generics/button';
-import { UserView } from '@components/generics/userview';
+import { UserView } from '@components/generics/dropdownheader';
 import { Card } from '@components/generics/card';
 import { Table } from '@components/generics/table';
 import { Dropdown } from '@components/generics/dropdown';
@@ -65,7 +65,7 @@ const List = ({
           />
           <Button
             variant="primary"
-            label={buttons.BListUsers.label || 'Listar usuário '}
+            label={buttons.BListUsers.label || 'Listar usuário'}
             size="default"
             color={colors.white}
             iconReverse={true}

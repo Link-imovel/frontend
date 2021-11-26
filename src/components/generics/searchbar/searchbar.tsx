@@ -1,5 +1,5 @@
 import React from 'react';
-import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 import { Button } from '../button';
 import { Dropdown } from '../dropdown';
@@ -18,14 +18,14 @@ const SearchBar = ({
   handleValidation,
   valid,
 }: SearchBarProps): React.ReactElement => {
+  const router = useRouter();
+
   const search = React.useCallback(() => {
     if (!valid) {
-      toast.error(
-        'Precisa informa um bairro ou cidade, para que ocorra a pesquisa.'
-      );
+      router.push('/list/announcements');
       return;
     }
-  }, [valid]);
+  }, [router, valid]);
 
   return (
     <S.Container>

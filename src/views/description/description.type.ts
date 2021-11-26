@@ -1,49 +1,36 @@
 import { MapProps } from '@components/generics/map/map.type';
+import { Publication } from '@store/models/publications/publications.interface';
 
 interface ButtonsProps {
   BLogo: {
-    callback: () => void;
+    callback?: () => void;
   };
   BLogin: {
     label?: string;
-    callback: () => void;
+    callback?: () => void;
+  };
+  BLogout: {
+    callback?: () => void;
   };
 }
 
-interface AddressProps {
-  id: string;
-  street: string;
-  street2: string;
-  city: string;
-  state: string;
-  ibge: string;
-  neighborhood: string;
-  number: number;
-  zip: string;
+interface DesciptionProps {
+  buttons: ButtonsProps;
 }
 
-interface CreateHome {
-  type: string;
-  ref: string;
-  totalArea: number;
-  value: number;
-  room: number;
-  bedroom: number;
-  bathroom: number;
-  kitchen: number;
-  garage: number;
-  serviceArea: number;
-  description: string;
-  buildAt: string;
-  address: AddressProps;
-  images?: Array<[]>;
+interface PublicationPros {
+  data: Publication<string[]>;
+  location: MapProps;
 }
 
-export type DesciptionProps = {
+interface DescriptionViewProps extends Required<DesciptionProps> {
   user: string;
   isLogged: boolean;
-  buttons: ButtonsProps;
-  home: CreateHome;
+  render: {
+    admin: boolean;
+  };
+  publication: PublicationPros;
   handleData: (fieldName: string, value: any) => void;
-  place: MapProps;
-};
+}
+
+export type { DesciptionProps, DescriptionViewProps, PublicationPros };

@@ -25,11 +25,12 @@ Primary.args = {
     },
   },
   publication: {
+    title: 'Apartamento Ecoville',
     userId: '1',
     homeId: '1',
     phone: '(41) 99119-9642',
     reserved: false,
-    views: 3,
+    views: '3',
     virtualTour: 'https://google.com',
     rented: true,
     createdAt: new Date('1990-12-12T00:00:00.000Z'),
@@ -46,7 +47,7 @@ Primary.args = {
       kitchen: 1,
       garage: 1,
       serviceArea: 1,
-      buildAt: new Date('1990-12-12T00:00:00.000Z'),
+      buildAt: '12/10/1990',
       description: 'Maravilhosa casa localizada perto do parque.',
       images: [
         'https://via.placeholder.com/269x143?text=1',
@@ -66,7 +67,6 @@ Primary.args = {
       },
     },
   },
-  onClick: () => console.log('clicked'),
 };
 
 export const Secondary = Template.bind({});
@@ -85,11 +85,12 @@ Secondary.args = {
     },
   },
   publication: {
+    title: 'Apartamento Ecoville',
     userId: '1',
     homeId: '1',
     phone: '(41) 99119-9642',
     reserved: false,
-    views: 3,
+    views: '3',
     virtualTour: 'https://google.com',
     rented: true,
     createdAt: new Date('1990-12-12T00:00:00.000Z'),
@@ -106,7 +107,7 @@ Secondary.args = {
       kitchen: 1,
       garage: 1,
       serviceArea: 1,
-      buildAt: new Date('1990-12-12T00:00:00.000Z'),
+      buildAt: '12/10/1990',
       description: 'Maravilhosa casa localizada perto do parque.',
       images: [
         'https://via.placeholder.com/269x143?text=1',
@@ -126,7 +127,6 @@ Secondary.args = {
       },
     },
   },
-  onClick: () => console.log('clicked'),
 };
 
 export const Ternary = Template.bind({});
@@ -145,11 +145,12 @@ Ternary.args = {
     },
   },
   publication: {
+    title: 'Apartamento Ecoville',
     userId: '1',
     homeId: '1',
     phone: '(41) 99119-9642',
     reserved: false,
-    views: 3,
+    views: '3',
     virtualTour: 'https://google.com',
     rented: true,
     createdAt: new Date('1990-12-12T00:00:00.000Z'),
@@ -166,7 +167,7 @@ Ternary.args = {
       kitchen: 1,
       garage: 1,
       serviceArea: 1,
-      buildAt: new Date('1990-12-12T00:00:00.000Z'),
+      buildAt: '12/10/1990',
       description: 'Maravilhosa casa localizada perto do parque.',
       images: [
         'https://via.placeholder.com/269x143?text=1',
@@ -186,5 +187,4 @@ Ternary.args = {
       },
     },
   },
-  onClick: () => console.log('clicked'),
 };

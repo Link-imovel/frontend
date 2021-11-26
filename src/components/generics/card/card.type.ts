@@ -1,26 +1,6 @@
-import { Publication } from '@store/models/publications/publications.interface';
 import React from 'react';
 
-interface ButtonsProps {
-  BCircleWhatsApp: {
-    callback?: () => void;
-  };
-  BNavigation: {
-    typeSize: 'small' | 'medium';
-    label?: string;
-    callback?: () => void;
-  };
-  BContact: {
-    label: string;
-    callback?: () => void;
-  };
-  BEdit?: {
-    callback?: () => void;
-  };
-  BDelete?: {
-    callback?: () => void;
-  };
-}
+import { Publication } from '@store/models/publications/publications.interface';
 
 interface CardProps {
   variant: 'primary' | 'secondary' | 'ternary';

@@ -27,4 +27,7 @@ export type HeaderProps = {
   handleValidation: (fieldName: string, value: any) => void;
   data: SearchBarFields;
   valid: boolean;
+  render: {
+    admin: boolean;
+  };
 };

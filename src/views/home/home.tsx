@@ -25,6 +25,7 @@ const Home = ({
   valid,
   isLogged,
   userName,
+  render,
 }: HomeViewProps): React.ReactElement => {
   return (
     <Page
@@ -37,6 +38,7 @@ const Home = ({
           data={data}
           valid={valid}
           isLogged={isLogged}
+          render={render}
         />
       }
       footer={<Footer {...footer} />}

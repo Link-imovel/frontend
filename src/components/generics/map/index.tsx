@@ -6,9 +6,7 @@ import 'leaflet-defaulticon-compatibility';
 
 import { MapProps } from './map.type';
 
-const Map = ({ location }: MapProps) => {
-  const { latitude, longitude } = location;
-
+const Map = ({ latitude, longitude }: MapProps) => {
   return (
     <MapContainer
       center={[latitude, longitude]}

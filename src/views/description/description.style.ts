@@ -13,6 +13,12 @@ export const HeaderContent = styled.div`
   align-items: center;
 `;
 
+export const DropdownContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const Title = styled.span<{ variant: 'primary' | 'secondary' }>`
   ${({ variant }) => styles[variant]};
 `;
@@ -105,9 +111,8 @@ export const MapContainer = styled.div`
   overflow: hidden;
 `;
 
-export const Line = styled.div`
-  margin: 45px 0;
-  border: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
+export const Line = styled.div<{ type: 'line-small' | 'line-large' }>`
+  ${({ type }) => styles[type]};
 `;
 
 export const Wrapper = styled.div<{ hasIcon?: boolean }>`
@@ -159,5 +164,14 @@ const styles = {
     @media ${({ theme: { device } }) => device.laptop.max} {
       margin-bottom: 14px;
     }
+  `,
+  'line-small': css`
+    margin-left: 20px;
+    height: 40px;
+    color: ${({ theme: { colors } }) => colors.blackGrey};
+  `,
+  'line-large': css`
+    margin: 45px 0;
+    border: 1px solid ${({ theme: { colors } }) => colors.lightGrey};
   `,
 };

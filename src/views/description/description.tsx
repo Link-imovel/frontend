@@ -5,7 +5,7 @@ import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
 import { Gallery } from '@components/container/gallery';
 import { Contact } from '@components/generics/contact';
-import { UserView } from '@components/generics/userview';
+import { DropdownHeader } from '@components/generics/dropdownheader';
 
 import { Logo } from '@components/generics/icons/logo';
 import { Chair } from '@components/generics/icons/chair';
@@ -17,9 +17,10 @@ import { Bathroom } from '@components/generics/icons/bathroom';
 import { Bed } from '@components/generics/icons/bed';
 import { Car } from '@components/generics/icons/car';
 import { Area } from '@components/generics/icons/area';
+import { Logout } from '@components/generics/icons/logout';
 
 import * as S from './description.style';
-import { DesciptionProps } from './description.type';
+import { DescriptionViewProps } from './description.type';
 import { colors } from '@theme/theme/default';
 import { Formatters } from '@helpers/formatters';
 
@@ -29,10 +30,12 @@ const Description = ({
   user,
   isLogged,
   buttons,
-  home,
+  publication,
   handleData,
-  place,
-}: DesciptionProps): React.ReactElement => {
+  render,
+}: DescriptionViewProps): React.ReactElement => {
+  const { data, location } = publication;
+
   return (
     <Page>
       <S.Container>
@@ -45,7 +48,18 @@ const Description = ({
             onClick={buttons.BLogo.callback}
           />
           {isLogged ? (
-            <UserView user={user} />
+            <S.DropdownContent>
+              <DropdownHeader user={user} render={render} />
+              <S.Line type="line-small" />
+              <Button
+                variant="transparent"
+                size="small"
+                justifyContent="space-between"
+                radius="square"
+                icon={<Logout fill={colors.blackGrey} />}
+                onClick={buttons.BLogout.callback}
+              />
+            </S.DropdownContent>
           ) : (
             <Button
               variant="primary"
@@ -56,18 +70,16 @@ const Description = ({
         </S.HeaderContent>
         <S.Content variant="flex">
           <S.Wrapper>
-            <S.Title variant="primary">
-              {home.type} - {home.address.neighborhood}
-            </S.Title>
+            <S.Title variant="primary">{data.title}</S.Title>
             <S.Subtitle>
-              {home.address.number}, {home.address.street}, {home.address.state}
-              , {home.address.city}
+              {data.home.address.number}, {data.home.address.street},{' '}
+              {data.home.address.state}, {data.home.address.city}
             </S.Subtitle>
           </S.Wrapper>
-          <S.Value>{Formatters.formatPrice(String(home.value))}</S.Value>
+          <S.Value>{Formatters.formatPrice(String(data.home.value))}</S.Value>
         </S.Content>
         <Gallery backgroundColor={colors.blackGrey} />
-        <S.Line />
+        <S.Line type="line-large" />
         <S.Content variant="grid">
           <S.Wrapper>
             <S.OverviewContent>
@@ -76,53 +88,53 @@ const Description = ({
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Bathroom width={20} height={20} />{' '}
-                    <span>{home.bathroom} Banheiro</span>
+                    <span>{data.home.bathroom} Banheiro</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Bed width={20} height={20} />{' '}
-                    <span>{home.bedroom} Quartos</span>
+                    <span>{data.home.bedroom} Quartos</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Car width={20} height={20} />{' '}
-                    <span>{home.garage} Vagas</span>
+                    <span>{data.home.garage} Vagas</span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Chair width={20} height={20} />{' '}
-                    <span>{home.room} Salas</span>
+                    <span>{data.home.room} Salas</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <FlatWare width={20} height={20} />{' '}
-                    <span>{home.kitchen} Cozinha</span>
+                    <span>{data.home.kitchen} Cozinha</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <DryCleaning width={20} height={20} />{' '}
-                    <span>{home.serviceArea} Area de serviço</span>
+                    <span>{data.home.serviceArea} Area de serviço</span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Calendar width={20} height={20} />{' '}
-                    <span>Ano da construção: {home.buildAt}</span>
+                    <span>Ano da construção: {data.home.buildAt}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Building width={20} height={20} />{' '}
-                    <span>Tipo do Imovel: {home.type}</span>
+                    <span>Tipo do Imovel: {data.home.type}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Area width={20} height={20} />{' '}
                     <span>
-                      Area total do imóvel : {home.totalArea}m<sup>2</sup>
+                      Area total do imóvel : {data.home.totalArea}m<sup>2</sup>
                     </span>
                   </S.Wrapper>
                 </S.IconContainer>
               </S.IconContent>
             </S.OverviewContent>
-            <S.Line />
+            <S.Line type="line-large" />
             <S.DescriptionContent>
               <S.Title variant="secondary">Descrição</S.Title>
-              <S.Text>{home.description}</S.Text>
+              <S.Text>{data.home.description}</S.Text>
             </S.DescriptionContent>
           </S.Wrapper>
           <S.ContactContainer>
@@ -132,7 +144,7 @@ const Description = ({
         <S.LocateContent>
           <S.Title variant="secondary">Localização</S.Title>
           <S.MapContainer>
-            <Map location={place.location} />
+            <Map {...location} />
           </S.MapContainer>
         </S.LocateContent>
       </S.Container>

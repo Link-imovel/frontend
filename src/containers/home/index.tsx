@@ -100,6 +100,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
       handleData={handleData}
       handleValidation={handleValidation}
       data={data}
+      render={{ admin: true }}
     />
   );
 };
