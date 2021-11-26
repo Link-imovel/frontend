@@ -52,7 +52,7 @@ const Dropdown = ({
       id={opt.id}
       key={opt.id}
       style={containerStyle}
-      isSelected={opt.id === selectedOption.id || opt.label === selectedValue}
+      isSelected={opt.id === selectedOption.id}
       onClick={() => {
         setSelectedOption(options[idx]);
         onSelect && onSelect(options[idx]);

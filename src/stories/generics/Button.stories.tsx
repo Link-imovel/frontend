@@ -11,6 +11,7 @@ import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { ArrowAfter } from '@components/generics/icons/arrowafter';
 import { Edit } from '@components/generics/icons/edit';
 import { Delete } from '@components/generics/icons/delete';
+import { Close } from '@components/generics/icons/close';
 
 export default {
   title: 'Generics/Button',
@@ -149,4 +150,12 @@ BDelete.args = {
   radius: 'square',
   icon: <Delete height={20} width={20} fill={colors.whiteGrey} />,
   onClick: () => console.log('clicked'),
+};
+
+export const BClose = Template.bind({});
+BClose.args = {
+  variant: 'transparent',
+  size: 'small',
+  radius: 'square',
+  icon: <Close height={20} width={20} fill={colors.blackGrey} />,
 };

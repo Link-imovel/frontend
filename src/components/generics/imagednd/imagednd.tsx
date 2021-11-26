@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { ImageDnDProps } from './imagednd.type';
 import { AddPhoto } from '../icons/addphoto';
+import { Close } from '../icons/close';
 import { colors } from '@theme/theme/default';
 import * as S from './imagednd.style';
 
@@ -41,15 +42,18 @@ const ImageDnD = ({ getFiles }: ImageDnDProps): React.ReactElement => {
   );
 
   const renderImages = React.useCallback(
-    (
-      imagesList: React.ReactElement[],
-      files?: File[]
-    ): React.ReactElement[] => {
+    (imagesList: React.ReactElement[], files: File[]): React.ReactElement[] => {
       const temp = [...imagesList];
       files?.map((file, i) => {
         temp[i] = (
           <S.ImageWrapper key={i}>
+            <S.ButtonContainer>
+              <S.RemoveImage onClick={(e) => removeDropFiles(i, e)}>
+                <Close fill={colors.orange} />
+              </S.RemoveImage>
+            </S.ButtonContainer>
             <Image
+              className="image-container"
               key={file.name + i}
               width={181}
               height={166}
@@ -59,6 +63,15 @@ const ImageDnD = ({ getFiles }: ImageDnDProps): React.ReactElement => {
           </S.ImageWrapper>
         );
       });
+      for (let i = files.length; i < 6; i++) {
+        temp[i] = (
+          <S.ImageWrapper key={i}>
+            <S.NoImage>
+              <AddPhoto fill={colors.orange} />
+            </S.NoImage>
+          </S.ImageWrapper>
+        );
+      }
       setImageList(temp);
       return imagesList;
     },
@@ -72,6 +85,19 @@ const ImageDnD = ({ getFiles }: ImageDnDProps): React.ReactElement => {
         if (!file.type.match(/image/gim)) return;
         tempfileList.push(file);
       });
+      setFiles(tempfileList);
+      getFiles && getFiles(tempfileList);
+      renderImages(imageList, tempfileList);
+    },
+    [files, getFiles, imageList, renderImages]
+  );
+
+  const removeDropFiles = React.useCallback(
+    (index: number, e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      let tempfileList = files;
+      tempfileList.splice(index, 1);
       setFiles(tempfileList);
       getFiles && getFiles(tempfileList);
       renderImages(imageList, tempfileList);

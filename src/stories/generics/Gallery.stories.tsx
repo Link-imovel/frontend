@@ -20,5 +20,7 @@ Primary.args = {
     'https://via.placeholder.com/376x256.png?text=3',
     'https://via.placeholder.com/382x256.png?text=4',
     'https://via.placeholder.com/382x256.png?text=5',
+    'https://via.placeholder.com/382x256.png?text=6',
+    'https://via.placeholder.com/382x256.png?text=7',
   ],
 };

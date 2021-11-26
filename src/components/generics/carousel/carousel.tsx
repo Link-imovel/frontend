@@ -10,9 +10,10 @@ const Carousel = ({
   size,
   chevronLeft,
   chevronRight,
+  selectedIndex,
 }: CarouselProps): React.ReactElement => {
   const [quantity, setQuantity] = React.useState(0);
-  const [selected, setSelected] = React.useState(0);
+  const [selected, setSelected] = React.useState(selectedIndex || 0);
 
   React.useEffect(() => {
     if (Array.isArray(images)) {

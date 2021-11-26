@@ -10,11 +10,16 @@ const sizeMapper = {
     height: '265px',
     width: '246px',
   },
+  size: {
+    height: '100%',
+    width: '100%',
+  },
 };
 
 const border = {
   small: '10px 10px 0 0',
   normal: '10px 0 0 10px',
+  size: '0',
 };
 
 const CarouselBody = styled.div<CarouselBodyProp>`
