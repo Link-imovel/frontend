@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { ImageDnDProps } from './imagednd.type';
 import { AddPhoto } from '../icons/addphoto';
+import { Delete } from '../icons/delete';
 import { colors } from '@theme/theme/default';
 import * as S from './imagednd.style';
 
@@ -49,6 +50,9 @@ const ImageDnD = ({ getFiles }: ImageDnDProps): React.ReactElement => {
       files?.map((file, i) => {
         temp[i] = (
           <S.ImageWrapper key={i}>
+            <S.RemoveImage>
+              <Delete fill={colors.orange} />
+            </S.RemoveImage>
             <Image
               key={file.name + i}
               width={181}

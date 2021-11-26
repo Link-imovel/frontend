@@ -22,7 +22,7 @@ const DropzoneWrapper = styled.div`
 
 const DropzoneLabel = styled.label`
   color: ${({ theme: { colors } }) => colors.lightGrey};
-  font-size ${({ theme: { text } }) => text.sizes.xlarge};
+  font-size: ${({ theme: { text } }) => text.sizes.xlarge};
 `;
 
 const ImageContainer = styled.div`
@@ -47,6 +47,14 @@ const NoImage = styled.div`
 const ImageWrapper = styled.div`
   width: 181px;
   height: 166px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RemoveImage = styled.div`
+  position: absolute;
+  z-index: 1;
 `;
 
 export {
@@ -55,6 +63,7 @@ export {
   DropzoneWrapper,
   ImageContainer,
   ImageWrapper,
+  RemoveImage,
   DropzoneLabel,
   NoImage,
 };
