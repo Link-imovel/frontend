@@ -45,16 +45,26 @@ const NoImage = styled.div`
 `;
 
 const ImageWrapper = styled.div`
+  position: relative;
   width: 181px;
   height: 166px;
   display: flex;
   justify-content: center;
   align-items: center;
+  & .image-container {
+    border-radius: 8px;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 1;
 `;
 
 const RemoveImage = styled.div`
-  position: absolute;
-  z-index: 1;
+  cursor: pointer;
 `;
 
 export {
