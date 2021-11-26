@@ -83,9 +83,10 @@ export const setUserPasswordFailure = () => ({
   type: types.USER_SET_PASSWORD_FAILURE,
 });
 
-export const updateUserRequest = (payload: { id: string; data: User }) => ({
+export const updateUserRequest = (id: string, payload: User) => ({
   type: types.USER_UPDATE_REQUEST,
   payload,
+  id,
 });
 
 export const updateUserSuccess = (payload: User) => ({

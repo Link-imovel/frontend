@@ -59,7 +59,7 @@ const httpClient = <T extends any>(call: APICall): AxiosPromise<T> => {
 
   if (method === 'GET' || method === 'DELETE') {
     return apiBase(endpoint, {
-      params: { ...params },
+      params,
       headers,
       method,
     });

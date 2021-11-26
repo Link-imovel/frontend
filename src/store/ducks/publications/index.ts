@@ -1,144 +1,94 @@
-import HttpClient from '@services/http.client';
+import { Action } from '../ducks.interface';
 
-import {
-  PublicationStore,
-  Publication,
-  CreatePublication,
-  UpdatePublication,
-} from './publications.interface';
-import PublicationHelper from './helpers';
+import * as types from './types';
+import { sagas } from './sagas';
 
 const INITIAL_STATE = {
   publication: {},
   publications: [{}],
 };
 
-const publication = (state = INITIAL_STATE, payload) => {
-  reducers: {
-    SET_PUBLICATION: (
-      state: PublicationStore,
-      publication: Publication<string[]>
-    ) => {
+const publication = (state = INITIAL_STATE, action: Action) => {
+  switch (action.type) {
+    case types.PUBLICATION_REQUEST:
       return {
         ...state,
-        publication,
       };
-    },
-    SET_PUBLICATIONS: (
-      state: PublicationStore,
-      publications: Publication<string[]>[]
-    ) => {
+    case types.PUBLICATION_SUCCESS:
       return {
         ...state,
-        publications,
+        publication: action.payload,
       };
-    },
-    clear: (): PublicationStore => {
+    case types.PUBLICATION_FAILURE:
       return {
-        publication: {},
-        publications: [{}],
-      } as PublicationStore;
-    },
-    hydrate: (
-      state: PublicationStore,
-      data: PublicationStore
-    ): PublicationStore => {
-      return { ...state, ...data };
-    },
-  },
-  effects: (dispatch) => {
-    const { publication } = dispatch;
-    let accessToken = '';
-    if (typeof window !== 'undefined') {
-      accessToken = window.localStorage.getItem('access_token') || '';
-    }
-
-    return {
-      async get(id: string): Promise<void> {
-        publication.SET_PUBLICATION(
-          PublicationHelper.getImages<Publication<string[]>>(
-            await HttpClient.setPath(`/publication/${id}`)
-              .setMethod('GET')
-              .send()
-          )
-        );
-      },
-      async getAll(): Promise<void> {
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath('/publication').setMethod('GET').send()
-          )
-        );
-      },
-      async getAllByPage(page: number): Promise<void> {
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath('/publication')
-              .setParams({ page })
-              .setMethod('GET')
-              .send()
-          )
-        );
-      },
-      async getAllBySearchWord(searchText: string): Promise<void> {
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath('/publication')
-              .setParams({ searchText })
-              .setMethod('GET')
-              .send()
-          )
-        );
-      },
-      async create(payload: CreatePublication): Promise<void> {
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath('/publication')
-              .setMethod('POST')
-              .setBearer(accessToken)
-              .setData(payload)
-              .send()
-          )
-        );
-      },
-      async update(payload: {
-        id: string;
-        data: UpdatePublication;
-      }): Promise<void> {
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath(`/publication/${payload.id}`)
-              .setMethod('PATCH')
-              .setBearer(accessToken)
-              .setData(payload.data)
-              .send()
-          )
-        );
-      },
-      async activate(id: string): Promise<void> {
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath(`/publication/${id}/activate`)
-              .setMethod('POST')
-              .setBearer(accessToken)
-              .send()
-          )
-        );
-      },
-      async deactivate(id: string): Promise<void> {
-        await HttpClient.setPath(`/publication/${id}`)
-          .setMethod('DELETE')
-          .setBearer(accessToken)
-          .send();
-
-        publication.SET_PUBLICATIONS(
-          PublicationHelper.getImages(
-            await HttpClient.setPath('/publication').setMethod('GET').send()
-          )
-        );
-      },
-    };
-  },
+        ...state,
+      };
+    case types.PUBLICATIONS_REQUEST:
+      return {
+        ...state,
+      };
+    case types.PUBLICATIONS_SUCCESS:
+      return {
+        ...state,
+        publications: action.payload,
+      };
+    case types.PUBLICATIONS_FAILURE:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_CREATE_REQUEST:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_CREATE_SUCCESS:
+      return {
+        ...state,
+        publications: action.payload,
+      };
+    case types.PUBLICATION_CREATE_FAILURE:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_UPDATE_REQUEST:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_UPDATE_SUCCESS:
+      return {
+        ...state,
+        publications: action.payload,
+      };
+    case types.PUBLICATION_UPDATE_FAILURE:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_ACTIVATE_REQUEST:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_ACTIVATE_SUCCESS:
+      return {
+        ...state,
+        publications: action.payload,
+      };
+    case types.PUBLICATION_ACTIVATE_FAILURE:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_DEACTIVATE_REQUEST:
+      return {
+        ...state,
+      };
+    case types.PUBLICATION_DEACTIVATE_SUCCESS:
+      return {
+        ...state,
+        publications: action.payload,
+      };
+    case types.PUBLICATION_DEACTIVATE_FAILURE:
+      return {
+        ...state,
+      };
+  }
 };
 
-export { publication };
+export { publication, sagas };

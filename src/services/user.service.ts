@@ -1,5 +1,5 @@
-import { Login, SetPassword, User } from '@store/ducks/user/user.interface';
 import { httpClient } from './http/http.client';
+import { Login, SetPassword, User } from '@store/ducks/user/user.interface';
 
 const userService = {
   get: (id: string) =>
@@ -41,10 +41,10 @@ const userService = {
       data,
       method: 'PATCH',
     }),
-  update: (data: { id: string; data: User }) =>
+  update: (id: string, data: User) =>
     httpClient({
       title: 'UserService - update',
-      endpoint: '/user/' + data.id,
+      endpoint: '/user/' + id,
       data,
       method: 'PATCH',
     }),

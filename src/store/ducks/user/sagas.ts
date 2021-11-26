@@ -1,11 +1,12 @@
+import { toast } from 'react-toastify';
 import { userService } from '@services/user.service';
 import { AxiosResponse } from 'axios';
 import { put, call, takeEvery } from 'redux-saga/effects';
-import { Sagas } from '../ducks.interface';
-
 import * as userActions from './actions';
-import * as types from './types';
+
+import { Sagas } from '../ducks.interface';
 import { Login, SetPassword, User, UserAuth } from './user.interface';
+import * as types from './types';
 
 export function* getUsers() {
   try {
@@ -40,6 +41,7 @@ export function* login({ payload }: Sagas<{ payload: Login }>) {
     }
   } catch (error) {
     yield put(userActions.loginUserFailure());
+    yield call(toast.error, 'Ocorreu um erro ao efetuar login!');
   }
 }
 
@@ -64,9 +66,11 @@ export function* setPassword({ payload }: Sagas<{ payload: SetPassword }>) {
     );
     if (response.status >= 200 && response.status <= 299) {
       yield put(userActions.setUserPasswordSuccess(response.data));
+      yield call(toast.success, 'Senha criada com sucesso!');
     }
   } catch (error) {
     yield put(userActions.setUserPasswordFailure());
+    yield call(toast.error, 'Ocorreu um erro ao definir a senha!');
   }
 }
 
@@ -78,25 +82,28 @@ export function* create({ payload }: Sagas<{ payload: User }>) {
     );
     if (response.status >= 200 && response.status <= 299) {
       yield put(userActions.createUserSuccess(response.data));
+      yield call(toast.success, 'Usuário criado com sucesso!');
     }
   } catch (error) {
     yield put(userActions.createUserFailure());
+    yield call(toast.error, 'Ocorreu um erro ao tentar criar o usuário!');
   }
 }
 
-export function* update({
-  payload,
-}: Sagas<{ payload: { id: string; data: User } }>) {
+export function* update({ id, payload }: Sagas<{ id: string; payload: User }>) {
   try {
     const response: AxiosResponse<User> = yield call(
       userService.update,
+      id,
       payload
     );
     if (response.status >= 200 && response.status <= 299) {
       yield put(userActions.updateUserSuccess(response.data));
+      yield call(toast.success, 'Usuário atualizado com sucesso!');
     }
   } catch (error) {
     yield put(userActions.updateUserFailure());
+    yield call(toast.error, 'Ocorreu um erro ao tentar atualizar o usuário!');
   }
 }
 
@@ -105,9 +112,11 @@ export function* deleteUser({ id }: Sagas<{ id: string }>) {
     const response: AxiosResponse<User> = yield call(userService.delete, id);
     if (response.status >= 200 && response.status <= 299) {
       yield put(userActions.deleteUserSuccess());
+      yield call(toast.success, ' Usuário deletado com sucesso!');
     }
   } catch (error) {
     yield put(userActions.deleteUserFailure());
+    yield call(toast.error, 'Ocorreu um erro ao deletar o usuário!');
   }
 }
 
