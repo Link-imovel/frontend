@@ -54,6 +54,7 @@ class StrapiService extends HttpClient {
   getLocalizedParams(path?: string, locale?: string) {
     if (path?.includes('?')) path = path.split('?')[0];
     if (path?.match('/')) path = path.replace('/', '');
+    if (path?.match('/')) path = path.split('/')[0];
     return { slug: path || '', locale: locale || 'en' };
   }
 

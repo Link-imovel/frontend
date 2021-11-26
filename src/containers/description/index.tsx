@@ -12,6 +12,7 @@ import {
 
 const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
   const { BLogin, BLogo, BLogout } = props.buttons;
+  console.log(props);
 
   const pubsStore = useSelector((state: RootState) => state.publication);
   const userStore = useSelector((state: RootState) => state.user);
