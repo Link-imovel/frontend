@@ -26,9 +26,11 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   );
 
   React.useEffect(() => {
-    (async () => {
-      await dispatch.publication.getAll();
-      // Need to adjust card component
+    dispatch.publication.getAll();
+  }, [dispatch.publication]);
+
+  React.useEffect(() => {
+    if (pubsStore?.publications?.length) {
       setCards(
         pubsStore.publications.map((publication) => ({
           variant: 'primary',
@@ -46,10 +48,8 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
           publication,
         }))
       );
-    })();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    }
+  }, [dispatch.publication, pubsStore.publications]);
 
   const router = useRouter();
 

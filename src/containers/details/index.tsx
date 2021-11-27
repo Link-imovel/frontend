@@ -59,7 +59,7 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
         address: { ...addressStore.address },
       },
     });
-    // window.location.replace('/list/announcements');
+    window.location.replace('/list/announcements');
   };
 
   const handleFiles = async (file?: File[]) => {

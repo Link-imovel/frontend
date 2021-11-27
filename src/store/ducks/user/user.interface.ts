@@ -22,6 +22,11 @@ interface User {
   publication?: Publication[];
 }
 
+interface UpdateUser {
+  id: string;
+  data: User;
+}
+
 interface Login {
   email: string;
   password: string;
@@ -39,4 +44,4 @@ interface UserState {
   users: User[];
 }
 
-export type { User, UserAuth, UserState, Login, SetPassword };
+export type { User, UserAuth, UserState, Login, SetPassword, UpdateUser };

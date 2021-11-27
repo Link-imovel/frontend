@@ -1,6 +1,6 @@
 import { CardProps } from '@components/generics/card/card.type';
 import { UserProps } from '@components/generics/table/table.type';
-import { ListAnnouncementFields } from '@store/models/store/store.interface';
+import { ListAnnouncementFields } from '@store/ducks/store/store.interface';
 
 interface ButtonsProps {
   BLogo: {

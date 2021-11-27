@@ -20,7 +20,7 @@ const GeolocationCard = ({ cards }: GeolocationProps): React.ReactElement => {
   return (
     <S.Container>
       {getLocation()}
-      {cards.length
+      {!!cards.length
         ? cards.map((props, index) => <Card key={index} {...props} />)
         : [...Array(4)].map((_, i) => (
             <CardContainer size="small" key={i} onClick={() => {}} />

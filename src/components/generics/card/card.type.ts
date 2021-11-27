@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Publication } from '@store/models/publications/publications.interface';
+import { Publication } from '@store/ducks/publications/publications.interface';
 
 interface CardProps {
   variant: 'primary' | 'secondary' | 'ternary';

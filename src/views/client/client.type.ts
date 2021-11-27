@@ -1,6 +1,7 @@
-import { HomeDetailFields } from '@store/ducks/store/store.interface';
+import { ClientFields } from '@store/ducks/store/store.interface';
 
 import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
+import { DropdownOption } from '@components/generics/dropdown/dropdown.type';
 
 interface ButtonsProps {
   BLogo: {
@@ -14,24 +15,24 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
-  BNext: {
+  BCreate: {
     label: string;
     callback?: () => void;
   };
 }
 
-interface DetailsProps {
+interface ClientProps {
   title: string;
   buttons: ButtonsProps;
   breadCrumb: BreadCrumbProps;
+  options?: Array<DropdownOption>;
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;
 }
 
-interface DetailsViewProps extends Required<DetailsProps> {
-  data: HomeDetailFields;
+interface ClientViewProps extends Required<ClientProps> {
+  data: ClientFields;
   valid: boolean;
-  handleFiles: (files?: File[]) => void;
 }
 
-export type { DetailsProps, DetailsViewProps };
+export type { ClientProps, ClientViewProps };

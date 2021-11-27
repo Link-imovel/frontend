@@ -1,4 +1,4 @@
-import { UserFields } from '@store/models/store/store.interface';
+import { UserFields } from '@store/ducks/store/store.interface';
 
 interface ButtonsProps {
   BLogo: {
