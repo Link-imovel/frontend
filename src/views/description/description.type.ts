@@ -15,6 +15,7 @@ interface ButtonsProps {
 }
 
 interface DesciptionProps {
+  id: string;
   buttons: ButtonsProps;
 }
 

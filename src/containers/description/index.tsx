@@ -12,7 +12,6 @@ import {
 
 const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
   const { BLogin, BLogo, BLogout } = props.buttons;
-  console.log(props);
 
   const pubsStore = useSelector((state: RootState) => state.publication);
   const userStore = useSelector((state: RootState) => state.user);
@@ -27,9 +26,10 @@ const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
 
   React.useEffect(() => {
     (async () => {
-      await dispatch.publication.get('1');
+      await dispatch.publication.get(props?.id);
 
       setPublication({
+        // it needs to remove object location
         data: pubsStore.publication,
         location: {
           latitude: 38.861,
@@ -37,7 +37,12 @@ const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
         },
       });
     })();
-  }, [dispatch.publication, dispatch.publication.get, pubsStore.publication]);
+  }, [
+    dispatch.publication,
+    dispatch.publication.get,
+    props.id,
+    pubsStore.publication,
+  ]);
 
   BLogo.callback = () => {
     router.push('/');

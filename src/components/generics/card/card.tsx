@@ -33,9 +33,10 @@ const Card = ({
   const router = useRouter();
 
   const sendMessageWhatsapp = React.useCallback(() => {}, []);
-  const visualize = React.useCallback(() => {
-    router.push('/description');
-  }, [router]);
+
+  const description = React.useCallback(() => {
+    router.push(`/description/${publication?.id}`);
+  }, [publication.id, router]);
 
   const openGoogleMap = React.useCallback(() => {}, []);
   const deleteAnnuocement = React.useCallback(() => {}, []);
@@ -173,7 +174,7 @@ const Card = ({
                 size={buttons?.visualize?.size}
                 background={colors.whiteGrey}
                 color={colors.blackGrey}
-                onClick={visualize}
+                onClick={description}
               />
             </S.ButtonContent>
           </S.ButtonContainer>
