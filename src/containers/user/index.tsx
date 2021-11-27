@@ -3,14 +3,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
 
-import { Generic } from '@views/generic';
-import { GenericProps } from '@views/generic/generic.type';
+import { User as Users } from '@views/user';
+import { UserProps } from '@views/user/user.type';
 
 import { User } from '@store/models/user/user.interface';
 import { useRouter } from 'next/router';
 
-const GenericContainer = (props: GenericProps): React.ReactElement => {
-  const { BLogo, BArrowBefore, BLogin } = props.buttons;
+const UserContainer = (props: UserProps): React.ReactElement => {
+  const { BLogo, BArrowBefore, BDefault } = props.buttons;
   const router = useRouter();
   const userStore = useSelector((state: RootState) => state.user);
   const store = useSelector((state: RootState) => state.store.createUser);
@@ -31,7 +31,7 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
     window.location.replace('/list/announcements');
   };
 
-  BLogin.callback = async () => {
+  BDefault.callback = async () => {
     const user = ({ ...data, valid: undefined } as unknown) as User;
     switch (props.type) {
       case 'update':
@@ -69,7 +69,7 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
   };
 
   return (
-    <Generic
+    <Users
       valid={formValid}
       handleData={handleData}
       handleValidation={handleValidation}
@@ -79,4 +79,4 @@ const GenericContainer = (props: GenericProps): React.ReactElement => {
   );
 };
 
-export default GenericContainer;
+export default UserContainer;

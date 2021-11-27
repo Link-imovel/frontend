@@ -5,23 +5,23 @@ import { Button } from '@components/generics/button';
 import { Input } from '@components/generics/input';
 import { DatePickerInput } from '@components/generics/datepicker';
 
-import { GenericViewProps } from './generic.type';
+import { UserViewProps } from './user.type';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 
-import * as S from './generic.styles';
+import * as S from './user.styles';
 import { colors } from '@theme/theme/default';
 
 import { Formatters } from '@helpers/formatters';
 
-const Generic = ({
+const User = ({
   title,
   buttons,
   handleData,
   handleValidation,
   data,
   valid,
-}: GenericViewProps): React.ReactElement => {
+}: UserViewProps): React.ReactElement => {
   return (
     <Page>
       <S.Container>
@@ -332,10 +332,9 @@ const Generic = ({
             </S.Wrapper>
             <Button
               variant="primary"
-              label={buttons.BLogin.label}
               size="large"
               radius="square"
-              onClick={buttons.BLogin.callback}
+              onClick={buttons.BLogo.callback}
               disabled={!valid}
             />
           </S.Content>
@@ -346,4 +345,4 @@ const Generic = ({
   );
 };
 
-export { Generic };
+export { User };
