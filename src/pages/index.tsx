@@ -2,11 +2,15 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import strapiClient from '@services/strapi.client';
 
+import { BoxMessageProvider } from '@hooks/boxmessage';
+
 import HomeContainer from '@containers/home';
 import { HomeProps } from '@views/home/home.type';
 
 const Home = (props: HomeProps): React.ReactElement => (
-  <HomeContainer {...props} />
+  <BoxMessageProvider>
+    <HomeContainer {...props} />
+  </BoxMessageProvider>
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

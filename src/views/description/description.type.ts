@@ -21,7 +21,7 @@ interface DesciptionProps {
 
 interface PublicationPros {
   data: Publication<string[]>;
-  location: MapProps;
+  location?: MapProps;
 }
 
 interface DescriptionViewProps extends Required<DesciptionProps> {

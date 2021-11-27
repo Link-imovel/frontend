@@ -2,11 +2,13 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Home } from '@views/home';
+import { BoxMessage } from '@components/generics/boxmessage';
 import { HomeProps } from '@views/home/home.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
+import { useBoxMessage } from '@hooks/boxmessage';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
   const { BLogin, BLogo, BShowImovels, BLogout } = props.header.buttons;
@@ -24,6 +26,8 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
   );
+
+  const { openModal, modal } = useBoxMessage();
 
   React.useEffect(() => {
     (async () => {
@@ -66,7 +70,8 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   BShowImovels.callback = () => {
-    window.location.replace('/list/announcements');
+    openModal('1');
+    // window.location.replace('/list/announcements');
   };
 
   const handleData = (fieldName: string, value: any) => {
@@ -89,19 +94,20 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   return (
-    <Home
-      // userName={userStore?.user?.firstName}
-      userName="Josue"
-      cards={cards}
-      // isLogged={!!userStore?.user?.id}
-      isLogged={true}
-      {...props}
-      valid={formValid}
-      handleData={handleData}
-      handleValidation={handleValidation}
-      data={data}
-      render={{ admin: true }}
-    />
+    <>
+      <BoxMessage open={modal.open} reference="ZL123" />
+      <Home
+        userName={userStore?.user?.firstName}
+        cards={cards}
+        isLogged={!!userStore?.user?.id}
+        {...props}
+        valid={formValid}
+        handleData={handleData}
+        handleValidation={handleValidation}
+        data={data}
+        render={{ admin: true }}
+      />
+    </>
   );
 };
 

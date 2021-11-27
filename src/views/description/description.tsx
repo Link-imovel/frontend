@@ -70,13 +70,13 @@ const Description = ({
         </S.HeaderContent>
         <S.Content variant="flex">
           <S.Wrapper>
-            <S.Title variant="primary">{data.title}</S.Title>
+            <S.Title variant="primary">{data?.title}</S.Title>
             <S.Subtitle>
-              {data.home.address.number}, {data.home.address.street},{' '}
-              {data.home.address.state}, {data.home.address.city}
+              {data?.home?.address?.number}, {data?.home?.address?.street},{' '}
+              {data?.home?.address?.state}, {data?.home?.address?.city}
             </S.Subtitle>
           </S.Wrapper>
-          <S.Value>{Formatters.formatPrice(String(data.home.value))}</S.Value>
+          <S.Value>{Formatters.formatPrice(String(data?.home?.value))}</S.Value>
         </S.Content>
         <Gallery backgroundColor={colors.blackGrey} />
         <S.Line type="line-large" />
@@ -88,44 +88,45 @@ const Description = ({
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Bathroom width={20} height={20} />{' '}
-                    <span>{data.home.bathroom} Banheiro</span>
+                    <span>{data?.home?.bathroom} Banheiro</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Bed width={20} height={20} />{' '}
-                    <span>{data.home.bedroom} Quartos</span>
+                    <span>{data?.home?.bedroom} Quartos</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Car width={20} height={20} />{' '}
-                    <span>{data.home.garage} Vagas</span>
+                    <span>{data?.home?.garage} Vagas</span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Chair width={20} height={20} />{' '}
-                    <span>{data.home.room} Salas</span>
+                    <span>{data?.home?.room} Salas</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <FlatWare width={20} height={20} />{' '}
-                    <span>{data.home.kitchen} Cozinha</span>
+                    <span>{data?.home?.kitchen} Cozinha</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <DryCleaning width={20} height={20} />{' '}
-                    <span>{data.home.serviceArea} Area de serviço</span>
+                    <span>{data?.home?.serviceArea} Area de serviço</span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Calendar width={20} height={20} />{' '}
-                    <span>Ano da construção: {data.home.buildAt}</span>
+                    <span>Ano da construção: {data?.home?.buildAt}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Building width={20} height={20} />{' '}
-                    <span>Tipo do Imovel: {data.home.type}</span>
+                    <span>Tipo do Imovel: {data?.home?.type}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Area width={20} height={20} />{' '}
                     <span>
-                      Area total do imóvel : {data.home.totalArea}m<sup>2</sup>
+                      Area total do imóvel : {data?.home?.totalArea}m
+                      <sup>2</sup>
                     </span>
                   </S.Wrapper>
                 </S.IconContainer>
@@ -134,7 +135,7 @@ const Description = ({
             <S.Line type="line-large" />
             <S.DescriptionContent>
               <S.Title variant="secondary">Descrição</S.Title>
-              <S.Text>{data.home.description}</S.Text>
+              <S.Text>{data?.home?.description}</S.Text>
             </S.DescriptionContent>
           </S.Wrapper>
           <S.ContactContainer>

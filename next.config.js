@@ -20,4 +20,13 @@ module.exports = {
     STRAPI_URL: 'http://localhost:1337',
     GTM_ID: 'UA-54516992-1',
   },
+  async redirects() {
+    return [
+      {
+        source: '/_error',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
