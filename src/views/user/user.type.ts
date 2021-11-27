@@ -8,23 +8,23 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
-  BLogin: {
+  BDefault: {
     label: string;
     callback?: () => void;
   };
 }
 
-interface GenericProps {
+interface UserProps {
   title: string;
   buttons: ButtonsProps;
-  type: 'create' | 'get' | 'update';
+  type: 'create' | 'update';
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;
 }
 
-interface GenericViewProps extends Required<GenericProps> {
+interface UserViewProps extends Required<UserProps> {
   data: UserFields;
   valid: boolean;
 }
 
-export type { ButtonsProps, GenericProps, GenericViewProps };
+export type { ButtonsProps, UserProps, UserViewProps };
