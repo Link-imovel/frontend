@@ -1,6 +1,6 @@
 interface BoxMessageProps {
   open: boolean;
-  reference: string;
+  title?: string;
 }
 
 export type { BoxMessageProps };

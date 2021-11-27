@@ -1,6 +1,6 @@
 interface BoxMessageContextData {
   modal: ModalProps;
-  openModal: (id: string) => void;
+  openModal: (id: string | undefined) => void;
   closeModal: () => void;
   deleteAnnoucement: () => void;
 }

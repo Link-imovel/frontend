@@ -5,8 +5,14 @@ import strapiClient from '@services/strapi.client';
 import { ListProps } from '@views/list/list.type';
 import ListContainer from '@containers/list';
 
+import { BoxMessageProvider } from '@hooks/boxmessage';
+
 const List = (props: ListProps): React.ReactElement => {
-  return <ListContainer {...props} />;
+  return (
+    <BoxMessageProvider>
+      <ListContainer {...props} />
+    </BoxMessageProvider>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

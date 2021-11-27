@@ -1,14 +1,7 @@
-interface UserProps {
-  id: string;
-  name: string;
-  email: string;
-  creci: string;
-  telephone: string;
-  type: string;
-}
+import { User } from '@store/models/user/user.interface';
 
 interface TableProps {
-  users: UserProps[];
+  users: User[];
 }
 
-export type { TableProps, UserProps };
+export type { TableProps };

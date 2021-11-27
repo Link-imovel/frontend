@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof BoxMessage> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   open: true,
-  reference: 'ZL293',
+  title: 'Tem certeza que deseja excluir anúncio de referência: ZL234.',
 };

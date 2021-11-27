@@ -9,19 +9,14 @@ import * as S from './boxmessage.style';
 import { BoxMessageProps } from './boxmessage.type';
 import { colors } from '@theme/theme/default';
 
-const BoxMessage = ({
-  open,
-  reference,
-}: BoxMessageProps): React.ReactElement => {
+const BoxMessage = ({ open, title }: BoxMessageProps): React.ReactElement => {
   const { closeModal } = useBoxMessage();
 
   return (
     <S.Container show={open}>
       <S.Wrapper>
         <S.Header>
-          <S.Title>
-            Tem certeza em excluir o anúncio: <strong>{reference}</strong>
-          </S.Title>
+          <S.Title>{title}</S.Title>
           <Button
             variant="transparent"
             size="small"

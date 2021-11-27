@@ -41,6 +41,7 @@ export const Header = styled.div`
 export const Title = styled.span`
   color: ${({ theme: { colors } }) => colors.blackGrey};
   font-size: ${({ theme: { text } }) => text.sizes.medium};
+  max-width: 400px;
 `;
 
 export const Content = styled.div`

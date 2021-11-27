@@ -4,12 +4,14 @@ import { useRouter } from 'next/router';
 import { List } from '@views/list';
 
 import { ListProps } from '@views/list/list.type';
-import { UserProps } from '@components/generics/table/table.type';
+import { TableProps } from '@components/generics/table/table.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, RootState } from '@store/index';
 import { useMobile } from '@hooks/mobile';
+import { BoxMessage } from '@components/generics/boxmessage';
+import { useBoxMessage } from '@hooks/boxmessage';
 
 const ListContainer = (props: ListProps): React.ReactElement => {
   const {
@@ -22,6 +24,8 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     BLogout,
     BUpdatePerfil,
   } = props.buttons;
+
+  const { content } = props;
 
   const { isMobile } = useMobile();
 
@@ -37,11 +41,13 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     Object.values(dataValid).every((item) => item)
   );
 
-  const [users, setUsers] = React.useState<UserProps[]>([]);
+  const [users, setUsers] = React.useState<TableProps[]>([]);
   const [cards, setCards] = React.useState<CardProps[]>([]);
   const [page, setPage] = React.useState(1);
 
   const router = useRouter();
+
+  const { modal } = useBoxMessage();
 
   React.useEffect(() => {
     (async () => {
@@ -69,6 +75,15 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pubsStore.publications.length]);
+
+  const typeMessage = (): string | undefined => {
+    if (content.cards) {
+      return 'Tem certeza que deseja excluir usuário de creci: 234122.';
+    }
+    if (content.table) {
+      return 'Tem certeza que deseja excluir anúncio de referência: ZL234.';
+    }
+  };
 
   BLogin.callback = () => {
     router.push('/login');
@@ -122,20 +137,23 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   return (
-    <List
-      valid={formValid}
-      handleData={handleData}
-      handleValidation={handleValidation}
-      data={data}
-      userName={userStore?.user?.firstName}
-      isLogged={!!userStore?.user?.id}
-      render={{ admin: true, user: false }}
-      users={users}
-      cards={cards}
-      quantity={cards.length || users.length}
-      isMobile={isMobile()}
-      {...props}
-    />
+    <>
+      <BoxMessage open={modal.open} title={typeMessage()} />
+      <List
+        valid={formValid}
+        handleData={handleData}
+        handleValidation={handleValidation}
+        data={data}
+        userName={userStore?.user?.firstName}
+        isLogged={!!userStore?.user?.id}
+        render={{ admin: true, user: false }}
+        users={users}
+        cards={cards}
+        quantity={cards.length || users.length}
+        isMobile={isMobile()}
+        {...props}
+      />
+    </>
   );
 };
 

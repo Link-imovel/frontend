@@ -8,8 +8,11 @@ const colors = {
   lightGreyBlue: '#CBD6DC',
   orange: '#FF8300',
   green: '#32CD30',
+  fadedGreen: '#C8E6C9',
   fadedGrey: '#E5E5E5',
   red: '#FF0F39',
+  fadedYellow: '#FFF0C2',
+  yellow: '#A68B00',
 };
 
 export { colors };

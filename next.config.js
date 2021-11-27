@@ -19,6 +19,7 @@ module.exports = {
     BACKEND_SERVICE: 'http://localhost:3001',
     STRAPI_URL: 'http://localhost:1337',
     GTM_ID: 'UA-54516992-1',
+    POSITIONSTACK_KEY: '109b9098909c7fb1abaa3b40e3987968',
   },
   async redirects() {
     return [

@@ -12,7 +12,7 @@ const BoxMessageProvider = ({
 }: BoxMessageProps): React.ReactElement => {
   const [modal, setModal] = React.useState<ModalProps>({ open: false });
 
-  const openModal = React.useCallback((id: string) => {
+  const openModal = React.useCallback((id: string | undefined) => {
     setModal({ open: true, id });
   }, []);
 
