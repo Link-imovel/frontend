@@ -19,13 +19,14 @@ const Header = ({
   data,
   isLogged,
   userName,
-  render,
+  permissionType,
 }: HeaderProps): JSX.Element => {
   const [userLogged, setIsLogged] = React.useState<boolean>();
 
   React.useEffect(() => {
     setIsLogged(isLogged);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <S.Container>
@@ -40,7 +41,7 @@ const Header = ({
             <DropdownHeader
               user={userName}
               color={colors.whiteGrey}
-              render={render}
+              permissionType={permissionType}
             />
             <S.Line />
             <Button

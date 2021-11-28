@@ -21,8 +21,8 @@ interface DesciptionProps {
 interface DescriptionViewProps extends Required<DesciptionProps> {
   user: string;
   isLogged: boolean;
-  render: {
-    admin: boolean;
+  permissionType: {
+    admin?: boolean;
   };
   publication: Publication<string[]>;
   handleData: (fieldName: string, value: any) => void;

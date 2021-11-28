@@ -23,7 +23,6 @@ interface User {
   creci?: string;
   birthday: string;
   permissionLevel?: string;
-  permissionType?: string;
   isActive?: boolean;
   createdAt?: string;
   updatedAt?: string;

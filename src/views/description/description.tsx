@@ -32,7 +32,7 @@ const Description = ({
   buttons,
   publication,
   handleData,
-  render,
+  permissionType,
 }: DescriptionViewProps): React.ReactElement => {
   return (
     <Page>
@@ -47,7 +47,7 @@ const Description = ({
           />
           {isLogged ? (
             <S.DropdownContent>
-              <DropdownHeader user={user} render={render} />
+              <DropdownHeader user={user} permissionType={permissionType} />
               <S.Line type="line-small" />
               <Button
                 variant="transparent"
@@ -70,11 +70,15 @@ const Description = ({
           <S.Wrapper>
             <S.Title variant="primary">{publication?.title}</S.Title>
             <S.Subtitle>
-              {publication?.home?.address?.number}, {publication?.home?.address?.street},{' '}
-              {publication?.home?.address?.state}, {publication?.home?.address?.city}
+              {publication?.home?.address?.number},{' '}
+              {publication?.home?.address?.street},{' '}
+              {publication?.home?.address?.state},{' '}
+              {publication?.home?.address?.city}
             </S.Subtitle>
           </S.Wrapper>
-          <S.Value>{Formatters.formatPrice(String(publication?.home?.value))}</S.Value>
+          <S.Value>
+            {Formatters.formatPrice(String(publication?.home?.value))}
+          </S.Value>
         </S.Content>
         <Gallery backgroundColor={colors.blackGrey} />
         <S.Line type="line-large" />
@@ -108,7 +112,9 @@ const Description = ({
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <DryCleaning width={20} height={20} />{' '}
-                    <span>{publication?.home?.serviceArea} Area de serviço</span>
+                    <span>
+                      {publication?.home?.serviceArea} Area de serviço
+                    </span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
@@ -143,7 +149,9 @@ const Description = ({
         <S.LocateContent>
           <S.Title variant="secondary">Localização</S.Title>
           <S.MapContainer>
-            <Map {publication} />
+            <Map
+              coordinates={publication?.home?.address?.location?.coordinates}
+            />
           </S.MapContainer>
         </S.LocateContent>
       </S.Container>

@@ -16,6 +16,7 @@ interface Address {
   state: string;
   zip: string;
   ibge: string;
+  location?: Point;
 }
 
 interface Home<T = ImageByteA[]> {
@@ -60,7 +61,8 @@ interface AddressHome {
   neighborhood: string;
   number: string;
   zip: string;
-  location?: Point;
+  latitude?: number;
+  longitude?: number;
 }
 
 interface ImageHome {

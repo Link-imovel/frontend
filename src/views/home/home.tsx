@@ -17,7 +17,7 @@ const Home = ({
   data,
   isLogged,
   userName,
-  render,
+  permissionType,
 }: HomeViewProps): React.ReactElement => {
   return (
     <Page
@@ -28,7 +28,7 @@ const Home = ({
           handleData={handleData}
           data={data}
           isLogged={isLogged}
-          render={render}
+          permissionType={permissionType}
         />
       }
       footer={<Footer {...footer} />}

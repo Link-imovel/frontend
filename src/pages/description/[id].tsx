@@ -13,25 +13,25 @@ const Description = (props: DesciptionProps): React.ReactElement => (
   <DescriptionContainer {...props} />
 );
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  (store) => async ({ resolvedUrl, locale, defaultLocale, params }) => {
-    const { slug, locale: strapiLocale } = strapiClient.getLocalizedParams(
-      resolvedUrl,
-      locale || defaultLocale
-    );
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(
+    (store) =>
+      async ({ resolvedUrl, locale, defaultLocale, params }) => {
+        const { slug, locale: strapiLocale } = strapiClient.getLocalizedParams(
+          resolvedUrl,
+          locale || defaultLocale
+        );
 
-    if (params?.id) {
-      store.dispatch(pubActions.getPublicationRequest(params.id as string));
-      store.dispatch(END);
-      await store.sagaTask?.toPromise();
-    }
+        store.dispatch(pubActions.getPublicationRequest(params?.id as string));
+        store.dispatch(END);
+        await store.sagaTask?.toPromise();
 
-    try {
-      return await strapiClient.getData(slug, strapiLocale);
-    } catch (error) {
-      return { props: {} };
-    }
-  }
-);
+        try {
+          return await strapiClient.getData(slug, strapiLocale);
+        } catch (error) {
+          return { props: {} };
+        }
+      }
+  );
 
 export default Description;

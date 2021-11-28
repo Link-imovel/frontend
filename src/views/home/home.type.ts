@@ -14,8 +14,8 @@ interface HomeViewProps extends Required<HomeProps> {
   userName: string;
   isLogged: boolean;
   cards: CardProps[];
-  render: {
-    admin: boolean;
+  permissionType: {
+    admin?: boolean;
   };
 }
 

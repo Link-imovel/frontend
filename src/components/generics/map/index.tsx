@@ -1,15 +1,14 @@
 import React from 'react';
+import { LatLngExpression } from 'leaflet';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 
-import { MapProps } from './map.type';
-
-const Map = ({ latitude, longitude }: MapProps) => {
+const Map = ({ coordinates }: { coordinates?: number[] }) => {
   return (
     <MapContainer
-      center={[latitude, longitude]}
+      center={coordinates as LatLngExpression}
       zoom={20}
       style={{ height: '100%', width: '100%' }}
     >
@@ -17,7 +16,7 @@ const Map = ({ latitude, longitude }: MapProps) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[latitude, longitude]} />
+      <Marker position={coordinates as LatLngExpression} />
     </MapContainer>
   );
 };

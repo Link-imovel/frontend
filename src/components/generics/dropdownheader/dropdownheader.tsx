@@ -17,7 +17,7 @@ import { colors } from '@theme/theme/default';
 const DropdownHeader = ({
   user,
   color,
-  render,
+  permissionType,
 }: DropdownHeaderProps): React.ReactElement => {
   const [show, setShow] = React.useState(false);
   const router = useRouter();
@@ -38,7 +38,7 @@ const DropdownHeader = ({
   }, [show]);
 
   const renderButtons = React.useCallback((): JSX.Element | null => {
-    if (render?.admin) {
+    if (permissionType?.admin) {
       return (
         <>
           <S.ItemContent>
@@ -67,7 +67,7 @@ const DropdownHeader = ({
       );
     }
     return null;
-  }, [render?.admin, send]);
+  }, [permissionType?.admin, send]);
 
   return (
     <S.Container show={show}>

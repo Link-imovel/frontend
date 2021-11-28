@@ -25,7 +25,7 @@ export type HeaderProps = {
   isLogged: boolean;
   handleData: (fieldName: string, value: any) => void;
   data?: SearchBarFields;
-  render: {
-    admin: boolean;
+  permissionType: {
+    admin?: boolean;
   };
 };

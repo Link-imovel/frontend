@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 
 import { Home } from '@views/home';
 import { HomeProps } from '@views/home/home.type';
-import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '@store/store.interface';
@@ -60,6 +59,12 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
     });
   };
 
+  const permissionType = React.useCallback((): Record<string, any> => {
+    return {
+      admin: pubsStore.publication.userId === userStore.user.id,
+    };
+  }, [pubsStore.publication.userId, userStore.user.id]);
+
   return (
     <Home
       userName={userStore.user?.firstName}
@@ -81,7 +86,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
       }))}
       handleData={handleData}
       data={data}
-      render={{ admin: true }}
+      permissionType={permissionType()}
       {...props}
     />
   );
