@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios';
 import { APICall } from './http.interface';
 
-// import { getToken } from '../../utils/auth';
+import { getToken } from '@helpers/auth';
 
 const defaultHeaders = {
   'Content-Type': 'application/json',
@@ -24,8 +24,8 @@ const httpClient = <T extends any>(call: APICall): AxiosPromise<T> => {
 
   headers = { ...headers, ...defaultHeaders };
 
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+  if (token || getToken()) {
+    headers['Authorization'] = `Bearer ${token || getToken()}`;
   }
 
   if (showJSON) {

@@ -7,6 +7,7 @@ import * as userActions from './actions';
 import { Sagas } from '../ducks.interface';
 import { Login, SetPassword, User, UserAuth } from './user.interface';
 import * as types from './types';
+import { saveToken } from '@helpers/auth';
 
 export function* getUsers() {
   try {
@@ -38,6 +39,7 @@ export function* login({ payload }: Sagas<{ payload: Login }>) {
     );
     if (response.status >= 200 && response.status <= 299) {
       yield put(userActions.loginUserSuccess(response.data));
+      yield call(saveToken, response.data.access_token as string);
     }
   } catch (error) {
     yield put(userActions.loginUserFailure());

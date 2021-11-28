@@ -1,3 +1,9 @@
+import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { Context, createWrapper, MakeStore } from 'next-redux-wrapper';
+import createSagaMiddleware, { Task } from 'redux-saga';
+import { combinedReducer, RootState } from './ducks/rootReducer';
+import rootSaga from './ducks/rootSaga';
 import {
   createStore,
   applyMiddleware,
@@ -5,13 +11,6 @@ import {
   Store,
   AnyAction,
 } from 'redux';
-
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import { Context, createWrapper } from 'next-redux-wrapper';
-import createSagaMiddleware, { Task } from 'redux-saga';
-import { combinedReducer, RootState } from './ducks/rootReducer';
-import rootSaga from './ducks/rootSaga';
-import { RootStore } from './store.interface';
 
 export interface SagaStore extends Store<RootState, AnyAction> {
   sagaTask?: Task;
@@ -24,9 +23,28 @@ const bindMiddleware = (middleware: Middleware[]) => {
   return applyMiddleware(...middleware);
 };
 
-export const makeStore = (context: Context) => {
+const localStorageMiddleware = (store: any) => {
+  return (next: any) => (action: any) => {
+    const result = next(action);
+    if (typeof window !== 'undefined')
+      sessionStorage?.setItem('applicationState', JSON.stringify(store.getState()));
+    return result;
+  };
+};
+
+const reHydrateStore = () => {
+  if (typeof window !== 'undefined' && localStorage?.getItem('applicationState') !== null) {
+    return JSON.parse(sessionStorage?.getItem('applicationState') || '{}');
+  }
+};
+
+export const makeStore: MakeStore<SagaStore> = (context: Context) => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(combinedReducer, bindMiddleware([sagaMiddleware]));
+  const store = createStore(
+    combinedReducer,
+    reHydrateStore(),
+    bindMiddleware([sagaMiddleware, logger, localStorageMiddleware])
+  );
   (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
   return store;
 };

@@ -8,6 +8,7 @@ import { TableProps } from '@components/generics/table/table.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { actions as pubsActions } from '@store/ducks/publications';
 
 import { useMobile } from '@hooks/mobile';
 import { BoxMessage } from '@components/generics/boxmessage';
@@ -25,18 +26,18 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     BLogout,
     BUpdatePerfil,
   } = props.buttons;
-
+  const router = useRouter();
   const { content } = props;
-
   const { isMobile } = useMobile();
+  const { modal } = useBoxMessage();
 
+  const store = useSelector((state: RootStore) => state.store.listannouncement);
   const pubsStore = useSelector((state: RootStore) => state.publication);
   const userStore = useSelector((state: RootStore) => state.user);
   const dispatch = useDispatch();
 
-  const store = useSelector((state: RootStore) => state.store.listannouncement);
-
   const [data, setData] = React.useState(store.listannouncement);
+  const [page, setPage] = React.useState(1);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
@@ -61,12 +62,6 @@ const ListContainer = (props: ListProps): React.ReactElement => {
       publication,
     }))
   );
-
-  const [page, setPage] = React.useState(1);
-
-  const router = useRouter();
-
-  const { modal } = useBoxMessage();
 
   const typeMessage = (): string | undefined => {
     if (content.cards) {
@@ -102,7 +97,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BLogout.callback = () => {
-    dispatch({});
+    dispatch(pubsActions.getPublicationsRequest({ page }));
   };
 
   BUpdatePerfil.callback = () => {

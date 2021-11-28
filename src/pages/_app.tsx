@@ -24,12 +24,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           <script
             dangerouslySetInnerHTML={{
               __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
 
-                  gtag('config', 'UA-54516992-1');
-                `,
+                    gtag('config', 'UA-54516992-1');
+                  `,
             }}
           />
         </Head>
