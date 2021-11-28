@@ -49,13 +49,27 @@ const Table = ({ users }: Required<TableProps>): React.ReactElement => {
       <S.Tbody>
         {users.map((user) => (
           <S.Tr key={user?.id}>
-            <S.Td type="default">{user?.firstName}</S.Td>
-            <S.Td type="default">{user?.lastName}</S.Td>
-            <S.Td type="default">{user?.email}</S.Td>
-            <S.Td type="default">{user?.creci}</S.Td>
-            <S.Td type="default">{user?.phone}</S.Td>
-            <S.Td type="default">{user?.registry}</S.Td>
-            <S.Td type="default">{user?.birthday}</S.Td>
+            <S.Td type="default" name="Nome">
+              {user?.firstName}
+            </S.Td>
+            <S.Td type="default" name="Sobrenome">
+              {user?.lastName}
+            </S.Td>
+            <S.Td type="default" name="E-mail">
+              {user?.email}
+            </S.Td>
+            <S.Td type="default" name="CRECI">
+              {user?.creci}
+            </S.Td>
+            <S.Td type="default" name="Telefone">
+              {user?.phone}
+            </S.Td>
+            <S.Td type="default" name="CPF">
+              {user?.registry}
+            </S.Td>
+            <S.Td type="default" name="Data Nascimento">
+              {user?.birthday}
+            </S.Td>
             {renderStatus(user?.isActive)}
             <S.Td type="default">
               <Button
