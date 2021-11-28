@@ -27,14 +27,20 @@ const localStorageMiddleware = (store: any) => {
   return (next: any) => (action: any) => {
     const result = next(action);
     if (typeof window !== 'undefined')
-      sessionStorage?.setItem('applicationState', JSON.stringify(store.getState()));
+      localStorage?.setItem(
+        'applicationState',
+        JSON.stringify(store.getState())
+      );
     return result;
   };
 };
 
 const reHydrateStore = () => {
-  if (typeof window !== 'undefined' && localStorage?.getItem('applicationState') !== null) {
-    return JSON.parse(sessionStorage?.getItem('applicationState') || '{}');
+  if (
+    typeof window !== 'undefined' &&
+    localStorage?.getItem('applicationState') !== null
+  ) {
+    return JSON.parse(localStorage?.getItem('applicationState') || '{}');
   }
 };
 

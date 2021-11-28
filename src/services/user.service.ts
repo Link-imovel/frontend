@@ -17,7 +17,7 @@ const userService = {
   login: (data: Login) =>
     httpClient({
       title: 'UserService - login',
-      endpoint: '/user/',
+      endpoint: '/user/login',
       data,
       method: 'POST',
     }),
