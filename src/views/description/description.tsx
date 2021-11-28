@@ -34,8 +34,6 @@ const Description = ({
   handleData,
   render,
 }: DescriptionViewProps): React.ReactElement => {
-  const { data, location } = publication;
-
   return (
     <Page>
       <S.Container>
@@ -70,13 +68,13 @@ const Description = ({
         </S.HeaderContent>
         <S.Content variant="flex">
           <S.Wrapper>
-            <S.Title variant="primary">{data?.title}</S.Title>
+            <S.Title variant="primary">{publication?.title}</S.Title>
             <S.Subtitle>
-              {data?.home?.address?.number}, {data?.home?.address?.street},{' '}
-              {data?.home?.address?.state}, {data?.home?.address?.city}
+              {publication?.home?.address?.number}, {publication?.home?.address?.street},{' '}
+              {publication?.home?.address?.state}, {publication?.home?.address?.city}
             </S.Subtitle>
           </S.Wrapper>
-          <S.Value>{Formatters.formatPrice(String(data?.home?.value))}</S.Value>
+          <S.Value>{Formatters.formatPrice(String(publication?.home?.value))}</S.Value>
         </S.Content>
         <Gallery backgroundColor={colors.blackGrey} />
         <S.Line type="line-large" />
@@ -88,44 +86,44 @@ const Description = ({
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Bathroom width={20} height={20} />{' '}
-                    <span>{data?.home?.bathroom} Banheiro</span>
+                    <span>{publication?.home?.bathroom} Banheiro</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Bed width={20} height={20} />{' '}
-                    <span>{data?.home?.bedroom} Quartos</span>
+                    <span>{publication?.home?.bedroom} Quartos</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Car width={20} height={20} />{' '}
-                    <span>{data?.home?.garage} Vagas</span>
+                    <span>{publication?.home?.garage} Vagas</span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Chair width={20} height={20} />{' '}
-                    <span>{data?.home?.room} Salas</span>
+                    <span>{publication?.home?.room} Salas</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <FlatWare width={20} height={20} />{' '}
-                    <span>{data?.home?.kitchen} Cozinha</span>
+                    <span>{publication?.home?.kitchen} Cozinha</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <DryCleaning width={20} height={20} />{' '}
-                    <span>{data?.home?.serviceArea} Area de serviço</span>
+                    <span>{publication?.home?.serviceArea} Area de serviço</span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Calendar width={20} height={20} />{' '}
-                    <span>Ano da construção: {data?.home?.buildAt}</span>
+                    <span>Ano da construção: {publication?.home?.buildAt}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Building width={20} height={20} />{' '}
-                    <span>Tipo do Imovel: {data?.home?.type}</span>
+                    <span>Tipo do Imovel: {publication?.home?.type}</span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Area width={20} height={20} />{' '}
                     <span>
-                      Area total do imóvel : {data?.home?.totalArea}m
+                      Area total do imóvel : {publication?.home?.totalArea}m
                       <sup>2</sup>
                     </span>
                   </S.Wrapper>
@@ -135,7 +133,7 @@ const Description = ({
             <S.Line type="line-large" />
             <S.DescriptionContent>
               <S.Title variant="secondary">Descrição</S.Title>
-              <S.Text>{data?.home?.description}</S.Text>
+              <S.Text>{publication?.home?.description}</S.Text>
             </S.DescriptionContent>
           </S.Wrapper>
           <S.ContactContainer>
@@ -145,7 +143,7 @@ const Description = ({
         <S.LocateContent>
           <S.Title variant="secondary">Localização</S.Title>
           <S.MapContainer>
-            <Map {...location} />
+            <Map {publication} />
           </S.MapContainer>
         </S.LocateContent>
       </S.Container>

@@ -1,5 +1,4 @@
-import { MapProps } from '@components/generics/map/map.type';
-import { Publication } from '@store/models/publications/publications.interface';
+import { Publication } from '@store/ducks/publications/publications.interface';
 
 interface ButtonsProps {
   BLogo: {
@@ -19,19 +18,14 @@ interface DesciptionProps {
   buttons: ButtonsProps;
 }
 
-interface PublicationPros {
-  data: Publication<string[]>;
-  location?: MapProps;
-}
-
 interface DescriptionViewProps extends Required<DesciptionProps> {
   user: string;
   isLogged: boolean;
   render: {
     admin: boolean;
   };
-  publication: PublicationPros;
+  publication: Publication<string[]>;
   handleData: (fieldName: string, value: any) => void;
 }
 
-export type { DesciptionProps, DescriptionViewProps, PublicationPros };
+export type { DesciptionProps, DescriptionViewProps };
