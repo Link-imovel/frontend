@@ -1,3 +1,4 @@
+import { ReactText } from 'react';
 import * as types from './types';
 import {
   CreatePublication,
@@ -44,13 +45,18 @@ export const createPublicationRequest = (payload: CreatePublication) => ({
   payload,
 });
 
-export const createPublicationSuccess = (payload: Publication<string[]>[]) => ({
+export const createPublicationSuccess = (
+  payload: Publication<string[]>,
+  toast: ReactText
+) => ({
   type: types.PUBLICATION_CREATE_SUCCESS,
   payload,
+  toast,
 });
 
-export const createPublicationFailure = () => ({
+export const createPublicationFailure = (toast: ReactText) => ({
   type: types.PUBLICATION_CREATE_FAILURE,
+  toast,
 });
 
 // Update
@@ -64,13 +70,18 @@ export const updatePublicationRequest = (
   id,
 });
 
-export const updatePublicationSuccess = (payload: Publication<string[]>[]) => ({
+export const updatePublicationSuccess = (
+  payload: Publication<string[]>,
+  toast: ReactText
+) => ({
   type: types.PUBLICATION_UPDATE_SUCCESS,
   payload,
+  toast,
 });
 
-export const updatePublicationFailure = () => ({
+export const updatePublicationFailure = (toast: ReactText) => ({
   type: types.PUBLICATION_UPDATE_FAILURE,
+  toast,
 });
 
 // Activate
@@ -81,14 +92,17 @@ export const activatePublicationRequest = (id: string) => ({
 });
 
 export const activatePublicationSuccess = (
-  payload: Publication<string[]>[]
+  payload: Publication<string[]>,
+  toast: ReactText
 ) => ({
   type: types.PUBLICATION_ACTIVATE_SUCCESS,
   payload,
+  toast,
 });
 
-export const activatePublicationFailure = () => ({
+export const activatePublicationFailure = (toast: ReactText) => ({
   type: types.PUBLICATION_ACTIVATE_FAILURE,
+  toast,
 });
 
 // Deactivate
@@ -99,12 +113,15 @@ export const deactivatePublicationRequest = (id: string) => ({
 });
 
 export const deactivatePublicationSuccess = (
-  payload: Publication<string[]>[]
+  payload: Publication<string[]>,
+  toast: ReactText
 ) => ({
   type: types.PUBLICATION_DEACTIVATE_SUCCESS,
   payload,
+  toast,
 });
 
-export const deactivatePublicationFailure = () => ({
+export const deactivatePublicationFailure = (toast: ReactText) => ({
   type: types.PUBLICATION_DEACTIVATE_FAILURE,
+  toast,
 });

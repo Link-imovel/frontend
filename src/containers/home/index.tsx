@@ -6,7 +6,6 @@ import { HomeProps } from '@views/home/home.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
-// import { actions as userActions } from '@store/ducks/user';
 import { RootStore } from '@store/store.interface';
 import { SearchBarFields } from '@store/ducks/store/store.interface';
 

@@ -59,14 +59,17 @@ export function* createPublication({
     if (response.status >= 200 && response.status <= 299) {
       yield put(
         publicationActions.createPublicationSuccess(
-          PublicationHelper.getImages(response.data)
+          PublicationHelper.getImages(response.data),
+          toast.success('Publicação criada com sucesso!')
         )
       );
-      yield call(toast.success, 'Publicação criada com sucesso!');
     }
   } catch (error) {
-    yield put(publicationActions.createPublicationFailure());
-    yield call(toast.error, 'Ocorreu um erro ao criar a publicação.');
+    yield put(
+      publicationActions.createPublicationFailure(
+        toast.error('Ocorreu um erro ao criar a publicação.')
+      )
+    );
   }
 }
 
@@ -83,14 +86,17 @@ export function* updatePublication({
     if (response.status >= 200 && response.status <= 299) {
       yield put(
         publicationActions.updatePublicationSuccess(
-          PublicationHelper.getImages(response.data)
+          PublicationHelper.getImages(response.data),
+          toast.success('Publicação atualizada com sucesso!')
         )
       );
-      yield call(toast.success, 'Publicação atualizada com sucesso!');
     }
   } catch (error) {
-    yield put(publicationActions.updatePublicationFailure());
-    yield call(toast.error, 'Ocorreu um erro ao atualizar a publicação.');
+    yield put(
+      publicationActions.updatePublicationFailure(
+        toast.error('Ocorreu um erro ao atualizar a publicação.')
+      )
+    );
   }
 }
 
@@ -103,14 +109,17 @@ export function* activatePublication({ id }: Sagas<{ id: string }>) {
     if (response.status >= 200 && response.status <= 299) {
       yield put(
         publicationActions.activatePublicationSuccess(
-          PublicationHelper.getImages(response.data)
+          PublicationHelper.getImages(response.data),
+          toast.success('Publicação ativada com sucesso!')
         )
       );
-      yield call(toast.success, 'Publicação ativada com sucesso!');
     }
   } catch (error) {
-    yield put(publicationActions.activatePublicationFailure());
-    yield call(toast.error, 'Ocorreu um erro ao ativar a publicação.');
+    yield put(
+      publicationActions.activatePublicationFailure(
+        toast.error('Ocorreu um erro ao ativar a publicação.')
+      )
+    );
   }
 }
 
@@ -125,14 +134,17 @@ export function* deactivatePublication({ id }: Sagas<{ id: string }>) {
 
       yield put(
         publicationActions.deactivatePublicationSuccess(
-          PublicationHelper.getImages(response.data)
+          PublicationHelper.getImages(response.data),
+          toast.success('Publicação desativada com sucesso!')
         )
       );
-      yield call(toast.success, 'Publicação desativada com sucesso!');
     }
   } catch (error) {
-    yield put(publicationActions.deactivatePublicationFailure());
-    yield call(toast.error, 'Ocorreu um erro ao desativar a publicação.');
+    yield put(
+      publicationActions.deactivatePublicationFailure(
+        toast.error('Ocorreu um erro ao desativar a publicação.')
+      )
+    );
   }
 }
 
