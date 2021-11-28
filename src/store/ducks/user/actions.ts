@@ -1,3 +1,4 @@
+import { ReactText } from 'react';
 import * as types from './types';
 import { User, Login, UserAuth, SetPassword } from './user.interface';
 
@@ -38,8 +39,9 @@ export const loginUserSuccess = (payload: UserAuth) => ({
   payload,
 });
 
-export const loginUserFailure = () => ({
+export const loginUserFailure = (toast: ReactText) => ({
   type: types.USER_LOGIN_FAILURE,
+  toast,
 });
 
 export const refreshUserLoginRequest = () => ({
@@ -60,13 +62,15 @@ export const createUserRequest = (payload: User) => ({
   payload,
 });
 
-export const createUserSuccess = (payload: User) => ({
+export const createUserSuccess = (payload: User, toast: ReactText) => ({
   type: types.USER_CREATE_SUCCESS,
   payload,
+  toast,
 });
 
-export const createUserFailure = () => ({
+export const createUserFailure = (toast: ReactText) => ({
   type: types.USER_CREATE_FAILURE,
+  toast,
 });
 
 export const setUserPasswordRequest = (payload: SetPassword) => ({
@@ -74,13 +78,15 @@ export const setUserPasswordRequest = (payload: SetPassword) => ({
   payload,
 });
 
-export const setUserPasswordSuccess = (payload: User) => ({
+export const setUserPasswordSuccess = (payload: User, toast: ReactText) => ({
   type: types.USER_SET_PASSWORD_SUCCESS,
   payload,
+  toast,
 });
 
-export const setUserPasswordFailure = () => ({
+export const setUserPasswordFailure = (toast: ReactText) => ({
   type: types.USER_SET_PASSWORD_FAILURE,
+  toast,
 });
 
 export const updateUserRequest = (id: string, payload: User) => ({
@@ -89,13 +95,14 @@ export const updateUserRequest = (id: string, payload: User) => ({
   id,
 });
 
-export const updateUserSuccess = (payload: User) => ({
+export const updateUserSuccess = (payload: User, toast: ReactText) => ({
   type: types.USER_UPDATE_SUCCESS,
   payload,
 });
 
-export const updateUserFailure = () => ({
+export const updateUserFailure = (toast: ReactText) => ({
   type: types.USER_UPDATE_FAILURE,
+  toast,
 });
 
 export const deleteUserRequest = (id: string) => ({
@@ -103,10 +110,12 @@ export const deleteUserRequest = (id: string) => ({
   id,
 });
 
-export const deleteUserSuccess = () => ({
+export const deleteUserSuccess = (toast: ReactText) => ({
   type: types.USER_DELETE_SUCCESS,
+  toast,
 });
 
-export const deleteUserFailure = () => ({
+export const deleteUserFailure = (toast: ReactText) => ({
   type: types.USER_DELETE_FAILURE,
+  toast,
 });

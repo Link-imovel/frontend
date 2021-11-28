@@ -7,7 +7,7 @@ import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SagaStore } from '@store/store.interface';
+import { RootStore } from '@store/store.interface';
 import { SearchBarFields } from '@store/ducks/store/store.interface';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
