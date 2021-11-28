@@ -5,6 +5,13 @@ interface UserAuth {
   user: User;
 }
 
+interface Permission {
+  id: string;
+  name: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 interface User {
   id?: string;
   firstName: string;
@@ -21,6 +28,7 @@ interface User {
   createdAt?: string;
   updatedAt?: string;
   publication?: Publication[];
+  permission?: Permission;
 }
 
 interface UpdateUser {
