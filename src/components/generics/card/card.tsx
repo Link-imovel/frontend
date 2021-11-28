@@ -109,7 +109,7 @@ const Card = ({
   return (
     <Container size={size || 'small'} onClick={onClick}>
       <Carousel
-        images={publication?.home?.images || ''}
+        images={publication.home?.images || ''}
         size={size || 'small'}
       />
       <S.Body size={size || 'small'}>

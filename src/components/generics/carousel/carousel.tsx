@@ -14,6 +14,9 @@ const Carousel = ({
 }: CarouselProps): React.ReactElement => {
   const [quantity, setQuantity] = React.useState(0);
   const [selected, setSelected] = React.useState(selectedIndex || 0);
+  const [imgs, setImgs] = React.useState<string | string[]>();
+
+  React.useEffect(() => { setImgs(images) });
 
   React.useEffect(() => {
     if (Array.isArray(images)) {
@@ -54,17 +57,17 @@ const Carousel = ({
 
   return (
     <S.CarouselBody size={size || 'small'}>
-      {images.length > 1 && (
+      {imgs?.length > 1 && (
         <S.CarouselArrowL onClick={() => handleImage(selected)}>
           {chevronLeft || <ChevronLeft />}
         </S.CarouselArrowL>
       )}
       <S.CarouselSlider selectedTab={selected}>
-        {images.length > 0
-          ? renderImages(images)
+        {imgs?.length > 0
+          ? renderImages(imgs)
           : renderImages('/images/no-photo.png')}
       </S.CarouselSlider>
-      {images.length > 1 && (
+      {imgs?.length > 1 && (
         <S.CarouselArrowR onClick={() => handleImage(selected, true)}>
           {chevronRight || <ChevronRight />}
         </S.CarouselArrowR>
