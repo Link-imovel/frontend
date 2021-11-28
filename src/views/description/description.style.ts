@@ -31,6 +31,10 @@ export const Subtitle = styled.span`
   }
 `;
 
+export const Address = styled.label`
+  text-transform: capitalize;
+`;
+
 export const Value = styled.span`
   font-size: ${({ theme: { text } }) => text.sizes.large};
   color: ${({ theme: { colors } }) => colors.blackGrey};
@@ -157,6 +161,7 @@ const styles = {
     font-size: ${({ theme: { text } }) => text.sizes.large};
     font-weight: ${({ theme: { text } }) => text.weight.medium};
     color: ${({ theme: { colors } }) => colors.blackGrey};
+    text-transform: uppercase;
   `,
   secondary: css`
     font-size: ${({ theme: { text } }) => text.sizes.medium};

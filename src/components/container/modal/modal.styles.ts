@@ -8,6 +8,7 @@ const ModalBackground = styled.div`
   inset: 0px;
   display: flex;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
 `;
 
 const Container = styled.div<ModalContainerProps>`

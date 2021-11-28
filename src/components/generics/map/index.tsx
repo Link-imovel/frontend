@@ -6,19 +6,35 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet-defaulticon-compatibility';
 
 const Map = ({ coordinates }: { coordinates?: number[] }) => {
-  return (
-    <MapContainer
-      center={coordinates as LatLngExpression}
-      zoom={20}
-      style={{ height: '100%', width: '100%' }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={coordinates as LatLngExpression} />
-    </MapContainer>
-  );
+  const [coord, setCoord] = React.useState<number[]>();
+
+  React.useEffect(() => {
+    if (coordinates && coordinates[0] && coordinates[1]) {
+      setCoord([coordinates[1] as number, coordinates[0] as number]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const renderMap = React.useCallback((coord) => {
+    if (coord) {
+      return (
+        <MapContainer
+          center={coord}
+          zoom={20}
+          style={{ height: '100%', width: '100%' }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={coord} />
+        </MapContainer>
+      );
+    }
+    return null;
+  }, []);
+
+  return renderMap(coord);
 };
 
 export default Map;
