@@ -73,7 +73,7 @@ export const user = (state = INITIAL_STATE, action: Action) => {
     case types.USER_SET_PASSWORD_SUCCESS:
       return {
         ...state,
-        user: action.payload?.user,
+        user: action.payload,
       };
     case types.USER_SET_PASSWORD_FAILURE:
       return {

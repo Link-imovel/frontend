@@ -9,11 +9,11 @@ import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as pubsActions } from '@store/ducks/publications';
+import { RootStore } from '@store/store.interface';
 
 import { useMobile } from '@hooks/mobile';
 import { BoxMessage } from '@components/generics/boxmessage';
 import { useBoxMessage } from '@hooks/boxmessage';
-import { RootStore } from '@store/store.interface';
 
 const ListContainer = (props: ListProps): React.ReactElement => {
   const {

@@ -1,28 +1,29 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch, RootState } from '@store/index';
-
 import { SetPassword } from '@views/setpassword/setpassword';
 import { SetPasswordProps } from '@views/setpassword/setpassword.type';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { actions as storeActions } from '@store/ducks/store';
+import { actions as userActions } from '@store/ducks/user';
+import { RootStore } from '@store/store.interface';
+
 const SetPasswordContainer = (props: SetPasswordProps): React.ReactElement => {
   const { BArrowBefore, BLogo, BConfirm } = props.buttons;
-  const userStore = useSelector((state: RootState) => state.user);
-  const store = useSelector(
-    (state: RootState) => state.store.createSetPassword
-  );
-
   const router = useRouter();
+
+  const store = useSelector(
+    (state: RootStore) => state.store.createSetPassword
+  );
+  const userStore = useSelector((state: RootStore) => state.user);
+  const dispatch = useDispatch();
 
   const [data, setData] = React.useState(store.setpassword);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
   );
-
-  const dispatch = useDispatch<Dispatch>();
 
   React.useEffect(() => {
     if (userStore.user?.id) router.push('/login');
@@ -37,29 +38,35 @@ const SetPasswordContainer = (props: SetPasswordProps): React.ReactElement => {
   };
 
   BConfirm.callback = () => {
-    dispatch.user.setPassword({
-      token: props.token,
-      password: data.newPassword,
-      confirmPassword: data.samePassword,
-    });
+    dispatch(
+      userActions.setUserPasswordRequest({
+        token: props.token,
+        password: data.newPassword,
+        confirmPassword: data.samePassword,
+      })
+    );
   };
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
-    dispatch.store.createSetPassword({
-      setpassword: {
-        ...data,
-        [fieldName]: value,
-      },
-    });
+    dispatch(
+      storeActions.createSetPassword({
+        setpassword: {
+          ...data,
+          [fieldName]: value,
+        },
+      })
+    );
   };
 
   const handleValidation = (fieldName: string, value: boolean) => {
     const valid = { ...dataValid, [fieldName]: value };
     setDataValid(valid);
-    dispatch.store.createSetPassword({
-      valid,
-    });
+    dispatch(
+      storeActions.createSetPassword({
+        valid,
+      })
+    );
     setFormValid(Object.values(valid).every((item) => item));
   };
 
