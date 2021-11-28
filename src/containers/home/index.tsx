@@ -6,18 +6,21 @@ import { HomeProps } from '@views/home/home.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
-
-import { SagaStore } from '@store/store.interface';
+// import { actions as userActions } from '@store/ducks/user';
+import { RootStore } from '@store/store.interface';
 import { SearchBarFields } from '@store/ducks/store/store.interface';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
   const { BLogin, BLogo, BShowImovels, BLogout } = props.header.buttons;
+  const router = useRouter();
+
   const userStore = useSelector((state: RootStore) => state.user);
   const pubsStore = useSelector((state: RootStore) => state.publication);
-
   const dispatch = useDispatch();
 
-  const [cards] = React.useState<CardProps[]>(
+  const [data, setData] = React.useState<SearchBarFields>();
+
+  const [cards, setCards] = React.useState<CardProps[]>(
     pubsStore.publications.map((publication) => ({
       variant: 'primary',
       size: 'small',
@@ -34,10 +37,6 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
       publication,
     }))
   );
-
-  const [data, setData] = React.useState<SearchBarFields>();
-
-  const router = useRouter();
 
   BLogo.callback = () => {
     router.push('/');
@@ -68,12 +67,12 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   return (
     <Home
       userName={userStore?.user?.firstName}
-      cards={cards}
       isLogged={!!userStore?.user?.id}
-      {...props}
+      cards={cards}
       handleData={handleData}
       data={data}
       render={{ admin: true }}
+      {...props}
     />
   );
 };
