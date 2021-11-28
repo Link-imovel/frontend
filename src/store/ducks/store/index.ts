@@ -1,5 +1,6 @@
 import * as types from './types';
 import * as actions from './actions';
+
 import { Action } from '../ducks.interface';
 
 const INITIAL_STATE = {
@@ -141,7 +142,7 @@ const INITIAL_STATE = {
   },
 };
 
-const store = (state = INITIAL_STATE, action: Action) => {
+export const store = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case types.CREATE_USER:
       return {
@@ -183,4 +184,4 @@ const store = (state = INITIAL_STATE, action: Action) => {
   }
 };
 
-export { store, actions };
+export { actions };

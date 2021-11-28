@@ -1,6 +1,7 @@
 import { Action } from '../ducks.interface';
 
 import * as types from './types';
+import * as actions from './actions';
 import { sagas } from './sagas';
 
 const INITIAL_STATE = {
@@ -9,7 +10,7 @@ const INITIAL_STATE = {
   users: [{}],
 };
 
-const user = (state = INITIAL_STATE, action: Action) => {
+export const user = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case types.USERS_REQUEST:
       return {
@@ -44,8 +45,8 @@ const user = (state = INITIAL_STATE, action: Action) => {
     case types.USER_LOGIN_SUCCESS:
       return {
         ...state,
-        access_token: action.payload.access_token,
-        user: action.payload.user,
+        access_token: action.payload?.access_token,
+        user: action.payload?.user,
       };
     case types.USER_LOGIN_FAILURE:
       return {
@@ -58,8 +59,8 @@ const user = (state = INITIAL_STATE, action: Action) => {
     case types.USER_REFRESH_PASSWORD_SUCCESS:
       return {
         ...state,
-        access_token: action.payload.access_token,
-        user: action.payload.user,
+        access_token: action.payload?.access_token,
+        user: action.payload?.user,
       };
     case types.USER_REFRESH_PASSWORD_FAILURE:
       return {
@@ -72,7 +73,7 @@ const user = (state = INITIAL_STATE, action: Action) => {
     case types.USER_SET_PASSWORD_SUCCESS:
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload?.user,
       };
     case types.USER_SET_PASSWORD_FAILURE:
       return {
@@ -121,4 +122,4 @@ const user = (state = INITIAL_STATE, action: Action) => {
   }
 };
 
-export { user, sagas };
+export { actions, sagas };

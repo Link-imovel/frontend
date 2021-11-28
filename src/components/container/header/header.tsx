@@ -16,9 +16,7 @@ const Header = ({
   subtitle,
   buttons,
   handleData,
-  handleValidation,
   data,
-  valid,
   isLogged,
   userName,
   render,
@@ -58,12 +56,7 @@ const Header = ({
         )}
       </S.HeadContent>
       <S.MainContent>
-        <SearchBar
-          handleData={handleData}
-          handleValidation={handleValidation}
-          data={data}
-          valid={valid}
-        />
+        <SearchBar handleData={handleData} data={data} />
         <S.Title>{title}</S.Title>
         <S.Subtitle>{subtitle}</S.Subtitle>
         <Button

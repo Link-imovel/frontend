@@ -6,50 +6,35 @@ import { HomeProps } from '@views/home/home.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch, RootState } from '@store/index';
+import { RootStore } from '@store/store.interface';
+import { SearchBarFields } from '@store/ducks/store/store.interface';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
   const { BLogin, BLogo, BShowImovels, BLogout } = props.header.buttons;
-  const userStore = useSelector((state: RootState) => state.user);
-  const pubsStore = useSelector((state: RootState) => state.publication);
+  const userStore = useSelector((state: RootStore) => state.user);
+  const pubsStore = useSelector((state: RootStore) => state.publication);
 
-  const store = useSelector((state: RootState) => state.store.createSearch);
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch<Dispatch>();
-
-  const [cards, setCards] = React.useState<CardProps[]>([]);
-  const [data, setData] = React.useState(store.searchbar);
-
-  const [dataValid, setDataValid] = React.useState(store.valid);
-  const [formValid, setFormValid] = React.useState(
-    Object.values(dataValid).every((item) => item)
+  const [cards] = React.useState<CardProps[]>(
+    pubsStore.publications.map((publication) => ({
+      variant: 'primary',
+      size: 'small',
+      views: false,
+      functionalities: false,
+      buttons: {
+        googleMap: {
+          size: 'small',
+        },
+        visualize: {
+          size: 'medium',
+        },
+      },
+      publication,
+    }))
   );
 
-  React.useEffect(() => {
-    dispatch.publication.getAll();
-  }, [dispatch.publication]);
-
-  React.useEffect(() => {
-    if (pubsStore?.publications?.length) {
-      setCards(
-        pubsStore.publications.map((publication) => ({
-          variant: 'primary',
-          size: 'small',
-          views: false,
-          functionalities: false,
-          buttons: {
-            googleMap: {
-              size: 'small',
-            },
-            visualize: {
-              size: 'medium',
-            },
-          },
-          publication,
-        }))
-      );
-    }
-  }, [dispatch.publication, pubsStore.publications]);
+  const [data, setData] = React.useState<SearchBarFields>();
 
   const router = useRouter();
 
@@ -62,7 +47,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   BLogout.callback = () => {
-    dispatch.user.clear();
+    dispatch({});
   };
 
   BShowImovels.callback = () => {
@@ -70,22 +55,13 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   const handleData = (fieldName: string, value: any) => {
-    setData({ ...data, [fieldName]: value });
-    dispatch.store.createSearch({
+    setData({ ...data, [fieldName]: value } as SearchBarFields);
+    dispatch({
       searchbar: {
         ...data,
         [fieldName]: value,
       },
     });
-  };
-
-  const handleValidation = (fieldName: string, value: boolean) => {
-    const valid = { ...dataValid, [fieldName]: value };
-    setDataValid(valid);
-    dispatch.store.createSearch({
-      valid,
-    });
-    setFormValid(Object.values(valid).every((item) => item));
   };
 
   return (
@@ -94,9 +70,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
       cards={cards}
       isLogged={!!userStore?.user?.id}
       {...props}
-      valid={formValid}
       handleData={handleData}
-      handleValidation={handleValidation}
       data={data}
       render={{ admin: true }}
     />

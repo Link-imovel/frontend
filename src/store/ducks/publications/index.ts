@@ -1,6 +1,7 @@
 import { Action } from '../ducks.interface';
 
 import * as types from './types';
+import * as actions from './actions'
 import { sagas } from './sagas';
 
 const INITIAL_STATE = {
@@ -8,7 +9,7 @@ const INITIAL_STATE = {
   publications: [{}],
 };
 
-const publication = (state = INITIAL_STATE, action: Action) => {
+export const publication = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case types.PUBLICATION_REQUEST:
       return {
@@ -88,7 +89,9 @@ const publication = (state = INITIAL_STATE, action: Action) => {
       return {
         ...state,
       };
+    default:
+      return state;
   }
 };
 
-export { publication, sagas };
+export { sagas, actions };

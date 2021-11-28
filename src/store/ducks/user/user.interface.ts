@@ -38,10 +38,10 @@ interface SetPassword {
   token: string;
 }
 
-interface UserState {
+interface UserStore {
   access_token?: string;
   user: User;
   users: User[];
 }
 
-export type { User, UserAuth, UserState, Login, SetPassword, UpdateUser };
+export type { User, UserAuth, UserStore, Login, SetPassword, UpdateUser };

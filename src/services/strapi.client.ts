@@ -1,8 +1,9 @@
 import delve from 'dlv';
-import { HttpClient } from '@services/http.client';
+import { httpClient } from '@services/http/http.client';
 import { GetServerSidePropsResult } from 'next';
+import { AxiosResponse } from 'axios';
 
-class StrapiService extends HttpClient {
+class StrapiService {
   getStrapiURL = (path: string): string => `${process.env.STRAPI_URL}${path}`;
 
   getStrapiMedia = (url: string): string | null => {
@@ -29,7 +30,11 @@ class StrapiService extends HttpClient {
   ): Promise<GetServerSidePropsResult<T>> => {
     const baseURL = this.getStrapiURL(`/pages?slug=${slug}&_locale=${locale}`);
 
-    const data = await this.setConfig({ method: 'GET', baseURL }).send<any>();
+    const { data } = await httpClient<Record<string, any>>({
+      method: 'GET',
+      baseURL,
+      endpoint: '',
+    });
 
     if (!data.length) return this.redirectToHomepage();
 

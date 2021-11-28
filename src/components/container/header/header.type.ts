@@ -1,4 +1,4 @@
-import { SearchBarFields } from '@store/models/store/store.interface';
+import { SearchBarFields } from '@store/ducks/store/store.interface';
 
 interface ButtonsProps {
   BLogo: {
@@ -24,9 +24,7 @@ export type HeaderProps = {
   buttons: ButtonsProps;
   isLogged: boolean;
   handleData: (fieldName: string, value: any) => void;
-  handleValidation: (fieldName: string, value: any) => void;
-  data: SearchBarFields;
-  valid: boolean;
+  data?: SearchBarFields;
   render: {
     admin: boolean;
   };

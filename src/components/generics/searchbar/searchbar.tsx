@@ -15,17 +15,12 @@ import { SearchBarProps } from './searchbar.type';
 const SearchBar = ({
   data,
   handleData,
-  handleValidation,
-  valid,
 }: SearchBarProps): React.ReactElement => {
   const router = useRouter();
 
   const search = React.useCallback(() => {
-    if (!valid) {
-      router.push('/list/announcements');
-      return;
-    }
-  }, [router, valid]);
+    router.push('/list/announcements');
+  }, [router]);
 
   return (
     <S.Container>
@@ -37,7 +32,6 @@ const SearchBar = ({
           options={options.type}
           onSelect={(opt) => {
             handleData('type', opt.label);
-            handleValidation('type', !!opt.label);
           }}
           selectedValue={data?.type}
         />
@@ -52,7 +46,6 @@ const SearchBar = ({
           value={data?.locale}
           placeholder="Digite a cidade ou bairro"
           onChange={(el) => handleData(el.target.id, el.target.value)}
-          onValidation={({ valid }) => handleValidation('locale', valid)}
         />
       </S.Wrapper>
       <Button

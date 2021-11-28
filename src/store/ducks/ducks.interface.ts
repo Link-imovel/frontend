@@ -1,5 +1,5 @@
 interface Action<T = any> {
-  payload: Record<string, T>;
+  payload?: Record<string, T>;
   type: string;
 }
 

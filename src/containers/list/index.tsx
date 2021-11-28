@@ -8,10 +8,11 @@ import { TableProps } from '@components/generics/table/table.type';
 import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch, RootState } from '@store/index';
+
 import { useMobile } from '@hooks/mobile';
 import { BoxMessage } from '@components/generics/boxmessage';
 import { useBoxMessage } from '@hooks/boxmessage';
+import { RootStore } from '@store/store.interface';
 
 const ListContainer = (props: ListProps): React.ReactElement => {
   const {
@@ -29,11 +30,11 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
   const { isMobile } = useMobile();
 
-  const pubsStore = useSelector((state: RootState) => state.publication);
-  const userStore = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch<Dispatch>();
+  const pubsStore = useSelector((state: RootStore) => state.publication);
+  const userStore = useSelector((state: RootStore) => state.user);
+  const dispatch = useDispatch();
 
-  const store = useSelector((state: RootState) => state.store.listannouncement);
+  const store = useSelector((state: RootStore) => state.store.listannouncement);
 
   const [data, setData] = React.useState(store.listannouncement);
   const [dataValid, setDataValid] = React.useState(store.valid);
@@ -42,39 +43,30 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   );
 
   const [users, setUsers] = React.useState<TableProps[]>([]);
-  const [cards, setCards] = React.useState<CardProps[]>([]);
+  const [cards, setCards] = React.useState<CardProps[]>(
+    pubsStore.publications.map((publication) => ({
+      variant: 'secondary',
+      size: isMobile() ? 'small' : 'normal',
+      views: true,
+      functionalities: false,
+      buttons: {
+        googleMap: {
+          label: 'Google Map',
+          size: 'medium',
+        },
+        visualize: {
+          size: 'medium',
+        },
+      },
+      publication,
+    }))
+  );
+
   const [page, setPage] = React.useState(1);
 
   const router = useRouter();
 
   const { modal } = useBoxMessage();
-
-  React.useEffect(() => {
-    dispatch.publication.getAllByPage(page);
-  }, [dispatch.publication, page]);
-
-  React.useEffect(() => {
-    if (pubsStore?.publications?.length)
-      setCards(
-        pubsStore.publications.map((publication) => ({
-          variant: 'secondary',
-          size: isMobile() ? 'small' : 'normal',
-          views: true,
-          functionalities: false,
-          buttons: {
-            googleMap: {
-              label: 'Google Map',
-              size: 'medium',
-            },
-            visualize: {
-              size: 'medium',
-            },
-          },
-          publication,
-        }))
-      );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pubsStore.publications]);
 
   const typeMessage = (): string | undefined => {
     if (content.cards) {
@@ -110,7 +102,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BLogout.callback = () => {
-    dispatch.user.clear();
+    dispatch({});
   };
 
   BUpdatePerfil.callback = () => {
@@ -119,7 +111,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
-    dispatch.store.listannouncement({
+    dispatch({
       listannouncement: {
         ...data,
         [fieldName]: value,
@@ -130,7 +122,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   const handleValidation = (fieldName: string, value: boolean) => {
     const valid = { ...dataValid, [fieldName]: value };
     setDataValid(valid);
-    dispatch.store.listannouncement({
+    dispatch({
       valid,
     });
     setFormValid(Object.values(valid).every((item) => item));
