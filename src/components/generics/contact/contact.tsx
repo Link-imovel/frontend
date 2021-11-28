@@ -33,10 +33,6 @@ const Contact = ({
         onChange={(el) => handleData(el.target.id, el.target.value)}
         validators={[
           {
-            type: 'Required',
-            message: 'O campo é requerido',
-          },
-          {
             type: 'NotBlank',
             message: 'O campo não pode estar em branco.',
           },
@@ -59,14 +55,6 @@ const Contact = ({
         onChange={(el) => handleData(el.target.id, el.target.value)}
         validators={[
           {
-            type: 'Required',
-            message: 'Campo é requerido',
-          },
-          {
-            type: 'Required',
-            message: 'O campo é requerido',
-          },
-          {
             type: 'NotBlank',
             message: 'O campo não pode estar em branco.',
           },
@@ -83,10 +71,6 @@ const Contact = ({
           handleData(el.target.id, Formatters.formatPhone(el.target.value))
         }
         validators={[
-          {
-            type: 'Required',
-            message: 'O campo é requerido',
-          },
           {
             type: 'NotBlank',
             message: 'O campo não pode estar em branco.',

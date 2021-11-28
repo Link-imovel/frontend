@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 import { Page } from '@components/container/page';
 import { Button } from '@components/generics/button';
-import { Gallery } from '@components/container/gallery';
+import { Gallery } from '@components/generics/gallery';
 import { Contact } from '@components/generics/contact';
 import { DropdownHeader } from '@components/generics/dropdownheader';
 
@@ -70,17 +70,22 @@ const Description = ({
           <S.Wrapper>
             <S.Title variant="primary">{publication?.title}</S.Title>
             <S.Subtitle>
-              {publication?.home?.address?.number},{' '}
-              {publication?.home?.address?.street},{' '}
-              {publication?.home?.address?.state},{' '}
-              {publication?.home?.address?.city}
+              <S.Address>{publication?.home?.address?.street}, </S.Address>
+              <S.Address>{publication?.home?.address?.number}</S.Address>
+              <S.Address>
+                {publication?.home?.address?.street2
+                  ? ', ' + publication?.home?.address?.street2
+                  : ' '}
+              </S.Address>
+              <S.Address>- {publication?.home?.address?.state} - </S.Address>
+              <S.Address>{publication?.home?.address?.city}</S.Address>
             </S.Subtitle>
           </S.Wrapper>
           <S.Value>
             {Formatters.formatPrice(String(publication?.home?.value))}
           </S.Value>
         </S.Content>
-        <Gallery backgroundColor={colors.blackGrey} />
+        <Gallery images={publication?.home?.images} />
         <S.Line type="line-large" />
         <S.Content variant="grid">
           <S.Wrapper>
@@ -90,37 +95,58 @@ const Description = ({
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Bathroom width={20} height={20} />{' '}
-                    <span>{publication?.home?.bathroom} Banheiro</span>
+                    <span>
+                      {publication?.home?.bathroom} Banheiro
+                      {publication?.home?.bathroom > 1 && 's'}
+                    </span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Bed width={20} height={20} />{' '}
-                    <span>{publication?.home?.bedroom} Quartos</span>
+                    <span>
+                      {publication?.home?.bedroom} Quarto
+                      {publication?.home?.bedroom > 1 && 's'}
+                    </span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Car width={20} height={20} />{' '}
-                    <span>{publication?.home?.garage} Vagas</span>
+                    <span>
+                      {publication?.home?.garage} Vaga
+                      {publication?.home?.garage > 1 && 's'}
+                    </span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Chair width={20} height={20} />{' '}
-                    <span>{publication?.home?.room} Salas</span>
+                    <span>
+                      {publication?.home?.room} Sala
+                      {publication?.home?.room > 1 && 's'}
+                    </span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <FlatWare width={20} height={20} />{' '}
-                    <span>{publication?.home?.kitchen} Cozinha</span>
+                    <span>
+                      {publication?.home?.kitchen} Cozinha
+                      {publication?.home?.kitchen > 1 && 's'}
+                    </span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <DryCleaning width={20} height={20} />{' '}
                     <span>
-                      {publication?.home?.serviceArea} Area de serviço
+                      {publication?.home?.serviceArea} Area
+                      {publication?.home?.serviceArea > 1 && 's'} de serviço
                     </span>
                   </S.Wrapper>
                 </S.IconContainer>
                 <S.IconContainer>
                   <S.Wrapper hasIcon={true}>
                     <Calendar width={20} height={20} />{' '}
-                    <span>Ano da construção: {publication?.home?.buildAt}</span>
+                    <span>
+                      Ano da construção:{' '}
+                      {new Date(publication?.home?.buildAt).toLocaleDateString(
+                        'pt-BR'
+                      )}
+                    </span>
                   </S.Wrapper>
                   <S.Wrapper hasIcon={true}>
                     <Building width={20} height={20} />{' '}
