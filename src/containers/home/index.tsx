@@ -61,9 +61,9 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   const permissionType = React.useCallback((): Record<string, any> => {
     return {
-      admin: pubsStore.publication.userId === userStore.user.id,
+      admin: userStore?.user?.permission?.name === 'admin',
     };
-  }, [pubsStore.publication.userId, userStore.user.id]);
+  }, [userStore?.user?.permission?.name]);
 
   return (
     <Home

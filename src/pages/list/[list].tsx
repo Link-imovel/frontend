@@ -19,22 +19,29 @@ const List = (props: ListProps): React.ReactElement => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async ({ locale, defaultLocale, resolvedUrl }) => {
-    const { slug, locale: strapiLocale } = strapiClient.getLocalizedParams(
-      resolvedUrl,
-      locale || defaultLocale
-    );
+  (store) =>
+    async ({ locale, defaultLocale, resolvedUrl }) => {
+      const { slug, locale: strapiLocale } = strapiClient.getLocalizedParams(
+        resolvedUrl,
+        locale || defaultLocale
+      );
 
-    store.dispatch(pubActions.getPublicationsRequest({}));
-    store.dispatch(END);
-    await store.sagaTask?.toPromise();
+      switch (slug) {
+        case 'list/announcements':
+          store.dispatch(pubActions.getPublicationsRequest({}));
+          store.dispatch(END);
+          await store.sagaTask?.toPromise();
+          break;
+        case 'list/users':
+          break;
+      }
 
-    try {
-      return await strapiClient.getData(slug, strapiLocale);
-    } catch (error) {
-      return { props: {} };
+      try {
+        return await strapiClient.getData(slug, strapiLocale);
+      } catch (error) {
+        return { props: {} };
+      }
     }
-  }
 );
 
 export default List;

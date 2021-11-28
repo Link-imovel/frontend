@@ -1,6 +1,6 @@
 import { CardProps } from '@components/generics/card/card.type';
-import { UserProps } from '@components/generics/table/table.type';
 import { ListAnnouncementFields } from '@store/ducks/store/store.interface';
+import { User } from '@store/ducks/user/user.interface';
 
 interface ButtonsProps {
   BLogo: {
@@ -45,17 +45,15 @@ interface ListProps {
   };
   dropdown: boolean;
   handleData?: (fieldName: string, value: any) => void;
-  handleValidation?: (fieldName: string, value: any) => void;
 }
 
 interface ListViewProps extends Required<ListProps> {
-  data: ListAnnouncementFields;
-  valid: boolean;
+  data?: ListAnnouncementFields;
   userName: string;
-  users: UserProps[];
-  render: {
-    admin: boolean;
-    user: boolean;
+  users: User[];
+  permissionType: {
+    admin?: boolean;
+    user?: boolean;
   };
   isLogged: boolean;
   cards: CardProps[];

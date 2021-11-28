@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 const getMenuContainer = (
   cards: boolean,
   table: boolean,
-  admin: boolean,
-  user: boolean
+  admin: boolean | undefined,
+  user: boolean | undefined
 ) => {
   if (table) {
     return styles['menu-table'];
@@ -41,8 +41,8 @@ export const Container = styled.div`
 export const MenuContainer = styled.div<{
   cards: boolean;
   table: boolean;
-  admin: boolean;
-  user: boolean;
+  admin?: boolean;
+  user?: boolean;
   show: boolean;
 }>`
   ${({ cards, table, admin, user }) =>

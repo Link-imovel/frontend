@@ -7,10 +7,10 @@ import { Delete } from '@components/generics/icons/delete';
 
 import * as S from './table.style';
 import { colors } from '@theme/theme/default';
-import { TableProps } from './table.type';
+import { User } from '@store/ducks/user/user.interface';
 import { useBoxMessage } from '@hooks/boxmessage';
 
-const Table = ({ users }: Required<TableProps>): React.ReactElement => {
+const Table = (users: User[]): React.ReactElement => {
   const router = useRouter();
 
   const { openModal } = useBoxMessage();

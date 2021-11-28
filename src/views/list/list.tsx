@@ -3,7 +3,7 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Card as CardContainer } from '@components/container/card';
 import { Button } from '@components/generics/button';
-import { UserView } from '@components/generics/dropdownheader';
+import { DropdownHeader } from '@components/generics/dropdownheader';
 import { Card } from '@components/generics/card';
 import { Table } from '@components/generics/table';
 import { Dropdown } from '@components/generics/dropdown';
@@ -29,16 +29,15 @@ const List = ({
   users,
   description,
   buttons,
-  render,
+  permissionType,
   isLogged,
   cards,
   content,
   quantity,
   dropdown,
   isMobile,
-  data,
-  handleValidation,
   handleData,
+  data,
 }: ListViewProps): React.ReactElement => {
   const [show, setShow] = React.useState(false);
 
@@ -51,7 +50,7 @@ const List = ({
   }, [show]);
 
   const renderButtons = React.useCallback((): JSX.Element | null => {
-    if (render?.admin) {
+    if (permissionType?.admin) {
       return (
         <>
           <Button
@@ -81,7 +80,7 @@ const List = ({
     buttons.BCreateUser.label,
     buttons.BListUsers.callback,
     buttons.BListUsers.label,
-    render?.admin,
+    permissionType?.admin,
   ]);
 
   const renderContent = React.useCallback(():
@@ -91,7 +90,7 @@ const List = ({
     if (content.table) {
       return (
         <S.Wrapper>
-          <Table users={users} />
+          <Table {...users} />
         </S.Wrapper>
       );
     }
@@ -125,7 +124,6 @@ const List = ({
             options={options.bedroom}
             onSelect={(opt) => {
               handleData('bedroom', opt.label);
-              handleValidation('bedroom', !!opt.label);
             }}
             selectedValue={data?.bedroom}
           />
@@ -135,7 +133,6 @@ const List = ({
             options={options.bathroom}
             onSelect={(opt) => {
               handleData('bathroom', opt.label);
-              handleValidation('bathroom', !!opt.label);
             }}
             selectedValue={data?.bathroom}
           />
@@ -145,7 +142,6 @@ const List = ({
             options={options.garage}
             onSelect={(opt) => {
               handleData('garage', opt.label);
-              handleValidation('garage', !!opt.label);
             }}
             selectedValue={data?.garage}
           />
@@ -155,7 +151,6 @@ const List = ({
             options={options.serviceArea}
             onSelect={(opt) => {
               handleData('serviceArea', opt.label);
-              handleValidation('serviceArea', !!opt.label);
             }}
             selectedValue={data?.serviceArea}
           />
@@ -170,7 +165,6 @@ const List = ({
     data?.serviceArea,
     dropdown,
     handleData,
-    handleValidation,
   ]);
 
   return (
@@ -184,7 +178,7 @@ const List = ({
           icon={<Menu width={20} height={20} fill={colors.blackGrey} />}
           onClick={toogleMenu}
         />
-        <S.MenuContainer {...content} {...render} show={show}>
+        <S.MenuContainer {...content} {...permissionType} show={show}>
           <S.Header>
             <Button
               variant="transparent"
@@ -203,7 +197,7 @@ const List = ({
             />
           </S.Header>
           {isLogged ? (
-            <UserView user={userName} />
+            <DropdownHeader user={userName} permissionType={permissionType} />
           ) : (
             <Button
               variant="primary"
@@ -259,7 +253,7 @@ const List = ({
           )}
         </S.MenuContainer>
         <S.Content>
-          {content.cards && <SearchBar handleData={handleData} />}
+          {content.cards && <SearchBar handleData={handleData} data={data} />}
           <S.Quantity>{quantity} resultados retornado</S.Quantity>
           {renderContent()}
           <Pagination />

@@ -45,8 +45,6 @@ const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
     };
   }, [userStore?.user?.permission?.name]);
 
-  console.log('PUBSTORE >>', pubsStore?.publication);
-
   return (
     <Description
       {...props}
