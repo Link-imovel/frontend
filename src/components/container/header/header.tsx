@@ -21,6 +21,12 @@ const Header = ({
   userName,
   render,
 }: HeaderProps): JSX.Element => {
+  const [userLogged, setIsLogged] = React.useState<boolean>();
+
+  React.useEffect(() => {
+    setIsLogged(isLogged);
+  });
+
   return (
     <S.Container>
       <S.HeadContent>
@@ -29,7 +35,7 @@ const Header = ({
           icon={<Logo />}
           onClick={buttons.BLogo.callback}
         />
-        {isLogged ? (
+        {userLogged ? (
           <S.Wrapper>
             <DropdownHeader
               user={userName}

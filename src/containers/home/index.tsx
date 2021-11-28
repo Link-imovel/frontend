@@ -62,8 +62,8 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   return (
     <Home
-      userName={userStore?.user?.firstName}
-      isLogged={!!userStore?.user?.id}
+      userName={userStore.user?.firstName}
+      isLogged={!!userStore.user?.id}
       cards={pubsStore.publications.map((publication) => ({
         variant: 'primary',
         size: 'small',
