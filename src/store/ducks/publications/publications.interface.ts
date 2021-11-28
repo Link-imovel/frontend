@@ -1,3 +1,5 @@
+import { Point } from 'geojson';
+
 interface ImageByteA {
   id: string;
   homeId: string;
@@ -58,6 +60,7 @@ interface AddressHome {
   neighborhood: string;
   number: string;
   zip: string;
+  location?: Point;
 }
 
 interface ImageHome {

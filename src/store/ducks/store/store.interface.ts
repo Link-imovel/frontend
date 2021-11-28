@@ -28,6 +28,8 @@ interface AddressFields {
   state: string;
   zip: string;
   ibge: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 interface CreateAddress {

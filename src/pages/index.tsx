@@ -2,8 +2,6 @@ import React from 'react';
 import strapiClient from '@services/strapi.client';
 
 import { wrapper } from '@store/store';
-import { END } from 'redux-saga';
-import { actions as pubActions } from '@store/ducks/publications';
 
 import HomeContainer from '@containers/home';
 import { HomeProps } from '@views/home/home.type';
@@ -19,10 +17,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         resolvedUrl,
         locale || defaultLocale
       );
-
-      store.dispatch(pubActions.getPublicationsRequest({}));
-      store.dispatch(END);
-      await store.sagaTask?.toPromise();
 
       try {
         return await strapiClient.getData(slug, strapiLocale);

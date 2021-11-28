@@ -7,6 +7,7 @@ import { CardProps } from '@components/generics/card/card.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '@store/store.interface';
+import { actions as pubActions } from '@store/ducks/publications';
 import { SearchBarFields } from '@store/ducks/store/store.interface';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
@@ -19,23 +20,19 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
 
   const [data, setData] = React.useState<SearchBarFields>();
 
-  const [cards, setCards] = React.useState<CardProps[]>(
-    pubsStore.publications.map((publication) => ({
-      variant: 'primary',
-      size: 'small',
-      views: false,
-      functionalities: false,
-      buttons: {
-        googleMap: {
-          size: 'small',
-        },
-        visualize: {
-          size: 'medium',
-        },
-      },
-      publication,
-    }))
-  );
+  const getLocation = React.useCallback((): Record<string, any> | null => {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      return {
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      };
+    });
+    return null;
+  }, []);
+
+  React.useEffect(() => {
+    dispatch(pubActions.getPublicationsRequest(getLocation() || {}));
+  }, [dispatch, getLocation]);
 
   BLogo.callback = () => {
     router.push('/');
@@ -67,7 +64,21 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
     <Home
       userName={userStore?.user?.firstName}
       isLogged={!!userStore?.user?.id}
-      cards={cards}
+      cards={pubsStore.publications.map((publication) => ({
+        variant: 'primary',
+        size: 'small',
+        views: false,
+        functionalities: false,
+        buttons: {
+          googleMap: {
+            size: 'small',
+          },
+          visualize: {
+            size: 'medium',
+          },
+        },
+        publication,
+      }))}
       handleData={handleData}
       data={data}
       render={{ admin: true }}

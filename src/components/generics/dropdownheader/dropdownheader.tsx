@@ -19,8 +19,8 @@ const DropdownHeader = ({
   color,
   render,
 }: DropdownHeaderProps): React.ReactElement => {
-  const router = useRouter();
   const [show, setShow] = React.useState(false);
+  const router = useRouter();
 
   const send = React.useCallback(
     (url: string) => {
