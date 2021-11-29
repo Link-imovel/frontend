@@ -14,6 +14,9 @@ import { colors } from '@theme/theme/default';
 
 import { Formatters } from '@helpers/formatters';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const User = ({
   title,
   buttons,
@@ -24,6 +27,7 @@ const User = ({
 }: UserViewProps): React.ReactElement => {
   return (
     <Page>
+      <ToastContainer autoClose={2000} />
       <S.Container>
         <S.FormContent>
           <Button

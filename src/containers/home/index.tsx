@@ -7,7 +7,6 @@ import { HomeProps } from '@views/home/home.type';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '@store/store.interface';
 import { actions as pubActions } from '@store/ducks/publications';
-import { SearchBarFields } from '@store/ducks/store/store.interface';
 
 const HomeContainer = (props: HomeProps): React.ReactElement => {
   const { BLogin, BLogo, BShowImovels, BLogout } = props.header.buttons;
@@ -17,7 +16,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   const pubsStore = useSelector((state: RootStore) => state.publication);
   const dispatch = useDispatch();
 
-  const [data, setData] = React.useState<SearchBarFields>();
+  const [data, setData] = React.useState<Record<string, any>>();
 
   const getLocation = React.useCallback((): Record<string, any> | null => {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
@@ -42,7 +41,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   BLogout.callback = () => {
-    dispatch({});
+    // dispatch({});
   };
 
   BShowImovels.callback = () => {
@@ -50,7 +49,7 @@ const HomeContainer = (props: HomeProps): React.ReactElement => {
   };
 
   const handleData = (fieldName: string, value: any) => {
-    setData({ ...data, [fieldName]: value } as SearchBarFields);
+    setData({ ...data, [fieldName]: value });
     dispatch({
       searchbar: {
         ...data,

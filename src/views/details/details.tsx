@@ -17,6 +17,9 @@ import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
 import { Formatters } from '@helpers/formatters';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Details = ({
   title,
   buttons,
@@ -29,6 +32,7 @@ const Details = ({
 }: DetailsViewProps): React.ReactElement => {
   return (
     <Page>
+      <ToastContainer autoClose={2000} />
       <S.Container>
         <S.FormContent>
           <Button

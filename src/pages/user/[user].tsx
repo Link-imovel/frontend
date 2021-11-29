@@ -6,10 +6,7 @@ import { UserProps } from '@views/user/user.type';
 import strapiClient from '@services/strapi.client';
 
 const User = (props: UserProps): React.ReactElement => {
-  if (typeof window !== 'undefined') {
-    return <UserContainer {...props} />;
-  }
-  return <></>;
+  return <UserContainer {...props} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

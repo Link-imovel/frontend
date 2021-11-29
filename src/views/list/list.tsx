@@ -27,6 +27,9 @@ import { Pagination } from '@components/generics/pagination';
 import { SearchBar } from '@components/generics/searchbar';
 import { Formatters } from '@helpers/formatters';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const List = ({
   userName,
   users,
@@ -208,6 +211,7 @@ const List = ({
 
   return (
     <Page>
+      <ToastContainer autoClose={2000} />
       <S.Container>
         <Button
           variant="transparent"

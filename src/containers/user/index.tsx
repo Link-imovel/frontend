@@ -8,9 +8,10 @@ import { RootStore } from '@store/store.interface';
 
 import { User as Users } from '@views/user';
 import { UserProps } from '@views/user/user.type';
-import { UserFields } from '@store/ducks/store/store.interface';
+import { CreateUser, UserFields } from '@store/ducks/store/store.interface';
 
 const UserContainer = (props: UserProps): React.ReactElement => {
+  console.log(props);
   const { BLogo, BArrowBefore, BDefault } = props.buttons;
   const router = useRouter();
 
@@ -18,7 +19,7 @@ const UserContainer = (props: UserProps): React.ReactElement => {
   const userStore = useSelector((state: RootStore) => state.user);
   const dispatch = useDispatch();
 
-  const [data, setData] = React.useState({} as UserFields);
+  const [data, setData] = React.useState<UserFields>(store.user);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
@@ -64,14 +65,14 @@ const UserContainer = (props: UserProps): React.ReactElement => {
   };
 
   const handleData = (fieldName: string, value: any) => {
-    setData({ ...data, [fieldName]: value });
+    setData({ ...data, [fieldName]: value } as UserFields);
     dispatch(
       storeActions.createUser({
         user: {
           ...data,
           [fieldName]: value,
         },
-      })
+      } as CreateUser)
     );
   };
 

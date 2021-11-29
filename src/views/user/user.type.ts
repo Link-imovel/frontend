@@ -23,7 +23,7 @@ interface UserProps {
 }
 
 interface UserViewProps extends Required<UserProps> {
-  data: UserFields;
+  data?: UserFields;
   valid: boolean;
 }
 

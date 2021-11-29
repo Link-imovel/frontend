@@ -12,6 +12,9 @@ import * as S from './login.style';
 import { ViewLoginProps } from './login.type';
 import { colors } from '@theme/theme/default';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Login = ({
   title,
   subtitle,
@@ -23,6 +26,7 @@ const Login = ({
 }: ViewLoginProps): JSX.Element => {
   return (
     <Page>
+      <ToastContainer autoClose={2000} />
       <S.Container>
         <S.LoginContent>
           <Button

@@ -11,6 +11,9 @@ import * as S from './setpassword.style';
 import { colors } from '@theme/theme/default';
 import { SetPasswordViewPros } from './setpassword.type';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const SetPassword = ({
   buttons,
   title,
@@ -21,6 +24,7 @@ const SetPassword = ({
 }: SetPasswordViewPros): React.ReactElement => {
   return (
     <Page>
+      <ToastContainer autoClose={2000} />
       <S.Container>
         <S.Wrapper>
           <Button
