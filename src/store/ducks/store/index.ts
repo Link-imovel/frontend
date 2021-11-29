@@ -20,7 +20,6 @@ const INITIAL_STATE = {
       firstName: false,
       lastName: false,
       email: false,
-      password: false,
       phone: false,
       mobile: false,
       registry: false,

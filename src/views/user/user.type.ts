@@ -17,7 +17,7 @@ interface ButtonsProps {
 interface UserProps {
   title: string;
   buttons: ButtonsProps;
-  type: 'create' | 'update';
+  type: 'create' | 'update' | 'update-profile';
   handleData?: (fieldName: string, value: any) => void;
   handleValidation?: (fieldName: string, value: any) => void;
 }

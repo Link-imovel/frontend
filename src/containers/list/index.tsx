@@ -109,7 +109,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BUpdatePerfil.callback = () => {
-    router.push('/update-user');
+    router.push('/user/update-profile');
   };
 
   const actionsBoxMessage = (): ButtonsProps => {

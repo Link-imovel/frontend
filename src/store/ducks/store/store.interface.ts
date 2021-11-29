@@ -6,7 +6,7 @@ interface UserFields {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
+  password?: string;
   phone: string;
   mobile: string;
   registry: string;

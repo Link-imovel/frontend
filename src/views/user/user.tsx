@@ -57,7 +57,7 @@ const User = ({
                 onValidation={({ valid }) =>
                   handleValidation('firstName', valid)
                 }
-                value={data.firstName}
+                value={data?.firstName}
                 validators={[
                   {
                     type: 'Required',
@@ -78,7 +78,7 @@ const User = ({
                 label="Sobrenome"
                 type="text"
                 name="lastName"
-                value={data.lastName}
+                value={data?.lastName}
                 placeholder="Informe o sobrenome"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) =>
@@ -104,7 +104,7 @@ const User = ({
                 label="E-mail"
                 type="text"
                 name="email"
-                value={data.email}
+                value={data?.email}
                 placeholder="Informe o e-mail"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) => handleValidation('email', valid)}
@@ -137,17 +137,13 @@ const User = ({
                 label="Senha"
                 type="password"
                 name="password"
-                value={data.password}
+                value={data?.password}
                 placeholder="Informe a senha"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) =>
                   handleValidation('password', valid)
                 }
                 validators={[
-                  {
-                    type: 'Required',
-                    message: 'O campo é requerido',
-                  },
                   {
                     type: 'NotBlank',
                     message: 'O campo não pode estar em branco.',
@@ -160,7 +156,7 @@ const User = ({
                 type="text"
                 name="phone"
                 maxLength={14}
-                value={data.phone}
+                value={data?.phone}
                 placeholder="Informe o telefone residencial"
                 onChange={(el) =>
                   handleData(
@@ -199,7 +195,7 @@ const User = ({
                 label="Mobile"
                 type="text"
                 name="mobile"
-                value={data.mobile}
+                value={data?.mobile}
                 placeholder="Informe o telefone pessoal"
                 maxLength={15}
                 onChange={(el) =>
@@ -237,7 +233,7 @@ const User = ({
                 label="CRECI"
                 type="text"
                 name="creci"
-                value={data.creci}
+                value={data?.creci}
                 placeholder="Informe o CRECI"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) => handleValidation('creci', valid)}
@@ -261,7 +257,7 @@ const User = ({
                 label="CPF/CNPJ"
                 type="text"
                 name="registry"
-                value={data.registry}
+                value={data?.registry}
                 placeholder="Informe o CPF/CNPJ"
                 onChange={(el) =>
                   handleData(
@@ -332,9 +328,10 @@ const User = ({
             </S.Wrapper>
             <Button
               variant="primary"
+              label={buttons.BDefault.label || 'Atualizar'}
               size="large"
               radius="square"
-              onClick={buttons.BLogo.callback}
+              onClick={buttons.BDefault.callback}
               disabled={!valid}
             />
           </S.Content>

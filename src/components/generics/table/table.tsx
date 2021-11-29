@@ -12,11 +12,10 @@ import { TableProps } from './table.type';
 
 const Table = ({ users }: TableProps): React.ReactElement => {
   const router = useRouter();
-
   const { openModal } = useBoxMessage();
 
   const editUser = React.useCallback(() => {
-    router.push('user/update');
+    router.push('/user/update');
   }, [router]);
 
   const renderStatus = React.useCallback(
