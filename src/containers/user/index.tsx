@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as storeActions } from '@store/ducks/store';
-// import { actions as userActions } from '@store/ducks/user';
+import { actions as userActions } from '@store/ducks/user';
 import { RootStore } from '@store/store.interface';
 
 import { User as Users } from '@views/user';
@@ -28,13 +28,13 @@ const UserContainer = (props: UserProps): React.ReactElement => {
     switch (props.type) {
       case 'create':
         setData(store.user);
-        break;
+        return;
       case 'update':
         setData(store.user);
-        break;
+        return;
       case 'update-profile':
         setData(userStore?.user as UserFields);
-        break;
+        return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -48,16 +48,19 @@ const UserContainer = (props: UserProps): React.ReactElement => {
   };
 
   BDefault.callback = () => {
-    // switch (props.type) {
-    //   case 'update':
-    //     if (userStore?.user?.id)
-    //       dispatch(userActions.updateUserRequest(userStore?.user?.id, data));
-    //   case 'create':
-    //     dispatch(userActions.createUserRequest(data));
-    //   case 'update-profile':
-    //   default:
-    //     dispatch(userActions.getAllUsersRequest());
-    // }
+    switch (props.type) {
+      case 'update':
+        if (userStore?.user?.id)
+          dispatch(userActions.updateUserRequest(userStore?.user?.id, data));
+        return;
+      case 'create':
+        dispatch(userActions.createUserRequest(data));
+        return;
+      case 'update-profile':
+        if (userStore?.user?.id)
+          dispatch(userActions.updateUserRequest(userStore?.user?.id, data));
+        return;
+    }
   };
 
   const handleData = (fieldName: string, value: any) => {

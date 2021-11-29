@@ -21,13 +21,4 @@ module.exports = {
     GTM_ID: 'UA-54516992-1',
     POSITIONSTACK_KEY: '109b9098909c7fb1abaa3b40e3987968',
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/_error',
-  //       destination: '/',
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
 };

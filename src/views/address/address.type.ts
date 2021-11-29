@@ -2,6 +2,31 @@ import { AddressFields } from '@store/ducks/store/store.interface';
 
 import { BreadCrumbProps } from '@components/generics/breadcrumb/breadcrumb.type';
 
+interface Datum {
+  latitude: number;
+  longitude: number;
+  type: string;
+  name: string;
+  number: string;
+  postal_code: string;
+  street: string;
+  confidence: number;
+  region: string;
+  region_code: string;
+  county: string;
+  locality: string;
+  administrative_area: string;
+  neighbourhood?: any;
+  country: string;
+  country_code: string;
+  continent: string;
+  label: string;
+}
+
+interface PositionStack {
+  data: Datum[];
+}
+
 interface ButtonsProps {
   BLogo: {
     callback?: () => void;
@@ -33,4 +58,4 @@ interface AddressViewProps extends Required<AddressProps> {
   valid: boolean;
 }
 
-export type { AddressProps, AddressViewProps };
+export type { AddressProps, AddressViewProps, PositionStack, Datum };

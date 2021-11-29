@@ -1,12 +1,17 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { httpClient } from '@services/http/http.client';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as storeActions } from '@store/ducks/store';
 import { RootStore } from '@store/store.interface';
 
 import { Address } from '@views/address';
-import { AddressProps } from '@views/address/address.type';
+import {
+  AddressProps,
+  Datum,
+  PositionStack,
+} from '@views/address/address.type';
 import { useBreadcrumb } from '@hooks/breadcrumb';
 
 const AddressContainer = (props: AddressProps): React.ReactElement => {
@@ -40,8 +45,30 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
     if (formValid) router.push('/announcement/details');
   };
 
-  BNext.callback = () => {
-    if (formValid) router.push('/announcement/details');
+  BNext.callback = async () => {
+    try {
+      const { data: response } = await httpClient<Datum>({
+        baseURL: 'http://localhost:3000/api',
+        endpoint: 'positionstack',
+        data: {
+          ...data,
+        },
+      });
+
+      dispatch(
+        storeActions.createAddress({
+          address: {
+            ...data,
+            latitude: response.latitude,
+            longitude: response.longitude,
+          },
+        })
+      );
+
+      console.log('DATA >>', response);
+    } catch (_) {}
+
+    // if (formValid) router.push('/announcement/details');
   };
 
   const handleData = (fieldName: string, value: any) => {
