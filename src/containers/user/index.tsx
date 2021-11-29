@@ -1,27 +1,26 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch, RootState } from '@store/index';
+import { actions as storeActions } from '@store/ducks/store';
+import { actions as userActions, user } from '@store/ducks/user';
+import { RootStore } from '@store/store.interface';
 
 import { User as Users } from '@views/user';
 import { UserProps } from '@views/user/user.type';
 
-import { User } from '@store/models/user/user.interface';
-import { useRouter } from 'next/router';
-
 const UserContainer = (props: UserProps): React.ReactElement => {
   const { BLogo, BArrowBefore, BDefault } = props.buttons;
   const router = useRouter();
-  const userStore = useSelector((state: RootState) => state.user);
-  const store = useSelector((state: RootState) => state.store.createUser);
+  const userStore = useSelector((state: RootStore) => state.user);
+  const store = useSelector((state: RootStore) => state.store.createUser);
+  const dispatch = useDispatch();
 
   const [data, setData] = React.useState(store.user);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
   );
-
-  const dispatch = useDispatch<Dispatch>();
 
   BLogo.callback = () => {
     router.push('/');
@@ -32,39 +31,39 @@ const UserContainer = (props: UserProps): React.ReactElement => {
   };
 
   BDefault.callback = async () => {
-    const user = ({ ...data, valid: undefined } as unknown) as User;
     switch (props.type) {
       case 'update':
         if (userStore.user.id)
-          await dispatch.user.update({
-            id: userStore.user.id,
-            data: user,
-          });
+          dispatch(userActions.updateUserRequest(userStore.user.id, data));
         break;
       case 'create':
-        await dispatch.user.create(user);
+        dispatch(userActions.createUserRequest(data));
         break;
       default:
-        await dispatch.user.getAll();
+        dispatch(userActions.getAllUsersRequest());
     }
   };
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
-    dispatch.store.createUser({
-      user: {
-        ...data,
-        [fieldName]: value,
-      },
-    });
+    dispatch(
+      storeActions.createUser({
+        user: {
+          ...data,
+          [fieldName]: value,
+        },
+      })
+    );
   };
 
   const handleValidation = (fieldName: string, value: boolean) => {
     const valid = { ...dataValid, [fieldName]: value };
     setDataValid(valid);
-    dispatch.store.createUser({
-      valid,
-    });
+    dispatch(
+      storeActions.createUser({
+        valid,
+      })
+    );
     setFormValid(Object.values(valid).every((item) => item));
   };
 
