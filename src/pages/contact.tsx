@@ -7,7 +7,10 @@ import ContactContainer from '@containers/contact';
 import { ContactProps } from '@views/contact/contact.type';
 
 const Contact = (props: ContactProps): React.ReactElement => {
-  return <ContactContainer {...props} />;
+  if (typeof window !== 'undefined') {
+    return <ContactContainer {...props} />;
+  }
+  return <></>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

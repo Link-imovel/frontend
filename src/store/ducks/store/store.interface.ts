@@ -98,13 +98,13 @@ interface Login {
 }
 
 interface ListAnnouncementFields {
-  price: string;
-  garage: string;
-  serviceArea: string;
-  bedroom: string;
-  bathroom: string;
-  locale: string;
-  type: string;
+  price?: string;
+  garage?: string;
+  serviceArea?: string;
+  bedroom?: string;
+  bathroom?: string;
+  locale?: string;
+  type?: string;
 }
 
 interface ListAnnouncement {

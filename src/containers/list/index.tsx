@@ -7,8 +7,8 @@ import { ListProps } from '@views/list/list.type';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as pubsActions } from '@store/ducks/publications';
+import { actions as storeActions } from '@store/ducks/store';
 import { RootStore } from '@store/store.interface';
-import { User } from '@store/ducks/user/user.interface';
 
 import { useMobile } from '@hooks/mobile';
 import { BoxMessage } from '@components/generics/boxmessage';
@@ -25,9 +25,9 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     BLogo,
     BLogout,
     BUpdatePerfil,
+    BSearch,
   } = props.buttons;
   const router = useRouter();
-  const { content } = props;
   const { isMobile } = useMobile();
   const { modal } = useBoxMessage();
 
@@ -37,7 +37,6 @@ const ListContainer = (props: ListProps): React.ReactElement => {
 
   const [data, setData] = React.useState<ListAnnouncementFields>();
 
-  const [users, setUsers] = React.useState<User[]>([]);
   const [isLogged, setIsLogged] = React.useState<boolean>();
 
   React.useEffect(() => {
@@ -45,15 +44,14 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // it's need change this here
-  const typeMessage = (): string | undefined => {
-    if (content.cards) {
-      return 'Tem certeza que deseja excluir usuário de creci: 234122.';
+  const typeMessage = React.useCallback((): string | undefined => {
+    if (props?.content?.cards) {
+      const publication = pubsStore.publications.find(
+        (publication) => publication.id === modal.id
+      );
+      return `Tem certeza que deseja excluir anúncio de referência: ${publication?.home?.ref}`;
     }
-    if (content.table) {
-      return 'Tem certeza que deseja excluir anúncio de referência: ZL234.';
-    }
-  };
+  }, [modal.id, props?.content?.cards, pubsStore.publications]);
 
   BLogin.callback = () => {
     router.push('/login');
@@ -83,18 +81,24 @@ const ListContainer = (props: ListProps): React.ReactElement => {
     dispatch({});
   };
 
+  BSearch.callback = () => {
+    dispatch(pubsActions.getPublicationsRequest({ ...data }));
+  };
+
   BUpdatePerfil.callback = () => {
     router.push('/update-user');
   };
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value } as ListAnnouncementFields);
-    dispatch({
-      listannouncement: {
-        ...data,
-        [fieldName]: value,
-      },
-    });
+    dispatch(
+      storeActions.listAnnouncement({
+        listannouncement: {
+          ...data,
+          [fieldName]: value,
+        },
+      })
+    );
   };
 
   const permissionType = React.useCallback((): Record<string, any> => {
@@ -103,6 +107,8 @@ const ListContainer = (props: ListProps): React.ReactElement => {
       user: userStore?.user?.permission?.name === 'user',
     };
   }, [userStore?.user?.permission?.name]);
+
+  const { admin } = permissionType();
 
   return (
     <>
@@ -113,12 +119,12 @@ const ListContainer = (props: ListProps): React.ReactElement => {
         userName={userStore?.user?.firstName}
         isLogged={!!isLogged}
         permissionType={permissionType()}
-        users={users}
+        users={userStore?.users}
         cards={pubsStore.publications.map((publication) => ({
-          variant: 'secondary',
+          variant: admin ? 'ternary' : 'secondary',
           size: isMobile() ? 'small' : 'normal',
           views: true,
-          functionalities: false,
+          functionalities: admin ? true : false,
           buttons: {
             googleMap: {
               label: 'Google Map',
@@ -130,7 +136,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
           },
           publication,
         }))}
-        quantity={pubsStore.publications.length || users.length}
+        quantity={pubsStore.publications.length || userStore.users.length}
         isMobile={isMobile()}
         {...props}
       />

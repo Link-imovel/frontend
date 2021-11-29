@@ -5,9 +5,12 @@ import AddressContainer from '@containers/address';
 import { AddressProps } from '@views/address/address.type';
 import strapiClient from '@services/strapi.client';
 
-const Address = (props: AddressProps): React.ReactElement => (
-  <AddressContainer {...props} />
-);
+const Address = (props: AddressProps): React.ReactElement => {
+  if (typeof window !== 'undefined') {
+    return <AddressContainer {...props} />;
+  }
+  return <></>;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug, locale } = strapiClient.getLocalizedParams(

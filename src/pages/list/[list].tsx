@@ -4,6 +4,7 @@ import strapiClient from '@services/strapi.client';
 import { wrapper } from '@store/store';
 import { END } from 'redux-saga';
 import { actions as pubActions } from '@store/ducks/publications';
+import { actions as userActions } from '@store/ducks/user';
 
 import { BoxMessageProvider } from '@hooks/boxmessage';
 
@@ -11,11 +12,14 @@ import { ListProps } from '@views/list/list.type';
 import ListContainer from '@containers/list';
 
 const List = (props: ListProps): React.ReactElement => {
-  return (
-    <BoxMessageProvider>
-      <ListContainer {...props} />
-    </BoxMessageProvider>
-  );
+  if (typeof window !== 'undefined') {
+    return (
+      <BoxMessageProvider>
+        <ListContainer {...props} />
+      </BoxMessageProvider>
+    );
+  }
+  return <></>;
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
@@ -28,11 +32,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       switch (slug) {
         case 'list/announcements':
-          store.dispatch(pubActions.getPublicationsRequest({}));
+          store.dispatch(pubActions.getPublicationsRequest({ page: 1 }));
           store.dispatch(END);
           await store.sagaTask?.toPromise();
           break;
         case 'list/users':
+          store.dispatch(userActions.getAllUsersRequest());
+          store.dispatch(END);
+          await store.sagaTask?.toPromise();
           break;
       }
 

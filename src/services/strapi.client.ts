@@ -40,7 +40,7 @@ class StrapiService {
 
     const props = (await this.getDataDependencies(delve(data, '0'))) as T;
 
-    return { props: ({ ...props, ...additionalData } as unknown) as T };
+    return { props: { ...props, ...additionalData } as unknown as T };
   };
 
   getDataDependencies = async (
@@ -59,7 +59,12 @@ class StrapiService {
   getLocalizedParams(path?: string, locale?: string) {
     if (path?.includes('?')) path = path.split('?')[0];
     if (path?.match('/')) path = path.replace('/', '');
-    if (path?.match('/')) path = path.split('/')[0];
+    if (
+      path?.match(
+        /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
+      )
+    )
+      path = path.split('/')[0];
     return { slug: path || '', locale: locale || 'en' };
   }
 

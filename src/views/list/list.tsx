@@ -16,6 +16,8 @@ import { People } from '@components/generics/icons/people';
 import { PersonAdd } from '@components/generics/icons/personadd';
 import { Settings } from '@components/generics/icons/settings';
 import { Close } from '@components/generics/icons/close';
+import { Search } from '@components/generics/icons/search';
+import { User } from '@components/generics/icons/user';
 
 import * as S from './list.style';
 import { ListViewProps } from './list.type';
@@ -23,6 +25,8 @@ import { options } from '@components/generics/dropdown/dropdown.options';
 import { colors } from '@theme/theme/default';
 import { Pagination } from '@components/generics/pagination';
 import { SearchBar } from '@components/generics/searchbar';
+import { Input } from '@components/generics/input';
+import { Formatters } from '@helpers/formatters';
 
 const List = ({
   userName,
@@ -154,11 +158,47 @@ const List = ({
             }}
             selectedValue={data?.serviceArea}
           />
+          <Input
+            id="price"
+            label="Preço do imóvel"
+            type="text"
+            name="price"
+            placeholder="Informe o valor"
+            onChange={(el) =>
+              handleData(el.target.id, Formatters.formatPrice(el.target.value))
+            }
+            validators={[
+              {
+                type: 'Required',
+                message: 'Campo é requerido',
+              },
+              {
+                type: 'NotBlank',
+                message: 'O campo não pode estar em branco.',
+              },
+              {
+                type: 'OnlyNumbers',
+                message: 'Favor inserir somente números',
+              },
+            ]}
+          />
+          <Button
+            variant="primary"
+            size="default"
+            label={buttons.BSearch.label || 'Buscar'}
+            color={colors.white}
+            background={colors.greyBlue}
+            iconReverse={true}
+            icon={<Search width={24} height={24} fill={colors.white} />}
+            onClick={buttons.BSearch.callback}
+          />
         </>
       );
     }
     return null;
   }, [
+    buttons.BSearch.callback,
+    buttons.BSearch.label,
     data?.bathroom,
     data?.bedroom,
     data?.garage,
@@ -197,7 +237,9 @@ const List = ({
             />
           </S.Header>
           {isLogged ? (
-            <DropdownHeader user={userName} permissionType={permissionType} />
+            <S.UserContent>
+              <User width={20} height={20} /> <span>{userName}</span>
+            </S.UserContent>
           ) : (
             <Button
               variant="primary"

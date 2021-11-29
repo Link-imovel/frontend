@@ -5,9 +5,12 @@ import strapiClient from '@services/strapi.client';
 import DetailsContainer from '@containers/details';
 import { DetailsProps } from '@views/details/details.type';
 
-const Details = (props: DetailsProps): React.ReactElement => (
-  <DetailsContainer {...props} />
-);
+const Details = (props: DetailsProps): React.ReactElement => {
+  if (typeof window !== 'undefined') {
+    return <DetailsContainer {...props} />;
+  }
+  return <></>;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug, locale } = strapiClient.getLocalizedParams(

@@ -5,9 +5,12 @@ import { GetServerSideProps } from 'next';
 import LoginContainer from '@containers/login';
 import { LoginProps } from '@views/login/login.type';
 
-const Login = (props: LoginProps): React.ReactElement => (
-  <LoginContainer {...props} />
-);
+const Login = (props: LoginProps): React.ReactElement => {
+  if (typeof window !== 'undefined') {
+    return <LoginContainer {...props} />;
+  }
+  return <></>;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug, locale } = strapiClient.getLocalizedParams(

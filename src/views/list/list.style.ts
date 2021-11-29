@@ -79,6 +79,15 @@ export const Header = styled.div`
   }
 `;
 
+export const UserContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & > svg {
+    margin-right: 13px;
+  }
+`;
+
 export const Wrapper = styled.div`
   margin: 20px 0;
   display: flex;
@@ -130,7 +139,7 @@ const styles = {
   `,
   'menu-cards-user': css`
     width: 290px;
-    height: 720px;
+    height: 820px;
     display: flex;
     flex-direction: column;
   `,
@@ -142,7 +151,7 @@ const styles = {
   `,
   'menu-cards-client': css`
     width: 290px;
-    height: 440px;
+    height: 560px;
     display: flex;
     flex-direction: column;
   `,

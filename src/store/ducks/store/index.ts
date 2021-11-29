@@ -128,16 +128,22 @@ const INITIAL_STATE = {
   },
   listannouncement: {
     listannouncement: {
+      price: '',
       garage: '',
       serviceArea: '',
       bedroom: '',
       bathroom: '',
+      locale: '',
+      type: '',
     },
     valid: {
+      price: false,
       garage: false,
       serviceArea: false,
       bedroom: false,
       bathroom: false,
+      locale: false,
+      type: false,
     },
   },
 };

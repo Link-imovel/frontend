@@ -34,6 +34,10 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
+  BSearch: {
+    label: string;
+    callback?: () => void;
+  };
 }
 
 interface ListProps {

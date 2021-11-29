@@ -2,7 +2,8 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch, RootState } from '@store/index';
+import { actions as storeActions } from '@store/ducks/store';
+import { RootStore } from '@store/store.interface';
 
 import { Address } from '@views/address';
 import { AddressProps } from '@views/address/address.type';
@@ -10,19 +11,17 @@ import { useBreadcrumb } from '@hooks/breadcrumb';
 
 const AddressContainer = (props: AddressProps): React.ReactElement => {
   const { BArrowAfter, BArrowBefore, BLogo, BNext } = props.buttons;
-  const store = useSelector((state: RootState) => state.store.createAddress);
+  const router = useRouter();
+  const { paths, next } = useBreadcrumb();
+
+  const store = useSelector((state: RootStore) => state.store.createAddress);
+  const dispatch = useDispatch();
 
   const [data, setData] = React.useState(store.address);
   const [dataValid, setDataValid] = React.useState(store.valid);
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
   );
-
-  const router = useRouter();
-
-  const { paths, next } = useBreadcrumb();
-
-  const dispatch = useDispatch<Dispatch>();
 
   React.useEffect(() => {
     next({ title: props.title, url: router.asPath });
@@ -47,20 +46,24 @@ const AddressContainer = (props: AddressProps): React.ReactElement => {
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
-    dispatch.store.createAddress({
-      address: {
-        ...data,
-        [fieldName]: value,
-      },
-    });
+    dispatch(
+      storeActions.createAddress({
+        address: {
+          ...data,
+          [fieldName]: value,
+        },
+      })
+    );
   };
 
   const handleValidation = (fieldName: string, value: boolean) => {
     const valid = { ...dataValid, [fieldName]: value };
     setDataValid(valid);
-    dispatch.store.createAddress({
-      valid,
-    });
+    dispatch(
+      storeActions.createAddress({
+        valid,
+      })
+    );
     setFormValid(Object.values(valid).every((item) => item));
   };
 

@@ -6,9 +6,12 @@ import { wrapper } from '@store/store';
 import HomeContainer from '@containers/home';
 import { HomeProps } from '@views/home/home.type';
 
-const Home = (props: HomeProps): React.ReactElement => (
-  <HomeContainer {...props} />
-);
+const Home = (props: HomeProps): React.ReactElement => {
+  if (typeof window !== 'undefined') {
+    return <HomeContainer {...props} />;
+  }
+  return <></>;
+};
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>

@@ -20,6 +20,7 @@ import * as S from './card.style';
 import { CardProps } from './card.type';
 import { colors } from '@theme/theme/default/colors';
 import { Formatters } from '@helpers/formatters';
+import { useBoxMessage } from '@hooks/boxmessage';
 
 const Card = ({
   variant,
@@ -31,16 +32,27 @@ const Card = ({
   onClick,
 }: CardProps): React.ReactElement => {
   const router = useRouter();
+  const { openModal } = useBoxMessage();
 
-  const sendMessageWhatsapp = React.useCallback(() => {}, []);
+  const sendMessageWhatsapp = React.useCallback(() => {
+    const msg = encodeURI(
+      `Olá, me interessei por este imóvel que vi na Link_. http://localhost:3000/description/${publication?.id}`
+    );
+    window.open(`https://wa.me/${publication?.phone}?text=${msg}`);
+  }, [publication?.id, publication?.phone]);
 
   const description = React.useCallback(() => {
     router.push(`/description/${publication?.id}`);
   }, [publication.id, router]);
 
-  const openGoogleMap = React.useCallback(() => {}, []);
-  const deleteAnnuocement = React.useCallback(() => {}, []);
-  const updateAnnuocement = React.useCallback(() => {}, []);
+  const openGoogleMap = React.useCallback(() => {
+    window.open(
+      `https://maps.google.com/?q=${
+        publication?.home?.address?.location?.coordinates[1] || 0
+      },${publication?.home?.address?.location?.coordinates[0] || 0}`,
+      '_blank'
+    );
+  }, [publication?.home?.address?.location?.coordinates]);
 
   const renderInfo = React.useCallback((): JSX.Element | null => {
     if (size === 'normal') {
@@ -50,7 +62,7 @@ const Card = ({
             <S.Info>{publication?.title}</S.Info>
             <S.IconContainer>
               <S.IconContent variant="secondary">
-                <PermIdentity fill={colors.greyBlue} /> <span>John Field</span>
+                <PermIdentity fill={colors.greyBlue} /> <span>Josue</span>
               </S.IconContent>
               <S.IconContent variant="secondary">
                 <PhoneIphone fill={colors.greyBlue} />{' '}
@@ -74,7 +86,7 @@ const Card = ({
               size="small"
               radius="square"
               icon={<Edit height={20} width={20} fill={colors.whiteGrey} />}
-              onClick={updateAnnuocement}
+              onClick={() => router.push('/announcement/address')}
             />
           </S.ButtonContent>
           <S.ButtonContent type="delete">
@@ -83,14 +95,14 @@ const Card = ({
               size="small"
               radius="square"
               icon={<Delete height={20} width={20} fill={colors.whiteGrey} />}
-              onClick={deleteAnnuocement}
+              onClick={() => openModal(publication?.id)}
             />
           </S.ButtonContent>
         </>
       );
     }
     return null;
-  }, [deleteAnnuocement, functionalities, updateAnnuocement]);
+  }, [functionalities, openModal, publication?.id, router]);
 
   const renderViews = React.useCallback((): JSX.Element | null => {
     if (views) {

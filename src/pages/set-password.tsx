@@ -5,9 +5,12 @@ import { GetServerSideProps } from 'next';
 import SetPasswordContainer from '@containers/setpassword';
 import { SetPasswordProps } from '@views/setpassword/setpassword.type';
 
-const SetPassword = (props: SetPasswordProps): React.ReactElement => (
-  <SetPasswordContainer {...props} />
-);
+const SetPassword = (props: SetPasswordProps): React.ReactElement => {
+  if (typeof window !== 'undefined') {
+    return <SetPasswordContainer {...props} />;
+  }
+  return <></>;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug, locale } = strapiClient.getLocalizedParams(
