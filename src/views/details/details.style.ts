@@ -78,7 +78,7 @@ export const ImageDndContent = styled.div`
 const styles = {
   A: css`
     grid-area: columnA;
-    height: calc(100% - 98px);
+    height: calc(100% - 30px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -75,7 +75,7 @@ const styles = {
   `,
   B: css`
     grid-area: columnB;
-    height: 250px;
+    height: 182px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

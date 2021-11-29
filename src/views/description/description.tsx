@@ -33,6 +33,7 @@ const Description = ({
   publication,
   handleData,
   permissionType,
+  data,
 }: DescriptionViewProps): React.ReactElement => {
   return (
     <Page>
@@ -169,7 +170,11 @@ const Description = ({
             </S.DescriptionContent>
           </S.Wrapper>
           <S.ContactContainer>
-            <Contact handleData={handleData} />
+            <Contact
+              handleData={handleData}
+              publication={publication}
+              data={data}
+            />
           </S.ContactContainer>
         </S.Content>
         <S.LocateContent>

@@ -10,10 +10,6 @@ interface ButtonsProps {
     label: string;
     callback?: () => void;
   };
-  BArrowAfter: {
-    label: string;
-    callback?: () => void;
-  };
   BNext: {
     label: string;
     callback?: () => void;

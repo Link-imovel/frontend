@@ -27,7 +27,6 @@ interface AddressFields {
   city: string;
   state: string;
   zip: string;
-  ibge: string;
   latitude?: number;
   longitude?: number;
 }
@@ -103,23 +102,13 @@ interface ListAnnouncementFields {
   serviceArea?: string;
   bedroom?: string;
   bathroom?: string;
-  locale?: string;
+  text?: string;
   type?: string;
 }
 
 interface ListAnnouncement {
   listannouncement: ListAnnouncementFields;
   valid: KeysType<ListAnnouncementFields, boolean>;
-}
-
-interface SearchBarFields {
-  locale: string;
-  type: string;
-}
-
-interface CreateSearch {
-  searchbar: SearchBarFields;
-  valid: KeysType<SearchBarFields, boolean>;
 }
 
 interface Store {
@@ -130,7 +119,6 @@ interface Store {
   createSetPassword: CreateSetPassword;
   login: Login;
   listannouncement: ListAnnouncement;
-  createSearch: CreateSearch;
 }
 
 export type {
@@ -150,6 +138,4 @@ export type {
   Login,
   ListAnnouncementFields,
   ListAnnouncement,
-  SearchBarFields,
-  CreateSearch,
 };

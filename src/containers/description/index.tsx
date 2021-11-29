@@ -55,6 +55,7 @@ const DescriptionContainer = (props: DesciptionProps): React.ReactElement => {
       isLogged={!!isLogged}
       permissionType={permissionType()}
       publication={pubsStore?.publication}
+      data={data}
     />
   );
 };

@@ -43,7 +43,7 @@ const SearchBar = ({
           radius="none"
           type="text"
           name="locale"
-          value={data?.locale}
+          value={data?.text}
           placeholder="Digite a cidade ou bairro"
           onChange={(el) => handleData(el.target.id, el.target.value)}
         />

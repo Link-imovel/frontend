@@ -15,7 +15,6 @@ import { colors } from '@theme/theme/default';
 import { options } from '@components/generics/dropdown/dropdown.options';
 import { Logo } from '@components/generics/icons/logo';
 import { ArrowBefore } from '@components/generics/icons/arrowbefore';
-import { ArrowAfter } from '@components/generics/icons/arrowafter';
 import { Formatters } from '@helpers/formatters';
 
 const Details = ({
@@ -52,16 +51,6 @@ const Details = ({
               icon={<ArrowBefore height={20} width={20} />}
               onClick={buttons.BArrowBefore.callback}
             />
-            {/* <Button
-              variant="transparent"
-              label={buttons.BArrowAfter.label}
-              justifyContent="space-between"
-              color={colors.blackGrey}
-              size="xsmall"
-              radius="square"
-              icon={<ArrowAfter height={20} width={20} />}
-              onClick={buttons.BArrowAfter.callback}
-            /> */}
           </S.NavigationWrapper>
           <S.Title>{title}</S.Title>
           <S.Content>

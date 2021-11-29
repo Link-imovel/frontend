@@ -3,10 +3,10 @@ import React from 'react';
 import { Page } from '@components/container/page';
 import { Card as CardContainer } from '@components/container/card';
 import { Button } from '@components/generics/button';
-import { DropdownHeader } from '@components/generics/dropdownheader';
 import { Card } from '@components/generics/card';
 import { Table } from '@components/generics/table';
 import { Dropdown } from '@components/generics/dropdown';
+import { Input } from '@components/generics/input';
 
 import { Logo } from '@components/generics/icons/logo';
 import { Article } from '@components/generics/icons/article';
@@ -25,7 +25,6 @@ import { options } from '@components/generics/dropdown/dropdown.options';
 import { colors } from '@theme/theme/default';
 import { Pagination } from '@components/generics/pagination';
 import { SearchBar } from '@components/generics/searchbar';
-import { Input } from '@components/generics/input';
 import { Formatters } from '@helpers/formatters';
 
 const List = ({
@@ -167,6 +166,7 @@ const List = ({
             onChange={(el) =>
               handleData(el.target.id, Formatters.formatPrice(el.target.value))
             }
+            value={data?.price}
             validators={[
               {
                 type: 'Required',
@@ -175,10 +175,6 @@ const List = ({
               {
                 type: 'NotBlank',
                 message: 'O campo não pode estar em branco.',
-              },
-              {
-                type: 'OnlyNumbers',
-                message: 'Favor inserir somente números',
               },
             ]}
           />
@@ -202,6 +198,7 @@ const List = ({
     data?.bathroom,
     data?.bedroom,
     data?.garage,
+    data?.price,
     data?.serviceArea,
     dropdown,
     handleData,

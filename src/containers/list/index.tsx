@@ -66,7 +66,7 @@ const ListContainer = (props: ListProps): React.ReactElement => {
   };
 
   BCreateUser.callback = () => {
-    router.push('/create-user');
+    router.push('/user/create');
   };
 
   BListUsers.callback = () => {

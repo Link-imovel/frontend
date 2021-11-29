@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Input } from '@components/generics/input';
 import { TextArea } from '@components/generics/textarea';
 import { Button } from '@components/generics/button';
@@ -12,14 +14,21 @@ import { Formatters } from '@helpers/formatters';
 
 const Contact = ({
   handleData,
+  publication,
+  data,
 }: Required<ContactProps>): React.ReactElement => {
-  const sendMessage = () => {
-    console.log(2);
-  };
+  const dispatch = useDispatch();
 
-  const sendMessageWhatsApp = () => {
-    console.log(1);
-  };
+  const sendMessage = React.useCallback(() => {
+    dispatch({});
+  }, [dispatch]);
+
+  const sendMessageWhatsApp = React.useCallback(() => {
+    const msg = encodeURI(
+      `Olá, me interessei por este imóvel que vi na Link_. http://localhost:3000/description/${publication?.id}`
+    );
+    window.open(`https://wa.me/${publication?.phone}?text=${msg}`);
+  }, [publication?.id, publication?.phone]);
 
   return (
     <S.Container>
@@ -40,7 +49,8 @@ const Contact = ({
             type: 'Match',
             message: 'Por favor, provenha um endereço de e-mail valido.',
             match: (value) => {
-              const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              const regex =
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
               return !value || !!regex.test(value as string);
             },
           },

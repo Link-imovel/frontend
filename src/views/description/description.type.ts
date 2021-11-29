@@ -26,6 +26,7 @@ interface DescriptionViewProps extends Required<DesciptionProps> {
   };
   publication: Publication<string[]>;
   handleData: (fieldName: string, value: any) => void;
+  data: Record<string, any>;
 }
 
 export type { DesciptionProps, DescriptionViewProps };

@@ -2,19 +2,25 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch, RootState } from '@store/index';
+import { actions as storeActions } from '@store/ducks/store';
+import { actions as pubsActions } from '@store/ducks/publications';
+import { RootStore } from '@store/store.interface';
 
 import { Details } from '@views/details';
 import { DetailsProps } from '@views/details/details.type';
 import { useBreadcrumb } from '@hooks/breadcrumb';
 
 const DetailsContainer = (props: DetailsProps): React.ReactElement => {
-  const { BArrowAfter, BArrowBefore, BLogo, BNext } = props.buttons;
-  const store = useSelector((state: RootState) => state.store.createHomeDetail);
-  const userStore = useSelector((state: RootState) => state.user);
+  const { BArrowBefore, BLogo, BNext } = props.buttons;
+  const router = useRouter();
+  const { next, previous, paths } = useBreadcrumb();
+
+  const store = useSelector((state: RootStore) => state.store.createHomeDetail);
+  const userStore = useSelector((state: RootStore) => state.user);
   const addressStore = useSelector(
-    (state: RootState) => state.store.createAddress
+    (state: RootStore) => state.store.createAddress
   );
+  const dispatch = useDispatch();
 
   const [data, setData] = React.useState(store.homedetail);
   const [files, setFiles] = React.useState<{ image: string }[]>([
@@ -24,12 +30,6 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
   const [formValid, setFormValid] = React.useState(
     Object.values(dataValid).every((item) => item)
   );
-
-  const router = useRouter();
-
-  const { next, previous, paths } = useBreadcrumb();
-
-  const dispatch = useDispatch<Dispatch>();
 
   React.useEffect(() => {
     next({ title: props.title, url: router.asPath });
@@ -45,20 +45,18 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
     router.push('/announcement/address');
   };
 
-  BArrowAfter.callback = () => {
-    if (formValid) router.push('/announcement/client');
-  };
-
   BNext.callback = () => {
-    dispatch.publication.create({
-      phone: userStore.user.mobile,
-      title: store.homedetail.title,
-      home: {
-        ...store.homedetail,
-        value: store.homedetail.value?.replace(/[^0-9]+/g, ''),
-        address: { ...addressStore.address },
-      },
-    });
+    dispatch(
+      pubsActions.createPublicationRequest({
+        phone: userStore.user.mobile,
+        title: store.homedetail.title,
+        home: {
+          ...store.homedetail,
+          value: store.homedetail.value?.replace(/[^0-9]+/g, ''),
+          address: { ...addressStore.address },
+        },
+      })
+    );
     window.location.replace('/list/announcements');
   };
 
@@ -92,20 +90,24 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
 
   const handleData = (fieldName: string, value: any) => {
     setData({ ...data, [fieldName]: value });
-    dispatch.store.createHomeDetail({
-      homedetail: {
-        ...data,
-        [fieldName]: value,
-      },
-    });
+    dispatch(
+      storeActions.createHomeDetail({
+        homedetail: {
+          ...data,
+          [fieldName]: value,
+        },
+      })
+    );
   };
 
   const handleValidation = (fieldName: string, value: boolean) => {
     const valid = { ...dataValid, [fieldName]: value };
     setDataValid(valid);
-    dispatch.store.createHomeDetail({
-      valid,
-    });
+    dispatch(
+      storeActions.createHomeDetail({
+        valid,
+      })
+    );
     setFormValid(Object.values(valid).every((item) => item));
   };
 
