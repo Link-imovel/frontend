@@ -52,6 +52,7 @@ const DetailsContainer = (props: DetailsProps): React.ReactElement => {
         title: store.homedetail.title,
         home: {
           ...store.homedetail,
+          images: files,
           value: store.homedetail.value?.replace(/[^0-9]+/g, ''),
           address: { ...addressStore.address },
         },

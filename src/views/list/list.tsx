@@ -41,6 +41,7 @@ const List = ({
   isMobile,
   handleData,
   data,
+  onSelect,
 }: ListViewProps): React.ReactElement => {
   const [show, setShow] = React.useState(false);
 
@@ -91,9 +92,10 @@ const List = ({
     | JSX.Element
     | null => {
     if (content.table) {
+      console.log('');
       return (
         <S.Wrapper>
-          <Table {...users} />
+          <Table users={users} />
         </S.Wrapper>
       );
     }
@@ -295,7 +297,7 @@ const List = ({
           {content.cards && <SearchBar handleData={handleData} data={data} />}
           <S.Quantity>{quantity} resultados retornado</S.Quantity>
           {renderContent()}
-          <Pagination />
+          <Pagination quantity={quantity} onSelect={onSelect} />
         </S.Content>
       </S.Container>
     </Page>

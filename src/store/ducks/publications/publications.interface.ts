@@ -1,3 +1,4 @@
+import { User } from '@store/ducks/user/user.interface';
 import { Point } from 'geojson';
 
 interface ImageByteA {
@@ -50,6 +51,7 @@ interface Publication<T = ImageByteA[]> {
   createdAt: Date;
   updatedAt: Date;
   home: Home<T>;
+  user: User;
 }
 
 interface AddressHome {

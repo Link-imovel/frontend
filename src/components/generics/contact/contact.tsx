@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
 import { Input } from '@components/generics/input';
 import { TextArea } from '@components/generics/textarea';
 import { Button } from '@components/generics/button';
@@ -17,11 +15,7 @@ const Contact = ({
   publication,
   data,
 }: Required<ContactProps>): React.ReactElement => {
-  const dispatch = useDispatch();
-
-  const sendMessage = React.useCallback(() => {
-    dispatch({});
-  }, [dispatch]);
+  const sendMessage = React.useCallback(() => {}, []);
 
   const sendMessageWhatsApp = React.useCallback(() => {
     const msg = encodeURI(

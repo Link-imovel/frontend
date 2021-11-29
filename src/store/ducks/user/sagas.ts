@@ -9,9 +9,12 @@ import { Login, SetPassword, User, UserAuth } from './user.interface';
 import * as types from './types';
 import { saveToken } from '@helpers/auth';
 
-export function* getUsers() {
+export function* getUsers({ auth }: Sagas<{ auth?: string }>) {
   try {
-    const response: AxiosResponse<User[]> = yield call(userService.getAll);
+    const response: AxiosResponse<User[]> = yield call(
+      userService.getAll,
+      auth
+    );
     if (response.status >= 200 && response.status <= 299) {
       yield put(userActions.getAllUsersSuccess(response.data));
     }

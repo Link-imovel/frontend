@@ -7,10 +7,10 @@ import { Delete } from '@components/generics/icons/delete';
 
 import * as S from './table.style';
 import { colors } from '@theme/theme/default';
-import { User } from '@store/ducks/user/user.interface';
 import { useBoxMessage } from '@hooks/boxmessage';
+import { TableProps } from './table.type';
 
-const Table = (users: User[]): React.ReactElement => {
+const Table = ({ users }: TableProps): React.ReactElement => {
   const router = useRouter();
 
   const { openModal } = useBoxMessage();
@@ -47,51 +47,52 @@ const Table = (users: User[]): React.ReactElement => {
         </S.Tr>
       </S.Thead>
       <S.Tbody>
-        {users.map((user) => (
-          <S.Tr key={user?.id}>
-            <S.Td type="default" name="Nome">
-              {user?.firstName}
-            </S.Td>
-            <S.Td type="default" name="Sobrenome">
-              {user?.lastName}
-            </S.Td>
-            <S.Td type="default" name="E-mail">
-              {user?.email}
-            </S.Td>
-            <S.Td type="default" name="CRECI">
-              {user?.creci}
-            </S.Td>
-            <S.Td type="default" name="Telefone">
-              {user?.phone}
-            </S.Td>
-            <S.Td type="default" name="CPF">
-              {user?.registry}
-            </S.Td>
-            <S.Td type="default" name="Data Nascimento">
-              {user?.birthday}
-            </S.Td>
-            {renderStatus(user?.isActive)}
-            <S.Td type="default">
-              <Button
-                variant="transparent"
-                label="Editar"
-                size="small"
-                radius="square"
-                color={colors.greyBlue}
-                onClick={editUser}
-              />
-            </S.Td>
-            <S.Td type="default">
-              <Button
-                variant="transparent"
-                size="small"
-                radius="square"
-                icon={<Delete height={20} width={20} fill={colors.orange} />}
-                onClick={() => openModal(user?.id || undefined)}
-              />
-            </S.Td>
-          </S.Tr>
-        ))}
+        {users.length > 0 &&
+          users.map((user) => (
+            <S.Tr key={user?.id}>
+              <S.Td type="default" name="Nome">
+                {user?.firstName}
+              </S.Td>
+              <S.Td type="default" name="Sobrenome">
+                {user?.lastName}
+              </S.Td>
+              <S.Td type="default" name="E-mail">
+                {user?.email}
+              </S.Td>
+              <S.Td type="default" name="CRECI">
+                {user?.creci}
+              </S.Td>
+              <S.Td type="default" name="Telefone">
+                {user?.phone}
+              </S.Td>
+              <S.Td type="default" name="CPF">
+                {user?.registry}
+              </S.Td>
+              <S.Td type="default" name="Data Nascimento">
+                {new Date(user?.birthday).toLocaleDateString('pt-BR')}
+              </S.Td>
+              {renderStatus(user?.isActive)}
+              <S.Td type="default">
+                <Button
+                  variant="transparent"
+                  label="Editar"
+                  size="small"
+                  radius="square"
+                  color={colors.greyBlue}
+                  onClick={editUser}
+                />
+              </S.Td>
+              <S.Td type="default">
+                <Button
+                  variant="transparent"
+                  size="small"
+                  radius="square"
+                  icon={<Delete height={20} width={20} fill={colors.orange} />}
+                  onClick={() => openModal(user?.id)}
+                />
+              </S.Td>
+            </S.Tr>
+          ))}
       </S.Tbody>
     </S.Table>
   );

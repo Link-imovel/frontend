@@ -9,9 +9,11 @@ import * as S from './boxmessage.style';
 import { BoxMessageProps } from './boxmessage.type';
 import { colors } from '@theme/theme/default';
 
-const BoxMessage = ({ open, title }: BoxMessageProps): React.ReactElement => {
-  const { closeModal } = useBoxMessage();
-
+const BoxMessage = ({
+  open,
+  title,
+  buttons,
+}: BoxMessageProps): React.ReactElement => {
   return (
     <S.Container show={open}>
       <S.Wrapper>
@@ -23,7 +25,7 @@ const BoxMessage = ({ open, title }: BoxMessageProps): React.ReactElement => {
             justifyContent="space-between"
             radius="square"
             icon={<Close width={20} height={20} fill={colors.blackGrey} />}
-            onClick={closeModal}
+            onClick={buttons?.BClose?.callback}
           />
         </S.Header>
         <S.Content>
@@ -31,14 +33,14 @@ const BoxMessage = ({ open, title }: BoxMessageProps): React.ReactElement => {
             variant="primary"
             label="Sim"
             color={colors.whiteGrey}
-            onClick={() => console.log()}
+            onClick={buttons?.BDelete?.callback}
           />
           <Button
             variant="primary"
             label="Não"
             color={colors.whiteGrey}
             background={colors.red}
-            onClick={closeModal}
+            onClick={buttons?.BClose?.callback}
           />
         </S.Content>
       </S.Wrapper>

@@ -5,6 +5,8 @@ import * as actions from './actions';
 import { sagas } from './sagas';
 
 const INITIAL_STATE = {
+  error: false,
+  created: false,
   publication: {},
   publications: [{}],
 };

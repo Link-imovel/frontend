@@ -53,7 +53,7 @@ export function* createPublication({
 }: Sagas<{ payload: CreatePublication }>) {
   try {
     const response: AxiosResponse<Publication> = yield call(
-      publicationService.getAll,
+      publicationService.create,
       payload
     );
     if (response.status >= 200 && response.status <= 299) {

@@ -62,7 +62,10 @@ const Card = ({
             <S.Info>{publication?.title}</S.Info>
             <S.IconContainer>
               <S.IconContent variant="secondary">
-                <PermIdentity fill={colors.greyBlue} /> <span>Josue</span>
+                <PermIdentity fill={colors.greyBlue} />{' '}
+                <span>
+                  {publication?.user?.firstName} {publication?.user?.lastName}
+                </span>
               </S.IconContent>
               <S.IconContent variant="secondary">
                 <PhoneIphone fill={colors.greyBlue} />{' '}
@@ -74,7 +77,13 @@ const Card = ({
       );
     }
     return null;
-  }, [publication?.phone, publication?.title, size]);
+  }, [
+    publication?.phone,
+    publication?.title,
+    publication?.user?.firstName,
+    publication?.user?.lastName,
+    size,
+  ]);
 
   const renderFunctions = React.useCallback((): JSX.Element | null => {
     if (functionalities) {

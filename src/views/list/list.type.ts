@@ -41,6 +41,7 @@ interface ButtonsProps {
 }
 
 interface ListProps {
+  slug?: string;
   description: string;
   buttons: ButtonsProps;
   content: {
@@ -51,7 +52,7 @@ interface ListProps {
   handleData?: (fieldName: string, value: any) => void;
 }
 
-interface ListViewProps extends Required<ListProps> {
+interface ListViewProps extends Required<Omit<ListProps, 'slug'>> {
   data?: ListAnnouncementFields;
   userName: string;
   users: User[];
@@ -63,6 +64,7 @@ interface ListViewProps extends Required<ListProps> {
   cards: CardProps[];
   quantity: number;
   isMobile: boolean;
+  onSelect: (page: number) => void;
 }
 
 export type { ListViewProps, ListProps };

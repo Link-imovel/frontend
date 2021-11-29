@@ -1,5 +1,3 @@
-import { Publication } from '../publications/publications.interface';
-
 interface UserAuth {
   access_token?: string;
   user: User;
@@ -26,7 +24,6 @@ interface User {
   isActive?: boolean;
   createdAt?: string;
   updatedAt?: string;
-  publication?: Publication[];
   permission?: Permission;
 }
 

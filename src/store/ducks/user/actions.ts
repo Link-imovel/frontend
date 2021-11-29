@@ -16,8 +16,9 @@ export const getUserFailure = () => ({
   type: types.USER_FAILURE,
 });
 
-export const getAllUsersRequest = () => ({
+export const getAllUsersRequest = (auth?: string) => ({
   type: types.USERS_REQUEST,
+  auth,
 });
 
 export const getAllUsersSuccess = (payload: User[]) => ({

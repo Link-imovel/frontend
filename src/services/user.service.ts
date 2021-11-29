@@ -8,11 +8,12 @@ const userService = {
       endpoint: '/user/' + id,
       method: 'GET',
     }),
-  getAll: () =>
+  getAll: (auth?: string) =>
     httpClient({
       title: 'UserService - getAll',
       endpoint: '/user/',
       method: 'GET',
+      token: auth,
     }),
   login: (data: Login) =>
     httpClient({

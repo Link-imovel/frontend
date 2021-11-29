@@ -63,7 +63,7 @@ const Details = ({
                 placeholder="Informe o titulo do anuncio"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) => handleValidation('title', valid)}
-                value={data.title}
+                value={data?.title}
                 validators={[
                   {
                     type: 'Required',
@@ -95,7 +95,7 @@ const Details = ({
                 onValidation={({ valid }) =>
                   handleValidation('totalArea', valid)
                 }
-                value={data.totalArea}
+                value={data?.totalArea}
                 validators={[
                   {
                     type: 'Required',
@@ -182,7 +182,7 @@ const Details = ({
                 placeholder="Informe uma referencia"
                 onChange={(el) => handleData(el.target.id, el.target.value)}
                 onValidation={({ valid }) => handleValidation('ref', valid)}
-                value={data.ref}
+                value={data?.ref}
                 validators={[
                   {
                     type: 'Required',
@@ -207,7 +207,7 @@ const Details = ({
                   )
                 }
                 onValidation={({ valid }) => handleValidation('value', valid)}
-                value={data.value}
+                value={data?.value}
                 validators={[
                   {
                     type: 'Required',
@@ -255,7 +255,7 @@ const Details = ({
                 onChange={(evt) =>
                   handleValidation('description', !!evt.target.value)
                 }
-                value={data.description}
+                value={data?.description}
               />
             </S.Wrapper>
           </S.Content>

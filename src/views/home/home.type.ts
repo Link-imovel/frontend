@@ -1,7 +1,7 @@
 import { FooterProps } from '@components/container/footer/footer.type';
 import { HeaderProps } from '@components/container/header/header.type';
 import { CardProps } from '@components/generics/card/card.type';
-import { SearchBarFields } from '@store/ducks/store/store.interface';
+import { ListAnnouncementFields } from '@store/ducks/store/store.interface';
 
 interface HomeProps {
   header: HeaderProps;
@@ -10,7 +10,7 @@ interface HomeProps {
 }
 
 interface HomeViewProps extends Required<HomeProps> {
-  data?: SearchBarFields;
+  data?: ListAnnouncementFields;
   userName: string;
   isLogged: boolean;
   cards: CardProps[];

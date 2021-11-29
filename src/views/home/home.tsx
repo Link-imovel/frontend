@@ -37,7 +37,11 @@ const Home = ({
         <S.Title>Imóveis próximo a sua localidade</S.Title>
         <S.Wrapper>
           {cards.length > 0
-            ? cards.map((props, index) => <Card key={index} {...props} />)
+            ? cards.map((props, index) => {
+                if (index <= 4) {
+                  return <Card key={index} {...props} />;
+                }
+              })
             : [...Array(4)].map((_, i) => (
                 <CardContainer size="small" key={i} onClick={() => {}} />
               ))}

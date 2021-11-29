@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as storeActions } from '@store/ducks/store';
-import { actions as userActions, user } from '@store/ducks/user';
+import { actions as userActions } from '@store/ducks/user';
 import { RootStore } from '@store/store.interface';
 
 import { User as Users } from '@views/user';
@@ -12,8 +12,9 @@ import { UserProps } from '@views/user/user.type';
 const UserContainer = (props: UserProps): React.ReactElement => {
   const { BLogo, BArrowBefore, BDefault } = props.buttons;
   const router = useRouter();
-  const userStore = useSelector((state: RootStore) => state.user);
+
   const store = useSelector((state: RootStore) => state.store.createUser);
+  const userStore = useSelector((state: RootStore) => state.user);
   const dispatch = useDispatch();
 
   const [data, setData] = React.useState(store.user);
@@ -33,8 +34,8 @@ const UserContainer = (props: UserProps): React.ReactElement => {
   BDefault.callback = async () => {
     switch (props.type) {
       case 'update':
-        if (userStore.user.id)
-          dispatch(userActions.updateUserRequest(userStore.user.id, data));
+        if (userStore?.user?.id)
+          dispatch(userActions.updateUserRequest(userStore?.user?.id, data));
         break;
       case 'create':
         dispatch(userActions.createUserRequest(data));

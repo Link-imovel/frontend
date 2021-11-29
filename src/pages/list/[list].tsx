@@ -24,24 +24,11 @@ const List = (props: ListProps): React.ReactElement => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ locale, defaultLocale, resolvedUrl }) => {
+    async ({ locale, defaultLocale, resolvedUrl, req }) => {
       const { slug, locale: strapiLocale } = strapiClient.getLocalizedParams(
         resolvedUrl,
         locale || defaultLocale
       );
-
-      switch (slug) {
-        case 'list/announcements':
-          store.dispatch(pubActions.getPublicationsRequest({ page: 1 }));
-          store.dispatch(END);
-          await store.sagaTask?.toPromise();
-          break;
-        case 'list/users':
-          store.dispatch(userActions.getAllUsersRequest());
-          store.dispatch(END);
-          await store.sagaTask?.toPromise();
-          break;
-      }
 
       try {
         return await strapiClient.getData(slug, strapiLocale);

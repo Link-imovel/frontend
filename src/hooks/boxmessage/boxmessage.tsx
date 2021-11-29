@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { useDispatch } from 'react-redux';
+
 import {
   BoxMessageContextData,
   BoxMessageProps,
@@ -13,7 +16,6 @@ const BoxMessageProvider = ({
   const [modal, setModal] = React.useState<ModalProps>({ open: false });
 
   const openModal = React.useCallback((id: string | undefined) => {
-    console.log('OPENMODAL >>');
     setModal({ open: true, id });
   }, []);
 
@@ -21,15 +23,8 @@ const BoxMessageProvider = ({
     setModal({ open: false });
   }, []);
 
-  const deleteAnnoucement = React.useCallback(() => {
-    const { id } = modal;
-    console.log(id);
-  }, [modal]);
-
   return (
-    <BoxMessageContext.Provider
-      value={{ modal, openModal, deleteAnnoucement, closeModal }}
-    >
+    <BoxMessageContext.Provider value={{ modal, openModal, closeModal }}>
       {children}
     </BoxMessageContext.Provider>
   );
